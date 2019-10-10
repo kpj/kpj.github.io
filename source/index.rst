@@ -10,6 +10,7 @@ Correctness and completeness are not guaranteed.
   :caption: Data Mining & Visualization
   :maxdepth: 1
 
+  mining_visualization/Eurostat_Visualizations
   mining_visualization/IMDB_ratings
 
 
