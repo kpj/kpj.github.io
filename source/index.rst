@@ -19,3 +19,10 @@ Correctness and completeness are not guaranteed.
   :maxdepth: 1
 
   machine_learning/Autoencoder
+
+
+.. toctree::
+  :caption: Miscellaneous
+  :maxdepth: 1
+
+  misc/ThreadingVSMultiprocessing
