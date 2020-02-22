@@ -5,6 +5,8 @@ A blog on Linux, Data Science, and more
 This blog is filled with text and code about various slightly related topics.
 Correctness and completeness are not guaranteed.
 
+More fun projects can be found on https://github.com/kpj/.
+
 
 .. toctree::
   :caption: Linux
