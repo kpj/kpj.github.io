@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Encrypting Partitions using LUKS &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script type="text/javascript" src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building a Custom Linux Kernel" href="KernelBuilding.html" />
+    <link rel="prev" title="A blog on Linux, Data Science, and more" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Encrypting Partitions using LUKS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-start">Before you start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-encrypting">Getting started with encrypting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-the-encrypted-partition">Accessing the encrypted partition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unmounting-the-encrypted-partition">Unmounting the encrypted partition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#normal-workflow">Normal Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eduroam.html">Connecting to Eduroam Network</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Compare threading and multiprocessing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Encrypting Partitions using LUKS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/EncryptPartitions.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="encrypting-partitions-using-luks">
+<h1>Encrypting Partitions using LUKS<a class="headerlink" href="#encrypting-partitions-using-luks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="before-you-start">
+<h2>Before you start<a class="headerlink" href="#before-you-start" title="Permalink to this headline">¶</a></h2>
+<p>You might want to format your device as the first step, but this is only optional.
+More important is to create a proper partition layout on your device, namely a small one to store some meta information and a larger one to store the actual data.</p>
+<p>In the following I am going to assume that the matching block device is <code class="docutils literal notranslate"><span class="pre">/dev/sdb</span></code> (you can find yours using e.g. ‘lsblk’).
+In order to create the two partitions fire up ‘fdisk’ and create a new partition table</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ fdisk /dev/sdb
+
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: g
+Created a new GPT disklabel <span class="o">(</span>GUID: <span class="o">[</span>..<span class="o">])</span>.
+
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+The partition table has been altered.
+Calling ioctl<span class="o">()</span> to re-read partition table.
+Syncing disks.
+</pre></div>
+</div>
+<p>In the next step, we are going to add the two new partitions. One of size 5M (to store meta data) and one to span the rest. We can thus take the default value for all but the last sector of the first partition.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ fdisk /dev/sdb
+
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+Partition number <span class="o">(</span><span class="m">1</span>-128, default <span class="m">1</span><span class="o">)</span>:
+First sector <span class="o">(</span><span class="m">2048</span>-15667166, default <span class="m">2048</span><span class="o">)</span>:
+Last sector, +sectors or +size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span><span class="m">2048</span>-15667166, default <span class="m">15667166</span><span class="o">)</span>: +5M
+
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+Partition number <span class="o">(</span><span class="m">2</span>-128, default <span class="m">2</span><span class="o">)</span>:
+First sector <span class="o">(</span><span class="m">12288</span>-15667166, default <span class="m">12288</span><span class="o">)</span>:
+Last sector, +sectors or +size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span><span class="m">12288</span>-15667166, default <span class="m">15667166</span><span class="o">)</span>:
+</pre></div>
+</div>
+<p>Print the partition table to make sure everything worked out</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+Disk /dev/sdb: <span class="m">7</span>.5 GiB, <span class="m">8021606400</span> bytes, <span class="m">15667200</span> sectors
+Units: sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disklabel type: gpt
+Disk identifier: <span class="o">[</span>..<span class="o">]</span>
+
+Device     Start      End  Sectors  Size Type
+/dev/sdb1   <span class="m">2048</span>    <span class="m">12287</span>    <span class="m">10240</span>    5M Linux filesystem
+/dev/sdb2  <span class="m">12288</span> <span class="m">15667166</span> <span class="m">15654879</span>  <span class="m">7</span>.5G Linux filesystem
+</pre></div>
+</div>
+<p>and save your changes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+The partition table has been altered.
+Calling ioctl<span class="o">()</span> to re-read partition table.
+Syncing disks.
+</pre></div>
+</div>
+<p>Executing <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/dev/sdb*</span></code> will now reveal the two new block devices <code class="docutils literal notranslate"><span class="pre">/dev/sdb1</span></code> and <code class="docutils literal notranslate"><span class="pre">/dev/sdb2</span></code>.
+As the first one will store helpful information it is formatted to ext4 using ‘mke2fs’ (<code class="docutils literal notranslate"><span class="pre">-L</span></code> will set the volume label).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mke2fs -L sticky-hint -t ext4 /dev/sdb1
+Creating filesystem with <span class="m">5120</span> 1k blocks and <span class="m">1280</span> inodes
+
+Allocating group tables: <span class="k">done</span>                            
+Writing inode tables: <span class="k">done</span>                            
+Writing superblocks and filesystem accounting information: <span class="k">done</span>
+</pre></div>
+</div>
+<p>Useful information about our partitions can then be stored as follows</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mount /dev/sdb1 /mnt/
+$ fdisk -l /dev/sdb &gt; /mnt/partitions
+$ umount /mnt
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-started-with-encrypting">
+<h2>Getting started with encrypting<a class="headerlink" href="#getting-started-with-encrypting" title="Permalink to this headline">¶</a></h2>
+<p>In the following, <a class="reference external" href="http://en.wikipedia.org/wiki/Linux_Unified_Key_Setup">LUKS</a> is used as it offers a metadata header.
+This can be done by using the ‘cryptsetup’ tool. If you want to use an extra long passphrase, a key file can be used with the <code class="docutils literal notranslate"><span class="pre">--key-file</span> <span class="pre">&lt;file&gt;</span></code> parameter. For the sake of simplicity I am going to provide a password from stdin here.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cryptsetup -v luksFormat /dev/sdb2
+
+WARNING!
+<span class="o">========</span>
+This will overwrite data on /dev/sdb2 irrevocably.
+
+Are you sure? <span class="o">(</span>Type uppercase yes<span class="o">)</span>: YES
+Enter passphrase:
+Verify passphrase:
+Command successful.
+</pre></div>
+</div>
+<p>The header and keyslot area can then be backuped (assuming that the meta info partition is still mounted as before)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cryptsetup luksHeaderBackup /dev/sdb2 --header-backup-file /mnt/header
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-the-encrypted-partition">
+<h2>Accessing the encrypted partition<a class="headerlink" href="#accessing-the-encrypted-partition" title="Permalink to this headline">¶</a></h2>
+<p>We can open our newly create drive which is backed by <code class="docutils literal notranslate"><span class="pre">/dev/sdb2</span></code> by executing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cryptsetup -v luksOpen /dev/sdb2 sticky
+Enter passphrase <span class="k">for</span> /dev/sdb2:
+Key slot <span class="m">0</span> unlocked.
+Command successful.
+</pre></div>
+</div>
+<p>This command is going to create a mapping in <code class="docutils literal notranslate"><span class="pre">/dev/mapper</span></code> called ‘sticky’, which we can use to access our partition.
+Right now, we obviously cannot use it since there is no filesystem on it. Let’s change that.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mke2fs -L sticky -t ext4 /dev/mapper/sticky
+Creating filesystem with <span class="m">1956347</span> 4k blocks and <span class="m">489600</span> inodes
+Filesystem UUID: 57d5effc-7d34-4866-aa5c-3a1a95c04f81
+Superblock backups stored on blocks:
+    <span class="m">32768</span>, <span class="m">98304</span>, <span class="m">163840</span>, <span class="m">229376</span>, <span class="m">294912</span>, <span class="m">819200</span>, <span class="m">884736</span>, <span class="m">1605632</span>
+
+Allocating group tables: <span class="k">done</span>                            
+Writing inode tables: <span class="k">done</span>                            
+Creating journal <span class="o">(</span><span class="m">32768</span> blocks<span class="o">)</span>: <span class="k">done</span>
+Writing superblocks and filesystem accounting information: <span class="k">done</span>
+</pre></div>
+</div>
+<p>To be extra secure, its output can be saved to the hint partition as well.
+The encrypted partition can then be mounted and subsequently used by executing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mount /dev/mapper/sticky /mnt/
+</pre></div>
+</div>
+</div>
+<div class="section" id="unmounting-the-encrypted-partition">
+<h2>Unmounting the encrypted partition<a class="headerlink" href="#unmounting-the-encrypted-partition" title="Permalink to this headline">¶</a></h2>
+<p>The device mounted through the mapping can be unmounted by simply using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ umount /mnt
+</pre></div>
+</div>
+<p>In order to remove the mapping another call to ‘cryptsetup’ is necessary</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cryptsetup -v luksClose sticky
+Command successful.
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">sticky</span></code> is simply the name of the mapping.</p>
+</div>
+<div class="section" id="normal-workflow">
+<h2>Normal Workflow<a class="headerlink" href="#normal-workflow" title="Permalink to this headline">¶</a></h2>
+<p>To wrap everything up, this is the usual order of commands when using a device encrypted as described before</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cryptsetup -v luksOpen &lt;block device&gt; &lt;map name&gt;
+$ mount /dev/mapper/&lt;map name&gt; &lt;mount point&gt;
+$ <span class="c1"># do work...</span>
+$ umount &lt;mount point&gt;
+$ cryptsetup -v luksClose &lt;map name&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="KernelBuilding.html" class="btn btn-neutral float-right" title="Building a Custom Linux Kernel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="A blog on Linux, Data Science, and more" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, kpj
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

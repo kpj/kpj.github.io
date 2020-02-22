@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuring a fresh Archlinux Install &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script type="text/javascript" src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up a media server" href="MediaServerSetup.html" />
+    <link rel="prev" title="Setting up and Encrypted Archlinux" href="SetupEncryptedArchlinux.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring a fresh Archlinux Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-network-connection">Setting up a Network Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#essential-programs">“Essential” Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-configuration">Initial Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-a-hostname">Set a Hostname</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-your-timezone">Set your Timezone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-locale">Set locale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handle-keyboard-layout-console">Handle keyboard layout (console)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handle-keyboard-layout-xorg">Handle keyboard layout (Xorg)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-root-password">Set root Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-a-default-user">Add a Default User</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-gui">Setting up the GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enabling-sound">Enabling Sound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-ssh">Using SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handle-sudo">Handle sudo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#init-vim">Init vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-bashrc-edits">Useful <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> edits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weechat-usage">Weechat usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eduroam.html">Connecting to Eduroam Network</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Compare threading and multiprocessing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuring a fresh Archlinux Install</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/ConfigureFreshArchlinuxInstall.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="configuring-a-fresh-archlinux-install">
+<h1>Configuring a fresh Archlinux Install<a class="headerlink" href="#configuring-a-fresh-archlinux-install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<p>This entry will provide you with the first few steps needed to get a fresh Arch install running and happy.</p>
+</div>
+<div class="section" id="setting-up-a-network-connection">
+<h2>Setting up a Network Connection<a class="headerlink" href="#setting-up-a-network-connection" title="Permalink to this headline">¶</a></h2>
+<p>In order to install all missing programs on-the-fly, a working internet connection is important.</p>
+<p>Assuming that you are connected via ethernet, you can copy <code class="docutils literal notranslate"><span class="pre">/etc/netctl/examples/ethernet-dhcp</span></code> to <code class="docutils literal notranslate"><span class="pre">/etc/netctl/ether</span></code> and execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netctl start ether
+</pre></div>
+</div>
+<p>If you want this connection to start on every boot, execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netctl <span class="nb">enable</span> ether
+</pre></div>
+</div>
+</div>
+<div class="section" id="essential-programs">
+<h2>“Essential” Programs<a class="headerlink" href="#essential-programs" title="Permalink to this headline">¶</a></h2>
+<p>In order to complete the following steps, some additional programs might be needed. In order to install those and other cool ones, update the pacman database (<code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-Syy</span></code>) and install the following applications:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vim-minimal</span></code> - text editing and much more</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yaourt</span></code> - easy installation of AUR packages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mplayer</span></code>/<code class="docutils literal notranslate"><span class="pre">mpv</span></code> - multimedia player</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">htop</span></code> - resource usage stats</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span></code> - network downloader</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash-completion</span></code> - guess what</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evince-gtk</span></code> - pdf viewer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feh</span></code> - image viewer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scrot</span></code> - screenshot application</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">downgrade</span></code> - downgrad packages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pkgfile</span></code> - find out which package a program is in</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strace</span></code> - trace system calls and signals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdb</span></code> - GNU debugger</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtr</span></code> - ping + traceroute</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncdu</span></code> - <code class="docutils literal notranslate"><span class="pre">du</span></code> with curses interface</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code> - copy ssh public key to other host’s authorized_hosts file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pacgraph</span></code> - see which packages are installed and more</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radare2</span></code> - analyze binary files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hashcat</span></code> - crack hashes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iodine</span></code> - tunnel IPV4 via DNS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mps-youtube</span></code> - youtube player in terminal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">syncthing</span></code> - share files between computers</p></li>
+</ul>
+</div>
+<div class="section" id="initial-configuration">
+<h2>Initial Configuration<a class="headerlink" href="#initial-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This section will list a few common first steps after installing the basic system</p>
+<div class="section" id="set-a-hostname">
+<h3>Set a Hostname<a class="headerlink" href="#set-a-hostname" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hostnamectl set-hostname &lt;hostname&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-your-timezone">
+<h3>Set your Timezone<a class="headerlink" href="#set-your-timezone" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ timedatectl set-timezone Europe/Berlin
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-locale">
+<h3>Set locale<a class="headerlink" href="#set-locale" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim /etc/locale.gen <span class="c1"># uncomment: &quot;en_US.UTF-8 UTF-8&quot;</span>
+$ locale-gen
+$ locale -a <span class="c1"># list available types</span>
+
+$ vim .config/locale.conf <span class="c1"># export entries from `locale` as env vars</span>
+or
+$ localectl set-locale <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="handle-keyboard-layout-console">
+<h3>Handle keyboard layout (console)<a class="headerlink" href="#handle-keyboard-layout-console" title="Permalink to this headline">¶</a></h3>
+<p>Adjust your keyboard layout according to your needs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ localectl status <span class="c1"># show current configuration</span>
+$ localectl list-keymaps <span class="c1"># list available layouts</span>
+$ loadkeys de-latin1 <span class="c1"># temporarily load layout</span>
+$ vim /etc/vconsole.conf <span class="c1"># add &quot;KEYMAP=de-latin1&quot; for permanent layout</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handle-keyboard-layout-xorg">
+<h3>Handle keyboard layout (Xorg)<a class="headerlink" href="#handle-keyboard-layout-xorg" title="Permalink to this headline">¶</a></h3>
+<p>It might be necessary to adjust X to the layout of your specific keyboard. For german ones, something like the following could be used.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim ~/.xinitrc <span class="c1"># add &quot;setxkbmap de nodeadkeys &amp;&quot; at bottom</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-root-password">
+<h3>Set root Password<a class="headerlink" href="#set-root-password" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ su
+$ passwd
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-a-default-user">
+<h3>Add a Default User<a class="headerlink" href="#add-a-default-user" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ useradd -m -g users -G wheel -s /bin/bash kpj
+$ passwd kpj
+<span class="o">[</span>..<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-up-the-gui">
+<h2>Setting up the GUI<a class="headerlink" href="#setting-up-the-gui" title="Permalink to this headline">¶</a></h2>
+<p>In order to have a fancy window manager, we have to install X and a driver first (the exact packages required depend on your particular GPU setup)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S xorg-server xorg-server-utils xorg-xinit
+$ pacman -S xf86-video-vesa <span class="c1"># xf86-video-intel, lib32-intel-dri    // maybe all in mesa now?</span>
+</pre></div>
+</div>
+<p>To then automatically start X on login, add</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span> -z <span class="nv">$DISPLAY</span> <span class="o">&amp;&amp;</span> <span class="nv">$XDG_VTNR</span> -eq <span class="m">1</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">exec</span> startx
+</pre></div>
+</div>
+<p>to the bottom of your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>.</p>
+<p>In order to automatically login after booting, simply create the file <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/getty&#64;tty1.service.d/autologin.conf</span></code> (assuming you’re using systemd) and paste the following content</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">ExecStart</span><span class="o">=</span>
+<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/agetty --autologin &lt;username&gt; --noclear %I <span class="m">38400</span> linux
+<span class="nv">Type</span><span class="o">=</span>simple
+</pre></div>
+</div>
+<p>Afterwards, e.g. <code class="docutils literal notranslate"><span class="pre">i3</span></code> can then be easily installed and set to automatically start on boot</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S i3
+$ cp /etc/skel/.xinitrc ~
+$ vim ~/.xinitrc <span class="c1"># add &quot;exec i3&quot; at bottom</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">i3</span></code> needs the following packages to work correctly</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dmenu</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxvt-unicode</span></code></p></li>
+</ul>
+<p>Logitech Marble mouse config
+Section “InputClass”
+Identifier      “Marble Mouse”
+MatchProduct    “Logitech USB Trackball”
+Driver          “evdev”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Option</span>          <span class="s2">&quot;ButtonMapping&quot;</span>             <span class="s2">&quot;1 2 3 4 5 6 7 2 2&quot;</span>
+
+<span class="n">Option</span>          <span class="s2">&quot;Emulate3Buttons&quot;</span>           <span class="s2">&quot;false&quot;</span>
+
+<span class="n">Option</span>          <span class="s2">&quot;EmulateWheel&quot;</span>	            <span class="s2">&quot;true&quot;</span>
+<span class="n">Option</span>          <span class="s2">&quot;EmulateWheelButton&quot;</span>        <span class="s2">&quot;8&quot;</span>
+</pre></div>
+</div>
+<p>EndSection</p>
+</div>
+<div class="section" id="enabling-sound">
+<h2>Enabling Sound<a class="headerlink" href="#enabling-sound" title="Permalink to this headline">¶</a></h2>
+<p>Start setting up <code class="docutils literal notranslate"><span class="pre">pulseaudio</span></code> by installing it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S pulseaudio
+</pre></div>
+</div>
+<p>It should now automatically start on boot. Otherwise add this to your <code class="docutils literal notranslate"><span class="pre">.xinitrc</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pulseaudio -D <span class="p">&amp;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clock-synchronization">
+<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h2>
+<p>We haven’t used <code class="docutils literal notranslate"><span class="pre">systemd</span></code> so far, so let’s do it (Ba Dum Tss!)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> systemd-networkd
+$ systemctl <span class="nb">enable</span> systemd-timesyncd
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-ssh">
+<h2>Using SSH<a class="headerlink" href="#using-ssh" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S openssh
+$ ssh-keygen
+$ systemctl <span class="nb">enable</span> sshd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="handle-sudo">
+<h2>Handle sudo<a class="headerlink" href="#handle-sudo" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S sudo
+$ <span class="nv">EDITOR</span><span class="o">=</span>vim visudo <span class="c1"># -&gt; %sudo   ALL=(ALL) ALL</span>
+$ groupadd sudo
+$ usermod -a -G sudo &lt;user&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="init-vim">
+<h2>Init vim<a class="headerlink" href="#init-vim" title="Permalink to this headline">¶</a></h2>
+<p>Install <a class="reference external" href="https://github.com/gmarik/Vundle.vim">this</a> plugin manager and look <a class="reference external" href="https://github.com/kpj/dotfiles/blob/master/vimrc">here</a> for an exemplary configuration file.</p>
+</div>
+<div class="section" id="useful-bashrc-edits">
+<h2>Useful <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> edits<a class="headerlink" href="#useful-bashrc-edits" title="Permalink to this headline">¶</a></h2>
+<p>Colorful prompt for normal user:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\e[1;32m\][\u@\h \W]$\[\e[0m\] &#39;</span>
+</pre></div>
+</div>
+<p>for root (same color but as background):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\e[1;32m\e[7m\][\u@\h \W]$\[\e[0m\] &#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="weechat-usage">
+<h2>Weechat usage<a class="headerlink" href="#weechat-usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S weechat
+$ weechat
+-&gt; /server add freenode chat.freenode.net
+-&gt; /set irc.server.freenode.autoconnect on
+-&gt; /set irc.server.freenode.autojoin <span class="s2">&quot;#channel1,#channel2&quot;</span>
+-&gt; /set irc.server.freenode.nicks <span class="s2">&quot;kpj&quot;</span>
+-&gt; /set irc.server.freenode.command <span class="s2">&quot;/msg nickserv identify &lt;password&gt;&quot;</span>
+-&gt; /save
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MediaServerSetup.html" class="btn btn-neutral float-right" title="Setting up a media server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SetupEncryptedArchlinux.html" class="btn btn-neutral float-left" title="Setting up and Encrypted Archlinux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, kpj
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
