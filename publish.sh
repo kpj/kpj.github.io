@@ -4,6 +4,7 @@ set -euo pipefail
 # Note: user pages must be published from master branch
 # git checkout --orphan master
 # git reset --hard
+# touch .nojekyll && git add .nojekyll
 # git commit --allow-empty -m "Initial commit"
 # git checkout source
 
