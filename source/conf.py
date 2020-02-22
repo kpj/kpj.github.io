@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'data_science'
-copyright = '2019, kpj'
+project = 'kpj\'s blog'
+copyright = '2020, kpj'
 author = 'kpj'
 
 # The full version, including alpha/beta/rc tags
@@ -32,7 +32,8 @@ release = '0.0.1'
 # ones.
 extensions = [
   'sphinx.ext.mathjax',
-  'nbsphinx'
+  'nbsphinx',
+  'recommonmark'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
