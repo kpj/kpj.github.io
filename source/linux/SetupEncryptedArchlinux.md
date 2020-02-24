@@ -1,4 +1,4 @@
-# Setting up and Encrypted Archlinux
+# Setting up Archlinux with Encrypted Disk
 
 ## Preparing the Installation Image
 
