@@ -12,13 +12,13 @@ More fun projects can be found on https://github.com/kpj/.
   :caption: Linux
   :maxdepth: 1
 
+  linux/ConfigureFreshArchlinuxInstall.md
+  linux/Eduroam.md
   linux/EncryptPartitions.md
   linux/KernelBuilding.md
+  linux/MediaServerSetup.md
   linux/RescuingABrokenSystem.md
   linux/SetupEncryptedArchlinux.md
-  linux/ConfigureFreshArchlinuxInstall.md
-  linux/MediaServerSetup.md
-  linux/Eduroam.md
 
 
 .. toctree::
