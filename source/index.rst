@@ -14,6 +14,7 @@ More fun projects can be found on https://github.com/kpj/.
 
   linux/EncryptPartitions.md
   linux/KernelBuilding.md
+  linux/RescuingABrokenSystem.md
   linux/SetupEncryptedArchlinux.md
   linux/ConfigureFreshArchlinuxInstall.md
   linux/MediaServerSetup.md
