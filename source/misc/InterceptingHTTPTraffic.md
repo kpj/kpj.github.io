@@ -15,7 +15,7 @@ Make sure that the [Android SDK](https://developer.android.com/studio) is instal
 While it is possible to apply this technique to apps running on an actual phone, using an emulator makes it less likely to permanently mess up something important.
 
 Run `avdmanager` to open the device manager and create a new virtual device. The device definition (e.g. Pixel 2 vs Pixel 3) does not matter much.
-However, when selecting the system image, make sure to switch to the `x86 Images` tab and select a `Google APIs` target (and *not* `Google Play`). This is necessary to install SSL certificates to the system partition. Make sure to choose Android 9.0, i.e. APIs version 28.
+However, when selecting the system image, make sure to switch to the `x86 Images` tab and select a `Google APIs` target (and *not* `Google Play`). This is necessary to install SSL certificates to the system partition. Make sure to choose Android 9.0, i.e. API level 28.
 
 After finishing this process, your newly created virtual device should appear:
 ```bash
@@ -39,7 +39,7 @@ $ adb root
 $ adb remount
 ```
 
-Finally install `mitmproxy`'s certificate:
+Finally, install `mitmproxy`'s certificate:
 ```bash
 $ ca="$HOME/.mitmproxy/mitmproxy-ca-cert.pem"
 $ hash=$(openssl x509 -noout -subject_hash_old -in "$ca")
