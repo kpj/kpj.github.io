@@ -41,5 +41,6 @@ More fun projects can be found on https://github.com/kpj/.
   :caption: Miscellaneous
   :maxdepth: 1
 
+  misc/InterceptingHTTPTraffic
   misc/PythonAlmanac
   misc/ThreadingVSMultiprocessing
