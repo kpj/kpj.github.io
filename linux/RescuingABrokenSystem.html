@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rescuing a Broken Archlinux System &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up Archlinux with Encrypted Disk" href="SetupEncryptedArchlinux.html" />
+    <link rel="prev" title="Setting up a media server" href="MediaServerSetup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rescuing a Broken Archlinux System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prolog">Prolog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-find-a-usb-stick">Step 1: Find a USB stick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-download-an-archlinux-iso">Step 2: Download an Archlinux ISO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-flash-installation-medium">Step 3: Flash Installation Medium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-boot-usb-stick-on-computer">Step 4: Boot USB Stick on Computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-access-filesystem">Step 5: Access Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-fix-your-system">Step 6: Fix your System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Rescuing a Broken Archlinux System</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/RescuingABrokenSystem.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="rescuing-a-broken-archlinux-system">
+<h1>Rescuing a Broken Archlinux System<a class="headerlink" href="#rescuing-a-broken-archlinux-system" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prolog">
+<h2>Prolog<a class="headerlink" href="#prolog" title="Permalink to this headline">¶</a></h2>
+<p>It’s one of these days again: you unplugged your laptop’s power supply, started a system update (<code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-Syu</span></code>) and left to do something else.
+Upon your return you notice your laptop is suspiciously quiet. Fear starts creeping through your veins. You frantically try to boot up your system, but to no avail. Everything fades to black as your system keeps refusing to boot.</p>
+<p>If this sounds familiar to you, you should first and foremost rethink your power management strategy, and secondly follow these 6 simple steps to rescue your system.</p>
+</div>
+<div class="section" id="step-1-find-a-usb-stick">
+<h2>Step 1: Find a USB stick<a class="headerlink" href="#step-1-find-a-usb-stick" title="Permalink to this headline">¶</a></h2>
+<p>Since your system won’t boot by itself, it needs a little help from a friend, i.e. a live USB stick. Go find it!</p>
+</div>
+<div class="section" id="step-2-download-an-archlinux-iso">
+<h2>Step 2: Download an Archlinux ISO<a class="headerlink" href="#step-2-download-an-archlinux-iso" title="Permalink to this headline">¶</a></h2>
+<p>To be able to boot into Arch, we need to have Arch. You can download an image from https://www.archlinux.org/download/.</p>
+</div>
+<div class="section" id="step-3-flash-installation-medium">
+<h2>Step 3: Flash Installation Medium<a class="headerlink" href="#step-3-flash-installation-medium" title="Permalink to this headline">¶</a></h2>
+<p>To create a bootable USB stick, we need to <a class="reference external" href="https://wiki.archlinux.org/index.php/USB_flash_installation_medium">flash the ISO</a> to it.</p>
+<p>First, find the stick’s block device (and make really, really sure it’s the right one).
+<code class="docutils literal notranslate"><span class="pre">lsblk</span></code> can be helpful here:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ lsblk
+NAME         MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+sda            <span class="m">8</span>:0    <span class="m">0</span>  <span class="m">7</span>.3T  <span class="m">0</span> disk
+<span class="p">|</span>-sda1         <span class="m">8</span>:1    <span class="m">0</span>    5M  <span class="m">0</span> part
+<span class="sb">`</span>-sda2         <span class="m">8</span>:2    <span class="m">0</span>  <span class="m">7</span>.3T  <span class="m">0</span> part
+  <span class="sb">`</span>-crypt_hd <span class="m">253</span>:0    <span class="m">0</span>  <span class="m">7</span>.3T  <span class="m">0</span> crypt /mnt/HD
+sdb            <span class="m">8</span>:16   <span class="m">1</span>  <span class="m">7</span>.5G  <span class="m">0</span> disk               <span class="c1"># &lt;-- here it is</span>
+<span class="p">|</span>-sdb1         <span class="m">8</span>:17   <span class="m">1</span>  679M  <span class="m">0</span> part
+<span class="sb">`</span>-sdb2         <span class="m">8</span>:18   <span class="m">1</span>   64M  <span class="m">0</span> part
+mmcblk0      <span class="m">179</span>:0    <span class="m">0</span> <span class="m">14</span>.8G  <span class="m">0</span> disk
+<span class="p">|</span>-mmcblk0p1  <span class="m">179</span>:1    <span class="m">0</span>  100M  <span class="m">0</span> part  /boot
+<span class="sb">`</span>-mmcblk0p2  <span class="m">179</span>:2    <span class="m">0</span> <span class="m">14</span>.7G  <span class="m">0</span> part  /
+</pre></div>
+</div>
+<p>Next, flash the ISO:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ dd <span class="k">if</span><span class="o">=</span>/path/to/arch.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>1M
+</pre></div>
+</div>
+<!-- Create bootable USB: https://wiki.archlinux.org/index.php/USB_flash_installation_medium
+* find block device
+* on macos: unmount, but do not eject: diskutil list && diskutil unmountDisk /dev/diskX
+* macos: dd if=path/to/arch.iso of=/dev/rdiskX bs=1M (bote the r prefix of block device, do not include the s1 suffix) --></div>
+<div class="section" id="step-4-boot-usb-stick-on-computer">
+<h2>Step 4: Boot USB Stick on Computer<a class="headerlink" href="#step-4-boot-usb-stick-on-computer" title="Permalink to this headline">¶</a></h2>
+<p>How this works depends on your hardware. Good luck!</p>
+</div>
+<div class="section" id="step-5-access-filesystem">
+<h2>Step 5: Access Filesystem<a class="headerlink" href="#step-5-access-filesystem" title="Permalink to this headline">¶</a></h2>
+<p>It is now time to mount your lost system’s partition.
+You can again look for it using <code class="docutils literal notranslate"><span class="pre">lsblk</span></code> and then mount it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mount /dev/sda2 /mnt
+</pre></div>
+</div>
+<p>We can then <a class="reference external" href="https://wiki.archlinux.org/index.php/Chroot#Using_arch-chroot">chroot</a> into the system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ arch-root /mnt
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">arch-root</span></code> will take care of various steps needed to make the chrooted environment feel like a proper one (e.g. mount <code class="docutils literal notranslate"><span class="pre">/proc</span></code>).
+Note: if your <code class="docutils literal notranslate"><span class="pre">/boot</span></code> folder lives on a separate partition you need to mount it in manually (after mounting <code class="docutils literal notranslate"><span class="pre">/dev/sda2</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mount /dev/sda1 /mnt/boot
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-6-fix-your-system">
+<h2>Step 6: Fix your System<a class="headerlink" href="#step-6-fix-your-system" title="Permalink to this headline">¶</a></h2>
+<p>Now you get to play detective, as many things could have broken.
+Here are a few suggestions:</p>
+<ul class="simple">
+<li><p>As <code class="docutils literal notranslate"><span class="pre">pacman</span></code> was interrupted quite rudely, you might have to manually delete <code class="docutils literal notranslate"><span class="pre">/var/lib/pacman/db.lck</span></code>.</p></li>
+<li><p>The packages involved in the update are most likely in a broken state. Identify them by looking at pacman’s logs (<code class="docutils literal notranslate"><span class="pre">/var/log/pacman.log</span></code>) and subsequently <a class="reference external" href="https://wiki.archlinux.org/index.php/pacman#Pacman_crashes_during_an_upgrade">reinstall them</a>.</p></li>
+<li><p>In some cases the <a class="reference external" href="https://wiki.archlinux.org/index.php/pacman#%22Unable_to_find_root_device%22_error_after_rebooting">initramfs can become corrupted</a>. Run <code class="docutils literal notranslate"><span class="pre">mkinitcpio</span> <span class="pre">-p</span> <span class="pre">linux</span></code> to rebuild it.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SetupEncryptedArchlinux.html" class="btn btn-neutral float-right" title="Setting up Archlinux with Encrypted Disk" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MediaServerSetup.html" class="btn btn-neutral float-left" title="Setting up a media server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, kpj
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,513 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Analyzing the European Parliament"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import json\n",
+    "\n",
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "\n",
+    "import seaborn as sns\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "import umap\n",
+    "import umap.plot\n",
+    "\n",
+    "from tqdm.auto import tqdm"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sns.set_context('talk')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Download data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# %%bash\n",
+    "\n",
+    "# wget --no-clobber https://parltrack.org/dumps/ep_votes.json.lz\n",
+    "# lzip -d ep_votes.json.lz\n",
+    "\n",
+    "# wget --no-clobber https://parltrack.org/dumps/ep_meps.json.lz\n",
+    "# lzip -d ep_meps.json.lz"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Transform JSON to dataframes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### MEPs"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fname = 'ep_meps.json'\n",
+    "\n",
+    "tmp = []\n",
+    "with open(fname) as fd:\n",
+    "    for line in tqdm(fd.readlines()):\n",
+    "        line = line.lstrip('[,]')\n",
+    "        if len(line) == 0:\n",
+    "            continue\n",
+    "        \n",
+    "        data = json.loads(line)\n",
+    "        \n",
+    "#         if not data['active']:\n",
+    "#             continue\n",
+    "        \n",
+    "        tmp.append({\n",
+    "            'UserID': data['UserID'],\n",
+    "            'name': data['Name']['full'],\n",
+    "            'birthday': data['Birth']['date'] if 'Birth' in data else np.nan,\n",
+    "            'active': data['active'],\n",
+    "            'group': data.get('Groups', [{'groupid': np.nan}])[-1]['groupid']  # assumption: last group is latest one. Is this true?\n",
+    "        })"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_meps = pd.DataFrame(tmp)\n",
+    "df_meps['birthday'] = pd.to_datetime(df_meps['birthday'])\n",
+    "\n",
+    "df_meps.set_index('UserID', inplace=True)\n",
+    "\n",
+    "df_meps['group'].replace({'Group of the European United Left - Nordic Green Left': 'GUE/NGL'}, inplace=True)  # is there a difference?\n",
+    "\n",
+    "df_meps.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Votes"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fname = 'ep_votes.json'\n",
+    "\n",
+    "tmp = []\n",
+    "tmp_matrix = {}\n",
+    "with open(fname) as fd:\n",
+    "    for line in tqdm(fd.readlines()):\n",
+    "        line = line.lstrip('[,]')\n",
+    "        if len(line) == 0:\n",
+    "            continue\n",
+    "        \n",
+    "        data = json.loads(line)\n",
+    "        tmp.append({\n",
+    "            'date': data['ts'],\n",
+    "            'voteid': data['voteid'],\n",
+    "            'title': data['title']\n",
+    "        })\n",
+    "    \n",
+    "        if 'votes' in data:\n",
+    "            tmp_matrix[data['voteid']] = {\n",
+    "                **{mep['mepid']: '+' for mep_list in data['votes'].get('+', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep},\n",
+    "                **{mep['mepid']: '-' for mep_list in data['votes'].get('-', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep},\n",
+    "                **{mep['mepid']: '0' for mep_list in data['votes'].get('0', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep}\n",
+    "            }"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_votematrix = pd.DataFrame.from_dict(tmp_matrix, orient='index')\n",
+    "\n",
+    "df_votematrix.index.name = 'voteid'\n",
+    "df_votematrix.columns.name = 'mepid'\n",
+    "\n",
+    "# df_votematrix.sort_values('voteid', axis=0, inplace=True)\n",
+    "df_votematrix.sort_values('mepid', axis=1, inplace=True)\n",
+    "\n",
+    "df_votematrix.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_votes = pd.DataFrame(tmp)\n",
+    "df_votes['date'] = pd.to_datetime(df_votes['date'])\n",
+    "\n",
+    "df_votes.set_index('voteid', inplace=True)\n",
+    "\n",
+    "df_votes.tail()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exploration"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### MEP party distribution"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_meps['active'].sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "group_counts = df_meps.loc[df_meps['active'], 'group'].value_counts()\n",
+    "labels = group_counts.to_frame().apply(lambda x: f'{x.name} ({x.iloc[0]})', axis=1)\n",
+    "\n",
+    "ax = group_counts.plot.pie(figsize=(8, 6), labels=labels, wedgeprops=dict(width=0.5))\n",
+    "ax.axis('equal')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### MEP age distribution"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_meps['age'] = (pd.Timestamp.today() - df_meps['birthday']) / np.timedelta64(1, 'Y')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "g = sns.displot(\n",
+    "    data=df_meps[df_meps['active']], x='age',\n",
+    "    col='group', col_wrap=3,\n",
+    "    height=3, aspect=4/3)\n",
+    "\n",
+    "g.set_xlabels('MEP age [years]')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Voting patterns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_votematrix.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Zoomed-out voting data overview"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "hm_sub = (df_votematrix.loc[df_votes[df_votes['date'] > '20200721'].index, df_meps[df_meps['active']].index]\n",
+    "                       .dropna(axis=1)\n",
+    "                       .replace({'+': 1, '-': 0, '0': -1})\n",
+    "                       .T\n",
+    "                       .merge(df_meps[['group']], how='inner', left_index=True, right_index=True)\n",
+    "                       .set_index('group', append=True)\n",
+    "                       .reorder_levels(['group', 'UserID'])\n",
+    "                       .sort_index())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "hm_sub.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "hm_sub_grpd = hm_sub.groupby('group').agg(lambda x: x.value_counts().index[0])\n",
+    "hm_sub_grpd.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sns.clustermap(hm_sub_grpd.T)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Who is the most active MEP?\n",
+    "\n",
+    "Here we equate \"active\" with \"has voted most often\". This is most likely quite misleading."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_hasvoted = ~df_votematrix[df_meps[df_meps['active']].index].isna()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_hasvoted.sum(axis=0).sort_values(ascending=False).to_frame('vote_count').merge(df_meps, how='left', left_index=True, right_index=True).head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Cluster MEPs by votes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Prepare data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# TODO: how to handle NaN values\n",
+    "matrix = df_votematrix[df_meps[df_meps['active']].index].replace({'+': 1, '-': 0, '0': -1, np.nan: -1}).tail(1000)\n",
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Do clustering\n",
+    "\n",
+    "Possible metrics:\n",
+    "hamming\n",
+    "jaccard\n",
+    "dice\n",
+    "russellrao\n",
+    "kulsinski\n",
+    "rogerstanimoto\n",
+    "sokalmichener\n",
+    "sokalsneath\n",
+    "yule"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "reducer = umap.UMAP(metric='hamming')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "embedding = reducer.fit_transform(matrix.T)\n",
+    "embedding.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_umap = pd.DataFrame(embedding, index=matrix.columns, columns=[f'UMAP_{i}' for i in range(embedding.shape[1])])\n",
+    "\n",
+    "df_umap['group'] = df_meps['group']\n",
+    "\n",
+    "df_umap.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Static visualization"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plt.figure(figsize=(8, 6))\n",
+    "\n",
+    "sns.scatterplot(data=df_umap, x='UMAP_0', y='UMAP_1', hue='group')\n",
+    "\n",
+    "plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), ncol=2, title=None)\n",
+    "plt.title('MEPs according to vote patterns')\n",
+    "\n",
+    "# umap.plot.points(reducer, labels=df_umap['group'], theme='fire', width=1000, height=1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Interactive visualization"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "hover_data = df_meps.loc[df_umap.index].reset_index()\n",
+    "\n",
+    "hover_data['birthday'] = hover_data['birthday'].apply(lambda x: x.strftime(\"%Y-%m-%d\") if not pd.isnull(x) else 'undef')\n",
+    "hover_data['age'] = hover_data['age'].apply(lambda x: int(x) if not pd.isnull(x) else -1)  # hover_data['age'].round().astype(pd.Int64Dtype())\n",
+    "\n",
+    "hover_data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# https://github.com/lmcinnes/umap/issues/422\n",
+    "# umap.plot.output_notebook()\n",
+    "\n",
+    "from bokeh.plotting import output_notebook\n",
+    "output_notebook()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "p = umap.plot.interactive(reducer, labels=df_umap['group'].tolist(), hover_data=hover_data, point_size=5, theme='fire')\n",
+    "umap.plot.show(p)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

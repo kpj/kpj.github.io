@@ -1,45 +1,46 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Compare threading and multiprocessing &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  <title>Comparing threading and multiprocessing &mdash; kpj&#39;s blog 0.0.1 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script type="text/javascript" src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Playing with Variational Autoencoders" href="../machine_learning/Autoencoder.html" /> 
+    <link rel="prev" title="The Python Almanac" href="PythonAlmanac.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -53,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
           
 
           
@@ -76,6 +77,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,17 +87,19 @@
             
               <p class="caption"><span class="caption-text">Linux</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
@@ -103,7 +107,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Compare threading and multiprocessing</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Comparing threading and multiprocessing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Preparations">Preparations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Computations">Computations</a></li>
@@ -115,6 +121,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -153,9 +160,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Compare threading and multiprocessing</li>
+      <li>Comparing threading and multiprocessing</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -240,20 +247,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -266,7 +286,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -340,6 +359,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -396,8 +436,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Compare-threading-and-multiprocessing">
-<h1>Compare threading and multiprocessing<a class="headerlink" href="#Compare-threading-and-multiprocessing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Comparing-threading-and-multiprocessing">
+<h1>Comparing threading and multiprocessing<a class="headerlink" href="#Comparing-threading-and-multiprocessing" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -434,12 +474,18 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Preparations">
 <h2>Preparations<a class="headerlink" href="#Preparations" title="Permalink to this headline">¶</a></h2>
 <p>To investigate the differences between threading and multiprocessing, we will simulate work for each data point and measure when it was executed.</p>
-<div class="nbinput nblast docutils container">
+<p>Due to some <a class="reference external" href="https://bugs.python.org/issue25053">design choices</a>, we have to import the worker function from a separate module for the <code class="docutils literal notranslate"><span class="pre">ProcessPool</span></code> to work.</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span></span><span class="o">%%writefile</span> worker.py
+
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="c1"># simulate CPU load</span>
@@ -452,8 +498,25 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Writing worker.py
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">worker</span> <span class="kn">import</span> <span class="n">worker</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -467,7 +530,7 @@ div.rendered_html tbody tr:hover {
 <h2>Computations<a class="headerlink" href="#Computations" title="Permalink to this headline">¶</a></h2>
 <p>We run the <code class="docutils literal notranslate"><span class="pre">worker</span></code> function on the dataset for each executor in both the process and thread pool.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -482,12 +545,12 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 1.86 s, sys: 17.3 ms, total: 1.87 s
-Wall time: 1.94 s
+CPU times: user 2.27 s, sys: 29.7 ms, total: 2.3 s
+Wall time: 2.31 s
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -502,20 +565,20 @@ Wall time: 1.94 s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 9.87 ms, sys: 14.8 ms, total: 24.7 ms
-Wall time: 1.15 s
+CPU times: user 13.8 ms, sys: 27.2 ms, total: 41 ms
+Wall time: 1.47 s
 </pre></div></div>
 </div>
 <p>Next, we store the result in a dataframe.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_thread</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">thread_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{i:2}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span></span><span class="n">df_thread</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">thread_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">2</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">df_thread</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;thread&#39;</span>
 
-<span class="n">df_process</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">process_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{i:2}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">df_process</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">process_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">2</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">df_process</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;process&#39;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_thread</span><span class="p">,</span> <span class="n">df_process</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -525,7 +588,7 @@ Wall time: 1.15 s
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -562,25 +625,25 @@ Wall time: 1.15 s
     <tr>
       <th>1</th>
       <td>job  0</td>
-      <td>0.128517</td>
+      <td>0.130458</td>
       <td>thread</td>
     </tr>
     <tr>
       <th>2</th>
       <td>job  0</td>
-      <td>0.230511</td>
+      <td>0.212807</td>
       <td>thread</td>
     </tr>
     <tr>
       <th>3</th>
       <td>job  0</td>
-      <td>0.301709</td>
+      <td>0.327661</td>
       <td>thread</td>
     </tr>
     <tr>
       <th>4</th>
       <td>job  0</td>
-      <td>0.374363</td>
+      <td>0.421350</td>
       <td>thread</td>
     </tr>
   </tbody>
@@ -596,7 +659,7 @@ Wall time: 1.15 s
 <li><p><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> timestamps are in parallel, while <code class="docutils literal notranslate"><span class="pre">threading</span></code> timestamps are serial</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -607,19 +670,19 @@ Wall time: 1.15 s
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.FacetGrid at 0x120a41dd0&gt;
+&lt;seaborn.axisgrid.FacetGrid at 0x11c0cbfd0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/misc_ThreadingVSMultiprocessing_16_1.png" src="../_images/misc_ThreadingVSMultiprocessing_16_1.png" />
+<img alt="../_images/misc_ThreadingVSMultiprocessing_17_1.png" src="../_images/misc_ThreadingVSMultiprocessing_17_1.png" />
 </div>
 </div>
 <p>The decision whether to use threading or multiprocessing depends on the use case.</p>
@@ -636,7 +699,7 @@ Wall time: 1.15 s
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../machine_learning/Autoencoder.html" class="btn btn-neutral float-left" title="Playing with Variational Autoencoders" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="PythonAlmanac.html" class="btn btn-neutral float-left" title="The Python Almanac" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -645,11 +708,19 @@ Wall time: 1.15 s
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, kpj
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -660,7 +731,6 @@ Wall time: 1.15 s
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

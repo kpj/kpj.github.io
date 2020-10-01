@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,34 +11,36 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script type="text/javascript" src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Encrypting Partitions using LUKS" href="linux/EncryptPartitions.html" /> 
+    <link rel="next" title="Configuring a fresh Archlinux Install" href="linux/ConfigureFreshArchlinuxInstall.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -53,7 +54,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> kpj's blog
+            <a href="#" class="icon icon-home" alt="Documentation Home"> kpj's blog
           
 
           
@@ -76,6 +77,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,17 +87,19 @@
             
               <p class="caption"><span class="caption-text">Linux</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/Eduroam.html">Connecting to Eduroam Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/MediaServerSetup.html">Setting up a media server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul>
@@ -103,12 +107,15 @@
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="misc/ThreadingVSMultiprocessing.html">Compare threading and multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,7 +154,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
       <li>A blog on Linux, Data Science, and more</li>
     
@@ -200,12 +207,13 @@ Correctness and completeness are not guaranteed.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Linux</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/Eduroam.html">Connecting to Eduroam Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/MediaServerSetup.html">Setting up a media server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -213,6 +221,7 @@ Correctness and completeness are not guaranteed.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -224,7 +233,9 @@ Correctness and completeness are not guaranteed.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="misc/ThreadingVSMultiprocessing.html">Compare threading and multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
 </ul>
 </div>
 </div>
@@ -237,7 +248,7 @@ Correctness and completeness are not guaranteed.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="linux/EncryptPartitions.html" class="btn btn-neutral float-right" title="Encrypting Partitions using LUKS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="linux/ConfigureFreshArchlinuxInstall.html" class="btn btn-neutral float-right" title="Configuring a fresh Archlinux Install" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -247,11 +258,19 @@ Correctness and completeness are not guaranteed.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, kpj
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -262,7 +281,6 @@ Correctness and completeness are not guaranteed.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

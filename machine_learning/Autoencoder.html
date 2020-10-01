@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,35 +11,37 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script type="text/javascript" src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Compare threading and multiprocessing" href="../misc/ThreadingVSMultiprocessing.html" />
-    <link rel="prev" title="Investigating TV Series ratings using IMDB" href="../mining_visualization/IMDB_ratings.html" /> 
+    <link rel="next" title="Intercepting HTTP(S) Traffic of Android Applications" href="../misc/InterceptingHTTPTraffic.html" />
+    <link rel="prev" title="Analyzing the European Parliament" href="../mining_visualization/MEP_Statistics.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
           
 
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -86,17 +88,19 @@
             
               <p class="caption"><span class="caption-text">Linux</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up and Encrypted Archlinux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Machine Learning</span></p>
 <ul class="current">
@@ -129,12 +133,15 @@
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Compare threading and multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -173,7 +180,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Playing with Variational Autoencoders</li>
     
@@ -260,20 +267,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -286,7 +306,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -359,6 +378,27 @@ div.nboutput.container div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -517,7 +557,7 @@ tf.Tensor(2.5, shape=(), dtype=float32)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;tf.Tensor: id=12, shape=(2, 2), dtype=float32, numpy=
+&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
 array([[19., 22.],
        [43., 50.]], dtype=float32)&gt;
 </pre></div></div>
@@ -781,7 +821,7 @@ array([[19., 22.],
 <span></span><span class="c1"># TODO: improve loss storage</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;models/autoencoder&#39;</span>
 
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{fname}</span><span class="s1">.index&#39;</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.index&#39;</span><span class="p">):</span>
     <span class="n">autoencoder</span> <span class="o">=</span> <span class="n">Autoencoder</span><span class="o">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
     <span class="n">df_loss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;models/autoencoder_loss.csv&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
@@ -827,7 +867,7 @@ array([[19., 22.],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x13ebbedd0&gt;
+&lt;AxesSubplot:xlabel=&#39;epoch&#39;, ylabel=&#39;loss&#39;&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -877,7 +917,7 @@ array([[19., 22.],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-WARNING:tensorflow:Layer decoder is casting an input tensor from dtype float64 to the layer&#39;s dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it&#39;s dtype defaults to floatx.
+WARNING:tensorflow:Layer decoder is casting an input tensor from dtype float64 to the layer&#39;s dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because its dtype defaults to floatx.
 
 If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
 
@@ -968,7 +1008,7 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
     <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">X_trans</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_trans</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC_</span><span class="si">{i}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_trans</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -991,7 +1031,7 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[0.20341441 0.12413029]
+[0.22099474 0.11472965]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1043,7 +1083,7 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.FacetGrid at 0x1454c89d0&gt;
+&lt;seaborn.axisgrid.FacetGrid at 0x13d5646a0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1066,10 +1106,10 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../misc/ThreadingVSMultiprocessing.html" class="btn btn-neutral float-right" title="Compare threading and multiprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../misc/InterceptingHTTPTraffic.html" class="btn btn-neutral float-right" title="Intercepting HTTP(S) Traffic of Android Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../mining_visualization/IMDB_ratings.html" class="btn btn-neutral float-left" title="Investigating TV Series ratings using IMDB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../mining_visualization/MEP_Statistics.html" class="btn btn-neutral float-left" title="Analyzing the European Parliament" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1078,11 +1118,19 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, kpj
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1093,7 +1141,6 @@ To change all layers to have dtype float64 by default, call `tf.keras.backend.se
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

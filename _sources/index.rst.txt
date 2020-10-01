@@ -12,12 +12,13 @@ More fun projects can be found on https://github.com/kpj/.
   :caption: Linux
   :maxdepth: 1
 
-  linux/EncryptPartitions.md
-  linux/KernelBuilding.md
-  linux/SetupEncryptedArchlinux.md
-  linux/ConfigureFreshArchlinuxInstall.md
-  linux/MediaServerSetup.md
-  linux/Eduroam.md
+  linux/ConfigureFreshArchlinuxInstall
+  linux/Eduroam
+  linux/EncryptPartitions
+  linux/KernelBuilding
+  linux/MediaServerSetup
+  linux/RescuingABrokenSystem
+  linux/SetupEncryptedArchlinux
 
 
 .. toctree::
@@ -26,6 +27,7 @@ More fun projects can be found on https://github.com/kpj/.
 
   mining_visualization/Eurostat_Visualizations
   mining_visualization/IMDB_ratings
+  mining_visualization/MEP_Statistics
 
 
 .. toctree::
@@ -39,4 +41,6 @@ More fun projects can be found on https://github.com/kpj/.
   :caption: Miscellaneous
   :maxdepth: 1
 
+  misc/InterceptingHTTPTraffic
+  misc/PythonAlmanac
   misc/ThreadingVSMultiprocessing

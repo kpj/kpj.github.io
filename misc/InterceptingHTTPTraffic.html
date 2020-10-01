@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Intercepting HTTP(S) Traffic of Android Applications &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Python Almanac" href="PythonAlmanac.html" />
+    <link rel="prev" title="Playing with Variational Autoencoders" href="../machine_learning/Autoencoder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intercepting HTTP(S) Traffic of Android Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-start">Before you start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-emulator">Setting up the Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-ssl-certificates">Install SSL certificates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-if-everything-worked">Test if everything worked</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-app-which-you-are-interested-in">Install the app which you are interested in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#explore-the-hidden-api">Explore the hidden API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-mitmproxy">How to use mitmproxy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#replicate-api-calls">Replicate API calls</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Intercepting HTTP(S) Traffic of Android Applications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/misc/InterceptingHTTPTraffic.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="intercepting-http-s-traffic-of-android-applications">
+<h1>Intercepting HTTP(S) Traffic of Android Applications<a class="headerlink" href="#intercepting-http-s-traffic-of-android-applications" title="Permalink to this headline">¶</a></h1>
+<p>In this post we will learn how to intercept HTTPS traffic of arbitrary Android applications.</p>
+<p>This is, of course, purely for research purposes and testing your own apps.</p>
+<div class="section" id="before-you-start">
+<h2>Before you start<a class="headerlink" href="#before-you-start" title="Permalink to this headline">¶</a></h2>
+<p>Make sure that the <a class="reference external" href="https://developer.android.com/studio">Android SDK</a> is installed properly. Furthermore, install <a class="reference external" href="https://github.com/mitmproxy/mitmproxy">mitmproxy</a>.</p>
+</div>
+<div class="section" id="setting-up-the-emulator">
+<h2>Setting up the Emulator<a class="headerlink" href="#setting-up-the-emulator" title="Permalink to this headline">¶</a></h2>
+<p>While it is possible to apply this technique to apps running on an actual phone, using an emulator makes it less likely to permanently mess up something important.</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">avdmanager</span></code> to open the device manager and create a new virtual device. The device definition (e.g. Pixel 2 vs Pixel 3) does not matter much.
+However, when selecting the system image, make sure to switch to the <code class="docutils literal notranslate"><span class="pre">x86</span> <span class="pre">Images</span></code> tab and select a <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">APIs</span></code> target (and <em>not</em> <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Play</span></code>). This is necessary to install SSL certificates to the system partition. Make sure to choose Android 9.0, i.e. API level 28.</p>
+<p>After finishing this process, your newly created virtual device should appear:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ emulator -list-avds
+Pixel_3_XL_API_28
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-ssl-certificates">
+<h2>Install SSL certificates<a class="headerlink" href="#install-ssl-certificates" title="Permalink to this headline">¶</a></h2>
+<p>In order to be able to intercept HTTPS traffic of apps, we need to install <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code>’s required SSL certificates as system certificates. This is due to how trusted certificates are handled since <a class="reference external" href="https://android-developers.googleblog.com/2016/07/changes-to-trusted-certificate.html">Android Nougat</a>.</p>
+<p>First, start the emulator with a writable system partition:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ emulator -writable-system -avd Pixel_3_XL_API_28
+</pre></div>
+</div>
+<p>Then restart <code class="docutils literal notranslate"><span class="pre">adb</span></code> with root permissions and mount <code class="docutils literal notranslate"><span class="pre">/system</span></code> as writable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ adb root
+$ adb remount
+</pre></div>
+</div>
+<p>Finally, install <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code>’s certificate:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">ca</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.mitmproxy/mitmproxy-ca-cert.pem&quot;</span>
+$ <span class="nv">hash</span><span class="o">=</span><span class="k">$(</span>openssl x509 -noout -subject_hash_old -in <span class="s2">&quot;</span><span class="nv">$ca</span><span class="s2">&quot;</span><span class="k">)</span>
+$ adb push <span class="s2">&quot;</span><span class="nv">$ca</span><span class="s2">&quot;</span> <span class="s2">&quot;/system/etc/security/cacerts/</span><span class="nv">$hash</span><span class="s2">.0&quot;</span>
+</pre></div>
+</div>
+<p>Revoke root permissions afterwards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ adb unroot
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-if-everything-worked">
+<h2>Test if everything worked<a class="headerlink" href="#test-if-everything-worked" title="Permalink to this headline">¶</a></h2>
+<p>Next, boot the emulator with an enabled HTTP proxy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ emulator -writable-system -http-proxy http://0.0.0.0:8080 -avd Pixel_3_XL_API_28
+</pre></div>
+</div>
+<p>Try accessing the internet (open a webpage in the mobile browser, or use the google searchbar widget). It should not work.</p>
+<p>Now, start <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code> on your computer. Retry accessing the internet. It should work without issues.
+In addition, your requests (both HTTP and HTTPS) should appear in the <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code> view.</p>
+</div>
+<div class="section" id="install-the-app-which-you-are-interested-in">
+<h2>Install the app which you are interested in<a class="headerlink" href="#install-the-app-which-you-are-interested-in" title="Permalink to this headline">¶</a></h2>
+<p>After compiling your open-source Android app of interest and generating an APK, install it as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ adb install App.apk
+</pre></div>
+</div>
+</div>
+<div class="section" id="explore-the-hidden-api">
+<h2>Explore the hidden API<a class="headerlink" href="#explore-the-hidden-api" title="Permalink to this headline">¶</a></h2>
+<p>Now we get to the fun part! While running <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code>, browse the app and investigate which kinds of network requests are being generated. Pay special attention to login mechanisms, and how access tokens and user ids are handled.</p>
+<div class="section" id="how-to-use-mitmproxy">
+<h3>How to use mitmproxy<a class="headerlink" href="#how-to-use-mitmproxy" title="Permalink to this headline">¶</a></h3>
+<p>The process of understanding how the API works can be sped up considerably by using the <code class="docutils literal notranslate"><span class="pre">mitmproxy</span></code> interface efficiently.</p>
+<p>Here is an overview of the most important controls:</p>
+<ul class="simple">
+<li><p>Show help page: <code class="docutils literal notranslate"><span class="pre">[?]</span></code></p></li>
+<li><p>Save captured traffic to file: <code class="docutils literal notranslate"><span class="pre">[w]</span></code>, type <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code></p></li>
+<li><p>Load saved traffic: <code class="docutils literal notranslate"><span class="pre">mitmproxy</span> <span class="pre">-r</span> <span class="pre">&lt;path&gt;</span></code></p></li>
+<li><p><a class="reference external" href="https://docs.mitmproxy.org/stable/concepts-filters/">Filter traffic</a>: <code class="docutils literal notranslate"><span class="pre">[f]</span></code>, type <code class="docutils literal notranslate"><span class="pre">&lt;filter</span> <span class="pre">expression&gt;</span></code></p>
+<ul>
+<li><p>match domain: <code class="docutils literal notranslate"><span class="pre">~d</span> <span class="pre">&lt;domain&gt;</span></code></p></li>
+<li><p>match URL: <code class="docutils literal notranslate"><span class="pre">~u</span> <span class="pre">&lt;term&gt;</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="replicate-api-calls">
+<h2>Replicate API calls<a class="headerlink" href="#replicate-api-calls" title="Permalink to this headline">¶</a></h2>
+<p>To swiftly confirm your understanding of the API, store the payload (in JSON format) in <code class="docutils literal notranslate"><span class="pre">data.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;param2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then execute <code class="docutils literal notranslate"><span class="pre">curl</span></code> with appropriate parameters:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl <span class="se">\</span>
+    &lt;url&gt; <span class="se">\</span>
+    -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/json; charset=utf-8&quot;</span> <span class="se">\</span>
+    -d @data.json
+</pre></div>
+</div>
+<p>Once you have gained a good understanding, it is time to automate things using Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s1">&#39;&lt;url&gt;&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json; charset=utf-8&#39;</span>
+    <span class="p">},</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;param1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;param2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="PythonAlmanac.html" class="btn btn-neutral float-right" title="The Python Almanac" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../machine_learning/Autoencoder.html" class="btn btn-neutral float-left" title="Playing with Variational Autoencoders" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, kpj
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

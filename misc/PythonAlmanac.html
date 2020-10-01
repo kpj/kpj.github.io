@@ -1,0 +1,2880 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Python Almanac &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Comparing threading and multiprocessing" href="ThreadingVSMultiprocessing.html" />
+    <link rel="prev" title="Intercepting HTTP(S) Traffic of Android Applications" href="InterceptingHTTPTraffic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Python Almanac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Installing-Python">Installing Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Installing-packages">Installing packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Package-management">Package management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Software-development">Software development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Package-Distribution">Package Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Linting/Formatting">Linting/Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Profiling">Profiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#line_profiler">line_profiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory_profiler">memory_profiler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Debugging">Debugging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Raw-python">Raw python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#C++-extension:">C++ extension:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Logging">Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Data-Science">Data Science</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SciPy">SciPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Dataframes">Dataframes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Networkx">Networkx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Plotting">Plotting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Seaborn">Seaborn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Statannot">Statannot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Brokenaxes">Brokenaxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Adjusttext">Adjusttext</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plotnine">Plotnine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Folium">Folium</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#High-performance">High performance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Dask">Dask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Vaex">Vaex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Joblib">Joblib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Swifter">Swifter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Bioinformatics">Bioinformatics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyRanges">PyRanges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Obonet">Obonet</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Statistics/Machine-Learning">Statistics/Machine Learning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Statsmodels">Statsmodels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Pingouin">Pingouin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Scitkit-learn">Scitkit-learn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Language-Bindings">Language Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Pybind11">Pybind11</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Jupyter">Jupyter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Nbstripout">Nbstripout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ToDo">ToDo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>The Python Almanac</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/misc/PythonAlmanac.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="The-Python-Almanac">
+<h1>The Python Almanac<a class="headerlink" href="#The-Python-Almanac" title="Permalink to this headline">¶</a></h1>
+<p>The world of Python packages is adventurous and can be confusing at times. Here, I try to aggregate and showcase a diverse set of Python packages which have become useful at some point.</p>
+<div class="section" id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Installing-Python">
+<h3>Installing Python<a class="headerlink" href="#Installing-Python" title="Permalink to this headline">¶</a></h3>
+<p>Normally you should use your system’s package manager. In case of problems, try <a class="reference external" href="https://github.com/pyenv/pyenv">pyenv</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyenv versions
+$ pyenv install &lt;foo&gt;
+$ pyenv global &lt;foo&gt;
+</pre></div>
+</div>
+<p>This will install the specified Python version to <code class="docutils literal notranslate"><span class="pre">$(pyenv</span> <span class="pre">root)/versions</span></code>.</p>
+</div>
+<div class="section" id="Installing-packages">
+<h3>Installing packages<a class="headerlink" href="#Installing-packages" title="Permalink to this headline">¶</a></h3>
+<p>Python packages can be easily installed from <a class="reference external" href="https://pypi.org/">PyPI (Python Package Index)</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install --user &lt;package&gt; <span class="o">(</span><span class="nb">local</span> install does not clash with system packages<span class="o">)</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">--user</span></code> will install the package only for the current user. This is good if multiple users need different package versions, but can lead to redundant installations.</p>
+<p>To install from a git repository, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install --user -U git+https://github.com/&lt;user&gt;/&lt;repository&gt;@&lt;branch&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="Package-management">
+<h3>Package management<a class="headerlink" href="#Package-management" title="Permalink to this headline">¶</a></h3>
+<p>While packages can be installed globally or user-specific, it often makes sense to create project-specific virtual environments.</p>
+<p>This can be easily accomplished using <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -m venv my_venv
+$ . venv/bin/activate
+$ pip install &lt;package&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Software-development">
+<h2>Software development<a class="headerlink" href="#Software-development" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Package-Distribution">
+<h3>Package Distribution<a class="headerlink" href="#Package-Distribution" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>. <a class="reference external" href="https://github.com/sdispater/poetry">poetry</a> handles many otherwise slightly annoying things:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ poetry init/add/install/run/publish
+</pre></div>
+</div>
+<p>CI encapsulation: <a class="reference external" href="https://github.com/tox-dev/tox">tox</a>.</p>
+<p>Keeping track of version numbers can be achieved using <a class="reference external" href="https://github.com/c4urself/bump2version">bump2version</a>.</p>
+<p>Transform between various project file formats using <a class="reference external" href="https://github.com/dephell/dephell">dephell</a>.</p>
+</div>
+<div class="section" id="Testing">
+<h3>Testing<a class="headerlink" href="#Testing" title="Permalink to this headline">¶</a></h3>
+<p>Setup testing using <a class="reference external" href="https://github.com/pytest-dev/pytest">pytest</a>. It has a wide range of useful features, such as fixtures (modularized per-test setup code) and test parametrization (quickly execute the same test for multiple inputs).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%writefile</span> /tmp/tests.py
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">custom_directory</span><span class="p">(</span><span class="n">tmp_path_factory</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tmp_path_factory</span><span class="o">.</span><span class="n">mktemp</span><span class="p">(</span><span class="s1">&#39;workflow_test&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_fixture_execution</span><span class="p">(</span><span class="n">custom_directory</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">custom_directory</span><span class="p">)</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;expression_str,result&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;2+2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2*2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2**2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_expression_evaluation</span><span class="p">(</span><span class="n">expression_str</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">eval</span><span class="p">(</span><span class="n">expression_str</span><span class="p">)</span> <span class="o">==</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Overwriting /tmp/tests.py
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>pytest -v /tmp/tests.py
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-bold">============================= test session starts ==============================</span>
+platform darwin -- Python 3.8.5, pytest-6.0.2, py-1.9.0, pluggy-0.13.1 -- /usr/local/opt/python@3.8/bin/python3.8
+cachedir: .pytest_cache
+rootdir: /tmp
+collected 4 items
+
+../../../../../tmp/tests.py::test_fixture_execution <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg">               [ 25%]</span>
+../../../../../tmp/tests.py::test_expression_evaluation[2+2-4] <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg">    [ 50%]</span>
+../../../../../tmp/tests.py::test_expression_evaluation[2*2-4] <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg">    [ 75%]</span>
+../../../../../tmp/tests.py::test_expression_evaluation[2**2-4] <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg">   [100%]</span>
+
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">4 passed</span><span class="ansi-green-fg"> in 0.03s</span><span class="ansi-green-fg"> ===============================</span>
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Linting/Formatting">
+<h3>Linting/Formatting<a class="headerlink" href="#Linting/Formatting" title="Permalink to this headline">¶</a></h3>
+<p>Linters and code formatters improve the quality of your Python code by conducting a static analysis and flagging issues.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PyCQA/flake8">flake8</a>: Catch various common errors and adhere to PEP8. Supports many <a class="reference external" href="https://github.com/DmytroLitvinov/awesome-flake8-extensions">plugins</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/PyCQA/pylint">pylint</a>: Looks for even more sources of code smell.</p></li>
+<li><p><a class="reference external" href="https://github.com/psf/black">black</a>: “<em>the</em> uncompromising Python code formatter”.</p></li>
+</ul>
+<p>While there can be a considerable overlap between the tools’ outputs, each offers its own advantages and they can typically be used together.</p>
+</div>
+<div class="section" id="Profiling">
+<h3>Profiling<a class="headerlink" href="#Profiling" title="Permalink to this headline">¶</a></h3>
+<p>Code profiling tools are a great way of finding parts of your code which can be optimized. They come in various flavors:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pyutils/line_profiler">line_profiler</a>: which parts of the code require most execution time</p></li>
+<li><p><a class="reference external" href="https://github.com/pythonprofilers/memory_profiler">memory_profiler</a>: which parts of the code consume the most memory</p></li>
+</ul>
+<p>Consider the following script (note the <code class="docutils literal notranslate"><span class="pre">&#64;profile</span></code> decorator):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%writefile</span> /tmp/script.py
+
+<span class="nd">@profile</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># takes a long time</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">):</span>
+        <span class="mi">1337</span><span class="o">**</span><span class="mi">42</span>
+
+    <span class="c1"># requires a lot of memory</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1_000_000</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Overwriting /tmp/script.py
+</pre></div></div>
+</div>
+<div class="section" id="line_profiler">
+<h4>line_profiler<a class="headerlink" href="#line_profiler" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>kernprof -l -v -o /tmp/script.py.lprof /tmp/script.py
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Wrote profile results to /tmp/script.py.lprof
+Timer unit: 1e-06 s
+
+Total time: 0.164017 s
+File: /tmp/script.py
+Function: main at line 2
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     2                                           @profile
+     3                                           def main():
+     4                                               # takes a long time
+     5    100001      41832.0      0.4     25.5      for _ in range(100_000):
+     6    100000     118662.0      1.2     72.3          1337**42
+     7
+     8                                               # requires a lot of memory
+     9         1       3523.0   3523.0      2.1      arr = [1] * 1_000_000
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="memory_profiler">
+<h4>memory_profiler<a class="headerlink" href="#memory_profiler" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>python3 -m memory_profiler /tmp/script.py
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Filename: /tmp/script.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+     2   36.938 MiB   36.938 MiB   @profile
+     3                             def main():
+     4                                 # takes a long time
+     5   36.938 MiB    0.000 MiB       for _ in range(100_000):
+     6   36.938 MiB    0.000 MiB           1337**42
+     7
+     8                                 # requires a lot of memory
+     9   44.570 MiB    7.633 MiB       arr = [1] * 1_000_000
+
+
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Debugging">
+<h3>Debugging<a class="headerlink" href="#Debugging" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Raw-python">
+<h4>Raw python<a class="headerlink" href="#Raw-python" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/gotcha/ipdb">ipdb</a> is useful Python commandline debugger. To invoke it, simply put <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ipdb;</span> <span class="pre">ipdb.set_trace()</span></code> in your code. Starting with Python 3.7, you can also write <code class="docutils literal notranslate"><span class="pre">breakpoint()</span></code>. This honors the <code class="docutils literal notranslate"><span class="pre">PYTHONBREAKPOINT</span></code> environment variable. To automatically start the debugger when an error occurs, run your script with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipdb</span> <span class="pre">-c</span> <span class="pre">continue</span> <span class="pre">&lt;script&gt;</span></code>.</p>
+<p>The debugger supports various commands: * p: print expression * pp: pretty print * n: next line in current function * s: execute current line and stop at next possible location (e.g. in function call) * c: continue execution * unt: execute until we reach greater line * l: list source (<code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">.</span></code>) * ll: whole source code of current function * b: breakpoint (<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">([filename:]lineno</span> <span class="pre">|</span> <span class="pre">function)</span> <span class="pre">[,</span> <span class="pre">condition]</span> <span class="pre">]</span></code>) * w/bt: print stack trace * u: move up the stack trace * d: move down the
+stack trace * h: help * q: quit</p>
+</div>
+<div class="section" id="C++-extension:">
+<h4>C++ extension:<a class="headerlink" href="#C++-extension:" title="Permalink to this headline">¶</a></h4>
+<p>Open two windows: ipython, ldb (gdb)</p>
+<p>In [1]: !ps aux | grep -i ipython (lldb) attach –pid 1234 (lldb) continue</p>
+<p>(lldb) breakpoint set -f myfile.cpp -l 400</p>
+<p>In [2]: run myscript.py</p>
+</div>
+</div>
+<div class="section" id="Documentation">
+<h3>Documentation<a class="headerlink" href="#Documentation" title="Permalink to this headline">¶</a></h3>
+<p>sphinx, nbsphinx</p>
+</div>
+<div class="section" id="Logging">
+<h3>Logging<a class="headerlink" href="#Logging" title="Permalink to this headline">¶</a></h3>
+<p>There are various built-in and third-party logging modules available.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Helpful debug message&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;oh no&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2020-10-01 15:47:07.241 | DEBUG    | __main__:&lt;module&gt;:1 - Helpful debug message
+2020-10-01 15:47:07.242 | ERROR    | __main__:&lt;module&gt;:2 - oh no
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Data-Science">
+<h2>Data Science<a class="headerlink" href="#Data-Science" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="SciPy">
+<h3>SciPy<a class="headerlink" href="#SciPy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.scipy.org/">SciPy</a> is comprised of various popular Python modules which are for scientific computations.</p>
+<p><a class="reference external" href="https://numpy.org/">Numpy</a> can be used for a multitude of things.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ 0.77430378,  0.94965978, -1.19645811],
+       [-0.54647861,  1.19754715,  0.72836953],
+       [-0.36408323,  0.72968717,  0.42772828],
+       [-0.07630605,  0.65786707,  1.03394229],
+       [ 1.73050087, -0.99577085, -0.39877321],
+       [ 0.41255443,  0.23756478, -1.06606218],
+       [-0.0823543 ,  1.1993814 ,  1.22596915],
+       [ 0.97444111,  0.24292645, -0.54722478],
+       [-0.64642816,  0.7686671 , -0.2957682 ],
+       [-1.08082585,  0.14194574,  1.14756954]])
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Dataframes">
+<h3>Dataframes<a class="headerlink" href="#Dataframes" title="Permalink to this headline">¶</a></h3>
+<p>Organizing your data in dataframes using <a class="reference external" href="https://pandas.pydata.org/">pandas</a> makes nearly everything easier.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.774304</td>
+      <td>0.949660</td>
+      <td>-1.196458</td>
+      <td>G2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.546479</td>
+      <td>1.197547</td>
+      <td>0.728370</td>
+      <td>G1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.364083</td>
+      <td>0.729687</td>
+      <td>0.427728</td>
+      <td>G2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.076306</td>
+      <td>0.657867</td>
+      <td>1.033942</td>
+      <td>G2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.730501</td>
+      <td>-0.995771</td>
+      <td>-0.398773</td>
+      <td>G2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Networkx">
+<h3>Networkx<a class="headerlink" href="#Networkx" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/networkx/networkx">Networkx</a> is a wonderful library for conducting network analysis.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">watts_strogatz_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Name:
+Type: Graph
+Number of nodes: 100
+Number of edges: 200
+Average degree:   4.0000
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">nx_agraph</span><span class="o">.</span><span class="n">graphviz_layout</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;neato&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;-Goverlap=scale&#39;</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[(0, (1692.5, 18.0)), (1, (1547.5, 44.614)), (2, (1963.8, 250.76))]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_clustering</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">clustering</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[(0, 0), (1, 0), (2, 0.3333333333333333)]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">graph</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+    <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_40_0.png" src="../_images/misc_PythonAlmanac_40_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Plotting">
+<h3>Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Matplotlib">
+<h4>Matplotlib<a class="headerlink" href="#Matplotlib" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> is the de facto standard plotting library for Python.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_44_0.png" src="../_images/misc_PythonAlmanac_44_0.png" />
+</div>
+</div>
+<p>Axis ticks can be formatted in a multitude of different <a class="reference external" href="https://matplotlib.org/api/ticker_api.html#tick-formatting">ways</a>. The most versatile way is probably <code class="docutils literal notranslate"><span class="pre">FuncFormatter</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@FuncFormatter</span>
+<span class="k">def</span> <span class="nf">my_formatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">=}</span><span class="s1">, </span><span class="si">{</span><span class="n">pos</span><span class="si">=}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">my_formatter</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">my_formatter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_48_0.png" src="../_images/misc_PythonAlmanac_48_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Seaborn">
+<h4>Seaborn<a class="headerlink" href="#Seaborn" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> makes working with dataframes and creating commonly used plots accessible and comfortable.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># first convert dataframe from wide to long format</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
+<span class="n">df_long</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group</th>
+      <th>variable</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>G2</td>
+      <td>A</td>
+      <td>0.774304</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>G1</td>
+      <td>A</td>
+      <td>-0.546479</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>G2</td>
+      <td>A</td>
+      <td>-0.364083</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>G2</td>
+      <td>A</td>
+      <td>-0.076306</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>G2</td>
+      <td>A</td>
+      <td>1.730501</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;AxesSubplot:xlabel=&#39;variable&#39;, ylabel=&#39;value&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_52_1.png" src="../_images/misc_PythonAlmanac_52_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Statannot">
+<h4>Statannot<a class="headerlink" href="#Statannot" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/webermarcolivier/statannot">Statannot</a> can be used to quickly add markers of significance to comparison plots.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">statannot</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">statannot</span><span class="o">.</span><span class="n">add_stat_annotation</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;barplot&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">],</span>
+    <span class="n">box_pairs</span><span class="o">=</span><span class="p">[((</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;G1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">))],</span>
+    <span class="n">text_format</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction, P_val=8.631e-01 U_stat=1.275e+03
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;AxesSubplot:xlabel=&#39;variable&#39;, ylabel=&#39;value&#39;&gt;,
+ [&lt;statannot.StatResult.StatResult at 0x11a5faac0&gt;])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_55_2.png" src="../_images/misc_PythonAlmanac_55_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Brokenaxes">
+<h4>Brokenaxes<a class="headerlink" href="#Brokenaxes" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/bendichter/brokenaxes">Brokenaxes</a> can be used to include outliers in a plot without messing up the axis range. Note that this can be quite misleading.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">brokenaxes</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bax</span> <span class="o">=</span> <span class="n">brokenaxes</span><span class="o">.</span><span class="n">brokenaxes</span><span class="p">(</span><span class="n">ylims</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">)))</span>
+<span class="n">bax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)]);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_58_0.png" src="../_images/misc_PythonAlmanac_58_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Adjusttext">
+<h4>Adjusttext<a class="headerlink" href="#Adjusttext" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/Phlya/adjustText">Adjusttext</a> can help for plots with many labels which potentially overlap.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data_sub</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">40</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_raw</span><span class="p">,</span> <span class="n">ax_adj</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax_raw</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">[</span><span class="n">ax_raw</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]</span>
+
+<span class="n">ax_adj</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">adjust_text</span><span class="p">([</span><span class="n">ax_adj</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]],</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+18
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_61_1.png" src="../_images/misc_PythonAlmanac_61_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Plotnine">
+<h4>Plotnine<a class="headerlink" href="#Plotnine" title="Permalink to this headline">¶</a></h4>
+<p>While matplotlib’s pyplot provides a similar plotting interface as MATLAB, <a class="reference external" href="https://github.com/has2k1/plotnine">plotnine</a> implements a grammar of graphics and is (in ideology) based on R’s <a class="reference external" href="https://github.com/tidyverse/ggplot2">ggplot2</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">plotnine</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">(</span><span class="n">plotnine</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">df_long</span><span class="p">,</span> <span class="n">plotnine</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">plotnine</span><span class="o">.</span><span class="n">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">plotnine</span><span class="o">.</span><span class="n">facet_wrap</span><span class="p">(</span><span class="s1">&#39;~group&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">plotnine</span><span class="o">.</span><span class="n">theme_minimal</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_64_0.png" src="../_images/misc_PythonAlmanac_64_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;ggplot: (301358174)&gt;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Folium">
+<h4>Folium<a class="headerlink" href="#Folium" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/python-visualization/folium">Folium</a> is a Python wrapper of the <a class="reference external" href="https://leafletjs.com/">Leaflet.js</a> library to visualize dynamic maps.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">folium</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=PCFET0NUWVBFIGh0bWw+CjxoZWFkPiAgICAKICAgIDxtZXRhIGh0dHAtZXF1aXY9ImNvbnRlbnQtdHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04IiAvPgogICAgCiAgICAgICAgPHNjcmlwdD4KICAgICAgICAgICAgTF9OT19UT1VDSCA9IGZhbHNlOwogICAgICAgICAgICBMX0RJU0FCTEVfM0QgPSBmYWxzZTsKICAgICAgICA8L3NjcmlwdD4KICAgIAogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjYuMC9kaXN0L2xlYWZsZXQuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY29kZS5qcXVlcnkuY29tL2pxdWVyeS0xLjEyLjQubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9qcy9ib290c3RyYXAubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy9MZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy8yLjAuMi9sZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy5qcyI+PC9zY3JpcHQ+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjYuMC9kaXN0L2xlYWZsZXQuY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vbWF4Y2RuLmJvb3RzdHJhcGNkbi5jb20vYm9vdHN0cmFwLzMuMi4wL2Nzcy9ib290c3RyYXAubWluLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9jc3MvYm9vdHN0cmFwLXRoZW1lLm1pbi5jc3MiLz4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iaHR0cHM6Ly9tYXhjZG4uYm9vdHN0cmFwY2RuLmNvbS9mb250LWF3ZXNvbWUvNC42LjMvY3NzL2ZvbnQtYXdlc29tZS5taW4uY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuanMuY2xvdWRmbGFyZS5jb20vYWpheC9saWJzL0xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLzIuMC4yL2xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL3Jhd2Nkbi5naXRoYWNrLmNvbS9weXRob24tdmlzdWFsaXphdGlvbi9mb2xpdW0vbWFzdGVyL2ZvbGl1bS90ZW1wbGF0ZXMvbGVhZmxldC5hd2Vzb21lLnJvdGF0ZS5jc3MiLz4KICAgIDxzdHlsZT5odG1sLCBib2R5IHt3aWR0aDogMTAwJTtoZWlnaHQ6IDEwMCU7bWFyZ2luOiAwO3BhZGRpbmc6IDA7fTwvc3R5bGU+CiAgICA8c3R5bGU+I21hcCB7cG9zaXRpb246YWJzb2x1dGU7dG9wOjA7Ym90dG9tOjA7cmlnaHQ6MDtsZWZ0OjA7fTwvc3R5bGU+CiAgICAKICAgICAgICAgICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwKICAgICAgICAgICAgICAgIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgdXNlci1zY2FsYWJsZT1ubyIgLz4KICAgICAgICAgICAgPHN0eWxlPgogICAgICAgICAgICAgICAgI21hcF9lN2Y4ZTg3ZDFiYzk0ZjgxOTNkYTQ1ODAwY2U3MjZhOSB7CiAgICAgICAgICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgICAgICAgICAgICAgICAgIHdpZHRoOiA1MDAuMHB4OwogICAgICAgICAgICAgICAgICAgIGhlaWdodDogNTAwLjBweDsKICAgICAgICAgICAgICAgICAgICBsZWZ0OiAwLjAlOwogICAgICAgICAgICAgICAgICAgIHRvcDogMC4wJTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgPC9zdHlsZT4KICAgICAgICAKPC9oZWFkPgo8Ym9keT4gICAgCiAgICAKICAgICAgICAgICAgPGRpdiBjbGFzcz0iZm9saXVtLW1hcCIgaWQ9Im1hcF9lN2Y4ZTg3ZDFiYzk0ZjgxOTNkYTQ1ODAwY2U3MjZhOSIgPjwvZGl2PgogICAgICAgIAo8L2JvZHk+CjxzY3JpcHQ+ICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXBfZTdmOGU4N2QxYmM5NGY4MTkzZGE0NTgwMGNlNzI2YTkgPSBMLm1hcCgKICAgICAgICAgICAgICAgICJtYXBfZTdmOGU4N2QxYmM5NGY4MTkzZGE0NTgwMGNlNzI2YTkiLAogICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgIGNlbnRlcjogWzUyLjU2ODM5ODMzMjM0NjI0LCAxMy40NDAzMzk1MDI3MjJdLAogICAgICAgICAgICAgICAgICAgIGNyczogTC5DUlMuRVBTRzM4NTcsCiAgICAgICAgICAgICAgICAgICAgem9vbTogNywKICAgICAgICAgICAgICAgICAgICB6b29tQ29udHJvbDogdHJ1ZSwKICAgICAgICAgICAgICAgICAgICBwcmVmZXJDYW52YXM6IGZhbHNlLAogICAgICAgICAgICAgICAgfQogICAgICAgICAgICApOwoKICAgICAgICAgICAgCgogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciB0aWxlX2xheWVyXzhiZDAwZDg0NzhmYzQxY2JhYjlkMDQzNmU0OTgxYzM0ID0gTC50aWxlTGF5ZXIoCiAgICAgICAgICAgICAgICAiaHR0cHM6Ly97c30udGlsZS5vcGVuc3RyZWV0bWFwLm9yZy97en0ve3h9L3t5fS5wbmciLAogICAgICAgICAgICAgICAgeyJhdHRyaWJ1dGlvbiI6ICJEYXRhIGJ5IFx1MDAyNmNvcHk7IFx1MDAzY2EgaHJlZj1cImh0dHA6Ly9vcGVuc3RyZWV0bWFwLm9yZ1wiXHUwMDNlT3BlblN0cmVldE1hcFx1MDAzYy9hXHUwMDNlLCB1bmRlciBcdTAwM2NhIGhyZWY9XCJodHRwOi8vd3d3Lm9wZW5zdHJlZXRtYXAub3JnL2NvcHlyaWdodFwiXHUwMDNlT0RiTFx1MDAzYy9hXHUwMDNlLiIsICJkZXRlY3RSZXRpbmEiOiBmYWxzZSwgIm1heE5hdGl2ZVpvb20iOiAxOCwgIm1heFpvb20iOiAxOCwgIm1pblpvb20iOiAwLCAibm9XcmFwIjogZmFsc2UsICJvcGFjaXR5IjogMSwgInN1YmRvbWFpbnMiOiAiYWJjIiwgInRtcyI6IGZhbHNlfQogICAgICAgICAgICApLmFkZFRvKG1hcF9lN2Y4ZTg3ZDFiYzk0ZjgxOTNkYTQ1ODAwY2U3MjZhOSk7CiAgICAgICAgCjwvc2NyaXB0Pg== onload="this.contentDocument.open();this.contentDocument.write(atob(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="High-performance">
+<h3>High performance<a class="headerlink" href="#High-performance" title="Permalink to this headline">¶</a></h3>
+<p>When dealing with large amounts of data or many computations, it can make sense to optimize hotspots in C++ or use specialized libraries.</p>
+<div class="section" id="Dask">
+<h4>Dask<a class="headerlink" href="#Dask" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/dask/dask">Dask</a> provides a Panda’s like interface to high-performance dataframes which support out-of-memory processing, cluster distribution, and more. It is particularly useful when the dataframe does not fit in RAM anymore. Common operations operate on chunks of the dataframe and are only executed when explicitly requested.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">npartitions</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ddf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.165790</td>
+      <td>-0.403675</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.031666</td>
+      <td>1.232881</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.965542</td>
+      <td>1.405771</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.527350</td>
+      <td>0.562870</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-2.380258</td>
+      <td>-0.230207</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Dask Series Structure:
+npartitions=4
+0         float64
+250000        ...
+500000        ...
+750000        ...
+999999        ...
+dtype: float64
+Dask Name: add, 16 tasks
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">(</span><span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0        -1.569465
+1         2.264547
+2         0.440228
+3         1.090220
+4        -2.610465
+            ...
+999995   -1.914876
+999996   -0.212696
+999997    0.892712
+999998    0.205241
+999999   -0.073336
+Length: 1000000, dtype: float64
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Vaex">
+<h4>Vaex<a class="headerlink" href="#Vaex" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/vaexio/vaex">Vaex</a> fills a similar niche as dask and makes working with out-of-core dataframe easy. It has a slightly more intuitive interface and offers many cool visualizations right out of the box.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">vaex</span> <span class="k">as</span> <span class="nn">vx</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">vdf</span> <span class="o">=</span> <span class="n">vx</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">vdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<thead>
+<tr><th>#                            </th><th style="text-align: right;">         A</th><th style="text-align: right;">        B</th></tr>
+</thead>
+<tbody>
+<tr><td><i style='opacity: 0.6'>0</i></td><td style="text-align: right;">-1.16579  </td><td style="text-align: right;">-0.403675</td></tr>
+<tr><td><i style='opacity: 0.6'>1</i></td><td style="text-align: right;"> 1.03167  </td><td style="text-align: right;"> 1.23288 </td></tr>
+<tr><td><i style='opacity: 0.6'>2</i></td><td style="text-align: right;">-0.965542 </td><td style="text-align: right;"> 1.40577 </td></tr>
+<tr><td><i style='opacity: 0.6'>3</i></td><td style="text-align: right;"> 0.52735  </td><td style="text-align: right;"> 0.56287 </td></tr>
+<tr><td><i style='opacity: 0.6'>4</i></td><td style="text-align: right;">-2.38026  </td><td style="text-align: right;">-0.230207</td></tr>
+<tr><td><i style='opacity: 0.6'>5</i></td><td style="text-align: right;">-0.553916 </td><td style="text-align: right;">-1.95404 </td></tr>
+<tr><td><i style='opacity: 0.6'>6</i></td><td style="text-align: right;"> 0.84653  </td><td style="text-align: right;"> 0.604943</td></tr>
+<tr><td><i style='opacity: 0.6'>7</i></td><td style="text-align: right;"> 0.0116134</td><td style="text-align: right;"> 1.8585  </td></tr>
+<tr><td><i style='opacity: 0.6'>8</i></td><td style="text-align: right;">-0.295844 </td><td style="text-align: right;"> 0.338799</td></tr>
+<tr><td><i style='opacity: 0.6'>9</i></td><td style="text-align: right;"> 0.315273 </td><td style="text-align: right;">-0.576116</td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Expression = (A + B)
+Length: 1,000,000 dtype: float64 (expression)
+---------------------------------------------
+     0    -1.56946
+     1     2.26455
+     2    0.440228
+     3     1.09022
+     4    -2.61046
+       ...
+999995    -1.91488
+999996   -0.212696
+999997    0.892712
+999998    0.205241
+999999  -0.0733359
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">vdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.image.AxesImage at 0x1258c64f0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_79_1.png" src="../_images/misc_PythonAlmanac_79_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Joblib">
+<h4>Joblib<a class="headerlink" href="#Joblib" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/joblib/joblib">Joblib</a> makes executing functions in parallel very easy and removes boilerplate code.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">import</span> <span class="nn">joblib</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">heavy_function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">i</span> <span class="o">**</span> <span class="n">i</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">joblib</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)([</span><span class="n">joblib</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">heavy_function</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1, 1, 4, 27, 256, 3125, 46656, 823543, 16777216, 387420489]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Swifter">
+<h4>Swifter<a class="headerlink" href="#Swifter" title="Permalink to this headline">¶</a></h4>
+<p>Choosing the correct way of parallelizing your computations can be non-trivial. <a class="reference external" href="https://github.com/jmcarpenter2/swifter">Swifter</a> tries to automatically select the most suitable one.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">swifter</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_big</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="n">df_big</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>67</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%time</span>it
+<span class="n">df_big</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+692 ms ± 20.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%time</span>it
+<span class="n">df_big</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">swifter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.08 ms ± 67.8 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Bioinformatics">
+<h3>Bioinformatics<a class="headerlink" href="#Bioinformatics" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="PyRanges">
+<h4>PyRanges<a class="headerlink" href="#PyRanges" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/biocore-ntnu/pyranges">PyRanges</a> makes working with genomic ranges easy as pie.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pyranges</span> <span class="k">as</span> <span class="nn">pr</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_exons</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">exons</span><span class="p">()</span>
+<span class="n">df_exons</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
++--------------+-----------+-----------+-------+
+| Chromosome   | Start     | End       | +3    |
+| (category)   | (int32)   | (int32)   | ...   |
+|--------------+-----------+-----------+-------|
+| chrX         | 135721701 | 135721963 | ...   |
+| chrX         | 135574120 | 135574598 | ...   |
+| chrX         | 47868945  | 47869126  | ...   |
+| chrX         | 77294333  | 77294480  | ...   |
+| ...          | ...       | ...       | ...   |
+| chrY         | 15409586  | 15409728  | ...   |
+| chrY         | 15478146  | 15478273  | ...   |
+| chrY         | 15360258  | 15361762  | ...   |
+| chrY         | 15467254  | 15467278  | ...   |
++--------------+-----------+-----------+-------+
+Stranded PyRanges object has 1,000 rows and 6 columns from 2 chromosomes.
+For printing, the PyRanges was sorted on Chromosome and Strand.
+3 hidden columns: Name, Score, Strand
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_locus</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">PyRanges</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Chromosome&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">],</span> <span class="s1">&#39;Start&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1_400_000</span><span class="p">],</span> <span class="s1">&#39;End&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1_500_000</span><span class="p">]}))</span>
+<span class="n">df_locus</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
++--------------+-----------+-----------+
+| Chromosome   |     Start |       End |
+| (category)   |   (int32) |   (int32) |
+|--------------+-----------+-----------|
+| chrX         |   1400000 |   1500000 |
++--------------+-----------+-----------+
+Unstranded PyRanges object has 1 rows and 3 columns from 1 chromosomes.
+For printing, the PyRanges was sorted on Chromosome.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_exons</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="n">df_locus</span><span class="p">)</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Chromosome</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Strand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chrX</td>
+      <td>1475113</td>
+      <td>1475229</td>
+      <td>NM_001267713_exon_4_0_chrX_1475114_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>chrX</td>
+      <td>1419383</td>
+      <td>1419519</td>
+      <td>NM_001161531_exon_9_0_chrX_1419384_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>chrX</td>
+      <td>1424338</td>
+      <td>1424420</td>
+      <td>NM_006140_exon_11_0_chrX_1424339_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>chrX</td>
+      <td>1407651</td>
+      <td>1407781</td>
+      <td>NM_001161532_exon_3_0_chrX_1407652_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chrX</td>
+      <td>1404670</td>
+      <td>1404813</td>
+      <td>NM_172245_exon_3_0_chrX_1404671_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>chrX</td>
+      <td>1424338</td>
+      <td>1424420</td>
+      <td>NM_001161530_exon_10_0_chrX_1424339_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>chrX</td>
+      <td>1414319</td>
+      <td>1414349</td>
+      <td>NM_172245_exon_8_0_chrX_1414320_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>chrX</td>
+      <td>1407411</td>
+      <td>1407535</td>
+      <td>NM_172249_exon_4_0_chrX_1407412_f</td>
+      <td>0</td>
+      <td>+</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Obonet">
+<h4>Obonet<a class="headerlink" href="#Obonet" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/dhimmel/obonet">Obonet</a> is a library for working with (OBO-formatted) ontologies.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">obonet</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/HumanDO.obo&#39;</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">obonet</span><span class="o">.</span><span class="n">read_obo</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&#39;DOID:0001816&#39;,
+ {&#39;name&#39;: &#39;angiosarcoma&#39;,
+  &#39;alt_id&#39;: [&#39;DOID:267&#39;, &#39;DOID:4508&#39;],
+  &#39;def&#39;: &#39;&#34;A vascular cancer that derives_from the cells that line the walls of blood vessels or lymphatic vessels.&#34; [url:http\\://en.wikipedia.org/wiki/Hemangiosarcoma, url:https\\://en.wikipedia.org/wiki/Angiosarcoma, url:https\\://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&amp;ns=ncit&amp;code=C3088, url:https\\://www.ncbi.nlm.nih.gov/pubmed/23327728]&#39;,
+  &#39;subset&#39;: [&#39;NCIthesaurus&#39;],
+  &#39;synonym&#39;: [&#39;&#34;hemangiosarcoma&#34; EXACT []&#39;],
+  &#39;xref&#39;: [&#39;MESH:D006394&#39;,
+   &#39;NCI:C3088&#39;,
+   &#39;NCI:C9275&#39;,
+   &#39;SNOMEDCT_US_2020_03_01:39000009&#39;,
+   &#39;UMLS_CUI:C0018923&#39;,
+   &#39;UMLS_CUI:C0854893&#39;],
+  &#39;is_a&#39;: [&#39;DOID:175&#39;]})
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Statistics/Machine-Learning">
+<h3>Statistics/Machine Learning<a class="headerlink" href="#Statistics/Machine-Learning" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Statsmodels">
+<h4>Statsmodels<a class="headerlink" href="#Statsmodels" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/statsmodels/statsmodels">Statsmodels</a> helps with statistical modelling.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">4.2</span>
+
+<span class="n">df_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.006075</td>
+      <td>5.507897</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.046775</td>
+      <td>4.260807</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.687837</td>
+      <td>3.305812</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.762831</td>
+      <td>5.191680</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.682456</td>
+      <td>6.387192</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Y ~ X&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_data</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Intercept    4.2
+X            1.3
+dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>
+</tr>
+<tr>
+  <th>Intercept</th> <td>    4.2000</td> <td> 1.69e-16</td> <td> 2.49e+16</td> <td> 0.000</td> <td>    4.200</td> <td>    4.200</td>
+</tr>
+<tr>
+  <th>X</th>         <td>    1.3000</td> <td> 1.61e-16</td> <td> 8.05e+15</td> <td> 0.000</td> <td>    1.300</td> <td>    1.300</td>
+</tr>
+</table></div>
+</div>
+</div>
+<div class="section" id="Pingouin">
+<h4>Pingouin<a class="headerlink" href="#Pingouin" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/raphaelvallat/pingouin">Pingouin</a> provides additional statistical methods.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>pval</th>
+      <th>normal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.989871</td>
+      <td>0.654142</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>pval</th>
+      <th>normal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.938195</td>
+      <td>0.00015</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Scitkit-learn">
+<h4>Scitkit-learn<a class="headerlink" href="#Scitkit-learn" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://github.com/scikit-learn/scikit-learn">Scikit-learn</a> facilitates machine learning in Python.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+((150, 4), (150,))
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.9666666666666667
+</pre></div></div>
+</div>
+<p>Scikit-learn offers various plugins which deal with common issues encountered while modeling.</p>
+<p><a class="reference external" href="https://github.com/scikit-learn-contrib/imbalanced-learn">Imbalanced-learn</a> provides various re-sampling techniques when the dataset has annoying class imbalances.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">RandomOverSampler</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ros</span> <span class="o">=</span> <span class="n">RandomOverSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X_sub</span><span class="p">,</span> <span class="n">y_sub</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">60</span><span class="p">,</span> <span class="p">:],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_sub</span><span class="p">,</span> <span class="n">y_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sub:&#39;</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_sub</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;resampled:&#39;</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+sub: [(0, 50), (1, 10)]
+resampled: [(0, 50), (1, 50)]
+</pre></div></div>
+</div>
+<p><a class="reference external" href="https://github.com/scikit-learn-contrib/category_encoders">Category_encoders</a> helps with converting categorical variables to numerical ones.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">category_encoders</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df_cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;original_class&#39;</span><span class="p">:</span> <span class="n">tmp</span><span class="p">,</span>
+    <span class="s1">&#39;feature01&#39;</span><span class="p">:</span> <span class="n">tmp</span>
+<span class="p">})</span>
+<span class="n">df_cat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>original_class</th>
+      <th>feature01</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">category_encoders</span><span class="o">.</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature01&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>original_class</th>
+      <th>feature01_1</th>
+      <th>feature01_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>B</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>B</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>B</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><a class="reference external" href="https://github.com/DistrictDataLabs/yellowbrick">Yellowbrick</a> makes a multitude of visual diagnostic tools readily accessible.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">yellowbrick.classifier</span> <span class="kn">import</span> <span class="n">ROCAUC</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SVC(C=1, kernel=&#39;linear&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">visualizer</span> <span class="o">=</span> <span class="n">ROCAUC</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+<span class="n">visualizer</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">visualizer</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/kimja/Library/Python/3.8/lib/python/site-packages/yellowbrick/classifier/base.py:230: YellowbrickWarning: could not determine class_counts_ from previously fitted classifier
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/misc_PythonAlmanac_128_1.png" src="../_images/misc_PythonAlmanac_128_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;AxesSubplot:title={&#39;center&#39;:&#39;ROC Curves for SVC&#39;}, xlabel=&#39;False Positive Rate&#39;, ylabel=&#39;True Postive Rate&#39;&gt;
+</pre></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Language-Bindings">
+<h2>Language Bindings<a class="headerlink" href="#Language-Bindings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Pybind11">
+<h3>Pybind11<a class="headerlink" href="#Pybind11" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/pybind/pybind11">Pybind11</a> makes writing bindings between Python and C++ enjoyable. In combination with <a class="reference external" href="https://github.com/tbenthompson/cppimport">cppimport</a> some might even call it fun. It is possible to implement <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/advanced/cast/custom.html">custom typecasters</a> to support bindings for arbitrary objects.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%writefile</span> cpp_source.cpp
+
+<span class="c1">#include &lt;pybind11/pybind11.h&gt;</span>
+
+<span class="n">namespace</span> <span class="n">py</span> <span class="o">=</span> <span class="n">pybind11</span><span class="p">;</span>
+
+
+<span class="nb">int</span> <span class="n">square</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">cpp_source</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">def</span><span class="p">(</span>
+        <span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">square</span><span class="p">,</span>
+        <span class="n">py</span><span class="p">::</span><span class="n">arg</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">/*</span>
+<span class="o">&lt;%</span>
+<span class="n">setup_pybind11</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;compiler_args&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-std=c++11&#39;</span><span class="p">]</span>
+<span class="o">%&gt;</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Writing cpp_source.cpp
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">cppimport</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cpp_source</span> <span class="o">=</span> <span class="n">cppimport</span><span class="o">.</span><span class="n">imp</span><span class="p">(</span><span class="s1">&#39;cpp_source&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/usr/local/lib/python3.8/site-packages/setuptools/distutils_patch.py:25: UserWarning: Distutils was imported before Setuptools. This usage is discouraged and may exhibit undesirable behaviors or errors. Please use Setuptools&#39; objects directly or at least import Setuptools first.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cpp_source</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+25
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Jupyter">
+<h2>Jupyter<a class="headerlink" href="#Jupyter" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Nbstripout">
+<h3>Nbstripout<a class="headerlink" href="#Nbstripout" title="Permalink to this headline">¶</a></h3>
+<p>Commiting Jupyter notebooks to CVS (e.g. git) can be annoying due to non-code properties being saved. <a class="reference external" href="https://github.com/kynan/nbstripout">Nbstripout</a> strips all of those away and can be run automatically for each committed notebook by executing <code class="docutils literal notranslate"><span class="pre">nbstripout</span> <span class="pre">--install</span></code> once.</p>
+</div>
+</div>
+<div class="section" id="ToDo">
+<h2>ToDo<a class="headerlink" href="#ToDo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Validate your config files using <a class="reference external" href="https://github.com/Julian/jsonschema/">schemas</a>.</p></li>
+<li><p>Design your pipelines using <a class="reference external" href="https://bitbucket.org/snakemake/snakemake">Snakemake</a>.</p></li>
+<li><p>moviepy</p></li>
+<li><p><a class="reference external" href="https://github.com/tqdm/tqdm">https://github.com/tqdm/tqdm</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyca/cryptography">https://github.com/pyca/cryptography</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jmoiron/humanize">https://github.com/jmoiron/humanize</a></p></li>
+<li><p>numba</p></li>
+<li><p>pythran</p></li>
+<li><p><a class="reference external" href="https://github.com/cloudpipe/cloudpickle">https://github.com/cloudpipe/cloudpickle</a></p></li>
+<li><p>jupytext</p></li>
+<li><p>dfply(/plydata)</p></li>
+<li><p>tensorflow</p></li>
+<li><p>filprofiler</p></li>
+<li><p><a class="reference external" href="https://github.com/mitmproxy/mitmproxy">https://github.com/mitmproxy/mitmproxy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/secdev/scapy">https://github.com/secdev/scapy</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ThreadingVSMultiprocessing.html" class="btn btn-neutral float-right" title="Comparing threading and multiprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="InterceptingHTTPTraffic.html" class="btn btn-neutral float-left" title="Intercepting HTTP(S) Traffic of Android Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, kpj
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

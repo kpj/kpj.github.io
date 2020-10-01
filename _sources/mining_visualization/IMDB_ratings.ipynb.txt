@@ -53,7 +53,8 @@
     "    'Westworld',\n",
     "    'Black Mirror',\n",
     "    'Breaking Bad',\n",
-    "    'The Witcher'\n",
+    "    'The Witcher',\n",
+    "    'Dark'\n",
     "]"
    ]
   },
@@ -118,7 +119,10 @@
     "            })\n",
     "\n",
     "df = pd.DataFrame(tmp).sort_values(by=['series', 'season_nr', 'episode_nr'])\n",
-    "df['idx'] = pd.Categorical(df['season_nr'].map(str) + ':' + df['episode_nr'].map(str))"
+    "df['idx'] = pd.Categorical(df['season_nr'].map(str) + ':' + df['episode_nr'].map(str))\n",
+    "\n",
+    "# fix for latest seaborn version (otherwise all cetegory levels are plotted for all series)\n",
+    "df['idx'] = df['idx'].astype(str)"
    ]
   },
   {
@@ -161,7 +165,7 @@
    "source": [
     "g = sns.FacetGrid(\n",
     "    df.dropna(),\n",
-    "    col='series', col_wrap=1,\n",
+    "    row='series',\n",
     "    hue='season_nr',\n",
     "    sharex=False, sharey=True,\n",
     "    aspect=2, height=5)\n",
