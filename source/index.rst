@@ -31,10 +31,11 @@ More fun projects can be found on https://github.com/kpj/.
 
 
 .. toctree::
-  :caption: Machine Learning
+  :caption: Statistics & Machine Learning
   :maxdepth: 1
 
-  machine_learning/Autoencoder
+  stats_ml/Autoencoder
+  stats_ml/LinearRegressionCoefficients
 
 
 .. toctree::
