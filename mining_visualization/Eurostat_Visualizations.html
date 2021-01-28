@@ -484,7 +484,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Visualizing-Eurostat-data">
 <h1>Visualizing Eurostat data<a class="headerlink" href="#Visualizing-Eurostat-data" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -507,7 +507,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -520,8 +520,8 @@ div.rendered_html tbody tr:hover {
 <p>The NUTS classification subdivides each member state into regions at three different levels, covering NUTS 1, 2 and 3 from larger to smaller areas (<a class="reference external" href="https://ec.europa.eu/eurostat/web/nuts/background">https://ec.europa.eu/eurostat/web/nuts/background</a>). Eurostat provides this geographical data in various formats (<a class="reference external" href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a>, looks for “NUTS”).</p>
 <p>The filename of each dataset follows a specific format: <code class="docutils literal notranslate"><span class="pre">&lt;theme&gt;_&lt;spatialtype&gt;_&lt;resolution&gt;_&lt;year&gt;_&lt;projection&gt;_&lt;subset&gt;.&lt;extension&gt;</span></code> (check <a class="reference external" href="https://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/nuts-2016-files.html">https://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/nuts-2016-files.html</a> for more information).</p>
 <p>To make things easier, we use the <code class="docutils literal notranslate"><span class="pre">eurostat</span></code> package to retrieve this data automatically.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -532,17 +532,117 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>CNTR_CODE</th>
+      <th>NUTS_NAME</th>
+      <th>LEVL_CODE</th>
+      <th>FID</th>
+      <th>NUTS_ID</th>
+      <th>geometry</th>
+      <th>geo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DE24</td>
+      <td>DE</td>
+      <td>Oberfranken</td>
+      <td>2</td>
+      <td>DE24</td>
+      <td>DE24</td>
+      <td>POLYGON ((11.48157 50.43162, 11.48290 50.40161...</td>
+      <td>DE24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NO03</td>
+      <td>NO</td>
+      <td>Sør-Østlandet</td>
+      <td>2</td>
+      <td>NO03</td>
+      <td>NO03</td>
+      <td>POLYGON ((10.60072 60.13161, 10.57604 60.11572...</td>
+      <td>NO03</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>HU11</td>
+      <td>HU</td>
+      <td>Budapest</td>
+      <td>2</td>
+      <td>HU11</td>
+      <td>HU11</td>
+      <td>POLYGON ((18.93274 47.57117, 19.02713 47.58717...</td>
+      <td>HU11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>HU12</td>
+      <td>HU</td>
+      <td>Pest</td>
+      <td>2</td>
+      <td>HU12</td>
+      <td>HU12</td>
+      <td>POLYGON ((18.96591 47.02896, 18.89943 47.07825...</td>
+      <td>HU12</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>HU21</td>
+      <td>HU</td>
+      <td>Közép-Dunántúl</td>
+      <td>2</td>
+      <td>HU21</td>
+      <td>HU21</td>
+      <td>POLYGON ((18.68843 47.57707, 18.70448 47.52134...</td>
+      <td>HU21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
 <div class="section" id="Example">
 <h3>Example<a class="headerlink" href="#Example" title="Permalink to this headline">¶</a></h3>
 <p>To get a feeling for the data, we can plot the geographical composition of an arbitrary country.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">gplt</span><span class="o">.</span><span class="n">polyplot</span><span class="p">(</span><span class="n">df_geo</span><span class="p">[</span><span class="n">df_geo</span><span class="p">[</span><span class="s1">&#39;CNTR_CODE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DE&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_11_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_11_0.png" />
 </div>
 </div>
 </div>
@@ -552,8 +652,8 @@ div.rendered_html tbody tr:hover {
 <p>Eurostat is a great source for data related to Europe. An overview of the main tables can be found on <a class="reference external" href="https://ec.europa.eu/eurostat/web/regions/data/main-tables">https://ec.europa.eu/eurostat/web/regions/data/main-tables</a>.</p>
 <div class="section" id="Select-datasets">
 <h3>Select datasets<a class="headerlink" href="#Select-datasets" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -561,8 +661,101 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>code</th>
+      <th>type</th>
+      <th>last update of data</th>
+      <th>last table structure change</th>
+      <th>data start</th>
+      <th>data end</th>
+      <th>values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Manure storage facilities by NUTS 3 regions</td>
+      <td>aei_fm_ms</td>
+      <td>dataset</td>
+      <td>05.02.2019</td>
+      <td>27.02.2020</td>
+      <td>2000</td>
+      <td>2010</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Population on 1 January by age, sex and NUTS 2...</td>
+      <td>demo_r_d2jan</td>
+      <td>dataset</td>
+      <td>13.10.2020</td>
+      <td>16.06.2020</td>
+      <td>1990</td>
+      <td>2019</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Population on 1 January by age group, sex and ...</td>
+      <td>demo_r_pjangroup</td>
+      <td>dataset</td>
+      <td>18.06.2020</td>
+      <td>14.05.2020</td>
+      <td>1990</td>
+      <td>2019</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Population on 1 January by age group, sex and ...</td>
+      <td>demo_r_pjangrp3</td>
+      <td>dataset</td>
+      <td>13.10.2020</td>
+      <td>14.05.2020</td>
+      <td>2014</td>
+      <td>2019</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Population on 1 January by broad age group, se...</td>
+      <td>demo_r_pjanaggr3</td>
+      <td>dataset</td>
+      <td>16.06.2020</td>
+      <td>16.06.2020</td>
+      <td>1990</td>
+      <td>2019</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -580,8 +773,8 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Download-and-aggregate-data">
 <h3>Download and aggregate data<a class="headerlink" href="#Download-and-aggregate-data" title="Permalink to this headline">¶</a></h3>
 <p>To make the subsequent analysis easier, we download all data at once and store it in a single dataframe. Additionally, we store associated meta data in another dataframe.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -644,9 +837,27 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6504839394d34061b93eddf51a86ea15", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Parsing tgs00101 (Life expectancy at birth by sex and NUTS 2 region)
+Parsing tgs00026 (Disposable income of private households by NUTS 2 regions)
+Parsing tgs00036 (Primary income of private households by NUTS 2 regions)
+Parsing tgs00010 (Unemployment rate by NUTS 2 regions)
+Parsing tgs00112 (Number of establishments and bed-places by NUTS 2 regions)
+</pre></div></div>
+</div>
 <p>Each row corresponds to a geographic region, and each column to a certain statistic.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -655,9 +866,205 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>meta</th>
+      <th>tgs00101_2007_0</th>
+      <th>tgs00101_2007_1</th>
+      <th>tgs00101_2007_2</th>
+      <th>tgs00101_2008_0</th>
+      <th>tgs00101_2008_1</th>
+      <th>tgs00101_2008_2</th>
+      <th>tgs00101_2009_0</th>
+      <th>tgs00101_2009_1</th>
+      <th>tgs00101_2009_2</th>
+      <th>tgs00101_2010_0</th>
+      <th>...</th>
+      <th>tgs00112_2015_0</th>
+      <th>tgs00112_2015_1</th>
+      <th>tgs00112_2016_0</th>
+      <th>tgs00112_2016_1</th>
+      <th>tgs00112_2017_0</th>
+      <th>tgs00112_2017_1</th>
+      <th>tgs00112_2018_0</th>
+      <th>tgs00112_2018_1</th>
+      <th>tgs00112_2019_0</th>
+      <th>tgs00112_2019_1</th>
+    </tr>
+    <tr>
+      <th>idx</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AT11_Burgenland (AT)</th>
+      <td>83.3</td>
+      <td>76.2</td>
+      <td>79.7</td>
+      <td>83.4</td>
+      <td>76.7</td>
+      <td>80.0</td>
+      <td>84.2</td>
+      <td>77.5</td>
+      <td>80.9</td>
+      <td>83.9</td>
+      <td>...</td>
+      <td>28414.0</td>
+      <td>436.0</td>
+      <td>28252.0</td>
+      <td>427.0</td>
+      <td>28293.0</td>
+      <td>427.0</td>
+      <td>27551.0</td>
+      <td>418.0</td>
+      <td>27404.0</td>
+      <td>412.0</td>
+    </tr>
+    <tr>
+      <th>AT12_Niederösterreich</th>
+      <td>82.7</td>
+      <td>77.0</td>
+      <td>79.9</td>
+      <td>82.8</td>
+      <td>77.1</td>
+      <td>80.0</td>
+      <td>82.7</td>
+      <td>77.4</td>
+      <td>80.1</td>
+      <td>83.3</td>
+      <td>...</td>
+      <td>68399.0</td>
+      <td>1459.0</td>
+      <td>68714.0</td>
+      <td>1429.0</td>
+      <td>67465.0</td>
+      <td>1434.0</td>
+      <td>67868.0</td>
+      <td>1435.0</td>
+      <td>68246.0</td>
+      <td>1447.0</td>
+    </tr>
+    <tr>
+      <th>AT13_Wien</th>
+      <td>82.0</td>
+      <td>76.7</td>
+      <td>79.5</td>
+      <td>82.4</td>
+      <td>77.0</td>
+      <td>79.9</td>
+      <td>82.1</td>
+      <td>76.5</td>
+      <td>79.4</td>
+      <td>82.2</td>
+      <td>...</td>
+      <td>73901.0</td>
+      <td>604.0</td>
+      <td>74771.0</td>
+      <td>1072.0</td>
+      <td>75462.0</td>
+      <td>1212.0</td>
+      <td>78672.0</td>
+      <td>1735.0</td>
+      <td>79245.0</td>
+      <td>2070.0</td>
+    </tr>
+    <tr>
+      <th>AT21_Kärnten</th>
+      <td>83.6</td>
+      <td>77.8</td>
+      <td>80.8</td>
+      <td>84.1</td>
+      <td>77.7</td>
+      <td>81.0</td>
+      <td>83.7</td>
+      <td>77.7</td>
+      <td>80.8</td>
+      <td>84.0</td>
+      <td>...</td>
+      <td>142508.0</td>
+      <td>2765.0</td>
+      <td>141191.0</td>
+      <td>2695.0</td>
+      <td>140473.0</td>
+      <td>2717.0</td>
+      <td>140448.0</td>
+      <td>2720.0</td>
+      <td>140165.0</td>
+      <td>2716.0</td>
+    </tr>
+    <tr>
+      <th>AT22_Steiermark</th>
+      <td>83.6</td>
+      <td>77.6</td>
+      <td>80.7</td>
+      <td>83.7</td>
+      <td>77.5</td>
+      <td>80.6</td>
+      <td>83.5</td>
+      <td>77.6</td>
+      <td>80.6</td>
+      <td>83.9</td>
+      <td>...</td>
+      <td>112499.0</td>
+      <td>2432.0</td>
+      <td>116262.0</td>
+      <td>2471.0</td>
+      <td>118592.0</td>
+      <td>2471.0</td>
+      <td>125850.0</td>
+      <td>2481.0</td>
+      <td>128815.0</td>
+      <td>2521.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 120 columns</p>
+</div></div>
+</div>
 <p>Extra information for each column is stored in an additional dataframe.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -666,8 +1073,77 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dataset</th>
+      <th>name</th>
+      <th>meta_idx</th>
+      <th>meta_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tgs00101</td>
+      <td>Life expectancy at birth by sex and NUTS 2 region</td>
+      <td>0</td>
+      <td>age=Less than 1 year;sex=Females;unit=Year</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tgs00101</td>
+      <td>Life expectancy at birth by sex and NUTS 2 region</td>
+      <td>1</td>
+      <td>age=Less than 1 year;sex=Males;unit=Year</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tgs00101</td>
+      <td>Life expectancy at birth by sex and NUTS 2 region</td>
+      <td>2</td>
+      <td>age=Less than 1 year;sex=Total;unit=Year</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>tgs00026</td>
+      <td>Disposable income of private households by NUT...</td>
+      <td>0</td>
+      <td>direct=Balance;na_item=Disposable income, net;...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>tgs00036</td>
+      <td>Primary income of private households by NUTS 2...</td>
+      <td>0</td>
+      <td>direct=Balance;na_item=Balance of primary inco...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -689,7 +1165,7 @@ div.rendered_html tbody tr:hover {
 <h3>Overview<a class="headerlink" href="#Overview" title="Permalink to this headline">¶</a></h3>
 <p>To get a rough overview of the data, we can plot the clustered correlation matrix.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -698,7 +1174,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -710,7 +1186,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -724,8 +1200,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -740,13 +1216,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_30_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_30_0.png" />
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="Data-preparation">
 <h2>Data preparation<a class="headerlink" href="#Data-preparation" title="Permalink to this headline">¶</a></h2>
 <p>In order to combine both geographical and statistical data, we merge the data…</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -754,8 +1237,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -764,9 +1247,181 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>CNTR_CODE</th>
+      <th>NUTS_NAME</th>
+      <th>LEVL_CODE</th>
+      <th>FID</th>
+      <th>NUTS_ID</th>
+      <th>geometry</th>
+      <th>geo</th>
+      <th>tgs00101_2007_0</th>
+      <th>tgs00101_2007_1</th>
+      <th>...</th>
+      <th>tgs00112_2015_1</th>
+      <th>tgs00112_2016_0</th>
+      <th>tgs00112_2016_1</th>
+      <th>tgs00112_2017_0</th>
+      <th>tgs00112_2017_1</th>
+      <th>tgs00112_2018_0</th>
+      <th>tgs00112_2018_1</th>
+      <th>tgs00112_2019_0</th>
+      <th>tgs00112_2019_1</th>
+      <th>geo_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DE24</td>
+      <td>DE</td>
+      <td>Oberfranken</td>
+      <td>2</td>
+      <td>DE24</td>
+      <td>DE24</td>
+      <td>POLYGON ((11.48157 50.43162, 11.48290 50.40161...</td>
+      <td>DE24</td>
+      <td>82.2</td>
+      <td>76.7</td>
+      <td>...</td>
+      <td>890.0</td>
+      <td>40555.0</td>
+      <td>876.0</td>
+      <td>40804.0</td>
+      <td>869.0</td>
+      <td>40049.0</td>
+      <td>863.0</td>
+      <td>41574.0</td>
+      <td>865.0</td>
+      <td>DE24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NO03</td>
+      <td>NO</td>
+      <td>Sør-Østlandet</td>
+      <td>2</td>
+      <td>NO03</td>
+      <td>NO03</td>
+      <td>POLYGON ((10.60072 60.13161, 10.57604 60.11572...</td>
+      <td>NO03</td>
+      <td>82.3</td>
+      <td>77.7</td>
+      <td>...</td>
+      <td>464.0</td>
+      <td>143032.0</td>
+      <td>455.0</td>
+      <td>142724.0</td>
+      <td>421.0</td>
+      <td>151654.0</td>
+      <td>413.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NO03</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>HU11</td>
+      <td>HU</td>
+      <td>Budapest</td>
+      <td>2</td>
+      <td>HU11</td>
+      <td>HU11</td>
+      <td>POLYGON ((18.93274 47.57117, 19.02713 47.58717...</td>
+      <td>HU11</td>
+      <td>78.7</td>
+      <td>72.4</td>
+      <td>...</td>
+      <td>342.0</td>
+      <td>57210.0</td>
+      <td>359.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>56213.0</td>
+      <td>375.0</td>
+      <td>58711.0</td>
+      <td>379.0</td>
+      <td>HU11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>HU12</td>
+      <td>HU</td>
+      <td>Pest</td>
+      <td>2</td>
+      <td>HU12</td>
+      <td>HU12</td>
+      <td>POLYGON ((18.96591 47.02896, 18.89943 47.07825...</td>
+      <td>HU12</td>
+      <td>77.9</td>
+      <td>69.8</td>
+      <td>...</td>
+      <td>229.0</td>
+      <td>16348.0</td>
+      <td>232.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17816.0</td>
+      <td>248.0</td>
+      <td>16927.0</td>
+      <td>240.0</td>
+      <td>HU12</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>HU21</td>
+      <td>HU</td>
+      <td>Közép-Dunántúl</td>
+      <td>2</td>
+      <td>HU21</td>
+      <td>HU21</td>
+      <td>POLYGON ((18.68843 47.57707, 18.70448 47.52134...</td>
+      <td>HU21</td>
+      <td>77.8</td>
+      <td>69.4</td>
+      <td>...</td>
+      <td>610.0</td>
+      <td>63641.0</td>
+      <td>625.0</td>
+      <td>65846.0</td>
+      <td>651.0</td>
+      <td>70627.0</td>
+      <td>685.0</td>
+      <td>69919.0</td>
+      <td>692.0</td>
+      <td>HU21</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 129 columns</p>
+</div></div>
+</div>
 <p>…and dissolve it to reach a resolution which leads to a nice visualization.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -775,8 +1430,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CPU times: user 612 ms, sys: 17.3 ms, total: 630 ms
+Wall time: 663 ms
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -784,13 +1448,209 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>LEVL_CODE</th>
+      <th>tgs00101_2007_0</th>
+      <th>tgs00101_2007_1</th>
+      <th>tgs00101_2007_2</th>
+      <th>tgs00101_2008_0</th>
+      <th>tgs00101_2008_1</th>
+      <th>tgs00101_2008_2</th>
+      <th>tgs00101_2009_0</th>
+      <th>tgs00101_2009_1</th>
+      <th>...</th>
+      <th>tgs00112_2015_0</th>
+      <th>tgs00112_2015_1</th>
+      <th>tgs00112_2016_0</th>
+      <th>tgs00112_2016_1</th>
+      <th>tgs00112_2017_0</th>
+      <th>tgs00112_2017_1</th>
+      <th>tgs00112_2018_0</th>
+      <th>tgs00112_2018_1</th>
+      <th>tgs00112_2019_0</th>
+      <th>tgs00112_2019_1</th>
+    </tr>
+    <tr>
+      <th>CNTR_CODE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AT</th>
+      <td>POLYGON ((15.99624 46.83540, 15.98885 46.82563...</td>
+      <td>2</td>
+      <td>83.366667</td>
+      <td>77.611111</td>
+      <td>80.566667</td>
+      <td>83.622222</td>
+      <td>77.977778</td>
+      <td>80.866667</td>
+      <td>83.600000</td>
+      <td>77.844444</td>
+      <td>...</td>
+      <td>110385.000000</td>
+      <td>2257.222222</td>
+      <td>111271.333333</td>
+      <td>2291.000000</td>
+      <td>112577.666667</td>
+      <td>2320.555556</td>
+      <td>116181.888889</td>
+      <td>2388.222222</td>
+      <td>115356.444444</td>
+      <td>2439.000000</td>
+    </tr>
+    <tr>
+      <th>BE</th>
+      <td>POLYGON ((6.02490 50.18278, 5.97197 50.17189, ...</td>
+      <td>2</td>
+      <td>82.581818</td>
+      <td>76.909091</td>
+      <td>79.790909</td>
+      <td>82.536364</td>
+      <td>76.627273</td>
+      <td>79.600000</td>
+      <td>82.672727</td>
+      <td>77.190909</td>
+      <td>...</td>
+      <td>33499.272727</td>
+      <td>726.363636</td>
+      <td>33497.090909</td>
+      <td>746.363636</td>
+      <td>33982.000000</td>
+      <td>779.090909</td>
+      <td>35438.727273</td>
+      <td>837.363636</td>
+      <td>35962.272727</td>
+      <td>877.363636</td>
+    </tr>
+    <tr>
+      <th>BG</th>
+      <td>POLYGON ((26.56154 41.92627, 26.58121 41.90292...</td>
+      <td>2</td>
+      <td>76.466667</td>
+      <td>69.400000</td>
+      <td>72.833333</td>
+      <td>76.850000</td>
+      <td>69.683333</td>
+      <td>73.133333</td>
+      <td>77.183333</td>
+      <td>70.000000</td>
+      <td>...</td>
+      <td>53744.166667</td>
+      <td>533.666667</td>
+      <td>54710.666667</td>
+      <td>555.166667</td>
+      <td>58120.666667</td>
+      <td>557.666667</td>
+      <td>55932.833333</td>
+      <td>576.333333</td>
+      <td>56917.666667</td>
+      <td>610.666667</td>
+    </tr>
+    <tr>
+      <th>CH</th>
+      <td>POLYGON ((9.15938 46.16960, 9.12055 46.13610, ...</td>
+      <td>2</td>
+      <td>84.557143</td>
+      <td>79.614286</td>
+      <td>82.185714</td>
+      <td>84.785714</td>
+      <td>79.942857</td>
+      <td>82.471429</td>
+      <td>84.742857</td>
+      <td>80.014286</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>97329.571429</td>
+      <td>5902.714286</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>94951.857143</td>
+      <td>5579.571429</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>CY</th>
+      <td>POLYGON ((33.75237 34.97711, 33.70164 34.97605...</td>
+      <td>2</td>
+      <td>82.100000</td>
+      <td>77.600000</td>
+      <td>79.800000</td>
+      <td>82.900000</td>
+      <td>78.200000</td>
+      <td>80.600000</td>
+      <td>83.500000</td>
+      <td>78.500000</td>
+      <td>...</td>
+      <td>85414.000000</td>
+      <td>788.000000</td>
+      <td>84239.000000</td>
+      <td>785.000000</td>
+      <td>85965.000000</td>
+      <td>796.000000</td>
+      <td>87240.000000</td>
+      <td>802.000000</td>
+      <td>90188.000000</td>
+      <td>816.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 122 columns</p>
+</div></div>
+</div>
 </div>
 <div class="section" id="Visualization">
 <h2>Visualization<a class="headerlink" href="#Visualization" title="Permalink to this headline">¶</a></h2>
 <p>We visualize the data using choropleth maps. By doing so, each geographical region is colored according to a statistic of interest.</p>
 <p>In the following, we will use a single entry from each downloaded dataset.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -803,11 +1663,24 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;tgs00010_2016_0&#39;,
+ &#39;tgs00026_2016_0&#39;,
+ &#39;tgs00036_2016_0&#39;,
+ &#39;tgs00101_2016_0&#39;,
+ &#39;tgs00112_2016_0&#39;]
+</pre></div></div>
+</div>
 <div class="section" id="Single-country">
 <h3>Single country<a class="headerlink" href="#Single-country" title="Permalink to this headline">¶</a></h3>
 <p>We can get a precise overview of individual regions within a single country.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -825,12 +1698,19 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_40_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_40_0.png" />
+</div>
+</div>
 </div>
 <div class="section" id="Europe">
 <h3>Europe<a class="headerlink" href="#Europe" title="Permalink to this headline">¶</a></h3>
 <p>To get a more global picture, we can also plot the aggregated data per country.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -850,6 +1730,41 @@ div.rendered_html tbody tr:hover {
     <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">get_meta</span><span class="p">(</span><span class="n">hue</span><span class="p">))</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_1.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_2.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_3.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_3.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_4.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_4.png" />
 </div>
 </div>
 </div>
