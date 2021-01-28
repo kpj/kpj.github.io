@@ -25,13 +25,7 @@ jobs:
         run: python3 -m pip install -r ./deployment_requirements.txt
 
       - name: Test files
-        run: |
-          pwd
-          ls
-          jupyfmt --help
-          jupyfmt --check .
-          ls ./source
-          jupyfmt -S --check --compact-diff --assert-consistent-execution ./source
+        run: jupyfmt -S --check --compact-diff --assert-consistent-execution ./source
 
       - name: Build blog
         run: make html
