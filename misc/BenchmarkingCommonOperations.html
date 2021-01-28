@@ -485,20 +485,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import timeit
-import datetime
-import textwrap
-import dataclasses
+<span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
 
-import numpy as np
-import pandas as pd
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-from matplotlib.ticker import FuncFormatter, NullFormatter
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span><span class="p">,</span> <span class="n">NullFormatter</span>
 
-from tabulate import tabulate
-from tqdm.auto import tqdm
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
 </div>
 </div>
@@ -507,7 +507,7 @@ from tqdm.auto import tqdm
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>sns.set_context(&#39;talk&#39;)
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -516,92 +516,92 @@ from tqdm.auto import tqdm
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>@dataclasses.dataclass
-class BenchmarkResult:
-    name: str
-    execution_time: float  # [s]
-    parameter: float
+<span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">BenchmarkResult</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">execution_time</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># [s]</span>
+    <span class="n">parameter</span><span class="p">:</span> <span class="nb">float</span>
 
 
-class Benchmaker:
-    &quot;&quot;&quot;Light version of https://github.com/nschloe/perfplot.&quot;&quot;&quot;
+<span class="k">class</span> <span class="nc">Benchmaker</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Light version of https://github.com/nschloe/perfplot.&quot;&quot;&quot;</span>
 
-    def __init__(
-        self,
-        setup,
-        snippets,
-        parameter_range=10 ** np.arange(2, 7),
-        parameter_name=&#39;Array size&#39;,
-    ):
-        self.setup = setup
-        self.snippets = snippets
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">setup</span><span class="p">,</span>
+        <span class="n">snippets</span><span class="p">,</span>
+        <span class="n">parameter_range</span><span class="o">=</span><span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
+        <span class="n">parameter_name</span><span class="o">=</span><span class="s1">&#39;Array size&#39;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="n">setup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snippets</span> <span class="o">=</span> <span class="n">snippets</span>
 
-        self.parameter_range = parameter_range
-        self.parameter_name = parameter_name
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter_range</span> <span class="o">=</span> <span class="n">parameter_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter_name</span> <span class="o">=</span> <span class="n">parameter_name</span>
 
-        self.results = []
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
 
-    def _benchmark(self, code, setup, repeat_number, exec_number):
-        &quot;&quot;&quot;Return minimal execution time in seconds.&quot;&quot;&quot;
-        timer = timeit.Timer(stmt=code, setup=setup)
-        exec_number = exec_number or timer.autorange()[0]
+    <span class="k">def</span> <span class="nf">_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">repeat_number</span><span class="p">,</span> <span class="n">exec_number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return minimal execution time in seconds.&quot;&quot;&quot;</span>
+        <span class="n">timer</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span><span class="o">=</span><span class="n">code</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="n">setup</span><span class="p">)</span>
+        <span class="n">exec_number</span> <span class="o">=</span> <span class="n">exec_number</span> <span class="ow">or</span> <span class="n">timer</span><span class="o">.</span><span class="n">autorange</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
-        res = timer.repeat(repeat=repeat_number, number=exec_number)
-        perf = min(res)
+        <span class="n">res</span> <span class="o">=</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">repeat</span><span class="o">=</span><span class="n">repeat_number</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">exec_number</span><span class="p">)</span>
+        <span class="n">perf</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 
-        return perf
+        <span class="k">return</span> <span class="n">perf</span>
 
-    def run(self, repeat_number=5, exec_number=None):
-        &quot;&quot;&quot;Run benchmark for each snippet for all parameters.&quot;&quot;&quot;
-        if self.results:
-            raise RuntimeError(&#39;This benchmark has already been executed.&#39;)
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">repeat_number</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run benchmark for each snippet for all parameters.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This benchmark has already been executed.&#39;</span><span class="p">)</span>
 
-        for name, code in tqdm(self.snippets, desc=&#39;Snippets&#39;):
-            for parameter in tqdm(self.parameter_range, desc=&#39;Parameters&#39;, leave=False):
-                code_fmt = textwrap.dedent(code.format(parameter=parameter))
-                setup_fmt = textwrap.dedent(self.setup.format(parameter=parameter))
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snippets</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Snippets&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter_range</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Parameters&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                <span class="n">code_fmt</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="n">parameter</span><span class="p">))</span>
+                <span class="n">setup_fmt</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="n">parameter</span><span class="p">))</span>
 
-                perf = self._benchmark(
-                    code_fmt,
-                    setup_fmt,
-                    repeat_number=repeat_number,
-                    exec_number=exec_number,
-                )
-                self.results.append(BenchmarkResult(name, perf, parameter))
+                <span class="n">perf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark</span><span class="p">(</span>
+                    <span class="n">code_fmt</span><span class="p">,</span>
+                    <span class="n">setup_fmt</span><span class="p">,</span>
+                    <span class="n">repeat_number</span><span class="o">=</span><span class="n">repeat_number</span><span class="p">,</span>
+                    <span class="n">exec_number</span><span class="o">=</span><span class="n">exec_number</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BenchmarkResult</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">perf</span><span class="p">,</span> <span class="n">parameter</span><span class="p">))</span>
 
-    def print_results(self):
-        &quot;&quot;&quot;Format results as table.&quot;&quot;&quot;
-        table = tabulate(
-            [dataclasses.astuple(b) for b in self.results],
-            headers=[&#39;Name&#39;, &#39;Execution Time [s]&#39;, &#39;Parameter&#39;],
-        )
-        print(table)
+    <span class="k">def</span> <span class="nf">print_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format results as table.&quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">],</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Execution Time [s]&#39;</span><span class="p">,</span> <span class="s1">&#39;Parameter&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 
-    def visualize(self):
-        &quot;&quot;&quot;Create plot summary.&quot;&quot;&quot;
-        # prepare data
-        df = pd.DataFrame([dataclasses.asdict(b) for b in self.results])
+    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create plot summary.&quot;&quot;&quot;</span>
+        <span class="c1"># prepare data</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">asdict</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">])</span>
 
-        # plot
-        fig, ax = plt.subplots(figsize=(8, 6))
+        <span class="c1"># plot</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-        sns.lineplot(data=df, x=&#39;parameter&#39;, y=&#39;execution_time&#39;, hue=&#39;name&#39;, marker=&#39;o&#39;)
+        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;parameter&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;execution_time&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 
-        ax.set_xlabel(f&#39;Parameter: {self.parameter_name}&#39;)
-        ax.set_ylabel(&#39;Execution time [h:mm:ss]&#39;)
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parameter: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Execution time [h:mm:ss]&#39;</span><span class="p">)</span>
 
-        ax.set_xscale(&#39;log&#39;)
-        ax.set_yscale(&#39;log&#39;)
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 
-        @FuncFormatter
-        def time_formatter(x, pos):
-            str_ = str(datetime.timedelta(seconds=x))
-            return str_.rstrip(&#39;0&#39;) if &#39;.&#39; in str_ else str_
+        <span class="nd">@FuncFormatter</span>
+        <span class="k">def</span> <span class="nf">time_formatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+            <span class="n">str_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">str_</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">str_</span> <span class="k">else</span> <span class="n">str_</span>
 
-        ax.yaxis.set_minor_formatter(NullFormatter())
-        ax.yaxis.set_major_formatter(time_formatter)
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">time_formatter</span><span class="p">)</span>
 
-        fig.tight_layout()
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -612,12 +612,12 @@ class Benchmaker:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>setup = &#39;import time&#39;
+<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s1">&#39;import time&#39;</span>
 
-snippets = [
-    (&#39;short sleep&#39;, &#39;time.sleep({parameter})&#39;),
-    (&#39;long sleep&#39;, &#39;time.sleep({parameter} * 2)&#39;),
-]
+<span class="n">snippets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;short sleep&#39;</span><span class="p">,</span> <span class="s1">&#39;time.sleep(</span><span class="si">{parameter}</span><span class="s1">)&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;long sleep&#39;</span><span class="p">,</span> <span class="s1">&#39;time.sleep(</span><span class="si">{parameter}</span><span class="s1"> * 2)&#39;</span><span class="p">),</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -626,12 +626,12 @@ snippets = [
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench = Benchmaker(
-    setup, snippets, parameter_range=[1, 2, 3], parameter_name=&#39;Sleep time [s]&#39;
-)
+<span></span><span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span>
+    <span class="n">setup</span><span class="p">,</span> <span class="n">snippets</span><span class="p">,</span> <span class="n">parameter_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">parameter_name</span><span class="o">=</span><span class="s1">&#39;Sleep time [s]&#39;</span>
+<span class="p">)</span>
 
-bench.run(repeat_number=1, exec_number=1)
-bench.print_results()
+<span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">bench</span><span class="o">.</span><span class="n">print_results</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -640,7 +640,7 @@ bench.print_results()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.visualize()
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -655,51 +655,51 @@ bench.print_results()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>setup = &quot;&quot;&quot;
-    import pandas as pd
-&quot;&quot;&quot;
+<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    import pandas as pd</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-snippets = [
-    (
-        &#39;pd.append&#39;,
-        &quot;&quot;&quot;
-            df = pd.DataFrame()
-            for i in range({parameter}):
-                df = df.append(pd.DataFrame({{&#39;i&#39;: [i]}}))
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;pd.concat&#39;,
-        &quot;&quot;&quot;
-            df_list = []
-            for i in range({parameter}):
-                df_list.append(pd.DataFrame({{&#39;i&#39;: [i]}}))
-            df = pd.concat(df_list)
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;tuple-list&#39;,
-        &quot;&quot;&quot;
-            tuple_list = []
-            for i in range({parameter}):
-                tuple_list.append((i,))
-            df = pd.DataFrame(tuple_list, columns=[&#39;i&#39;])
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;dict-list&#39;,
-        &quot;&quot;&quot;
-            dict_list = []
-            for i in range({parameter}):
-                dict_list.append({{
-                    &#39;i&#39;: i
-                }})
-            df = pd.DataFrame(dict_list)
-        &quot;&quot;&quot;,
-    ),
-]
+<span class="n">snippets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;pd.append&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df = pd.DataFrame()</span>
+<span class="sd">            for i in range({parameter}):</span>
+<span class="sd">                df = df.append(pd.DataFrame({{&#39;i&#39;: [i]}}))</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;pd.concat&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df_list = []</span>
+<span class="sd">            for i in range({parameter}):</span>
+<span class="sd">                df_list.append(pd.DataFrame({{&#39;i&#39;: [i]}}))</span>
+<span class="sd">            df = pd.concat(df_list)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;tuple-list&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            tuple_list = []</span>
+<span class="sd">            for i in range({parameter}):</span>
+<span class="sd">                tuple_list.append((i,))</span>
+<span class="sd">            df = pd.DataFrame(tuple_list, columns=[&#39;i&#39;])</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;dict-list&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            dict_list = []</span>
+<span class="sd">            for i in range({parameter}):</span>
+<span class="sd">                dict_list.append({{</span>
+<span class="sd">                    &#39;i&#39;: i</span>
+<span class="sd">                }})</span>
+<span class="sd">            df = pd.DataFrame(dict_list)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">]</span>
 
-bench = Benchmaker(setup, snippets)
+<span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">snippets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -708,7 +708,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.run(repeat_number=1, exec_number=1)
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -717,7 +717,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.visualize()
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -729,47 +729,47 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>setup = &quot;&quot;&quot;
-    import numpy as np
-    import pandas as pd
-    import swifter
+<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    import numpy as np</span>
+<span class="s2">    import pandas as pd</span>
+<span class="s2">    import swifter</span>
 
-    df = pd.DataFrame(np.random.normal(size=({parameter}, 10)))
+<span class="s2">    df = pd.DataFrame(np.random.normal(size=(</span><span class="si">{parameter}</span><span class="s2">, 10)))</span>
 
-    def work(x):
-        return x[0] ** 2 + x[9]
-&quot;&quot;&quot;
+<span class="s2">    def work(x):</span>
+<span class="s2">        return x[0] ** 2 + x[9]</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-snippets = [
-    (
-        &#39;iterrows&#39;,
-        &quot;&quot;&quot;
-            for _, row in df.iterrows():
-                work(row)
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;itertuples&#39;,
-        &quot;&quot;&quot;
-            for row in df.itertuples():
-                work(row)
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;apply&#39;,
-        &quot;&quot;&quot;
-            df.apply(work, axis=1)
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;swifter&#39;,
-        &quot;&quot;&quot;
-            df.swifter.progress_bar(False).apply(work, axis=1)
-        &quot;&quot;&quot;,
-    ),
-]
+<span class="n">snippets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;iterrows&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            for _, row in df.iterrows():</span>
+<span class="sd">                work(row)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;itertuples&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            for row in df.itertuples():</span>
+<span class="sd">                work(row)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;apply&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df.apply(work, axis=1)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;swifter&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df.swifter.progress_bar(False).apply(work, axis=1)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">]</span>
 
-bench = Benchmaker(setup, snippets)
+<span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">snippets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -778,7 +778,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.run(repeat_number=1, exec_number=1)
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -787,7 +787,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.visualize()
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -799,29 +799,29 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>setup = &quot;&quot;&quot;
-    import numpy as np
-    import pandas as pd
+<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    import numpy as np</span>
+<span class="s2">    import pandas as pd</span>
 
-    df = pd.DataFrame(np.random.randint(5, 15, size=({parameter}, {parameter})))
-&quot;&quot;&quot;
+<span class="s2">    df = pd.DataFrame(np.random.randint(5, 15, size=(</span><span class="si">{parameter}</span><span class="s2">, </span><span class="si">{parameter}</span><span class="s2">)))</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-snippets = [
-    (
-        &#39;indexing&#39;,
-        &quot;&quot;&quot;
-            df[df == 10] = pd.NA
-        &quot;&quot;&quot;,
-    ),
-    (
-        &#39;replace&#39;,
-        &quot;&quot;&quot;
-            df.replace(10, pd.NA, inplace=True)
-        &quot;&quot;&quot;,
-    ),
-]
+<span class="n">snippets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;indexing&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df[df == 10] = pd.NA</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            df.replace(10, pd.NA, inplace=True)</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">]</span>
 
-bench = Benchmaker(setup, snippets)
+<span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">snippets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -830,7 +830,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.run(repeat_number=1, exec_number=1)
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -839,7 +839,7 @@ bench = Benchmaker(setup, snippets)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bench.visualize()
+<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

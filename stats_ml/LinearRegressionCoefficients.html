@@ -481,13 +481,13 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import numpy as np
-import pandas as pd
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-import statsmodels.formula.api as smf
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -496,7 +496,7 @@ import matplotlib.pyplot as plt
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>sns.set_context(&#39;poster&#39;)
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;poster&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -508,13 +508,13 @@ import matplotlib.pyplot as plt
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>N = 1000
+<span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
 
-beta_g1 = 1.4
-beta_g2 = -0.8
+<span class="n">beta_g1</span> <span class="o">=</span> <span class="mf">1.4</span>
+<span class="n">beta_g2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
 
-mean_g1 = -2
-mean_g2 = 10
+<span class="n">mean_g1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">mean_g2</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
@@ -523,14 +523,14 @@ mean_g2 = 10
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>np.random.seed(42)
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-X = np.random.normal(size=N * 2)
-Y = np.r_[
-    beta_g1 * X[: int(len(X) / 2)] + np.random.normal(mean_g1, size=N),
-    beta_g2 * X[int(len(X) / 2) :] + np.random.normal(mean_g2, size=N),
-]
-group = [&#39;$G_1$&#39;] * N + [&#39;$G_2$&#39;] * N
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span>
+    <span class="n">beta_g1</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean_g1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">),</span>
+    <span class="n">beta_g2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean_g2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$G_1$&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;$G_2$&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
 </pre></div>
 </div>
 </div>
@@ -539,11 +539,11 @@ group = [&#39;$G_1$&#39;] * N + [&#39;$G_2$&#39;] * N
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.DataFrame({&#39;X&#39;: X, &#39;Y&#39;: Y, &#39;group&#39;: group})
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">:</span> <span class="n">group</span><span class="p">})</span>
 
-df[&#39;group&#39;] = df[&#39;group&#39;].astype(&#39;category&#39;)
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 
-df.head()
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -558,8 +558,8 @@ df.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mod = smf.ols(formula=&#39;Y ~ X * group&#39;, data=df)
-fit = mod.fit()
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;Y ~ X * group&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -573,8 +573,8 @@ fit = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res = fit.summary()
-res.tables[1]
+<span></span><span class="n">res</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">res</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -583,8 +583,8 @@ res.tables[1]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>coefs = fit.params
-coefs
+<span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span>
+<span class="n">coefs</span>
 </pre></div>
 </div>
 </div>
@@ -596,11 +596,11 @@ coefs
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fitted_beta_g1 = coefs[&#39;X&#39;]
-fitted_beta_g2 = coefs[&#39;X&#39;] + coefs[&#39;X:group[T.$G_2$]&#39;]
+<span></span><span class="n">fitted_beta_g1</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">fitted_beta_g2</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;X:group[T.$G_2$]&#39;</span><span class="p">]</span>
 
-fitted_mean_g1 = coefs[&#39;Intercept&#39;]
-fitted_mean_g2 = coefs[&#39;Intercept&#39;] + coefs[&#39;group[T.$G_2$]&#39;]
+<span class="n">fitted_mean_g1</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span>
+<span class="n">fitted_mean_g2</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="s1">&#39;group[T.$G_2$]&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -609,18 +609,18 @@ fitted_mean_g2 = coefs[&#39;Intercept&#39;] + coefs[&#39;group[T.$G_2$]&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>pd.DataFrame(
-    {
-        &#39;label&#39;: [&#39;beta_g1&#39;, &#39;beta_g2&#39;, &#39;mean_g1&#39;, &#39;mean_g2&#39;],
-        &#39;true_value&#39;: [beta_g1, beta_g2, mean_g1, mean_g2],
-        &#39;fitted_value&#39;: [
-            fitted_beta_g1,
-            fitted_beta_g2,
-            fitted_mean_g1,
-            fitted_mean_g2,
-        ],
-    }
-)
+<span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;beta_g1&#39;</span><span class="p">,</span> <span class="s1">&#39;beta_g2&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_g1&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_g2&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;true_value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">beta_g1</span><span class="p">,</span> <span class="n">beta_g2</span><span class="p">,</span> <span class="n">mean_g1</span><span class="p">,</span> <span class="n">mean_g2</span><span class="p">],</span>
+        <span class="s1">&#39;fitted_value&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">fitted_beta_g1</span><span class="p">,</span>
+            <span class="n">fitted_beta_g2</span><span class="p">,</span>
+            <span class="n">fitted_mean_g1</span><span class="p">,</span>
+            <span class="n">fitted_mean_g2</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -629,22 +629,22 @@ fitted_mean_g2 = coefs[&#39;Intercept&#39;] + coefs[&#39;group[T.$G_2$]&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>def annotate_plot(space, mean, beta, color):
-    values = mean + beta * space
+<span></span><span class="k">def</span> <span class="nf">annotate_plot</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">space</span>
 
-    ax.plot(space, values, color=color)
-    ax.axhline(mean, ls=&#39;dashed&#39;, color=color)
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
 
-    mid = len(space) // 2
-    ax.text(
-        space[mid],
-        values[mid],
-        f&#39;${mean:.2f} + {beta:.2f} \cdot x$&#39;,
-        color=color,
-        size=12,
-        bbox=dict(boxstyle=&#39;round4,pad=.5&#39;, fc=&#39;0.85&#39;),
-        ha=&#39;center&#39;,
-    )
+    <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">space</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span>
+        <span class="n">values</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span>
+        <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">mean</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">beta</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> \cdot x$&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round4,pad=.5&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;0.85&#39;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -653,26 +653,26 @@ fitted_mean_g2 = coefs[&#39;Intercept&#39;] + coefs[&#39;group[T.$G_2$]&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>plt.figure(figsize=(16, 12))
-ax = sns.scatterplot(x=&#39;X&#39;, y=&#39;Y&#39;, hue=&#39;group&#39;, data=df, s=10)
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-sub = df.loc[df[&#39;group&#39;] == &#39;$G_1$&#39;, &#39;X&#39;]
-annotate_plot(
-    np.linspace(sub.min(), sub.max()),
-    fitted_mean_g1,
-    fitted_beta_g1,
-    sns.color_palette()[0],
-)
+<span class="n">sub</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;$G_1$&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">annotate_plot</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">sub</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="n">fitted_mean_g1</span><span class="p">,</span>
+    <span class="n">fitted_beta_g1</span><span class="p">,</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
 
-sub = df.loc[df[&#39;group&#39;] == &#39;$G_2$&#39;, &#39;X&#39;]
-annotate_plot(
-    np.linspace(sub.min(), sub.max()),
-    fitted_mean_g2,
-    fitted_beta_g2,
-    sns.color_palette()[1],
-)
+<span class="n">sub</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;$G_2$&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">annotate_plot</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">sub</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="n">fitted_mean_g2</span><span class="p">,</span>
+    <span class="n">fitted_beta_g2</span><span class="p">,</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
 
-plt.legend(bbox_to_anchor=(1, 0.5), loc=&#39;center left&#39;, frameon=False)
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

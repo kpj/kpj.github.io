@@ -495,20 +495,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import os
+<span></span><span class="kn">import</span> <span class="nn">os</span>
 
-import numpy as np
-import pandas as pd
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-import tensorflow as tf
-import tensorflow_probability as tfp
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
-from sklearn.decomposition import PCA
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-from tqdm.auto import tqdm, trange
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span> <span class="n">trange</span>
 </pre></div>
 </div>
 </div>
@@ -517,9 +517,9 @@ from tqdm.auto import tqdm, trange
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>tfd = tfp.distributions
+<span></span><span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
 
-sns.set_context(&#39;talk&#39;)
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -554,11 +554,11 @@ sns.set_context(&#39;talk&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>a = tf.constant(2.0)
-b = tf.constant(3.0)
+<span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
 
-print(tf.add(a, b))
-print(tf.reduce_mean([a, b]))
+<span class="nb">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -567,10 +567,10 @@ print(tf.reduce_mean([a, b]))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>m1 = tf.constant([[1.0, 2.0], [3.0, 4.0]])
-m2 = tf.constant([[5.0, 6.0], [7.0, 8.0]])
+<span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]])</span>
 
-tf.matmul(m1, m2)
+<span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -605,155 +605,155 @@ tf.matmul(m1, m2)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>class Encoder(tf.keras.layers.Layer):
-    &quot;&quot;&quot;Convert input to low-dimensional representation.&quot;&quot;&quot;
+<span></span><span class="k">class</span> <span class="nc">Encoder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert input to low-dimensional representation.&quot;&quot;&quot;</span>
 
-    def __init__(self, latent_dim, original_dim):
-        super(Encoder, self).__init__()
-        self.network = tf.keras.Sequential(
-            [
-                tf.keras.layers.InputLayer(input_shape=(*original_dim, 1)),
-                tf.keras.layers.Conv2D(
-                    filters=32, kernel_size=3, strides=(2, 2), activation=tf.nn.relu
-                ),
-                tf.keras.layers.Conv2D(
-                    filters=64, kernel_size=3, strides=(2, 2), activation=tf.nn.relu
-                ),
-                tf.keras.layers.Flatten(),
-                tf.keras.layers.Dense(units=2 * latent_dim),
-            ]
-        )
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Encoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">original_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+                    <span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span>
+                <span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span>
+                    <span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span>
+                <span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">latent_dim</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
 
-    def call(self, x):
-        return self.network(x)
-
-
-class Decoder(tf.keras.layers.Layer):
-    &quot;&quot;&quot;Reconstruct input from low-dimensional representation.&quot;&quot;&quot;
-
-    def __init__(self, latent_dim, original_dim):
-        super(Decoder, self).__init__()
-        self.network = tf.keras.Sequential(
-            [
-                tf.keras.layers.InputLayer(input_shape=(latent_dim,)),
-                tf.keras.layers.Dense(units=7 * 7 * 32, activation=tf.nn.relu),
-                tf.keras.layers.Reshape(target_shape=(7, 7, 32)),
-                tf.keras.layers.Conv2DTranspose(
-                    filters=64,
-                    kernel_size=3,
-                    strides=(2, 2),
-                    padding=&#39;SAME&#39;,
-                    activation=tf.nn.relu,
-                ),
-                tf.keras.layers.Conv2DTranspose(
-                    filters=32,
-                    kernel_size=3,
-                    strides=(2, 2),
-                    padding=&#39;SAME&#39;,
-                    activation=tf.nn.relu,
-                ),
-                tf.keras.layers.Conv2DTranspose(
-                    filters=1, kernel_size=3, strides=(1, 1), padding=&#39;SAME&#39;
-                ),
-            ]
-        )
-
-    def call(self, z):
-        return self.network(z)
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 
-class Autoencoder(tf.keras.Model):
-    &quot;&quot;&quot;Connect all components to single model.&quot;&quot;&quot;
+<span class="k">class</span> <span class="nc">Decoder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reconstruct input from low-dimensional representation.&quot;&quot;&quot;</span>
 
-    def __init__(self, latent_dim, original_dim):
-        &quot;&quot;&quot;Initialize everything.&quot;&quot;&quot;
-        super(Autoencoder, self).__init__()
-        self.latent_dim = latent_dim
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Decoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,)),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">32</span><span class="p">)),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2DTranspose</span><span class="p">(</span>
+                    <span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+                    <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span>
+                    <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2DTranspose</span><span class="p">(</span>
+                    <span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                    <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span>
+                    <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2DTranspose</span><span class="p">(</span>
+                    <span class="n">filters</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
 
-        # setup architecture
-        self._encoder = Encoder(latent_dim=self.latent_dim, original_dim=original_dim)
-        self._decoder = Decoder(latent_dim=self.latent_dim, original_dim=original_dim)
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
-        # helpful stuff
-        self.train_loss = tf.keras.metrics.Mean(name=&#39;train_loss&#39;)
 
-    def encode(self, x):
-        &quot;&quot;&quot;Input -&gt; latent distribution.&quot;&quot;&quot;
-        mean, logvar = tf.split(self._encoder(x), num_or_size_splits=2, axis=1)
-        return mean, logvar
+<span class="k">class</span> <span class="nc">Autoencoder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Connect all components to single model.&quot;&quot;&quot;</span>
 
-    def _reparameterize(self, mean, logvar):
-        &quot;&quot;&quot;Trick which is needed for backpropagation.&quot;&quot;&quot;
-        eps = tf.random.normal(shape=mean.shape)
-        return eps * tf.exp(logvar * 0.5) + mean
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize everything.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Autoencoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span> <span class="o">=</span> <span class="n">latent_dim</span>
 
-    def decode(self, z):
-        &quot;&quot;&quot;Latent -&gt; input space.&quot;&quot;&quot;
-        return self._decoder(z)
+        <span class="c1"># setup architecture</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">(</span><span class="n">latent_dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="o">=</span><span class="n">original_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_decoder</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span><span class="n">latent_dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="o">=</span><span class="n">original_dim</span><span class="p">)</span>
 
-    def call(self, x):
-        &quot;&quot;&quot;Generate distribution from input and reconstruct using it.&quot;&quot;&quot;
-        mu, _ = tf.split(self._encoder(x), num_or_size_splits=2, axis=1)
-        # why do we only pass mu?
-        reconstructed = self.decode(mu)
-        return reconstructed
+        <span class="c1"># helpful stuff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">Mean</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;train_loss&#39;</span><span class="p">)</span>
 
-    def log_normal_pdf(self, sample, mean, logvar, raxis=1):
-        log2pi = tf.math.log(2.0 * np.pi)
-        return tf.reduce_sum(
-            -0.5 * ((sample - mean) ** 2.0 * tf.exp(-logvar) + logvar + log2pi),
-            axis=raxis,
-        )
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Input -&gt; latent distribution.&quot;&quot;&quot;</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">num_or_size_splits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span>
 
-    def compute_loss(self, x):
-        &quot;&quot;&quot;Compute loss.
+    <span class="k">def</span> <span class="nf">_reparameterize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Trick which is needed for backpropagation.&quot;&quot;&quot;</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">mean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logvar</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">mean</span>
 
-        Hmmmmm
-        &quot;&quot;&quot;
-        mean, logvar = self.encode(x)
-        z = self._reparameterize(mean, logvar)
-        x_logit = self.decode(z)
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Latent -&gt; input space.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoder</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
-        cross_ent = tf.nn.sigmoid_cross_entropy_with_logits(logits=x_logit, labels=x)
-        logpx_z = -tf.reduce_sum(cross_ent, axis=[1, 2, 3])
-        logpz = self.log_normal_pdf(z, 0.0, 0.0)
-        logqz_x = self.log_normal_pdf(z, mean, logvar)
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate distribution from input and reconstruct using it.&quot;&quot;&quot;</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">num_or_size_splits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># why do we only pass mu?</span>
+        <span class="n">reconstructed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">reconstructed</span>
 
-        return -tf.reduce_mean(logpx_z + logpz - logqz_x)
+    <span class="k">def</span> <span class="nf">log_normal_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span><span class="p">,</span> <span class="n">raxis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">log2pi</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span>
+            <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">sample</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">logvar</span><span class="p">)</span> <span class="o">+</span> <span class="n">logvar</span> <span class="o">+</span> <span class="n">log2pi</span><span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">raxis</span><span class="p">,</span>
+        <span class="p">)</span>
 
-    def compute_gradients(self, x):
-        with tf.GradientTape() as tape:
-            loss = self.compute_loss(x)
-            self.train_loss(loss)
+    <span class="k">def</span> <span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute loss.</span>
 
-            return tape.gradient(loss, self.trainable_variables)
+<span class="sd">        Hmmmmm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reparameterize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span><span class="p">)</span>
+        <span class="n">x_logit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
-    @tf.function
-    def train(self, x, optimizer):
-        gradients = self.compute_gradients(x)
-        optimizer.apply_gradients(zip(gradients, self.trainable_variables))
+        <span class="n">cross_ent</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">x_logit</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">logpx_z</span> <span class="o">=</span> <span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">cross_ent</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+        <span class="n">logpz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_normal_pdf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">logqz_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_normal_pdf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">logvar</span><span class="p">)</span>
 
-    def sample(self, eps=None):
-        if eps is None:
-            eps = tf.random.normal(shape=(100, self.latent_dim))
-        return self.decode(eps)
+        <span class="k">return</span> <span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">logpx_z</span> <span class="o">+</span> <span class="n">logpz</span> <span class="o">-</span> <span class="n">logqz_x</span><span class="p">)</span>
 
-    def save(self, fname):
-        &quot;&quot;&quot;Save model.
-        https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing#saving_subclassed_models
-        &quot;&quot;&quot;
-        os.makedirs(os.path.dirname(fname), exist_ok=True)
-        self.save_weights(fname, save_format=&#39;tf&#39;)
+    <span class="k">def</span> <span class="nf">compute_gradients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_loss</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_loss</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
 
-    @classmethod
-    def load_from_file(cls, fname):
-        model = cls(latent_dim, original_dim)  # TODO: load parameters from file
+            <span class="k">return</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
 
-        # train model briefly to infer architecture
-        # TODO
+    <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_gradients</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">))</span>
 
-        model.load_weights(fname)
-        return model
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">eps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">eps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save model.</span>
+<span class="sd">        https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing#saving_subclassed_models</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">fname</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;tf&#39;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="p">)</span>  <span class="c1"># TODO: load parameters from file</span>
+
+        <span class="c1"># train model briefly to infer architecture</span>
+        <span class="c1"># TODO</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">model</span>
 </pre></div>
 </div>
 </div>
@@ -767,8 +767,8 @@ class Autoencoder(tf.keras.Model):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>np.random.seed(1)
-tf.random.set_seed(1)
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -777,11 +777,11 @@ tf.random.set_seed(1)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>batch_size = 128
-epochs = 15
-learning_rate = 1e-3
-latent_dim = 10
-original_dim = (28, 28)
+<span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="n">latent_dim</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">original_dim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -793,24 +793,24 @@ original_dim = (28, 28)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>(training_features, training_labels), (
-    test_features,
-    _,
-) = tf.keras.datasets.mnist.load_data()
+<span></span><span class="p">(</span><span class="n">training_features</span><span class="p">,</span> <span class="n">training_labels</span><span class="p">),</span> <span class="p">(</span>
+    <span class="n">test_features</span><span class="p">,</span>
+    <span class="n">_</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-# normalize to range [0, 1]
-training_features = training_features / np.max(training_features)
+<span class="c1"># normalize to range [0, 1]</span>
+<span class="n">training_features</span> <span class="o">=</span> <span class="n">training_features</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">training_features</span><span class="p">)</span>
 
-# flatten 2D images into 1D
-training_features = training_features.reshape(
-    training_features.shape[0], *original_dim, 1
-).astype(np.float32)
+<span class="c1"># flatten 2D images into 1D</span>
+<span class="n">training_features</span> <span class="o">=</span> <span class="n">training_features</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+    <span class="n">training_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">original_dim</span><span class="p">,</span> <span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
-# prepare dataset
-training_dataset = tf.data.Dataset.from_tensor_slices(training_features).batch(
-    batch_size
-)
-training_dataset
+<span class="c1"># prepare dataset</span>
+<span class="n">training_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span><span class="n">training_features</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span>
+    <span class="n">batch_size</span>
+<span class="p">)</span>
+<span class="n">training_dataset</span>
 </pre></div>
 </div>
 </div>
@@ -822,7 +822,7 @@ training_dataset
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>autoencoder = None
+<span></span><span class="n">autoencoder</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -831,7 +831,7 @@ training_dataset
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>opt = tf.optimizers.Adam(learning_rate=learning_rate)
+<span></span><span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -840,29 +840,29 @@ training_dataset
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># TODO: improve loss storage
-fname = &#39;models/autoencoder&#39;
+<span></span><span class="c1"># TODO: improve loss storage</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;models/autoencoder&#39;</span>
 
-if os.path.exists(f&#39;{fname}.index&#39;):
-    autoencoder = Autoencoder.load_from_file(fname)
-    df_loss = pd.read_csv(&#39;models/autoencoder_loss.csv&#39;)
-else:
-    autoencoder = Autoencoder(latent_dim=latent_dim, original_dim=original_dim)
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.index&#39;</span><span class="p">):</span>
+    <span class="n">autoencoder</span> <span class="o">=</span> <span class="n">Autoencoder</span><span class="o">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">df_loss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;models/autoencoder_loss.csv&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">autoencoder</span> <span class="o">=</span> <span class="n">Autoencoder</span><span class="p">(</span><span class="n">latent_dim</span><span class="o">=</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">original_dim</span><span class="o">=</span><span class="n">original_dim</span><span class="p">)</span>
 
-    # train
-    loss_list = []
-    for epoch in trange(epochs, desc=&#39;Epochs&#39;):
-        for step, batch_features in enumerate(training_dataset):
-            autoencoder.train(batch_features, opt)
+    <span class="c1"># train</span>
+    <span class="n">loss_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Epochs&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">batch_features</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_dataset</span><span class="p">):</span>
+            <span class="n">autoencoder</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">batch_features</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
 
-        loss_list.append(
-            {&#39;epoch&#39;: epoch, &#39;loss&#39;: autoencoder.train_loss.result().numpy()}
-        )
-    df_loss = pd.DataFrame(loss_list)
+        <span class="n">loss_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;epoch&#39;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span> <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">autoencoder</span><span class="o">.</span><span class="n">train_loss</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()}</span>
+        <span class="p">)</span>
+    <span class="n">df_loss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">loss_list</span><span class="p">)</span>
 
-    # save
-    autoencoder.save(fname)
-    df_loss.to_csv(&#39;models/autoencoder_loss.csv&#39;, index=False)
+    <span class="c1"># save</span>
+    <span class="n">autoencoder</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">df_loss</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;models/autoencoder_loss.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,8 +877,8 @@ else:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>plt.figure(figsize=(8, 6))
-sns.lineplot(x=&#39;epoch&#39;, y=&#39;loss&#39;, data=df_loss)
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -890,10 +890,10 @@ sns.lineplot(x=&#39;epoch&#39;, y=&#39;loss&#39;, data=df_loss)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># inp = tf.random.normal(shape=(4, latent_dim), mean=10)
-inp = np.asarray([[0.0] * latent_dim])
+<span></span><span class="c1"># inp = tf.random.normal(shape=(4, latent_dim), mean=10)</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">latent_dim</span><span class="p">])</span>
 
-inp[0][4] = -2
+<span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -902,18 +902,18 @@ inp[0][4] = -2
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>N = 5
-fig, ax_arr = plt.subplots(N, N)
+<span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_arr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 
-for i, x in enumerate(np.linspace(-10, 10, N)):
-    for j, y in enumerate(np.linspace(-10, 10, N)):
-        ax = ax_arr[i, j]
-        inp[0][:2] = np.random.normal([x, y])
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="p">)):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">inp</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
 
-        img = autoencoder.sample(inp).numpy()
+        <span class="n">img</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
-        ax.imshow(img[0, :, :, 0], cmap=&#39;gray&#39;)
-        ax.axis(&#39;off&#39;)
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -925,8 +925,8 @@ for i, x in enumerate(np.linspace(-10, 10, N)):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>features_sub = training_features[:10]
-features_sub.shape
+<span></span><span class="n">features_sub</span> <span class="o">=</span> <span class="n">training_features</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">features_sub</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -935,10 +935,10 @@ features_sub.shape
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>original = tf.reshape(features_sub, (features_sub.shape[0], 28, 28))
-reconstructed = tf.reshape(
-    autoencoder(tf.constant(features_sub)), (features_sub.shape[0], 28, 28)
-)
+<span></span><span class="n">original</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features_sub</span><span class="p">,</span> <span class="p">(</span><span class="n">features_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+<span class="n">reconstructed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+    <span class="n">autoencoder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">features_sub</span><span class="p">)),</span> <span class="p">(</span><span class="n">features_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -947,19 +947,19 @@ reconstructed = tf.reshape(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>N = 16
-fig, ax_list = plt.subplots(nrows=4, ncols=4, figsize=(8, 4))
+<span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_list</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-for i, ax in enumerate(ax_list.ravel()):
-    idx = np.random.randint(0, original.shape[0])
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax_list</span><span class="o">.</span><span class="n">ravel</span><span class="p">()):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">original</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    img_orig = original.numpy()[idx]
-    img_recon = reconstructed.numpy()[idx]
+    <span class="n">img_orig</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">img_recon</span> <span class="o">=</span> <span class="n">reconstructed</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">idx</span><span class="p">]</span>
 
-    img_concat = np.concatenate([img_orig, img_recon], axis=1)
+    <span class="n">img_concat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">img_orig</span><span class="p">,</span> <span class="n">img_recon</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    ax.imshow(img_concat, cmap=&#39;gray&#39;)
-    ax.axis(&#39;off&#39;)
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_concat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -971,12 +971,12 @@ for i, ax in enumerate(ax_list.ravel()):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>def do_PCA(X, ndim=2):
-    pca = PCA(n_components=ndim)
-    pca.fit(X)
-    X_trans = pca.transform(X)
-    print(pca.explained_variance_ratio_)
-    return pd.DataFrame(X_trans, columns=[f&#39;PC_{i}&#39; for i in range(ndim)])
+<span></span><span class="k">def</span> <span class="nf">do_PCA</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X_trans</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_trans</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -985,12 +985,12 @@ for i, ax in enumerate(ax_list.ravel()):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>latent_features = autoencoder.encode(training_features)
-latent_features_1d = np.concatenate(latent_features, axis=1)
+<span></span><span class="n">latent_features</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">training_features</span><span class="p">)</span>
+<span class="n">latent_features_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">latent_features</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-df_latent = do_PCA(latent_features_1d)
-df_latent[&#39;label&#39;] = training_labels
-df_latent[&#39;space&#39;] = &#39;latent&#39;
+<span class="n">df_latent</span> <span class="o">=</span> <span class="n">do_PCA</span><span class="p">(</span><span class="n">latent_features_1d</span><span class="p">)</span>
+<span class="n">df_latent</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">training_labels</span>
+<span class="n">df_latent</span><span class="p">[</span><span class="s1">&#39;space&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;latent&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -999,13 +999,13 @@ df_latent[&#39;space&#39;] = &#39;latent&#39;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data_train_1d = training_features.reshape(
-    training_features.shape[0], training_features.shape[1] * training_features.shape[2]
-)
+<span></span><span class="n">data_train_1d</span> <span class="o">=</span> <span class="n">training_features</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+    <span class="n">training_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">training_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">training_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">)</span>
 
-df_original = do_PCA(data_train_1d)
-df_original[&#39;label&#39;] = training_labels
-df_original[&#39;space&#39;] = &#39;original&#39;
+<span class="n">df_original</span> <span class="o">=</span> <span class="n">do_PCA</span><span class="p">(</span><span class="n">data_train_1d</span><span class="p">)</span>
+<span class="n">df_original</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">training_labels</span>
+<span class="n">df_original</span><span class="p">[</span><span class="s1">&#39;space&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;original&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1014,7 +1014,7 @@ df_original[&#39;space&#39;] = &#39;original&#39;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_pca = pd.concat([df_original, df_latent])
+<span></span><span class="n">df_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_original</span><span class="p">,</span> <span class="n">df_latent</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1023,9 +1023,9 @@ df_original[&#39;space&#39;] = &#39;original&#39;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>g = sns.FacetGrid(df_pca, col=&#39;space&#39;, hue=&#39;label&#39;, height=8, legend_out=True)
-g.map_dataframe(sns.scatterplot, x=&#39;PC_0&#39;, y=&#39;PC_1&#39;, rasterized=True)
-g.add_legend()
+<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">df_pca</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;space&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">legend_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;PC_0&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PC_1&#39;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

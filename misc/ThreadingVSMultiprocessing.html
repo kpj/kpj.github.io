@@ -476,16 +476,16 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import time
+<span></span><span class="kn">import</span> <span class="nn">time</span>
 
-import multiprocessing as mp
-from multiprocessing import Pool as ProcessPool
-from multiprocessing.pool import ThreadPool
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ProcessPool</span>
+<span class="kn">from</span> <span class="nn">multiprocessing.pool</span> <span class="kn">import</span> <span class="n">ThreadPool</span>
 
-import pandas as pd
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -494,7 +494,7 @@ import matplotlib.pyplot as plt
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>sns.set_context(&#39;talk&#39;)
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -513,21 +513,21 @@ import matplotlib.pyplot as plt
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%writefile worker.py
+<span></span><span class="o">%%writefile</span> worker.py
 
-import time
+<span class="kn">import</span> <span class="nn">time</span>
 
 
-def worker(data):
-    tmp = []
-    for i in data:
-        # simulate CPU load
-        for _ in range(1_000_000):
-            pass
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="c1"># simulate CPU load</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">):</span>
+            <span class="k">pass</span>
 
-        # store execution time
-        tmp.append(time.time())
-    return tmp
+        <span class="c1"># store execution time</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">tmp</span>
 </pre></div>
 </div>
 </div>
@@ -536,7 +536,7 @@ def worker(data):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from worker import worker
+<span></span><span class="kn">from</span> <span class="nn">worker</span> <span class="kn">import</span> <span class="n">worker</span>
 </pre></div>
 </div>
 </div>
@@ -545,8 +545,8 @@ def worker(data):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data = list(range(20))
-num = mp.cpu_count()
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">num</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -559,9 +559,9 @@ num = mp.cpu_count()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%time
-with ThreadPool(num) as p:
-    thread_result = p.map(worker, [data] * num)
+<span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+    <span class="n">thread_result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -570,9 +570,9 @@ with ThreadPool(num) as p:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%time
-with ProcessPool(num) as p:
-    process_result = p.map(worker, [data] * num)
+<span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="n">ProcessPool</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+    <span class="n">process_result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -582,19 +582,19 @@ with ProcessPool(num) as p:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_thread = pd.melt(
-    pd.DataFrame(thread_result, index=[f&#39;job {i:2}&#39; for i in range(num)]).T
-)
-df_thread[&#39;type&#39;] = &#39;thread&#39;
+<span></span><span class="n">df_thread</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">thread_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">2</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+<span class="p">)</span>
+<span class="n">df_thread</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;thread&#39;</span>
 
-df_process = pd.melt(
-    pd.DataFrame(process_result, index=[f&#39;job {i:2}&#39; for i in range(num)]).T
-)
-df_process[&#39;type&#39;] = &#39;process&#39;
+<span class="n">df_process</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">process_result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;job </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">2</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+<span class="p">)</span>
+<span class="n">df_process</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;process&#39;</span>
 
-df = pd.concat([df_thread, df_process], ignore_index=True)
-df[&#39;value&#39;] = df.groupby(&#39;type&#39;)[&#39;value&#39;].apply(lambda x: x - x.min())  # normalize time
-df.head()
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_thread</span><span class="p">,</span> <span class="n">df_process</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>  <span class="c1"># normalize time</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -611,9 +611,9 @@ df.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>g = sns.FacetGrid(df, row=&#39;type&#39;, aspect=2)
-g.map_dataframe(sns.scatterplot, x=&#39;value&#39;, y=&#39;variable&#39;)
-g.set_axis_labels(&#39;Time [s]&#39;, &#39;Pool&#39;)
+<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">,</span> <span class="s1">&#39;Pool&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

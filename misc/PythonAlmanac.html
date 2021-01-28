@@ -590,26 +590,26 @@ $ pip install &lt;package&gt;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%writefile /tmp/tests.py
+<span></span><span class="o">%%writefile</span> /tmp/tests.py
 
-import os
-import pytest
-
-
-@pytest.fixture(scope=&#39;session&#39;)
-def custom_directory(tmp_path_factory):
-    return tmp_path_factory.mktemp(&#39;workflow_test&#39;)
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
 
 
-def test_fixture_execution(custom_directory):
-    assert os.path.isdir(custom_directory)
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">custom_directory</span><span class="p">(</span><span class="n">tmp_path_factory</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tmp_path_factory</span><span class="o">.</span><span class="n">mktemp</span><span class="p">(</span><span class="s1">&#39;workflow_test&#39;</span><span class="p">)</span>
 
 
-@pytest.mark.parametrize(&#39;expression_str,result&#39;, [
-    (&#39;2+2&#39;, 4), (&#39;2*2&#39;, 4), (&#39;2**2&#39;, 4)
-])
-def test_expression_evaluation(expression_str, result):
-    assert eval(expression_str) == result
+<span class="k">def</span> <span class="nf">test_fixture_execution</span><span class="p">(</span><span class="n">custom_directory</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">custom_directory</span><span class="p">)</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;expression_str,result&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;2+2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2*2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2**2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_expression_evaluation</span><span class="p">(</span><span class="n">expression_str</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">eval</span><span class="p">(</span><span class="n">expression_str</span><span class="p">)</span> <span class="o">==</span> <span class="n">result</span>
 </pre></div>
 </div>
 </div>
@@ -618,7 +618,7 @@ def test_expression_evaluation(expression_str, result):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!pytest -v /tmp/tests.py
+<span></span><span class="o">!</span>pytest -v /tmp/tests.py
 </pre></div>
 </div>
 </div>
@@ -646,18 +646,18 @@ def test_expression_evaluation(expression_str, result):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%writefile /tmp/script.py
+<span></span><span class="o">%%writefile</span> /tmp/script.py
 
-@profile
-def main():
-    # takes a long time
-    for _ in range(100_000):
-        1337**42
+<span class="nd">@profile</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># takes a long time</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">):</span>
+        <span class="mi">1337</span><span class="o">**</span><span class="mi">42</span>
 
-    # requires a lot of memory
-    arr = [1] * 1_000_000
+    <span class="c1"># requires a lot of memory</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1_000_000</span>
 
-main()
+<span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -668,7 +668,7 @@ main()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!kernprof -l -v -o /tmp/script.py.lprof /tmp/script.py
+<span></span><span class="o">!</span>kernprof -l -v -o /tmp/script.py.lprof /tmp/script.py
 </pre></div>
 </div>
 </div>
@@ -680,7 +680,7 @@ main()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!python3 -m memory_profiler /tmp/script.py
+<span></span><span class="o">!</span>python3 -m memory_profiler /tmp/script.py
 </pre></div>
 </div>
 </div>
@@ -714,7 +714,7 @@ stack trace * h: help * q: quit</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from loguru import logger
+<span></span><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
 </pre></div>
 </div>
 </div>
@@ -723,8 +723,8 @@ stack trace * h: help * q: quit</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>logger.debug(&#39;Helpful debug message&#39;)
-logger.error(&#39;oh no&#39;)
+<span></span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Helpful debug message&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;oh no&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -741,7 +741,7 @@ logger.error(&#39;oh no&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import numpy as np
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -750,7 +750,7 @@ logger.error(&#39;oh no&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data = np.random.normal(size=(100, 3))
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -759,7 +759,7 @@ logger.error(&#39;oh no&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data[:10, :]
+<span></span><span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -772,7 +772,7 @@ logger.error(&#39;oh no&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pandas as pd
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -781,8 +781,8 @@ logger.error(&#39;oh no&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.DataFrame(data, columns=[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;])
-df[&#39;group&#39;] = np.random.choice([&#39;G1&#39;, &#39;G2&#39;], size=df.shape[0])
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -791,7 +791,7 @@ df[&#39;group&#39;] = np.random.choice([&#39;G1&#39;, &#39;G2&#39;], size=df.sha
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.head()
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -804,7 +804,7 @@ df[&#39;group&#39;] = np.random.choice([&#39;G1&#39;, &#39;G2&#39;], size=df.sha
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import networkx as nx
+<span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 </pre></div>
 </div>
 </div>
@@ -813,8 +813,8 @@ df[&#39;group&#39;] = np.random.choice([&#39;G1&#39;, &#39;G2&#39;], size=df.sha
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>graph = nx.watts_strogatz_graph(100, 4, 0.1)
-print(nx.info(graph))
+<span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">watts_strogatz_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -823,8 +823,8 @@ print(nx.info(graph))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>pos = nx.drawing.nx_agraph.graphviz_layout(graph, prog=&#39;neato&#39;, args=&#39;-Goverlap=scale&#39;)
-list(pos.items())[:3]
+<span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">nx_agraph</span><span class="o">.</span><span class="n">graphviz_layout</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;neato&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;-Goverlap=scale&#39;</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -833,8 +833,8 @@ list(pos.items())[:3]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>node_clustering = nx.clustering(graph)
-list(node_clustering.items())[:3]
+<span></span><span class="n">node_clustering</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">clustering</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -843,13 +843,13 @@ list(node_clustering.items())[:3]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>nx.draw(
-    graph,
-    pos,
-    node_size=100,
-    nodelist=list(node_clustering.keys()),
-    node_color=list(node_clustering.values()),
-)
+<span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">graph</span><span class="p">,</span>
+    <span class="n">pos</span><span class="p">,</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">nodelist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+    <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">node_clustering</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -864,7 +864,7 @@ list(node_clustering.items())[:3]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import matplotlib.pyplot as plt
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -873,11 +873,11 @@ list(node_clustering.items())[:3]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = plt.subplots()
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-ax.scatter(data[:, 0], data[:, 1])
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 
-fig.tight_layout()
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -887,7 +887,7 @@ fig.tight_layout()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from matplotlib.ticker import FuncFormatter
+<span></span><span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span>
 </pre></div>
 </div>
 </div>
@@ -896,9 +896,9 @@ fig.tight_layout()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>@FuncFormatter
-def my_formatter(x, pos):
-    return f&#39;{x=}, {pos=}&#39;
+<span></span><span class="nd">@FuncFormatter</span>
+<span class="k">def</span> <span class="nf">my_formatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">=}</span><span class="s1">, </span><span class="si">{</span><span class="n">pos</span><span class="si">=}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -907,12 +907,12 @@ def my_formatter(x, pos):
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = plt.subplots(figsize=(10, 6))
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-ax.scatter(data[:, 0], data[:, 1])
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 
-ax.xaxis.set_major_formatter(my_formatter)
-ax.yaxis.set_major_formatter(my_formatter)
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">my_formatter</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">my_formatter</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -925,7 +925,7 @@ ax.yaxis.set_major_formatter(my_formatter)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import seaborn as sns
+<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -934,9 +934,9 @@ ax.yaxis.set_major_formatter(my_formatter)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># first convert dataframe from wide to long format
-df_long = pd.melt(df, id_vars=[&#39;group&#39;])
-df_long.head()
+<span></span><span class="c1"># first convert dataframe from wide to long format</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
+<span class="n">df_long</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -945,7 +945,7 @@ df_long.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>sns.boxplot(data=df_long, x=&#39;variable&#39;, y=&#39;value&#39;, hue=&#39;group&#39;)
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -958,7 +958,7 @@ df_long.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import statannot
+<span></span><span class="kn">import</span> <span class="nn">statannot</span>
 </pre></div>
 </div>
 </div>
@@ -967,28 +967,28 @@ df_long.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>ax = sns.boxplot(
-    data=df_long,
-    x=&#39;variable&#39;,
-    y=&#39;value&#39;,
-    hue=&#39;group&#39;,
-    order=[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
-    hue_order=[&#39;G1&#39;, &#39;G2&#39;],
-)
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">],</span>
+<span class="p">)</span>
 
-statannot.add_stat_annotation(
-    ax,
-    plot=&#39;barplot&#39;,
-    data=df_long,
-    x=&#39;variable&#39;,
-    y=&#39;value&#39;,
-    hue=&#39;group&#39;,
-    order=[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
-    hue_order=[&#39;G1&#39;, &#39;G2&#39;],
-    box_pairs=[((&#39;B&#39;, &#39;G1&#39;), (&#39;B&#39;, &#39;G2&#39;))],
-    text_format=&#39;simple&#39;,
-    test=&#39;Mann-Whitney&#39;,
-)
+<span class="n">statannot</span><span class="o">.</span><span class="n">add_stat_annotation</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">plot</span><span class="o">=</span><span class="s1">&#39;barplot&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_long</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">],</span>
+    <span class="n">box_pairs</span><span class="o">=</span><span class="p">[((</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;G1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">))],</span>
+    <span class="n">text_format</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">,</span>
+    <span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1001,7 +1001,7 @@ statannot.add_stat_annotation(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import brokenaxes
+<span></span><span class="kn">import</span> <span class="nn">brokenaxes</span>
 </pre></div>
 </div>
 </div>
@@ -1010,8 +1010,8 @@ statannot.add_stat_annotation(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>bax = brokenaxes.brokenaxes(ylims=((0, 20), (90, 110)))
-bax.boxplot([np.random.normal(10, size=100), np.random.normal(100, size=100)])
+<span></span><span class="n">bax</span> <span class="o">=</span> <span class="n">brokenaxes</span><span class="o">.</span><span class="n">brokenaxes</span><span class="p">(</span><span class="n">ylims</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">)))</span>
+<span class="n">bax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -1024,7 +1024,7 @@ bax.boxplot([np.random.normal(10, size=100), np.random.normal(100, size=100)])
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from adjustText import adjust_text
+<span></span><span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
 </pre></div>
 </div>
 </div>
@@ -1033,23 +1033,23 @@ bax.boxplot([np.random.normal(10, size=100), np.random.normal(100, size=100)])
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data_sub = data[:40, :]
-fig, (ax_raw, ax_adj) = plt.subplots(nrows=1, ncols=2, figsize=(16, 6))
+<span></span><span class="n">data_sub</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">40</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_raw</span><span class="p">,</span> <span class="n">ax_adj</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-ax_raw.scatter(data_sub[:, 0], data_sub[:, 1])
-[
-    ax_raw.annotate(f&#39;{round(x, 1)},{round(y, 1)}&#39;, xy=(x, y))
-    for x, y in data_sub[:, [0, 1]]
-]
+<span class="n">ax_raw</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">[</span>
+    <span class="n">ax_raw</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="p">]</span>
 
-ax_adj.scatter(data_sub[:, 0], data_sub[:, 1])
-adjust_text(
-    [
-        ax_adj.annotate(f&#39;{round(x, 1)},{round(y, 1)}&#39;, xy=(x, y))
-        for x, y in data_sub[:, [0, 1]]
-    ],
-    arrowprops=dict(arrowstyle=&#39;-&gt;&#39;),
-)
+<span class="n">ax_adj</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">adjust_text</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">ax_adj</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_sub</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+    <span class="p">],</span>
+    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">),</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1062,7 +1062,7 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import plotnine
+<span></span><span class="kn">import</span> <span class="nn">plotnine</span>
 </pre></div>
 </div>
 </div>
@@ -1071,12 +1071,12 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>(
-    plotnine.ggplot(df_long, plotnine.aes(x=&#39;variable&#39;, y=&#39;value&#39;, color=&#39;group&#39;))
-    + plotnine.geom_boxplot()
-    + plotnine.facet_wrap(&#39;~group&#39;)
-    + plotnine.theme_minimal()
-)
+<span></span><span class="p">(</span>
+    <span class="n">plotnine</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">df_long</span><span class="p">,</span> <span class="n">plotnine</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">plotnine</span><span class="o">.</span><span class="n">geom_boxplot</span><span class="p">()</span>
+    <span class="o">+</span> <span class="n">plotnine</span><span class="o">.</span><span class="n">facet_wrap</span><span class="p">(</span><span class="s1">&#39;~group&#39;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">plotnine</span><span class="o">.</span><span class="n">theme_minimal</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1089,7 +1089,7 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import folium
+<span></span><span class="kn">import</span> <span class="nn">folium</span>
 </pre></div>
 </div>
 </div>
@@ -1098,12 +1098,12 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>folium.Map(
-    location=[np.random.uniform(40, 70), np.random.uniform(10, 30)],
-    zoom_start=7,
-    width=500,
-    height=500,
-)
+<span></span><span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)],</span>
+    <span class="n">zoom_start</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1120,7 +1120,7 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import dask.dataframe as dd
+<span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
 </pre></div>
 </div>
 </div>
@@ -1129,7 +1129,7 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.DataFrame(np.random.normal(size=(1_000_000, 2)), columns=[&#39;A&#39;, &#39;B&#39;])
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1138,8 +1138,8 @@ adjust_text(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>ddf = dd.from_pandas(df, npartitions=4)
-ddf.head()
+<span></span><span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">npartitions</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ddf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1148,7 +1148,7 @@ ddf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>ddf[&#39;A&#39;] + ddf[&#39;B&#39;]
+<span></span><span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1157,7 +1157,7 @@ ddf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>(ddf[&#39;A&#39;] + ddf[&#39;B&#39;]).compute()
+<span></span><span class="p">(</span><span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ddf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1170,7 +1170,7 @@ ddf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import vaex as vx
+<span></span><span class="kn">import</span> <span class="nn">vaex</span> <span class="k">as</span> <span class="nn">vx</span>
 </pre></div>
 </div>
 </div>
@@ -1179,8 +1179,8 @@ ddf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>vdf = vx.from_pandas(df)
-vdf.head()
+<span></span><span class="n">vdf</span> <span class="o">=</span> <span class="n">vx</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">vdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1189,7 +1189,7 @@ vdf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>vdf[&#39;A&#39;] + vdf[&#39;B&#39;]
+<span></span><span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1198,7 +1198,7 @@ vdf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>vdf.plot(vdf[&#39;A&#39;], vdf[&#39;B&#39;])
+<span></span><span class="n">vdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">vdf</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1211,10 +1211,10 @@ vdf.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import time
-import random
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
-import joblib
+<span class="kn">import</span> <span class="nn">joblib</span>
 </pre></div>
 </div>
 </div>
@@ -1223,10 +1223,10 @@ import joblib
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>def heavy_function(i):
-    print(f&#39;{i=}&#39;)
-    time.sleep(random.random())
-    return i ** i
+<span></span><span class="k">def</span> <span class="nf">heavy_function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">i</span> <span class="o">**</span> <span class="n">i</span>
 </pre></div>
 </div>
 </div>
@@ -1235,7 +1235,7 @@ import joblib
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>joblib.Parallel(n_jobs=2)([joblib.delayed(heavy_function)(i) for i in range(10)])
+<span></span><span class="n">joblib</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)([</span><span class="n">joblib</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">heavy_function</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -1248,7 +1248,7 @@ import joblib
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import swifter
+<span></span><span class="kn">import</span> <span class="nn">swifter</span>
 </pre></div>
 </div>
 </div>
@@ -1257,8 +1257,8 @@ import joblib
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_big = pd.DataFrame({&#39;A&#39;: np.random.randint(0, 100, size=1_000_000)})
-df_big.head()
+<span></span><span class="n">df_big</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)})</span>
+<span class="n">df_big</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1267,8 +1267,8 @@ df_big.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%timeit
-df_big[&#39;A&#39;].apply(lambda x: x ** 2)
+<span></span><span class="o">%%time</span>it
+<span class="n">df_big</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1277,8 +1277,8 @@ df_big[&#39;A&#39;].apply(lambda x: x ** 2)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%timeit
-df_big[&#39;A&#39;].swifter.apply(lambda x: x ** 2)
+<span></span><span class="o">%%time</span>it
+<span class="n">df_big</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">swifter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1294,7 +1294,7 @@ df_big[&#39;A&#39;].swifter.apply(lambda x: x ** 2)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pyranges as pr
+<span></span><span class="kn">import</span> <span class="nn">pyranges</span> <span class="k">as</span> <span class="nn">pr</span>
 </pre></div>
 </div>
 </div>
@@ -1303,8 +1303,8 @@ df_big[&#39;A&#39;].swifter.apply(lambda x: x ** 2)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_exons = pr.data.exons()
-df_exons
+<span></span><span class="n">df_exons</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">exons</span><span class="p">()</span>
+<span class="n">df_exons</span>
 </pre></div>
 </div>
 </div>
@@ -1313,10 +1313,10 @@ df_exons
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_locus = pr.PyRanges(
-    pd.DataFrame({&#39;Chromosome&#39;: [&#39;chrX&#39;], &#39;Start&#39;: [1_400_000], &#39;End&#39;: [1_500_000]})
-)
-df_locus
+<span></span><span class="n">df_locus</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">PyRanges</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Chromosome&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">],</span> <span class="s1">&#39;Start&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1_400_000</span><span class="p">],</span> <span class="s1">&#39;End&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1_500_000</span><span class="p">]})</span>
+<span class="p">)</span>
+<span class="n">df_locus</span>
 </pre></div>
 </div>
 </div>
@@ -1325,7 +1325,7 @@ df_locus
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_exons.overlap(df_locus).df
+<span></span><span class="n">df_exons</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="n">df_locus</span><span class="p">)</span><span class="o">.</span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -1338,7 +1338,7 @@ df_locus
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import obonet
+<span></span><span class="kn">import</span> <span class="nn">obonet</span>
 </pre></div>
 </div>
 </div>
@@ -1347,8 +1347,8 @@ df_locus
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>url = &#39;https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/HumanDO.obo&#39;
-graph = obonet.read_obo(url)
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/HumanDO.obo&#39;</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">obonet</span><span class="o">.</span><span class="n">read_obo</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1357,7 +1357,7 @@ graph = obonet.read_obo(url)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>list(graph.nodes(data=True))[0]
+<span></span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1373,7 +1373,7 @@ graph = obonet.read_obo(url)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import statsmodels.formula.api as smf
+<span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 </pre></div>
 </div>
 </div>
@@ -1382,11 +1382,11 @@ graph = obonet.read_obo(url)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_data = pd.DataFrame({&#39;X&#39;: np.random.normal(size=100)})
+<span></span><span class="n">df_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)})</span>
 
-df_data[&#39;Y&#39;] = 1.3 * df_data[&#39;X&#39;] + 4.2
+<span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">4.2</span>
 
-df_data.head()
+<span class="n">df_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1395,8 +1395,8 @@ df_data.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mod = smf.ols(&#39;Y ~ X&#39;, data=df_data)
-res = mod.fit()
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Y ~ X&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_data</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1405,7 +1405,7 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.params
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">params</span>
 </pre></div>
 </div>
 </div>
@@ -1414,7 +1414,7 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.summary().tables[1]
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1427,7 +1427,7 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pingouin as pg
+<span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 </pre></div>
 </div>
 </div>
@@ -1436,7 +1436,7 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>pg.normality(np.random.normal(size=100))
+<span></span><span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1445,7 +1445,7 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>pg.normality(np.random.uniform(size=100))
+<span></span><span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1458,9 +1458,9 @@ res = mod.fit()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn import svm
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
+<span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </pre></div>
 </div>
 </div>
@@ -1469,8 +1469,8 @@ from sklearn.model_selection import train_test_split
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X, y = datasets.load_iris(return_X_y=True)
-X.shape, y.shape
+<span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1479,7 +1479,7 @@ X.shape, y.shape
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=0)
+<span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1488,8 +1488,8 @@ X.shape, y.shape
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>clf = svm.SVC(kernel=&#39;linear&#39;, C=1).fit(X_train, y_train)
-clf.score(X_test, y_test)
+<span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1500,9 +1500,9 @@ clf.score(X_test, y_test)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import collections
+<span></span><span class="kn">import</span> <span class="nn">collections</span>
 
-from imblearn.over_sampling import RandomOverSampler
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">RandomOverSampler</span>
 </pre></div>
 </div>
 </div>
@@ -1511,7 +1511,7 @@ from imblearn.over_sampling import RandomOverSampler
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>ros = RandomOverSampler(random_state=0)
+<span></span><span class="n">ros</span> <span class="o">=</span> <span class="n">RandomOverSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1520,8 +1520,8 @@ from imblearn.over_sampling import RandomOverSampler
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X_sub, y_sub = X[:60, :], y[:60]
-X_resampled, y_resampled = ros.fit_resample(X_sub, y_sub)
+<span></span><span class="n">X_sub</span><span class="p">,</span> <span class="n">y_sub</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">60</span><span class="p">,</span> <span class="p">:],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_sub</span><span class="p">,</span> <span class="n">y_sub</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1530,8 +1530,8 @@ X_resampled, y_resampled = ros.fit_resample(X_sub, y_sub)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>print(&#39;sub:&#39;, sorted(collections.Counter(y_sub).items()))
-print(&#39;resampled:&#39;, sorted(collections.Counter(y_resampled).items()))
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sub:&#39;</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_sub</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;resampled:&#39;</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -1541,7 +1541,7 @@ print(&#39;resampled:&#39;, sorted(collections.Counter(y_resampled).items()))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import category_encoders
+<span></span><span class="kn">import</span> <span class="nn">category_encoders</span>
 </pre></div>
 </div>
 </div>
@@ -1550,9 +1550,9 @@ print(&#39;resampled:&#39;, sorted(collections.Counter(y_resampled).items()))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>tmp = np.random.choice([&#39;A&#39;, &#39;B&#39;], size=10)
-df_cat = pd.DataFrame({&#39;original_class&#39;: tmp, &#39;feature01&#39;: tmp})
-df_cat.head()
+<span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df_cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;original_class&#39;</span><span class="p">:</span> <span class="n">tmp</span><span class="p">,</span> <span class="s1">&#39;feature01&#39;</span><span class="p">:</span> <span class="n">tmp</span><span class="p">})</span>
+<span class="n">df_cat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1561,7 +1561,7 @@ df_cat.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>category_encoders.OneHotEncoder(cols=[&#39;feature01&#39;]).fit_transform(df_cat)
+<span></span><span class="n">category_encoders</span><span class="o">.</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature01&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_cat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1571,7 +1571,7 @@ df_cat.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from yellowbrick.classifier import ROCAUC
+<span></span><span class="kn">from</span> <span class="nn">yellowbrick.classifier</span> <span class="kn">import</span> <span class="n">ROCAUC</span>
 </pre></div>
 </div>
 </div>
@@ -1580,7 +1580,7 @@ df_cat.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>clf.fit(X, y)
+<span></span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1589,9 +1589,9 @@ df_cat.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>visualizer = ROCAUC(clf)
-# visualizer.score(X, y)  # TODO: uncomment once scikit-learn is fixed
-visualizer.show()
+<span></span><span class="n">visualizer</span> <span class="o">=</span> <span class="n">ROCAUC</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+<span class="c1"># visualizer.score(X, y)  # TODO: uncomment once scikit-learn is fixed</span>
+<span class="n">visualizer</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1608,30 +1608,30 @@ visualizer.show()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%%writefile cpp_source.cpp
+<span></span><span class="o">%%writefile</span> cpp_source.cpp
 
-#include &lt;pybind11/pybind11.h&gt;
+<span class="c1">#include &lt;pybind11/pybind11.h&gt;</span>
 
-namespace py = pybind11;
+<span class="n">namespace</span> <span class="n">py</span> <span class="o">=</span> <span class="n">pybind11</span><span class="p">;</span>
 
 
-int square(int x) {
-    return x * x;
-}
+<span class="nb">int</span> <span class="n">square</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
 
-PYBIND11_MODULE(cpp_source, m) {
-    m.def(
-        &quot;square&quot;, &amp;square,
-        py::arg(&quot;x&quot;) = 1
-    );
-}
+<span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">cpp_source</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">def</span><span class="p">(</span>
+        <span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">square</span><span class="p">,</span>
+        <span class="n">py</span><span class="p">::</span><span class="n">arg</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">);</span>
+<span class="p">}</span>
 
-/*
-&lt;%
-setup_pybind11(cfg)
-cfg[&#39;compiler_args&#39;] = [&#39;-std=c++11&#39;]
-%&gt;
-*/
+<span class="o">/*</span>
+<span class="o">&lt;%</span>
+<span class="n">setup_pybind11</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+<span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;compiler_args&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-std=c++11&#39;</span><span class="p">]</span>
+<span class="o">%&gt;</span>
+<span class="o">*/</span>
 </pre></div>
 </div>
 </div>
@@ -1640,7 +1640,7 @@ cfg[&#39;compiler_args&#39;] = [&#39;-std=c++11&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import cppimport
+<span></span><span class="kn">import</span> <span class="nn">cppimport</span>
 </pre></div>
 </div>
 </div>
@@ -1649,7 +1649,7 @@ cfg[&#39;compiler_args&#39;] = [&#39;-std=c++11&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>cpp_source = cppimport.imp(&#39;cpp_source&#39;)
+<span></span><span class="n">cpp_source</span> <span class="o">=</span> <span class="n">cppimport</span><span class="o">.</span><span class="n">imp</span><span class="p">(</span><span class="s1">&#39;cpp_source&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1658,7 +1658,7 @@ cfg[&#39;compiler_args&#39;] = [&#39;-std=c++11&#39;]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>cpp_source.square(5)
+<span></span><span class="n">cpp_source</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
