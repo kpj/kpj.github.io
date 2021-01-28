@@ -1,0 +1,35 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r ./deployment_requirements.txt
+
+      - name: Test files
+        run: jupyfmt -S --check --compact-diff --assert-consistent-execution ./source
+
+      - name: Build blog
+        run: make html
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./_build/html
