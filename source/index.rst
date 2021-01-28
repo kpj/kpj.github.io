@@ -46,3 +46,18 @@ More fun projects can be found on https://github.com/kpj/.
   misc/InterceptingHTTPTraffic
   misc/PythonAlmanac
   misc/ThreadingVSMultiprocessing
+
+
+.. toctree::
+  :caption: My OSS Projects
+  :maxdepth: 1
+
+  my_projects/bin2fasta
+  my_projects/clypper
+  my_projects/cookiecutter-python
+  my_projects/gitviz
+  my_projects/ipy_pdcache
+  my_projects/jupyfmt
+  my_projects/pdftty
+  my_projects/pyskim
+  my_projects/vydia
