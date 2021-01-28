@@ -28,6 +28,8 @@ jobs:
         run: |
           pwd
           ls
+          jupyfmt --help
+          jupyfmt --check .
           ls ./source
           jupyfmt -S --check --compact-diff --assert-consistent-execution ./source
 
