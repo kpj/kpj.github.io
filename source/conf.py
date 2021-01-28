@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'kpj\'s blog'
-copyright = '2020, kpj'
+copyright = '2021, kpj'
 author = 'kpj'
 
 # The full version, including alpha/beta/rc tags
@@ -64,4 +64,4 @@ html_static_path = ['_static']
 nbsphinx_timeout = -1
 
 # execute notebooks while building
-nbsphinx_execute = 'always'
+nbsphinx_execute = 'never'
