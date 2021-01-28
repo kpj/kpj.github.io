@@ -2,7 +2,10 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "cloudy-garage",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "# Comparing threading and multiprocessing"
    ]
@@ -10,7 +13,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "radical-fisher",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import time\n",
@@ -28,7 +34,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "crazy-organic",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.set_context('talk')"
@@ -36,7 +45,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "lucky-sudan",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Introduction\n",
     "\n",
@@ -49,14 +61,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "north-final",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Preparations"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "considered-length",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "To investigate the differences between threading and multiprocessing,\n",
     "we will simulate work for each data point and measure when it was executed.\n",
@@ -67,7 +85,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "ruled-exclusive",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%writefile worker.py\n",
@@ -90,7 +111,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "immediate-white",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from worker import worker"
@@ -99,7 +123,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "cutting-freeware",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "data = list(range(20))\n",
@@ -108,14 +135,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "horizontal-arnold",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Computations"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "valid-header",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "We run the `worker` function on the dataset for each executor in both the process and thread pool."
    ]
@@ -123,7 +156,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "laden-albania",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%time\n",
@@ -134,7 +170,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "committed-volunteer",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%time\n",
@@ -144,7 +183,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "convertible-slovakia",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Next, we store the result in a dataframe."
    ]
@@ -152,13 +194,20 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "brilliant-concord",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_thread = pd.melt(pd.DataFrame(thread_result, index=[f'job {i:2}' for i in range(num)]).T)\n",
+    "df_thread = pd.melt(\n",
+    "    pd.DataFrame(thread_result, index=[f'job {i:2}' for i in range(num)]).T\n",
+    ")\n",
     "df_thread['type'] = 'thread'\n",
     "\n",
-    "df_process = pd.melt(pd.DataFrame(process_result, index=[f'job {i:2}' for i in range(num)]).T)\n",
+    "df_process = pd.melt(\n",
+    "    pd.DataFrame(process_result, index=[f'job {i:2}' for i in range(num)]).T\n",
+    ")\n",
     "df_process['type'] = 'process'\n",
     "\n",
     "df = pd.concat([df_thread, df_process], ignore_index=True)\n",
@@ -168,14 +217,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "internal-williams",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Investigation"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "assigned-opportunity",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "There are two main observations:\n",
     "\n",
@@ -187,7 +242,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "basic-source",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "g = sns.FacetGrid(df, row='type', aspect=2)\n",
@@ -197,7 +255,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "worst-emphasis",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "The decision whether to use threading or multiprocessing depends on the use case.\n",
     "\n",
@@ -221,9 +282,9 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.7.5"
+   "version": "3.8.6"
   }
  },
  "nbformat": 4,
- "nbformat_minor": 4
+ "nbformat_minor": 5
 }

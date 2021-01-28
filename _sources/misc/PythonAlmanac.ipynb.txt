@@ -2,7 +2,10 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "productive-colors",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "# The Python Almanac\n",
     "\n",
@@ -12,14 +15,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "casual-pollution",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Introduction"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "former-butterfly",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Installing Python\n",
     "\n",
@@ -37,7 +46,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "olive-lobby",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Installing packages\n",
     "\n",
@@ -58,7 +70,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "retired-hotel",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Package management\n",
     "\n",
@@ -75,14 +90,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "limiting-syntax",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Software development"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "affecting-detroit",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Package Distribution\n",
     "\n",
@@ -101,7 +122,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "elegant-republican",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Testing\n",
     "\n",
@@ -111,7 +135,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "sublime-analysis",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%writefile /tmp/tests.py\n",
@@ -139,7 +166,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "mental-result",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "!pytest -v /tmp/tests.py"
@@ -147,7 +177,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "alternate-court",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Linting/Formatting\n",
     "\n",
@@ -162,7 +195,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "radical-mouse",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Profiling\n",
     "\n",
@@ -175,7 +211,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "convenient-intro",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Consider the following script (note the `@profile` decorator):"
    ]
@@ -183,7 +222,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "unlikely-endorsement",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%writefile /tmp/script.py\n",
@@ -202,7 +244,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "civilian-extreme",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### line_profiler"
    ]
@@ -210,7 +255,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "adolescent-trauma",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "!kernprof -l -v -o /tmp/script.py.lprof /tmp/script.py"
@@ -218,7 +266,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "affected-criterion",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### memory_profiler"
    ]
@@ -226,7 +277,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "challenging-madagascar",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "!python3 -m memory_profiler /tmp/script.py"
@@ -234,14 +288,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "federal-ontario",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Debugging"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "spanish-genius",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Raw python\n",
     "\n",
@@ -269,7 +329,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "governmental-coral",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### C++ extension:\n",
     "Open two windows: ipython, ldb (gdb)\n",
@@ -285,21 +348,30 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "computational-ethernet",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Documentation"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "secret-chrome",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "sphinx, nbsphinx"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "cross-horse",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Logging\n",
     "\n",
@@ -309,7 +381,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "descending-airline",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from loguru import logger"
@@ -318,7 +393,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "liable-freeware",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "logger.debug('Helpful debug message')\n",
@@ -327,14 +405,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "corresponding-campbell",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Data Science"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "fresh-return",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### SciPy\n",
     "\n",
@@ -346,7 +430,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "occasional-petite",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import numpy as np"
@@ -355,7 +442,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "north-parks",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "data = np.random.normal(size=(100, 3))"
@@ -364,7 +454,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "wrong-intellectual",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "data[:10, :]"
@@ -372,7 +465,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "eligible-seating",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Dataframes\n",
     "\n",
@@ -382,7 +478,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "fixed-characterization",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import pandas as pd"
@@ -391,7 +490,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "eleven-asian",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df = pd.DataFrame(data, columns=['A', 'B', 'C'])\n",
@@ -401,7 +503,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "pediatric-greeting",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df.head()"
@@ -409,7 +514,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "brilliant-resolution",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Networkx\n",
     "\n",
@@ -419,7 +527,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "interesting-experiment",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import networkx as nx"
@@ -428,7 +539,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "prescribed-kingdom",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "graph = nx.watts_strogatz_graph(100, 4, 0.1)\n",
@@ -438,7 +552,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "subjective-muslim",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "pos = nx.drawing.nx_agraph.graphviz_layout(graph, prog='neato', args='-Goverlap=scale')\n",
@@ -448,7 +565,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "surprising-video",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "node_clustering = nx.clustering(graph)\n",
@@ -458,27 +578,37 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "selective-basis",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "nx.draw(\n",
-    "    graph, pos,\n",
+    "    graph,\n",
+    "    pos,\n",
     "    node_size=100,\n",
-    "    node_list=list(node_clustering.keys()),\n",
-    "    node_color=list(node_clustering.values())\n",
+    "    nodelist=list(node_clustering.keys()),\n",
+    "    node_color=list(node_clustering.values()),\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "stupid-habitat",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Plotting"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "metallic-firewall",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Matplotlib\n",
     "\n",
@@ -488,7 +618,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "fewer-starter",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import matplotlib.pyplot as plt"
@@ -497,7 +630,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "careful-court",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "fig, ax = plt.subplots()\n",
@@ -509,7 +645,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "mathematical-poker",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Axis ticks can be formatted in a multitude of different [ways](https://matplotlib.org/api/ticker_api.html#tick-formatting).\n",
     "The most versatile way is probably `FuncFormatter`."
@@ -518,7 +657,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "endless-procedure",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from matplotlib.ticker import FuncFormatter"
@@ -527,7 +669,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "liked-baltimore",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "@FuncFormatter\n",
@@ -538,7 +683,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "ranking-palmer",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "fig, ax = plt.subplots(figsize=(10, 6))\n",
@@ -551,7 +699,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "promotional-verification",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Seaborn\n",
     "\n",
@@ -561,7 +712,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "isolated-builder",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import seaborn as sns"
@@ -570,7 +724,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "stunning-supervisor",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "# first convert dataframe from wide to long format\n",
@@ -581,7 +738,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "continuing-chile",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.boxplot(data=df_long, x='variable', y='value', hue='group')"
@@ -589,7 +749,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "announced-chest",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Statannot\n",
     "\n",
@@ -599,7 +762,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "compliant-louis",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import statannot"
@@ -608,28 +774,42 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "biological-middle",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ax = sns.boxplot(\n",
     "    data=df_long,\n",
-    "    x='variable', y='value', hue='group',\n",
-    "    order=['A', 'B', 'C'], hue_order=['G1', 'G2']\n",
+    "    x='variable',\n",
+    "    y='value',\n",
+    "    hue='group',\n",
+    "    order=['A', 'B', 'C'],\n",
+    "    hue_order=['G1', 'G2'],\n",
     ")\n",
     "\n",
     "statannot.add_stat_annotation(\n",
-    "    ax, plot='barplot',\n",
+    "    ax,\n",
+    "    plot='barplot',\n",
     "    data=df_long,\n",
-    "    x='variable', y='value', hue='group',\n",
-    "    order=['A', 'B', 'C'], hue_order=['G1', 'G2'],\n",
+    "    x='variable',\n",
+    "    y='value',\n",
+    "    hue='group',\n",
+    "    order=['A', 'B', 'C'],\n",
+    "    hue_order=['G1', 'G2'],\n",
     "    box_pairs=[(('B', 'G1'), ('B', 'G2'))],\n",
-    "    text_format='simple', test='Mann-Whitney'\n",
+    "    text_format='simple',\n",
+    "    test='Mann-Whitney',\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "owned-vocabulary",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Brokenaxes\n",
     "\n",
@@ -639,7 +819,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "requested-means",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import brokenaxes"
@@ -648,16 +831,22 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "bound-continuity",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "bax = brokenaxes.brokenaxes(ylims=((0, 20), (90, 110)))\n",
-    "bax.boxplot([np.random.normal(10, size=100), np.random.normal(100, size=100)]);"
+    "bax.boxplot([np.random.normal(10, size=100), np.random.normal(100, size=100)])"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "peaceful-forty",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Adjusttext\n",
     "\n",
@@ -667,7 +856,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "perceived-attachment",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from adjustText import adjust_text"
@@ -676,22 +868,37 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "speaking-garlic",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "data_sub = data[:40, :]\n",
     "fig, (ax_raw, ax_adj) = plt.subplots(nrows=1, ncols=2, figsize=(16, 6))\n",
     "\n",
     "ax_raw.scatter(data_sub[:, 0], data_sub[:, 1])\n",
-    "[ax_raw.annotate(f'{round(x, 1)},{round(y, 1)}', xy=(x, y)) for x, y in data_sub[:, [0, 1]]]\n",
+    "[\n",
+    "    ax_raw.annotate(f'{round(x, 1)},{round(y, 1)}', xy=(x, y))\n",
+    "    for x, y in data_sub[:, [0, 1]]\n",
+    "]\n",
     "\n",
     "ax_adj.scatter(data_sub[:, 0], data_sub[:, 1])\n",
-    "adjust_text([ax_adj.annotate(f'{round(x, 1)},{round(y, 1)}', xy=(x, y)) for x, y in data_sub[:, [0, 1]]], arrowprops=dict(arrowstyle='->'))"
+    "adjust_text(\n",
+    "    [\n",
+    "        ax_adj.annotate(f'{round(x, 1)},{round(y, 1)}', xy=(x, y))\n",
+    "        for x, y in data_sub[:, [0, 1]]\n",
+    "    ],\n",
+    "    arrowprops=dict(arrowstyle='->'),\n",
+    ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "equivalent-amateur",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Plotnine\n",
     "\n",
@@ -701,7 +908,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "optical-wrestling",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import plotnine"
@@ -710,18 +920,26 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "pleased-honey",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "(plotnine.ggplot(df_long, plotnine.aes(x='variable', y='value', color='group')) +\n",
-    "    plotnine.geom_boxplot() +\n",
-    "    plotnine.facet_wrap('~group') +\n",
-    "    plotnine.theme_minimal())"
+    "(\n",
+    "    plotnine.ggplot(df_long, plotnine.aes(x='variable', y='value', color='group'))\n",
+    "    + plotnine.geom_boxplot()\n",
+    "    + plotnine.facet_wrap('~group')\n",
+    "    + plotnine.theme_minimal()\n",
+    ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "desirable-seating",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Folium\n",
     "\n",
@@ -731,7 +949,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "comparable-criticism",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import folium"
@@ -740,18 +961,26 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "listed-lambda",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "folium.Map(\n",
-    "    location=[np.random.uniform(40, 70), np.random.uniform(10, 30)], zoom_start=7,\n",
-    "    width=500, height=500\n",
+    "    location=[np.random.uniform(40, 70), np.random.uniform(10, 30)],\n",
+    "    zoom_start=7,\n",
+    "    width=500,\n",
+    "    height=500,\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "alert-trainer",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### High performance\n",
     "\n",
@@ -760,7 +989,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "serial-consortium",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Dask\n",
     "\n",
@@ -771,7 +1003,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "occupied-wages",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import dask.dataframe as dd"
@@ -780,7 +1015,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "invisible-passion",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df = pd.DataFrame(np.random.normal(size=(1_000_000, 2)), columns=['A', 'B'])"
@@ -789,7 +1027,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "color-ready",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ddf = dd.from_pandas(df, npartitions=4)\n",
@@ -799,7 +1040,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "manual-majority",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ddf['A'] + ddf['B']"
@@ -808,7 +1052,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "interim-avatar",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "(ddf['A'] + ddf['B']).compute()"
@@ -816,7 +1063,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "tight-harrison",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Vaex\n",
     "\n",
@@ -827,7 +1077,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "deadly-geometry",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import vaex as vx"
@@ -836,7 +1089,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "amazing-symposium",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "vdf = vx.from_pandas(df)\n",
@@ -846,7 +1102,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "emerging-robin",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "vdf['A'] + vdf['B']"
@@ -855,7 +1114,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "scientific-afghanistan",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "vdf.plot(vdf['A'], vdf['B'])"
@@ -863,7 +1125,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "laden-intellectual",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Joblib\n",
     "\n",
@@ -873,7 +1138,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "solar-wrong",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import time\n",
@@ -885,7 +1153,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "unlimited-opposition",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "def heavy_function(i):\n",
@@ -897,7 +1168,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "wicked-airplane",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "joblib.Parallel(n_jobs=2)([joblib.delayed(heavy_function)(i) for i in range(10)])"
@@ -905,7 +1179,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "reliable-genealogy",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Swifter\n",
     "\n",
@@ -915,7 +1192,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "peripheral-renewal",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import swifter"
@@ -924,45 +1204,58 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "pleasant-contrary",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_big = pd.DataFrame({\n",
-    "    'A': np.random.randint(0, 100, size=1_000_000)\n",
-    "})\n",
+    "df_big = pd.DataFrame({'A': np.random.randint(0, 100, size=1_000_000)})\n",
     "df_big.head()"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "preceding-spank",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%timeit\n",
-    "df_big['A'].apply(lambda x: x**2)"
+    "df_big['A'].apply(lambda x: x ** 2)"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "fitted-pressure",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%timeit\n",
-    "df_big['A'].swifter.apply(lambda x: x**2)"
+    "df_big['A'].swifter.apply(lambda x: x ** 2)"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "dirty-division",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Bioinformatics"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "victorian-zimbabwe",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### PyRanges\n",
     "\n",
@@ -972,7 +1265,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "specified-verification",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import pyranges as pr"
@@ -981,7 +1277,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "silent-courage",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_exons = pr.data.exons()\n",
@@ -991,17 +1290,25 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "australian-mobile",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_locus = pr.PyRanges(pd.DataFrame({'Chromosome': ['chrX'], 'Start': [1_400_000], 'End': [1_500_000]}))\n",
+    "df_locus = pr.PyRanges(\n",
+    "    pd.DataFrame({'Chromosome': ['chrX'], 'Start': [1_400_000], 'End': [1_500_000]})\n",
+    ")\n",
     "df_locus"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "atlantic-parking",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_exons.overlap(df_locus).df"
@@ -1009,7 +1316,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "textile-hydrogen",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Obonet\n",
     "\n",
@@ -1019,7 +1329,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "minimal-bloom",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import obonet"
@@ -1028,7 +1341,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "expensive-samoa",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "url = 'https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/HumanDO.obo'\n",
@@ -1038,7 +1354,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "modern-zimbabwe",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "list(graph.nodes(data=True))[0]"
@@ -1046,14 +1365,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "cooperative-ballot",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Statistics/Machine Learning"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "structural-printer",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Statsmodels\n",
     "\n",
@@ -1063,7 +1388,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "continued-illness",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import statsmodels.formula.api as smf"
@@ -1072,12 +1400,13 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "corporate-congress",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_data = pd.DataFrame({\n",
-    "    'X': np.random.normal(size=100)\n",
-    "})\n",
+    "df_data = pd.DataFrame({'X': np.random.normal(size=100)})\n",
     "\n",
     "df_data['Y'] = 1.3 * df_data['X'] + 4.2\n",
     "\n",
@@ -1087,7 +1416,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "advised-familiar",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "mod = smf.ols('Y ~ X', data=df_data)\n",
@@ -1097,7 +1429,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "stable-protein",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "res.params"
@@ -1106,7 +1441,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "complicated-valley",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "res.summary().tables[1]"
@@ -1114,7 +1452,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "composed-foster",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Pingouin\n",
     "\n",
@@ -1124,7 +1465,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dirty-interstate",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import pingouin as pg"
@@ -1133,7 +1477,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "sharing-ebony",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "pg.normality(np.random.normal(size=100))"
@@ -1142,7 +1489,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "great-watershed",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "pg.normality(np.random.uniform(size=100))"
@@ -1150,7 +1500,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "cosmetic-retail",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Scitkit-learn\n",
     "\n",
@@ -1160,7 +1513,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "partial-portal",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from sklearn import svm\n",
@@ -1171,7 +1527,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "amended-willow",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "X, y = datasets.load_iris(return_X_y=True)\n",
@@ -1181,7 +1540,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "pleasant-relay",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=0)"
@@ -1190,7 +1552,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "inner-adult",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)\n",
@@ -1199,14 +1564,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "aging-duplicate",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Scikit-learn offers various plugins which deal with common issues encountered while modeling."
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "comparable-boston",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "[Imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn) provides various re-sampling techniques when the dataset has annoying class imbalances."
    ]
@@ -1214,7 +1585,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "pointed-porcelain",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import collections\n",
@@ -1225,7 +1599,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "illegal-dealing",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ros = RandomOverSampler(random_state=0)"
@@ -1234,7 +1611,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "preliminary-detection",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "X_sub, y_sub = X[:60, :], y[:60]\n",
@@ -1244,7 +1624,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "organized-perry",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "print('sub:', sorted(collections.Counter(y_sub).items()))\n",
@@ -1253,7 +1636,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "geological-pencil",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "[Category_encoders](https://github.com/scikit-learn-contrib/category_encoders) helps with converting categorical variables to numerical ones."
    ]
@@ -1261,7 +1647,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "municipal-official",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import category_encoders"
@@ -1270,21 +1659,24 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "gorgeous-apache",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "tmp = np.random.choice(['A', 'B'], size=10)\n",
-    "df_cat = pd.DataFrame({\n",
-    "    'original_class': tmp,\n",
-    "    'feature01': tmp\n",
-    "})\n",
+    "df_cat = pd.DataFrame({'original_class': tmp, 'feature01': tmp})\n",
     "df_cat.head()"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "unable-mistake",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "category_encoders.OneHotEncoder(cols=['feature01']).fit_transform(df_cat)"
@@ -1292,7 +1684,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "second-traveler",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "[Yellowbrick](https://github.com/DistrictDataLabs/yellowbrick) makes a multitude of visual diagnostic tools readily accessible."
    ]
@@ -1300,7 +1695,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "unlimited-convention",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "from yellowbrick.classifier import ROCAUC"
@@ -1309,7 +1707,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dressed-attempt",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "clf.fit(X, y)"
@@ -1318,24 +1719,33 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "charitable-sculpture",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "visualizer = ROCAUC(clf)\n",
-    "visualizer.score(X, y)\n",
+    "# visualizer.score(X, y)  # TODO: uncomment once scikit-learn is fixed\n",
     "visualizer.show()"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "brave-briefing",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Language Bindings"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "further-command",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Pybind11\n",
     "\n",
@@ -1346,7 +1756,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "effective-necessity",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%writefile cpp_source.cpp\n",
@@ -1378,7 +1791,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "racial-literature",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import cppimport"
@@ -1387,7 +1803,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "swedish-recipient",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "cpp_source = cppimport.imp('cpp_source')"
@@ -1396,7 +1815,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dutch-february",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "cpp_source.square(5)"
@@ -1404,14 +1826,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "iraqi-angle",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Jupyter"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "happy-chrome",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Nbstripout\n",
     "\n",
@@ -1421,7 +1849,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "welcome-clerk",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## ToDo\n",
     "\n",
@@ -1439,7 +1870,12 @@
     "* tensorflow\n",
     "* filprofiler\n",
     "* https://github.com/mitmproxy/mitmproxy\n",
-    "* https://github.com/secdev/scapy"
+    "* https://github.com/secdev/scapy\n",
+    "* https://github.com/emeryberger/scalene\n",
+    "* https://github.com/willmcgugan/rich\n",
+    "* https://github.com/joerick/pyinstrument\n",
+    "* https://github.com/nalepae/pandarallel/\n",
+    "* https://github.com/machow/siuba"
    ]
   }
  ],
@@ -1459,10 +1895,10 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.5"
+   "version": "3.8.6"
   },
   "toc-autonumbering": true
  },
  "nbformat": 4,
- "nbformat_minor": 4
+ "nbformat_minor": 5
 }

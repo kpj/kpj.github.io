@@ -2,7 +2,10 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "bored-heaven",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "# Analyzing the European Parliament"
    ]
@@ -10,7 +13,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "broad-civilian",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import json\n",
@@ -30,7 +36,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "atlantic-memorial",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.set_context('talk')"
@@ -38,7 +47,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "israeli-awareness",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Download data"
    ]
@@ -46,7 +58,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "prescribed-adobe",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "# %%bash\n",
@@ -60,14 +75,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "secondary-jackson",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Transform JSON to dataframes"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "planned-hammer",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### MEPs"
    ]
@@ -75,7 +96,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "copyrighted-document",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "fname = 'ep_meps.json'\n",
@@ -86,25 +110,32 @@
     "        line = line.lstrip('[,]')\n",
     "        if len(line) == 0:\n",
     "            continue\n",
-    "        \n",
+    "\n",
     "        data = json.loads(line)\n",
-    "        \n",
-    "#         if not data['active']:\n",
-    "#             continue\n",
-    "        \n",
-    "        tmp.append({\n",
-    "            'UserID': data['UserID'],\n",
-    "            'name': data['Name']['full'],\n",
-    "            'birthday': data['Birth']['date'] if 'Birth' in data else np.nan,\n",
-    "            'active': data['active'],\n",
-    "            'group': data.get('Groups', [{'groupid': np.nan}])[-1]['groupid']  # assumption: last group is latest one. Is this true?\n",
-    "        })"
+    "\n",
+    "        #         if not data['active']:\n",
+    "        #             continue\n",
+    "\n",
+    "        tmp.append(\n",
+    "            {\n",
+    "                'UserID': data['UserID'],\n",
+    "                'name': data['Name']['full'],\n",
+    "                'birthday': data['Birth']['date'] if 'Birth' in data else np.nan,\n",
+    "                'active': data['active'],\n",
+    "                'group': data.get('Groups', [{'groupid': np.nan}])[-1][\n",
+    "                    'groupid'\n",
+    "                ],  # assumption: last group is latest one. Is this true?\n",
+    "            }\n",
+    "        )"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "strategic-history",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_meps = pd.DataFrame(tmp)\n",
@@ -112,14 +143,19 @@
     "\n",
     "df_meps.set_index('UserID', inplace=True)\n",
     "\n",
-    "df_meps['group'].replace({'Group of the European United Left - Nordic Green Left': 'GUE/NGL'}, inplace=True)  # is there a difference?\n",
+    "df_meps['group'].replace(\n",
+    "    {'Group of the European United Left - Nordic Green Left': 'GUE/NGL'}, inplace=True\n",
+    ")  # is there a difference?\n",
     "\n",
     "df_meps.head()"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "clean-judgment",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Votes"
    ]
@@ -127,7 +163,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dynamic-brook",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "fname = 'ep_votes.json'\n",
@@ -139,26 +178,48 @@
     "        line = line.lstrip('[,]')\n",
     "        if len(line) == 0:\n",
     "            continue\n",
-    "        \n",
+    "\n",
     "        data = json.loads(line)\n",
-    "        tmp.append({\n",
-    "            'date': data['ts'],\n",
-    "            'voteid': data['voteid'],\n",
-    "            'title': data['title']\n",
-    "        })\n",
-    "    \n",
+    "        tmp.append(\n",
+    "            {'date': data['ts'], 'voteid': data['voteid'], 'title': data['title']}\n",
+    "        )\n",
+    "\n",
     "        if 'votes' in data:\n",
     "            tmp_matrix[data['voteid']] = {\n",
-    "                **{mep['mepid']: '+' for mep_list in data['votes'].get('+', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep},\n",
-    "                **{mep['mepid']: '-' for mep_list in data['votes'].get('-', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep},\n",
-    "                **{mep['mepid']: '0' for mep_list in data['votes'].get('0', {'groups': {'foo': []}})['groups'].values() for mep in mep_list if 'mepid' in mep}\n",
+    "                **{\n",
+    "                    mep['mepid']: '+'\n",
+    "                    for mep_list in data['votes']\n",
+    "                    .get('+', {'groups': {'foo': []}})['groups']\n",
+    "                    .values()\n",
+    "                    for mep in mep_list\n",
+    "                    if 'mepid' in mep\n",
+    "                },\n",
+    "                **{\n",
+    "                    mep['mepid']: '-'\n",
+    "                    for mep_list in data['votes']\n",
+    "                    .get('-', {'groups': {'foo': []}})['groups']\n",
+    "                    .values()\n",
+    "                    for mep in mep_list\n",
+    "                    if 'mepid' in mep\n",
+    "                },\n",
+    "                **{\n",
+    "                    mep['mepid']: '0'\n",
+    "                    for mep_list in data['votes']\n",
+    "                    .get('0', {'groups': {'foo': []}})['groups']\n",
+    "                    .values()\n",
+    "                    for mep in mep_list\n",
+    "                    if 'mepid' in mep\n",
+    "                },\n",
     "            }"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "altered-transsexual",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_votematrix = pd.DataFrame.from_dict(tmp_matrix, orient='index')\n",
@@ -175,7 +236,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "trained-worthy",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_votes = pd.DataFrame(tmp)\n",
@@ -188,14 +252,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "naval-clark",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Exploration"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "nuclear-phone",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### MEP party distribution"
    ]
@@ -203,7 +273,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "sensitive-deposit",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_meps['active'].sum()"
@@ -212,7 +285,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "senior-medication",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "group_counts = df_meps.loc[df_meps['active'], 'group'].value_counts()\n",
@@ -224,7 +300,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "geological-corporation",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### MEP age distribution"
    ]
@@ -232,7 +311,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "lyric-fitting",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_meps['age'] = (pd.Timestamp.today() - df_meps['birthday']) / np.timedelta64(1, 'Y')"
@@ -241,20 +323,30 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "afraid-merchant",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "g = sns.displot(\n",
-    "    data=df_meps[df_meps['active']], x='age',\n",
-    "    col='group', col_wrap=3,\n",
-    "    height=3, aspect=4/3)\n",
+    "    data=df_meps[df_meps['active']],\n",
+    "    x='age',\n",
+    "    col='group',\n",
+    "    col_wrap=3,\n",
+    "    height=3,\n",
+    "    aspect=4 / 3,\n",
+    ")\n",
     "\n",
     "g.set_xlabels('MEP age [years]')"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "ecological-indonesia",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Voting patterns"
    ]
@@ -262,7 +354,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "recovered-freedom",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_votematrix.head()"
@@ -270,7 +365,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "received-anthony",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Zoomed-out voting data overview"
    ]
@@ -278,23 +376,32 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "confidential-prevention",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "hm_sub = (df_votematrix.loc[df_votes[df_votes['date'] > '20200721'].index, df_meps[df_meps['active']].index]\n",
-    "                       .dropna(axis=1)\n",
-    "                       .replace({'+': 1, '-': 0, '0': -1})\n",
-    "                       .T\n",
-    "                       .merge(df_meps[['group']], how='inner', left_index=True, right_index=True)\n",
-    "                       .set_index('group', append=True)\n",
-    "                       .reorder_levels(['group', 'UserID'])\n",
-    "                       .sort_index())"
+    "hm_sub = (\n",
+    "    df_votematrix.loc[\n",
+    "        df_votes[df_votes['date'] > '20200721'].index, df_meps[df_meps['active']].index\n",
+    "    ]\n",
+    "    .dropna(axis=1)\n",
+    "    .replace({'+': 1, '-': 0, '0': -1})\n",
+    "    .T.merge(df_meps[['group']], how='inner', left_index=True, right_index=True)\n",
+    "    .set_index('group', append=True)\n",
+    "    .reorder_levels(['group', 'UserID'])\n",
+    "    .sort_index()\n",
+    ")"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "according-fusion",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "hm_sub.head()"
@@ -303,7 +410,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "victorian-understanding",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "hm_sub_grpd = hm_sub.groupby('group').agg(lambda x: x.value_counts().index[0])\n",
@@ -313,7 +423,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "outside-fields",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.clustermap(hm_sub_grpd.T)"
@@ -321,7 +434,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "apart-harbor",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Who is the most active MEP?\n",
     "\n",
@@ -331,7 +447,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "covered-syndicate",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_hasvoted = ~df_votematrix[df_meps[df_meps['active']].index].isna()"
@@ -340,22 +459,33 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "narrow-rachel",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_hasvoted.sum(axis=0).sort_values(ascending=False).to_frame('vote_count').merge(df_meps, how='left', left_index=True, right_index=True).head(10)"
+    "df_hasvoted.sum(axis=0).sort_values(ascending=False).to_frame('vote_count').merge(\n",
+    "    df_meps, how='left', left_index=True, right_index=True\n",
+    ").head(10)"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "conceptual-consciousness",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Cluster MEPs by votes"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "italian-forum",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Prepare data"
    ]
@@ -363,17 +493,27 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "secret-payment",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "# TODO: how to handle NaN values\n",
-    "matrix = df_votematrix[df_meps[df_meps['active']].index].replace({'+': 1, '-': 0, '0': -1, np.nan: -1}).tail(1000)\n",
+    "matrix = (\n",
+    "    df_votematrix[df_meps[df_meps['active']].index]\n",
+    "    .replace({'+': 1, '-': 0, '0': -1, np.nan: -1})\n",
+    "    .tail(1000)\n",
+    ")\n",
     "matrix"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "future-customer",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Do clustering\n",
     "\n",
@@ -392,7 +532,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "objective-consciousness",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "reducer = umap.UMAP(metric='hamming')"
@@ -401,7 +544,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "accessory-excellence",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "embedding = reducer.fit_transform(matrix.T)\n",
@@ -411,10 +557,17 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "diagnostic-vulnerability",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_umap = pd.DataFrame(embedding, index=matrix.columns, columns=[f'UMAP_{i}' for i in range(embedding.shape[1])])\n",
+    "df_umap = pd.DataFrame(\n",
+    "    embedding,\n",
+    "    index=matrix.columns,\n",
+    "    columns=[f'UMAP_{i}' for i in range(embedding.shape[1])],\n",
+    ")\n",
     "\n",
     "df_umap['group'] = df_meps['group']\n",
     "\n",
@@ -423,7 +576,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "sized-origin",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Static visualization"
    ]
@@ -431,14 +587,17 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "sixth-variance",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "plt.figure(figsize=(8, 6))\n",
     "\n",
     "sns.scatterplot(data=df_umap, x='UMAP_0', y='UMAP_1', hue='group')\n",
     "\n",
-    "plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), ncol=2, title=None)\n",
+    "plt.legend(loc='upper left', bbox_to_anchor=(1.05, 1), ncol=2, title=None)\n",
     "plt.title('MEPs according to vote patterns')\n",
     "\n",
     "# umap.plot.points(reducer, labels=df_umap['group'], theme='fire', width=1000, height=1000)"
@@ -446,7 +605,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "critical-conflict",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "#### Interactive visualization"
    ]
@@ -454,13 +616,20 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "stable-regulation",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "hover_data = df_meps.loc[df_umap.index].reset_index()\n",
     "\n",
-    "hover_data['birthday'] = hover_data['birthday'].apply(lambda x: x.strftime(\"%Y-%m-%d\") if not pd.isnull(x) else 'undef')\n",
-    "hover_data['age'] = hover_data['age'].apply(lambda x: int(x) if not pd.isnull(x) else -1)  # hover_data['age'].round().astype(pd.Int64Dtype())\n",
+    "hover_data['birthday'] = hover_data['birthday'].apply(\n",
+    "    lambda x: x.strftime(\"%Y-%m-%d\") if not pd.isnull(x) else 'undef'\n",
+    ")\n",
+    "hover_data['age'] = hover_data['age'].apply(\n",
+    "    lambda x: int(x) if not pd.isnull(x) else -1\n",
+    ")  # hover_data['age'].round().astype(pd.Int64Dtype())\n",
     "\n",
     "hover_data.head()"
    ]
@@ -468,23 +637,36 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dietary-latin",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "# https://github.com/lmcinnes/umap/issues/422\n",
     "# umap.plot.output_notebook()\n",
     "\n",
     "from bokeh.plotting import output_notebook\n",
+    "\n",
     "output_notebook()"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "atomic-louisiana",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "p = umap.plot.interactive(reducer, labels=df_umap['group'].tolist(), hover_data=hover_data, point_size=5, theme='fire')\n",
+    "p = umap.plot.interactive(\n",
+    "    reducer,\n",
+    "    labels=df_umap['group'].tolist(),\n",
+    "    hover_data=hover_data,\n",
+    "    point_size=5,\n",
+    "    theme='fire',\n",
+    ")\n",
     "umap.plot.show(p)"
    ]
   }
@@ -505,9 +687,9 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.5"
+   "version": "3.8.6"
   }
  },
  "nbformat": 4,
- "nbformat_minor": 4
+ "nbformat_minor": 5
 }

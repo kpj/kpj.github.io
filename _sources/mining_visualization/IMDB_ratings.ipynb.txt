@@ -2,7 +2,10 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "academic-burden",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "# Investigating TV Series ratings using IMDB"
    ]
@@ -10,7 +13,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "animal-holiday",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import imdb\n",
@@ -27,7 +33,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "geographic-seeking",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.set_context('talk')"
@@ -35,7 +44,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "divine-imperial",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Load ratings"
    ]
@@ -43,25 +55,33 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "jewish-distinction",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "query_list = [\n",
     "    'Lost',\n",
     "    'Game of Thrones',\n",
-    "    'Stargate SG-1', 'Stargate: Atlantis', 'Stargate Universe', \n",
+    "    'Stargate SG-1',\n",
+    "    'Stargate: Atlantis',\n",
+    "    'Stargate Universe',\n",
     "    'Westworld',\n",
     "    'Black Mirror',\n",
     "    'Breaking Bad',\n",
     "    'The Witcher',\n",
-    "    'Dark'\n",
+    "    'Dark',\n",
     "]"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "dental-slovenia",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ia = imdb.IMDb()"
@@ -70,14 +90,19 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "breathing-module",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "kind = 'tv series'\n",
-    "series_list = [x \n",
-    "               for query in query_list \n",
-    "               for x in ia.search_movie(query) \n",
-    "               if x['kind'] == kind and x['title'] == query and not x.has_key('imdbIndex')]\n",
+    "series_list = [\n",
+    "    x\n",
+    "    for query in query_list\n",
+    "    for x in ia.search_movie(query)\n",
+    "    if x['kind'] == kind and x['title'] == query and not x.has_key('imdbIndex')\n",
+    "]\n",
     "\n",
     "assert len(query_list) == len(series_list)"
    ]
@@ -85,7 +110,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "developing-trinidad",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "series_list"
@@ -94,29 +122,34 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "clear-charge",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "tmp = []\n",
     "for series in tqdm(series_list, desc='Series'):\n",
     "    tqdm.write(series['title'])\n",
     "    ia.update(series, 'episodes')\n",
-    "    \n",
+    "\n",
     "    for season_nr in series['episodes']:\n",
     "        season = series['episodes'][season_nr]\n",
-    "        \n",
+    "\n",
     "        for episode_nr in series['episodes'][season_nr]:\n",
     "            episode = season[episode_nr]\n",
-    "            \n",
-    "            tmp.append({\n",
-    "                'series': series['title'],\n",
-    "                'season_nr': season_nr,\n",
-    "                'episode_nr': episode_nr,\n",
-    "                'episode': episode['title'],\n",
-    "                'rating': episode.get('rating', np.nan),\n",
-    "                'date': pd.to_datetime(episode.get('original air date')),\n",
-    "                # 'raw': series.data['episodes'][season][episode]\n",
-    "            })\n",
+    "\n",
+    "            tmp.append(\n",
+    "                {\n",
+    "                    'series': series['title'],\n",
+    "                    'season_nr': season_nr,\n",
+    "                    'episode_nr': episode_nr,\n",
+    "                    'episode': episode['title'],\n",
+    "                    'rating': episode.get('rating', np.nan),\n",
+    "                    'date': pd.to_datetime(episode.get('original air date')),\n",
+    "                    # 'raw': series.data['episodes'][season][episode]\n",
+    "                }\n",
+    "            )\n",
     "\n",
     "df = pd.DataFrame(tmp).sort_values(by=['series', 'season_nr', 'episode_nr'])\n",
     "df['idx'] = pd.Categorical(df['season_nr'].map(str) + ':' + df['episode_nr'].map(str))\n",
@@ -128,7 +161,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "final-quick",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df.head()"
@@ -136,7 +172,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "numeric-exclusive",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Visualize results"
    ]
@@ -144,31 +183,44 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "express-method",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "def annotate_episode(entry, ax, m):\n",
     "    return ax.annotate(\n",
     "        entry.episode,\n",
-    "        xy=(entry.idx, entry.rating), xytext=(0, 10*m),\n",
-    "        xycoords='data', textcoords='offset points',\n",
-    "        fontsize=10, ha='center', va='center',\n",
-    "        arrowprops=dict(arrowstyle='->')\n",
+    "        xy=(entry.idx, entry.rating),\n",
+    "        xytext=(0, 10 * m),\n",
+    "        xycoords='data',\n",
+    "        textcoords='offset points',\n",
+    "        fontsize=10,\n",
+    "        ha='center',\n",
+    "        va='center',\n",
+    "        arrowprops=dict(arrowstyle='->'),\n",
     "    )"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "typical-harvest",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "g = sns.FacetGrid(\n",
     "    df.dropna(),\n",
     "    row='series',\n",
     "    hue='season_nr',\n",
-    "    sharex=False, sharey=True,\n",
-    "    aspect=2, height=5)\n",
+    "    sharex=False,\n",
+    "    sharey=True,\n",
+    "    aspect=2,\n",
+    "    height=5,\n",
+    ")\n",
     "\n",
     "g.map_dataframe(sns.lineplot, x='idx', y='rating', marker='o', estimator=None)\n",
     "\n",
@@ -181,7 +233,7 @@
     "for (i, j, k), data in g.facet_data():\n",
     "    # row, col, hue\n",
     "    ax = g.facet_axis(i, j)\n",
-    "    \n",
+    "\n",
     "    if not data.empty:\n",
     "        annotate_episode(data.loc[data['rating'].idxmax()], ax, 1)\n",
     "        annotate_episode(data.loc[data['rating'].idxmin()], ax, -1)"
@@ -204,9 +256,9 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.7.5"
+   "version": "3.8.6"
   }
  },
  "nbformat": 4,
- "nbformat_minor": 4
+ "nbformat_minor": 5
 }

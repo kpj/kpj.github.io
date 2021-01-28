@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Playing with Variational Autoencoders &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interpreting the coefficients of a linear regression" href="LinearRegressionCoefficients.html" />
+    <link rel="prev" title="Analyzing the European Parliament" href="../mining_visualization/MEP_Statistics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistics &amp; Machine Learning</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Playing with Variational Autoencoders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Glossary">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Basic-operations">Basic operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Variational-Autoencoder">Variational Autoencoder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Theory">Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Design-model">Design model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Run-model">Run model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Load-data">Load data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Train-model">Train model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Analysis">Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Loss-development">Loss development</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generate-new-samples">Generate new samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Check-specific-examples">Check specific examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PCA">PCA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegressionCoefficients.html">Interpreting the coefficients of a linear regression</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/BenchmarkingCommonOperations.html">Benchmarking common operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">My OSS Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/bin2fasta.html">bin2fasta: Store any file as a fasta file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/clypper.html">clypper: Rapidly create supercuts from various video sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/cookiecutter-python.html">cookiecutter-python: An opinionated template for Python packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/vydia.html">Vydia: A modularized video player</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Playing with Variational Autoencoders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/stats_ml/Autoencoder.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Playing-with-Variational-Autoencoders">
+<h1>Playing with Variational Autoencoders<a class="headerlink" href="#Playing-with-Variational-Autoencoders" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import os
+
+import numpy as np
+import pandas as pd
+
+import tensorflow as tf
+import tensorflow_probability as tfp
+
+from sklearn.decomposition import PCA
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+from tqdm.auto import tqdm, trange
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>tfd = tfp.distributions
+
+sns.set_context(&#39;talk&#39;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="Glossary">
+<h2>Glossary<a class="headerlink" href="#Glossary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>epoch: one cycle through training data (made up of many steps)</p></li>
+<li><p>step: one gradient update per batch of data</p></li>
+<li><p>learning rate: how fast to follow gradient (in gradient descent)</p></li>
+<li><p>neural network: find function <span class="math notranslate nohighlight">\(y = f(x)\)</span> with features <span class="math notranslate nohighlight">\(x\)</span> and values/labels <span class="math notranslate nohighlight">\(y\)</span> (regression/classification)</p></li>
+<li><p>autoencoder:</p>
+<ul>
+<li><p>find function mapping <span class="math notranslate nohighlight">\(x\)</span> to itself: <span class="math notranslate nohighlight">\(z = f(h_e(x))\)</span>, <span class="math notranslate nohighlight">\(\hat{x} = f(h_d(z))\)</span></p></li>
+<li><p>undercomplete: <span class="math notranslate nohighlight">\(dim(latent\ space) &lt; dim(input\ space)\)</span> (vs overcomplete)</p></li>
+<li><p>problem of capacity:</p>
+<ul>
+<li><p>if encoder is too powerful, one dimensional latent space could encode all training samples -&gt; autoencoder fails to learn anything useful</p></li>
+</ul>
+</li>
+<li><p>regularized: sophisticated loss-function (sparsity, robustness, …)</p></li>
+<li><p>variational: enforce distribution for latent space</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Basic-operations">
+<h3>Basic operations<a class="headerlink" href="#Basic-operations" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>a = tf.constant(2.0)
+b = tf.constant(3.0)
+
+print(tf.add(a, b))
+print(tf.reduce_mean([a, b]))
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>m1 = tf.constant([[1.0, 2.0], [3.0, 4.0]])
+m2 = tf.constant([[5.0, 6.0], [7.0, 8.0]])
+
+tf.matmul(m1, m2)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Variational-Autoencoder">
+<h2>Variational Autoencoder<a class="headerlink" href="#Variational-Autoencoder" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Theory">
+<h3>Theory<a class="headerlink" href="#Theory" title="Permalink to this headline">¶</a></h3>
+<p>Given data <span class="math notranslate nohighlight">\(X\)</span>, latent variable <span class="math notranslate nohighlight">\(z\)</span>, probability distribution of data <span class="math notranslate nohighlight">\(P(X)\)</span>, p.d. of latent variable <span class="math notranslate nohighlight">\(P(z)\)</span>, p.d. of generated data given latent variable <span class="math notranslate nohighlight">\(P(X|z)\)</span></p>
+<p>Goal is to model data, i.e. find <span class="math notranslate nohighlight">\(P(X) = \int P(X|z) P(z)\)</span></p>
+<p>Idea of VAE:</p>
+<ul class="simple">
+<li><p>infer <span class="math notranslate nohighlight">\(P(z)\)</span> from <span class="math notranslate nohighlight">\(P(z|X)\)</span> using variational inference (inference as optimization problem)</p></li>
+<li><p>model <span class="math notranslate nohighlight">\(P(z|X)\)</span> using <span class="math notranslate nohighlight">\(Q(z|X)\)</span>, <span class="math notranslate nohighlight">\(Q\)</span> is typically Gaussian</p></li>
+<li><p>components:</p>
+<ul>
+<li><p>encoder: <span class="math notranslate nohighlight">\(Q(z|X)\)</span></p></li>
+<li><p>decoder: <span class="math notranslate nohighlight">\(P(X|z)\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Measure difference between two distributions: Kullback–Leibler divergence</p>
+<p>Objective function:</p>
+<div class="math notranslate nohighlight">
+\[\log P(X)-D_{K L}[Q(z | X) \| P(z | X)]=E[\log P(X | z)]-D_{K L}[Q(z | X) \| P(z)]\]</div>
+</div>
+<div class="section" id="Design-model">
+<h3>Design model<a class="headerlink" href="#Design-model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>class Encoder(tf.keras.layers.Layer):
+    &quot;&quot;&quot;Convert input to low-dimensional representation.&quot;&quot;&quot;
+
+    def __init__(self, latent_dim, original_dim):
+        super(Encoder, self).__init__()
+        self.network = tf.keras.Sequential(
+            [
+                tf.keras.layers.InputLayer(input_shape=(*original_dim, 1)),
+                tf.keras.layers.Conv2D(
+                    filters=32, kernel_size=3, strides=(2, 2), activation=tf.nn.relu
+                ),
+                tf.keras.layers.Conv2D(
+                    filters=64, kernel_size=3, strides=(2, 2), activation=tf.nn.relu
+                ),
+                tf.keras.layers.Flatten(),
+                tf.keras.layers.Dense(units=2 * latent_dim),
+            ]
+        )
+
+    def call(self, x):
+        return self.network(x)
+
+
+class Decoder(tf.keras.layers.Layer):
+    &quot;&quot;&quot;Reconstruct input from low-dimensional representation.&quot;&quot;&quot;
+
+    def __init__(self, latent_dim, original_dim):
+        super(Decoder, self).__init__()
+        self.network = tf.keras.Sequential(
+            [
+                tf.keras.layers.InputLayer(input_shape=(latent_dim,)),
+                tf.keras.layers.Dense(units=7 * 7 * 32, activation=tf.nn.relu),
+                tf.keras.layers.Reshape(target_shape=(7, 7, 32)),
+                tf.keras.layers.Conv2DTranspose(
+                    filters=64,
+                    kernel_size=3,
+                    strides=(2, 2),
+                    padding=&#39;SAME&#39;,
+                    activation=tf.nn.relu,
+                ),
+                tf.keras.layers.Conv2DTranspose(
+                    filters=32,
+                    kernel_size=3,
+                    strides=(2, 2),
+                    padding=&#39;SAME&#39;,
+                    activation=tf.nn.relu,
+                ),
+                tf.keras.layers.Conv2DTranspose(
+                    filters=1, kernel_size=3, strides=(1, 1), padding=&#39;SAME&#39;
+                ),
+            ]
+        )
+
+    def call(self, z):
+        return self.network(z)
+
+
+class Autoencoder(tf.keras.Model):
+    &quot;&quot;&quot;Connect all components to single model.&quot;&quot;&quot;
+
+    def __init__(self, latent_dim, original_dim):
+        &quot;&quot;&quot;Initialize everything.&quot;&quot;&quot;
+        super(Autoencoder, self).__init__()
+        self.latent_dim = latent_dim
+
+        # setup architecture
+        self._encoder = Encoder(latent_dim=self.latent_dim, original_dim=original_dim)
+        self._decoder = Decoder(latent_dim=self.latent_dim, original_dim=original_dim)
+
+        # helpful stuff
+        self.train_loss = tf.keras.metrics.Mean(name=&#39;train_loss&#39;)
+
+    def encode(self, x):
+        &quot;&quot;&quot;Input -&gt; latent distribution.&quot;&quot;&quot;
+        mean, logvar = tf.split(self._encoder(x), num_or_size_splits=2, axis=1)
+        return mean, logvar
+
+    def _reparameterize(self, mean, logvar):
+        &quot;&quot;&quot;Trick which is needed for backpropagation.&quot;&quot;&quot;
+        eps = tf.random.normal(shape=mean.shape)
+        return eps * tf.exp(logvar * 0.5) + mean
+
+    def decode(self, z):
+        &quot;&quot;&quot;Latent -&gt; input space.&quot;&quot;&quot;
+        return self._decoder(z)
+
+    def call(self, x):
+        &quot;&quot;&quot;Generate distribution from input and reconstruct using it.&quot;&quot;&quot;
+        mu, _ = tf.split(self._encoder(x), num_or_size_splits=2, axis=1)
+        # why do we only pass mu?
+        reconstructed = self.decode(mu)
+        return reconstructed
+
+    def log_normal_pdf(self, sample, mean, logvar, raxis=1):
+        log2pi = tf.math.log(2.0 * np.pi)
+        return tf.reduce_sum(
+            -0.5 * ((sample - mean) ** 2.0 * tf.exp(-logvar) + logvar + log2pi),
+            axis=raxis,
+        )
+
+    def compute_loss(self, x):
+        &quot;&quot;&quot;Compute loss.
+
+        Hmmmmm
+        &quot;&quot;&quot;
+        mean, logvar = self.encode(x)
+        z = self._reparameterize(mean, logvar)
+        x_logit = self.decode(z)
+
+        cross_ent = tf.nn.sigmoid_cross_entropy_with_logits(logits=x_logit, labels=x)
+        logpx_z = -tf.reduce_sum(cross_ent, axis=[1, 2, 3])
+        logpz = self.log_normal_pdf(z, 0.0, 0.0)
+        logqz_x = self.log_normal_pdf(z, mean, logvar)
+
+        return -tf.reduce_mean(logpx_z + logpz - logqz_x)
+
+    def compute_gradients(self, x):
+        with tf.GradientTape() as tape:
+            loss = self.compute_loss(x)
+            self.train_loss(loss)
+
+            return tape.gradient(loss, self.trainable_variables)
+
+    @tf.function
+    def train(self, x, optimizer):
+        gradients = self.compute_gradients(x)
+        optimizer.apply_gradients(zip(gradients, self.trainable_variables))
+
+    def sample(self, eps=None):
+        if eps is None:
+            eps = tf.random.normal(shape=(100, self.latent_dim))
+        return self.decode(eps)
+
+    def save(self, fname):
+        &quot;&quot;&quot;Save model.
+        https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing#saving_subclassed_models
+        &quot;&quot;&quot;
+        os.makedirs(os.path.dirname(fname), exist_ok=True)
+        self.save_weights(fname, save_format=&#39;tf&#39;)
+
+    @classmethod
+    def load_from_file(cls, fname):
+        model = cls(latent_dim, original_dim)  # TODO: load parameters from file
+
+        # train model briefly to infer architecture
+        # TODO
+
+        model.load_weights(fname)
+        return model
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Run-model">
+<h3>Run model<a class="headerlink" href="#Run-model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Parameters">
+<h4>Parameters<a class="headerlink" href="#Parameters" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>np.random.seed(1)
+tf.random.set_seed(1)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>batch_size = 128
+epochs = 15
+learning_rate = 1e-3
+latent_dim = 10
+original_dim = (28, 28)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Load-data">
+<h4>Load data<a class="headerlink" href="#Load-data" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>(training_features, training_labels), (
+    test_features,
+    _,
+) = tf.keras.datasets.mnist.load_data()
+
+# normalize to range [0, 1]
+training_features = training_features / np.max(training_features)
+
+# flatten 2D images into 1D
+training_features = training_features.reshape(
+    training_features.shape[0], *original_dim, 1
+).astype(np.float32)
+
+# prepare dataset
+training_dataset = tf.data.Dataset.from_tensor_slices(training_features).batch(
+    batch_size
+)
+training_dataset
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Train-model">
+<h4>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>autoencoder = None
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>opt = tf.optimizers.Adam(learning_rate=learning_rate)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># TODO: improve loss storage
+fname = &#39;models/autoencoder&#39;
+
+if os.path.exists(f&#39;{fname}.index&#39;):
+    autoencoder = Autoencoder.load_from_file(fname)
+    df_loss = pd.read_csv(&#39;models/autoencoder_loss.csv&#39;)
+else:
+    autoencoder = Autoencoder(latent_dim=latent_dim, original_dim=original_dim)
+
+    # train
+    loss_list = []
+    for epoch in trange(epochs, desc=&#39;Epochs&#39;):
+        for step, batch_features in enumerate(training_dataset):
+            autoencoder.train(batch_features, opt)
+
+        loss_list.append(
+            {&#39;epoch&#39;: epoch, &#39;loss&#39;: autoencoder.train_loss.result().numpy()}
+        )
+    df_loss = pd.DataFrame(loss_list)
+
+    # save
+    autoencoder.save(fname)
+    df_loss.to_csv(&#39;models/autoencoder_loss.csv&#39;, index=False)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Analysis">
+<h3>Analysis<a class="headerlink" href="#Analysis" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Loss-development">
+<h4>Loss development<a class="headerlink" href="#Loss-development" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>plt.figure(figsize=(8, 6))
+sns.lineplot(x=&#39;epoch&#39;, y=&#39;loss&#39;, data=df_loss)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Generate-new-samples">
+<h4>Generate new samples<a class="headerlink" href="#Generate-new-samples" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># inp = tf.random.normal(shape=(4, latent_dim), mean=10)
+inp = np.asarray([[0.0] * latent_dim])
+
+inp[0][4] = -2
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>N = 5
+fig, ax_arr = plt.subplots(N, N)
+
+for i, x in enumerate(np.linspace(-10, 10, N)):
+    for j, y in enumerate(np.linspace(-10, 10, N)):
+        ax = ax_arr[i, j]
+        inp[0][:2] = np.random.normal([x, y])
+
+        img = autoencoder.sample(inp).numpy()
+
+        ax.imshow(img[0, :, :, 0], cmap=&#39;gray&#39;)
+        ax.axis(&#39;off&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Check-specific-examples">
+<h4>Check specific examples<a class="headerlink" href="#Check-specific-examples" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>features_sub = training_features[:10]
+features_sub.shape
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>original = tf.reshape(features_sub, (features_sub.shape[0], 28, 28))
+reconstructed = tf.reshape(
+    autoencoder(tf.constant(features_sub)), (features_sub.shape[0], 28, 28)
+)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>N = 16
+fig, ax_list = plt.subplots(nrows=4, ncols=4, figsize=(8, 4))
+
+for i, ax in enumerate(ax_list.ravel()):
+    idx = np.random.randint(0, original.shape[0])
+
+    img_orig = original.numpy()[idx]
+    img_recon = reconstructed.numpy()[idx]
+
+    img_concat = np.concatenate([img_orig, img_recon], axis=1)
+
+    ax.imshow(img_concat, cmap=&#39;gray&#39;)
+    ax.axis(&#39;off&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="PCA">
+<h4>PCA<a class="headerlink" href="#PCA" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>def do_PCA(X, ndim=2):
+    pca = PCA(n_components=ndim)
+    pca.fit(X)
+    X_trans = pca.transform(X)
+    print(pca.explained_variance_ratio_)
+    return pd.DataFrame(X_trans, columns=[f&#39;PC_{i}&#39; for i in range(ndim)])
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>latent_features = autoencoder.encode(training_features)
+latent_features_1d = np.concatenate(latent_features, axis=1)
+
+df_latent = do_PCA(latent_features_1d)
+df_latent[&#39;label&#39;] = training_labels
+df_latent[&#39;space&#39;] = &#39;latent&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>data_train_1d = training_features.reshape(
+    training_features.shape[0], training_features.shape[1] * training_features.shape[2]
+)
+
+df_original = do_PCA(data_train_1d)
+df_original[&#39;label&#39;] = training_labels
+df_original[&#39;space&#39;] = &#39;original&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>df_pca = pd.concat([df_original, df_latent])
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>g = sns.FacetGrid(df_pca, col=&#39;space&#39;, hue=&#39;label&#39;, height=8, legend_out=True)
+g.map_dataframe(sns.scatterplot, x=&#39;PC_0&#39;, y=&#39;PC_1&#39;, rasterized=True)
+g.add_legend()
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="LinearRegressionCoefficients.html" class="btn btn-neutral float-right" title="Interpreting the coefficients of a linear regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../mining_visualization/MEP_Statistics.html" class="btn btn-neutral float-left" title="Analyzing the European Parliament" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, kpj.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -2,7 +2,10 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "remarkable-madonna",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "# Visualizing Eurostat data"
    ]
@@ -10,8 +13,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "loaded-pierce",
    "metadata": {
-    "nbsphinx": "hidden"
+    "nbsphinx": "hidden",
+    "tags": []
    },
    "outputs": [],
    "source": [
@@ -22,7 +27,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "floral-samuel",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "import numpy as np\n",
@@ -32,21 +40,23 @@
     "\n",
     "import seaborn as sns\n",
     "import matplotlib.pyplot as plt\n",
+    "from matplotlib.pyplot import cm\n",
     "\n",
     "import geoplot as gplt\n",
     "import geoplot.crs as gcrs\n",
     "\n",
     "from tqdm.auto import tqdm\n",
     "\n",
-    "from r_wrapper import eurostat\n",
-    "\n",
-    "from bioinf_common.plotting import get_distinct_colors"
+    "from r_wrapper import eurostat"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "instant-rugby",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "sns.set_context('talk')"
@@ -54,14 +64,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "dynamic-delta",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Retrieving geographical information"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "adopted-imaging",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "The NUTS classification subdivides each member state into regions at three different levels, covering NUTS 1, 2 and 3 from larger to smaller areas (https://ec.europa.eu/eurostat/web/nuts/background).\n",
     "Eurostat provides this geographical data in various formats (https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units, looks for \"NUTS\").\n",
@@ -74,8 +90,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "miniature-librarian",
    "metadata": {
-    "nbsphinx": "hidden"
+    "nbsphinx": "hidden",
+    "tags": []
    },
    "outputs": [],
    "source": [
@@ -87,18 +105,25 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "selective-cursor",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "df_geo = eurostat.get_eurostat_geospatial(output_class='sf', resolution=60, nuts_level=2, year=2016)\n",
+    "df_geo = eurostat.get_eurostat_geospatial(\n",
+    "    output_class='sf', resolution=60, nuts_level=2, year=2016\n",
+    ")\n",
     "df_geo.head()"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "molecular-grave",
    "metadata": {
-    "nbsphinx": "hidden"
+    "nbsphinx": "hidden",
+    "tags": []
    },
    "outputs": [],
    "source": [
@@ -107,14 +132,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "introductory-albert",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Example"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "stylish-pacific",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "To get a feeling for the data, we can plot the geographical composition of an arbitrary country."
    ]
@@ -122,7 +153,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "polar-yellow",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "ax = gplt.polyplot(df_geo[df_geo['CNTR_CODE'] == 'DE'])\n",
@@ -131,14 +165,20 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "crazy-teacher",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Retrieving statistical data"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "armed-twelve",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Eurostat is a great source for data related to Europe.\n",
     "An overview of the main tables can be found on https://ec.europa.eu/eurostat/web/regions/data/main-tables."
@@ -146,7 +186,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "empirical-tension",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Select datasets"
    ]
@@ -154,7 +197,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "everyday-designation",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "eurostat.search_eurostat('age').head()"
@@ -163,7 +209,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "north-stanford",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "dataset_list = [\n",
@@ -177,7 +226,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "affecting-workplace",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Download and aggregate data\n",
     "\n",
@@ -188,8 +240,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "shared-quest",
    "metadata": {
-    "nbsphinx": "hidden"
+    "nbsphinx": "hidden",
+    "tags": []
    },
    "outputs": [],
    "source": [
@@ -201,7 +255,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "brave-being",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_list = []\n",
@@ -211,40 +268,63 @@
     "    # get dataset description\n",
     "    dataset_name = eurostat.label_eurostat_tables(dataset)[0]\n",
     "    print(f'Parsing {dataset} ({dataset_name})')\n",
-    "    \n",
+    "\n",
     "    # retrieve data\n",
     "    df_data = eurostat.get_eurostat(dataset, time_format='raw')\n",
     "    df_data = eurostat.label_eurostat(df_data, code=['geo'], fix_duplicated=True)\n",
     "\n",
     "    # index rows\n",
     "    common_columns = ['geo_code', 'geo']\n",
-    "    df_data['idx'] = df_data[common_columns].apply(lambda row: '_'.join(row.values.astype(str)), axis=1)\n",
-    "    \n",
+    "    df_data['idx'] = df_data[common_columns].apply(\n",
+    "        lambda row: '_'.join(row.values.astype(str)), axis=1\n",
+    "    )\n",
+    "\n",
     "    # identify meta information\n",
-    "    info_columns = set(df_data.columns) - set(common_columns) - {'idx', 'time', 'values', 'info', 'info_short'}\n",
-    "    \n",
-    "    meta_cols = [';'.join(f'{k}={row._asdict()[k]}' for k in sorted(row._asdict().keys()) if k != 'Index') for row in df_data[info_columns].itertuples()]\n",
+    "    info_columns = (\n",
+    "        set(df_data.columns)\n",
+    "        - set(common_columns)\n",
+    "        - {'idx', 'time', 'values', 'info', 'info_short'}\n",
+    "    )\n",
+    "\n",
+    "    meta_cols = [\n",
+    "        ';'.join(\n",
+    "            f'{k}={row._asdict()[k]}'\n",
+    "            for k in sorted(row._asdict().keys())\n",
+    "            if k != 'Index'\n",
+    "        )\n",
+    "        for row in df_data[info_columns].itertuples()\n",
+    "    ]\n",
     "    meta_idx, meta_label = pd.factorize(meta_cols)\n",
-    "    \n",
-    "    df_data['meta'] = [f'{dataset}_{time}_{x}' for x, time in zip(meta_idx, df_data['time'])]\n",
+    "\n",
+    "    df_data['meta'] = [\n",
+    "        f'{dataset}_{time}_{x}' for x, time in zip(meta_idx, df_data['time'])\n",
+    "    ]\n",
     "\n",
     "    # pivot data\n",
     "    df_piv = df_data.pivot(index='idx', columns='meta', values='values')\n",
-    "    \n",
+    "\n",
     "    # store data\n",
     "    df_list.append(df_piv)\n",
     "\n",
-    "    meta_list.extend([{\n",
-    "        'dataset': dataset,\n",
-    "        'name': dataset_name,\n",
-    "        'meta_idx': idx,\n",
-    "        'meta_label': label,\n",
-    "    } for idx, label in zip(np.unique(meta_idx), meta_label)])"
+    "    meta_list.extend(\n",
+    "        [\n",
+    "            {\n",
+    "                'dataset': dataset,\n",
+    "                'name': dataset_name,\n",
+    "                'meta_idx': idx,\n",
+    "                'meta_label': label,\n",
+    "            }\n",
+    "            for idx, label in zip(np.unique(meta_idx), meta_label)\n",
+    "        ]\n",
+    "    )"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "pressing-mother",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Each row corresponds to a geographic region, and each column to a certain statistic."
    ]
@@ -252,8 +332,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "traditional-lindsay",
    "metadata": {
-    "nbsphinx": "hidden"
+    "nbsphinx": "hidden",
+    "tags": []
    },
    "outputs": [],
    "source": [
@@ -263,7 +345,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "skilled-lying",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_all = pd.concat(df_list, axis=1)\n",
@@ -272,7 +357,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "emotional-treasure",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Extra information for each column is stored in an additional dataframe."
    ]
@@ -280,7 +368,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "arabic-expert",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_meta = pd.DataFrame(meta_list)\n",
@@ -290,7 +381,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "bibliographic-moldova",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "def get_meta(col_name, extended=False):\n",
@@ -298,7 +392,7 @@
     "    res = df_meta[(df_meta['dataset'] == dataset) & (df_meta['meta_idx'] == int(idx))]\n",
     "    assert res.shape[0] == 1\n",
     "    res = res.iloc[0]\n",
-    "    \n",
+    "\n",
     "    if extended:\n",
     "        return f'{res[\"name\"]}\\n({res[\"meta_label\"]})'\n",
     "    else:\n",
@@ -307,7 +401,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "false-allergy",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Overview\n",
     "\n",
@@ -317,7 +414,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "unknown-portsmouth",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_corr = df_all.corr()"
@@ -326,43 +426,61 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "described-pioneer",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
-    "non_nan_datasets = set(df_corr.dropna(axis=0).index) & set(df_corr.dropna(axis=1).columns)\n",
+    "non_nan_datasets = set(df_corr.dropna(axis=0).index) & set(\n",
+    "    df_corr.dropna(axis=1).columns\n",
+    ")\n",
     "df_corr = df_corr.loc[non_nan_datasets, non_nan_datasets]"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "engaged-appreciation",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "# assign unique color to each data source\n",
     "cluster_names = df_all.columns.str.split('_').str[0].unique()\n",
-    "cluser_colors = get_distinct_colors(len(cluster_names))\n",
+    "cluser_colors = cm.rainbow(np.linspace(0, 1, len(cluster_names))).tolist()\n",
     "cluster_map = {n: c for n, c in zip(cluster_names, cluser_colors)}\n",
-    "cluster_colors = pd.DataFrame([(col, cluster_map[col.split('_')[0]]) for col in df_all.columns]).set_index(0)[1]"
+    "cluster_colors = pd.DataFrame(\n",
+    "    [(col, cluster_map[col.split('_')[0]]) for col in df_all.columns]\n",
+    ").set_index(0)[1]"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "quick-cancer",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "g = sns.clustermap(\n",
     "    df_corr,\n",
-    "    xticklabels=False, yticklabels=False,\n",
+    "    xticklabels=False,\n",
+    "    yticklabels=False,\n",
     "    cmap='vlag_r',\n",
-    "    row_colors=cluster_colors, col_colors=cluster_colors\n",
+    "    row_colors=cluster_colors,\n",
+    "    col_colors=cluster_colors,\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "false-soccer",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Data preparation\n",
     "\n",
@@ -372,7 +490,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "legislative-toner",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_all['geo_code'] = [idx.split('_')[0] for idx in df_all.index]"
@@ -381,7 +502,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "blocked-solution",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_merged = df_geo.merge(df_all, left_on='NUTS_ID', right_on='geo_code')\n",
@@ -390,7 +514,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "controlling-conditioning",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "...and dissolve it to reach a resolution which leads to a nice visualization."
    ]
@@ -398,7 +525,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "institutional-robin",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "%%time\n",
@@ -408,7 +538,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "entertaining-handling",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "df_diss.head()"
@@ -416,7 +549,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "electrical-loading",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "## Visualization\n",
     "\n",
@@ -428,18 +564,26 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "effective-dinner",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "time = 2016\n",
-    "hue_selection = [f'{row.dataset}_{time}_{row.meta_idx}' \n",
-    "                 for row in df_meta.groupby('dataset').apply(lambda x: x.sample(n=1)).itertuples()]\n",
+    "hue_selection = [\n",
+    "    f'{row.dataset}_{time}_{row.meta_idx}'\n",
+    "    for row in df_meta.groupby('dataset').apply(lambda x: x.sample(n=1)).itertuples()\n",
+    "]\n",
     "hue_selection"
    ]
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "tired-macintosh",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Single country\n",
     "\n",
@@ -449,7 +593,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "economic-operation",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "size = int(np.ceil(np.sqrt(len(hue_selection))))  # size of plot grid\n",
@@ -459,7 +606,7 @@
     "\n",
     "for hue, ax in zip(hue_selection, axes.ravel()):\n",
     "    sub = df_merged[(df_merged['CNTR_CODE'] == 'DE')]\n",
-    "    \n",
+    "\n",
     "    gplt.choropleth(sub, hue=hue, legend=True, ax=ax)\n",
     "    ax.set_aspect(1.4)\n",
     "    ax.set_title(get_meta(hue), fontsize=10)"
@@ -467,7 +614,10 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "id": "studied-virginia",
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "### Europe\n",
     "\n",
@@ -477,15 +627,24 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
+   "id": "crazy-colonial",
+   "metadata": {
+    "tags": []
+   },
    "outputs": [],
    "source": [
     "for hue in hue_selection:\n",
     "    ax = gplt.choropleth(\n",
-    "        df_diss, hue=hue,\n",
-    "        legend=True, #k=5,\n",
+    "        df_diss,\n",
+    "        hue=hue,\n",
+    "        legend=True,  # k=5,\n",
     "        figsize=(16, 12),\n",
-    "        extent=(-25, 30, 45, 75),  # (min_longitude, min_latitude, max_longitude, max_latitude)\n",
+    "        extent=(\n",
+    "            -25,\n",
+    "            30,\n",
+    "            45,\n",
+    "            75,\n",
+    "        ),  # (min_longitude, min_latitude, max_longitude, max_latitude)\n",
     "    )\n",
     "    ax.set_aspect(1.4)\n",
     "    ax.set_title(get_meta(hue))"
@@ -508,10 +667,10 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.7.5"
+   "version": "3.8.6"
   },
   "toc-autonumbering": true
  },
  "nbformat": 4,
- "nbformat_minor": 4
+ "nbformat_minor": 5
 }

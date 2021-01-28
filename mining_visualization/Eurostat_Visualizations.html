@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Visualizing Eurostat data &mdash; kpj&#39;s blog 0.0.1 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,11 +32,9 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -55,7 +56,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> kpj's blog
+            <a href="../index.html" class="icon icon-home"> kpj's blog
           
 
           
@@ -120,15 +121,29 @@
 <li class="toctree-l1"><a class="reference internal" href="IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="MEP_Statistics.html">Analyzing the European Parliament</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<p class="caption"><span class="caption-text">Statistics &amp; Machine Learning</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../machine_learning/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/LinearRegressionCoefficients.html">Interpreting the coefficients of a linear regression</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/BenchmarkingCommonOperations.html">Benchmarking common operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">My OSS Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/bin2fasta.html">bin2fasta: Store any file as a fasta file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/clypper.html">clypper: Rapidly create supercuts from various video sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/cookiecutter-python.html">cookiecutter-python: An opinionated template for Python packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/vydia.html">Vydia: A modularized video player</a></li>
 </ul>
 
             
@@ -169,6 +184,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -180,7 +197,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/mining_visualization/Eurostat_Visualizations.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,21 +216,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -314,7 +345,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -380,6 +411,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -452,35 +484,34 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Visualizing-Eurostat-data">
 <h1>Visualizing Eurostat data<a class="headerlink" href="#Visualizing-Eurostat-data" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span>import numpy as np
+import pandas as pd
 
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+import geopandas as gpd
 
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import cm
 
-<span class="kn">import</span> <span class="nn">geoplot</span> <span class="k">as</span> <span class="nn">gplt</span>
-<span class="kn">import</span> <span class="nn">geoplot.crs</span> <span class="k">as</span> <span class="nn">gcrs</span>
+import geoplot as gplt
+import geoplot.crs as gcrs
 
-<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+from tqdm.auto import tqdm
 
-<span class="kn">from</span> <span class="nn">r_wrapper</span> <span class="kn">import</span> <span class="n">eurostat</span>
-
-<span class="kn">from</span> <span class="nn">bioinf_common.plotting</span> <span class="kn">import</span> <span class="n">get_distinct_colors</span>
+from r_wrapper import eurostat
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
+<span></span>sns.set_context(&#39;talk&#39;)
 </pre></div>
 </div>
 </div>
@@ -489,127 +520,29 @@ div.rendered_html tbody tr:hover {
 <p>The NUTS classification subdivides each member state into regions at three different levels, covering NUTS 1, 2 and 3 from larger to smaller areas (<a class="reference external" href="https://ec.europa.eu/eurostat/web/nuts/background">https://ec.europa.eu/eurostat/web/nuts/background</a>). Eurostat provides this geographical data in various formats (<a class="reference external" href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a>, looks for “NUTS”).</p>
 <p>The filename of each dataset follows a specific format: <code class="docutils literal notranslate"><span class="pre">&lt;theme&gt;_&lt;spatialtype&gt;_&lt;resolution&gt;_&lt;year&gt;_&lt;projection&gt;_&lt;subset&gt;.&lt;extension&gt;</span></code> (check <a class="reference external" href="https://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/nuts-2016-files.html">https://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/nuts-2016-files.html</a> for more information).</p>
 <p>To make things easier, we use the <code class="docutils literal notranslate"><span class="pre">eurostat</span></code> package to retrieve this data automatically.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_geo</span> <span class="o">=</span> <span class="n">eurostat</span><span class="o">.</span><span class="n">get_eurostat_geospatial</span><span class="p">(</span><span class="n">output_class</span><span class="o">=</span><span class="s1">&#39;sf&#39;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">nuts_level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2016</span><span class="p">)</span>
-<span class="n">df_geo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>df_geo = eurostat.get_eurostat_geospatial(
+    output_class=&#39;sf&#39;, resolution=60, nuts_level=2, year=2016
+)
+df_geo.head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>CNTR_CODE</th>
-      <th>NUTS_NAME</th>
-      <th>LEVL_CODE</th>
-      <th>FID</th>
-      <th>NUTS_ID</th>
-      <th>geometry</th>
-      <th>geo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>DE24</td>
-      <td>DE</td>
-      <td>Oberfranken</td>
-      <td>2</td>
-      <td>DE24</td>
-      <td>DE24</td>
-      <td>POLYGON ((11.48157 50.43162, 11.48290 50.40161...</td>
-      <td>DE24</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NO03</td>
-      <td>NO</td>
-      <td>Sør-Østlandet</td>
-      <td>2</td>
-      <td>NO03</td>
-      <td>NO03</td>
-      <td>POLYGON ((10.60072 60.13161, 10.57604 60.11572...</td>
-      <td>NO03</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>HU11</td>
-      <td>HU</td>
-      <td>Budapest</td>
-      <td>2</td>
-      <td>HU11</td>
-      <td>HU11</td>
-      <td>POLYGON ((18.93274 47.57117, 19.02713 47.58717...</td>
-      <td>HU11</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>HU12</td>
-      <td>HU</td>
-      <td>Pest</td>
-      <td>2</td>
-      <td>HU12</td>
-      <td>HU12</td>
-      <td>POLYGON ((18.96591 47.02896, 18.89943 47.07825...</td>
-      <td>HU12</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>HU21</td>
-      <td>HU</td>
-      <td>Közép-Dunántúl</td>
-      <td>2</td>
-      <td>HU21</td>
-      <td>HU21</td>
-      <td>POLYGON ((18.68843 47.57707, 18.70448 47.52134...</td>
-      <td>HU21</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 <div class="section" id="Example">
 <h3>Example<a class="headerlink" href="#Example" title="Permalink to this headline">¶</a></h3>
 <p>To get a feeling for the data, we can plot the geographical composition of an arbitrary country.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">gplt</span><span class="o">.</span><span class="n">polyplot</span><span class="p">(</span><span class="n">df_geo</span><span class="p">[</span><span class="n">df_geo</span><span class="p">[</span><span class="s1">&#39;CNTR_CODE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DE&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
+<span></span>ax = gplt.polyplot(df_geo[df_geo[&#39;CNTR_CODE&#39;] == &#39;DE&#39;])
+ax.set_aspect(1.4)
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_11_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_11_0.png" />
 </div>
 </div>
 </div>
@@ -619,120 +552,27 @@ div.rendered_html tbody tr:hover {
 <p>Eurostat is a great source for data related to Europe. An overview of the main tables can be found on <a class="reference external" href="https://ec.europa.eu/eurostat/web/regions/data/main-tables">https://ec.europa.eu/eurostat/web/regions/data/main-tables</a>.</p>
 <div class="section" id="Select-datasets">
 <h3>Select datasets<a class="headerlink" href="#Select-datasets" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">eurostat</span><span class="o">.</span><span class="n">search_eurostat</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>eurostat.search_eurostat(&#39;age&#39;).head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>code</th>
-      <th>type</th>
-      <th>last update of data</th>
-      <th>last table structure change</th>
-      <th>data start</th>
-      <th>data end</th>
-      <th>values</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>Manure storage facilities by NUTS 3 regions</td>
-      <td>aei_fm_ms</td>
-      <td>dataset</td>
-      <td>05.02.2019</td>
-      <td>27.02.2020</td>
-      <td>2000</td>
-      <td>2010</td>
-      <td>NA_character_</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Population on 1 January by age, sex and NUTS 2...</td>
-      <td>demo_r_d2jan</td>
-      <td>dataset</td>
-      <td>18.06.2020</td>
-      <td>16.06.2020</td>
-      <td>1990</td>
-      <td>2019</td>
-      <td>NA_character_</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Population on 1 January by age group, sex and ...</td>
-      <td>demo_r_pjangroup</td>
-      <td>dataset</td>
-      <td>18.06.2020</td>
-      <td>14.05.2020</td>
-      <td>1990</td>
-      <td>2019</td>
-      <td>NA_character_</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Population on 1 January by age group, sex and ...</td>
-      <td>demo_r_pjangrp3</td>
-      <td>dataset</td>
-      <td>14.05.2020</td>
-      <td>14.05.2020</td>
-      <td>2014</td>
-      <td>2019</td>
-      <td>NA_character_</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Population on 1 January by broad age group, se...</td>
-      <td>demo_r_pjanaggr3</td>
-      <td>dataset</td>
-      <td>16.06.2020</td>
-      <td>16.06.2020</td>
-      <td>1990</td>
-      <td>2019</td>
-      <td>NA_character_</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dataset_list</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;tgs00101&#39;</span><span class="p">,</span>  <span class="c1"># life expectancy</span>
-    <span class="s1">&#39;tgs00026&#39;</span><span class="p">,</span>  <span class="c1"># exposable income</span>
-    <span class="s1">&#39;tgs00036&#39;</span><span class="p">,</span>  <span class="c1"># primary income</span>
-    <span class="s1">&#39;tgs00010&#39;</span><span class="p">,</span>  <span class="c1"># unemployment rate</span>
-    <span class="s1">&#39;tgs00112&#39;</span><span class="p">,</span>  <span class="c1"># touristic bed number</span>
-<span class="p">]</span>
+<span></span>dataset_list = [
+    &#39;tgs00101&#39;,  # life expectancy
+    &#39;tgs00026&#39;,  # exposable income
+    &#39;tgs00036&#39;,  # primary income
+    &#39;tgs00010&#39;,  # unemployment rate
+    &#39;tgs00112&#39;,  # touristic bed number
+]
 </pre></div>
 </div>
 </div>
@@ -740,347 +580,107 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Download-and-aggregate-data">
 <h3>Download and aggregate data<a class="headerlink" href="#Download-and-aggregate-data" title="Permalink to this headline">¶</a></h3>
 <p>To make the subsequent analysis easier, we download all data at once and store it in a single dataframe. Additionally, we store associated meta data in another dataframe.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">meta_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span></span>df_list = []
+meta_list = []
 
-<span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataset_list</span><span class="p">):</span>
-    <span class="c1"># get dataset description</span>
-    <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">eurostat</span><span class="o">.</span><span class="n">label_eurostat_tables</span><span class="p">(</span><span class="n">dataset</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parsing </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+for dataset in tqdm(dataset_list):
+    # get dataset description
+    dataset_name = eurostat.label_eurostat_tables(dataset)[0]
+    print(f&#39;Parsing {dataset} ({dataset_name})&#39;)
 
-    <span class="c1"># retrieve data</span>
-    <span class="n">df_data</span> <span class="o">=</span> <span class="n">eurostat</span><span class="o">.</span><span class="n">get_eurostat</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">time_format</span><span class="o">=</span><span class="s1">&#39;raw&#39;</span><span class="p">)</span>
-    <span class="n">df_data</span> <span class="o">=</span> <span class="n">eurostat</span><span class="o">.</span><span class="n">label_eurostat</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;geo&#39;</span><span class="p">],</span> <span class="n">fix_duplicated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    # retrieve data
+    df_data = eurostat.get_eurostat(dataset, time_format=&#39;raw&#39;)
+    df_data = eurostat.label_eurostat(df_data, code=[&#39;geo&#39;], fix_duplicated=True)
 
-    <span class="c1"># index rows</span>
-    <span class="n">common_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;geo_code&#39;</span><span class="p">,</span> <span class="s1">&#39;geo&#39;</span><span class="p">]</span>
-    <span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_data</span><span class="p">[</span><span class="n">common_columns</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    # index rows
+    common_columns = [&#39;geo_code&#39;, &#39;geo&#39;]
+    df_data[&#39;idx&#39;] = df_data[common_columns].apply(
+        lambda row: &#39;_&#39;.join(row.values.astype(str)), axis=1
+    )
 
-    <span class="c1"># identify meta information</span>
-    <span class="n">info_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">common_columns</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;info_short&#39;</span><span class="p">}</span>
+    # identify meta information
+    info_columns = (
+        set(df_data.columns)
+        - set(common_columns)
+        - {&#39;idx&#39;, &#39;time&#39;, &#39;values&#39;, &#39;info&#39;, &#39;info_short&#39;}
+    )
 
-    <span class="n">meta_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;Index&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_data</span><span class="p">[</span><span class="n">info_columns</span><span class="p">]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
-    <span class="n">meta_idx</span><span class="p">,</span> <span class="n">meta_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">meta_cols</span><span class="p">)</span>
+    meta_cols = [
+        &#39;;&#39;.join(
+            f&#39;{k}={row._asdict()[k]}&#39;
+            for k in sorted(row._asdict().keys())
+            if k != &#39;Index&#39;
+        )
+        for row in df_data[info_columns].itertuples()
+    ]
+    meta_idx, meta_label = pd.factorize(meta_cols)
 
-    <span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">meta_idx</span><span class="p">,</span> <span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])]</span>
+    df_data[&#39;meta&#39;] = [
+        f&#39;{dataset}_{time}_{x}&#39; for x, time in zip(meta_idx, df_data[&#39;time&#39;])
+    ]
 
-    <span class="c1"># pivot data</span>
-    <span class="n">df_piv</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;meta&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+    # pivot data
+    df_piv = df_data.pivot(index=&#39;idx&#39;, columns=&#39;meta&#39;, values=&#39;values&#39;)
 
-    <span class="c1"># store data</span>
-    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_piv</span><span class="p">)</span>
+    # store data
+    df_list.append(df_piv)
 
-    <span class="n">meta_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span>
-        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="n">dataset</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
-        <span class="s1">&#39;meta_idx&#39;</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
-        <span class="s1">&#39;meta_label&#39;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
-    <span class="p">}</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">meta_idx</span><span class="p">),</span> <span class="n">meta_label</span><span class="p">)])</span>
+    meta_list.extend(
+        [
+            {
+                &#39;dataset&#39;: dataset,
+                &#39;name&#39;: dataset_name,
+                &#39;meta_idx&#39;: idx,
+                &#39;meta_label&#39;: label,
+            }
+            for idx, label in zip(np.unique(meta_idx), meta_label)
+        ]
+    )
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b52f660cc9534ec9959c8b4f58a6e977"}</script></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Parsing tgs00101 (Life expectancy at birth by sex and NUTS 2 region)
-Parsing tgs00026 (Disposable income of private households by NUTS 2 regions)
-Parsing tgs00036 (Primary income of private households by NUTS 2 regions)
-Parsing tgs00010 (Unemployment rate by NUTS 2 regions)
-Parsing tgs00112 (Number of establishments and bed-places by NUTS 2 regions)
-
-</pre></div></div>
 </div>
 <p>Each row corresponds to a geographic region, and each column to a certain statistic.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df_all</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>df_all = pd.concat(df_list, axis=1)
+df_all.head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>meta</th>
-      <th>tgs00101_2007_0</th>
-      <th>tgs00101_2007_1</th>
-      <th>tgs00101_2007_2</th>
-      <th>tgs00101_2008_0</th>
-      <th>tgs00101_2008_1</th>
-      <th>tgs00101_2008_2</th>
-      <th>tgs00101_2009_0</th>
-      <th>tgs00101_2009_1</th>
-      <th>tgs00101_2009_2</th>
-      <th>tgs00101_2010_0</th>
-      <th>...</th>
-      <th>tgs00112_2015_0</th>
-      <th>tgs00112_2015_1</th>
-      <th>tgs00112_2016_0</th>
-      <th>tgs00112_2016_1</th>
-      <th>tgs00112_2017_0</th>
-      <th>tgs00112_2017_1</th>
-      <th>tgs00112_2018_0</th>
-      <th>tgs00112_2018_1</th>
-      <th>tgs00112_2019_0</th>
-      <th>tgs00112_2019_1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>AT11_Burgenland (AT)</th>
-      <td>83.3</td>
-      <td>76.2</td>
-      <td>79.7</td>
-      <td>83.4</td>
-      <td>76.7</td>
-      <td>80.0</td>
-      <td>84.2</td>
-      <td>77.5</td>
-      <td>80.9</td>
-      <td>83.9</td>
-      <td>...</td>
-      <td>28414.0</td>
-      <td>436.0</td>
-      <td>28252.0</td>
-      <td>427.0</td>
-      <td>28293.0</td>
-      <td>427.0</td>
-      <td>27551.0</td>
-      <td>418.0</td>
-      <td>27404.0</td>
-      <td>412.0</td>
-    </tr>
-    <tr>
-      <th>AT12_Niederösterreich</th>
-      <td>82.7</td>
-      <td>77.0</td>
-      <td>79.9</td>
-      <td>82.8</td>
-      <td>77.1</td>
-      <td>80.0</td>
-      <td>82.7</td>
-      <td>77.4</td>
-      <td>80.1</td>
-      <td>83.3</td>
-      <td>...</td>
-      <td>68399.0</td>
-      <td>1459.0</td>
-      <td>68714.0</td>
-      <td>1429.0</td>
-      <td>67465.0</td>
-      <td>1434.0</td>
-      <td>67868.0</td>
-      <td>1435.0</td>
-      <td>68246.0</td>
-      <td>1447.0</td>
-    </tr>
-    <tr>
-      <th>AT13_Wien</th>
-      <td>82.0</td>
-      <td>76.7</td>
-      <td>79.5</td>
-      <td>82.4</td>
-      <td>77.0</td>
-      <td>79.9</td>
-      <td>82.1</td>
-      <td>76.5</td>
-      <td>79.4</td>
-      <td>82.2</td>
-      <td>...</td>
-      <td>73901.0</td>
-      <td>604.0</td>
-      <td>74771.0</td>
-      <td>1072.0</td>
-      <td>75462.0</td>
-      <td>1212.0</td>
-      <td>78672.0</td>
-      <td>1735.0</td>
-      <td>79245.0</td>
-      <td>2070.0</td>
-    </tr>
-    <tr>
-      <th>AT21_Kärnten</th>
-      <td>83.6</td>
-      <td>77.8</td>
-      <td>80.8</td>
-      <td>84.1</td>
-      <td>77.7</td>
-      <td>81.0</td>
-      <td>83.7</td>
-      <td>77.7</td>
-      <td>80.8</td>
-      <td>84.0</td>
-      <td>...</td>
-      <td>142508.0</td>
-      <td>2765.0</td>
-      <td>141191.0</td>
-      <td>2695.0</td>
-      <td>140473.0</td>
-      <td>2717.0</td>
-      <td>140448.0</td>
-      <td>2720.0</td>
-      <td>140165.0</td>
-      <td>2716.0</td>
-    </tr>
-    <tr>
-      <th>AT22_Steiermark</th>
-      <td>83.6</td>
-      <td>77.6</td>
-      <td>80.7</td>
-      <td>83.7</td>
-      <td>77.5</td>
-      <td>80.6</td>
-      <td>83.5</td>
-      <td>77.6</td>
-      <td>80.6</td>
-      <td>83.9</td>
-      <td>...</td>
-      <td>112499.0</td>
-      <td>2432.0</td>
-      <td>116262.0</td>
-      <td>2471.0</td>
-      <td>118592.0</td>
-      <td>2471.0</td>
-      <td>125850.0</td>
-      <td>2481.0</td>
-      <td>128815.0</td>
-      <td>2521.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 120 columns</p>
-</div></div>
 </div>
 <p>Extra information for each column is stored in an additional dataframe.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">meta_list</span><span class="p">)</span>
-<span class="n">df_meta</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>df_meta = pd.DataFrame(meta_list)
+df_meta.head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>dataset</th>
-      <th>name</th>
-      <th>meta_idx</th>
-      <th>meta_label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>tgs00101</td>
-      <td>Life expectancy at birth by sex and NUTS 2 region</td>
-      <td>0</td>
-      <td>age=Less than 1 year;sex=Females;unit=Year</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>tgs00101</td>
-      <td>Life expectancy at birth by sex and NUTS 2 region</td>
-      <td>1</td>
-      <td>age=Less than 1 year;sex=Males;unit=Year</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>tgs00101</td>
-      <td>Life expectancy at birth by sex and NUTS 2 region</td>
-      <td>2</td>
-      <td>age=Less than 1 year;sex=Total;unit=Year</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>tgs00026</td>
-      <td>Disposable income of private households by NUT...</td>
-      <td>0</td>
-      <td>direct=Balance;na_item=Disposable income, net;...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>tgs00036</td>
-      <td>Primary income of private households by NUTS 2...</td>
-      <td>0</td>
-      <td>direct=Balance;na_item=Balance of primary inco...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_meta</span><span class="p">(</span><span class="n">col_name</span><span class="p">,</span> <span class="n">extended</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">dataset</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">col_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">df_meta</span><span class="p">[(</span><span class="n">df_meta</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_meta</span><span class="p">[</span><span class="s1">&#39;meta_idx&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">))]</span>
-    <span class="k">assert</span> <span class="n">res</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span></span>def get_meta(col_name, extended=False):
+    dataset, time, idx = col_name.split(&#39;_&#39;)
+    res = df_meta[(df_meta[&#39;dataset&#39;] == dataset) &amp; (df_meta[&#39;meta_idx&#39;] == int(idx))]
+    assert res.shape[0] == 1
+    res = res.iloc[0]
 
-    <span class="k">if</span> <span class="n">extended</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">(</span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;meta_label&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    if extended:
+        return f&#39;{res[&quot;name&quot;]}\n({res[&quot;meta_label&quot;]})&#39;
+    else:
+        return res[&quot;name&quot;]
 </pre></div>
 </div>
 </div>
@@ -1089,56 +689,55 @@ Parsing tgs00112 (Number of establishments and bed-places by NUTS 2 regions)
 <h3>Overview<a class="headerlink" href="#Overview" title="Permalink to this headline">¶</a></h3>
 <p>To get a rough overview of the data, we can plot the clustered correlation matrix.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_corr</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span></span>df_corr = df_all.corr()
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">non_nan_datasets</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_corr</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_corr</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">df_corr</span> <span class="o">=</span> <span class="n">df_corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">non_nan_datasets</span><span class="p">,</span> <span class="n">non_nan_datasets</span><span class="p">]</span>
+<span></span>non_nan_datasets = set(df_corr.dropna(axis=0).index) &amp; set(
+    df_corr.dropna(axis=1).columns
+)
+df_corr = df_corr.loc[non_nan_datasets, non_nan_datasets]
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># assign unique color to each data source</span>
-<span class="n">cluster_names</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="n">cluser_colors</span> <span class="o">=</span> <span class="n">get_distinct_colors</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_names</span><span class="p">))</span>
-<span class="n">cluster_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="n">c</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cluster_names</span><span class="p">,</span> <span class="n">cluser_colors</span><span class="p">)}</span>
-<span class="n">cluster_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">col</span><span class="p">,</span> <span class="n">cluster_map</span><span class="p">[</span><span class="n">col</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]])</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_all</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span></span># assign unique color to each data source
+cluster_names = df_all.columns.str.split(&#39;_&#39;).str[0].unique()
+cluser_colors = cm.rainbow(np.linspace(0, 1, len(cluster_names))).tolist()
+cluster_map = {n: c for n, c in zip(cluster_names, cluser_colors)}
+cluster_colors = pd.DataFrame(
+    [(col, cluster_map[col.split(&#39;_&#39;)[0]]) for col in df_all.columns]
+).set_index(0)[1]
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
-    <span class="n">df_corr</span><span class="p">,</span>
-    <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag_r&#39;</span><span class="p">,</span>
-    <span class="n">row_colors</span><span class="o">=</span><span class="n">cluster_colors</span><span class="p">,</span> <span class="n">col_colors</span><span class="o">=</span><span class="n">cluster_colors</span>
-<span class="p">)</span>
+<span></span>g = sns.clustermap(
+    df_corr,
+    xticklabels=False,
+    yticklabels=False,
+    cmap=&#39;vlag_r&#39;,
+    row_colors=cluster_colors,
+    col_colors=cluster_colors,
+)
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_30_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_30_0.png" />
 </div>
 </div>
 </div>
@@ -1147,539 +746,113 @@ Parsing tgs00112 (Number of establishments and bed-places by NUTS 2 regions)
 <h2>Data preparation<a class="headerlink" href="#Data-preparation" title="Permalink to this headline">¶</a></h2>
 <p>In order to combine both geographical and statistical data, we merge the data…</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;geo_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">df_all</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span></span>df_all[&#39;geo_code&#39;] = [idx.split(&#39;_&#39;)[0] for idx in df_all.index]
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_merged</span> <span class="o">=</span> <span class="n">df_geo</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_all</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;NUTS_ID&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;geo_code&#39;</span><span class="p">)</span>
-<span class="n">df_merged</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>df_merged = df_geo.merge(df_all, left_on=&#39;NUTS_ID&#39;, right_on=&#39;geo_code&#39;)
+df_merged.head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>CNTR_CODE</th>
-      <th>NUTS_NAME</th>
-      <th>LEVL_CODE</th>
-      <th>FID</th>
-      <th>NUTS_ID</th>
-      <th>geometry</th>
-      <th>geo</th>
-      <th>tgs00101_2007_0</th>
-      <th>tgs00101_2007_1</th>
-      <th>...</th>
-      <th>tgs00112_2015_1</th>
-      <th>tgs00112_2016_0</th>
-      <th>tgs00112_2016_1</th>
-      <th>tgs00112_2017_0</th>
-      <th>tgs00112_2017_1</th>
-      <th>tgs00112_2018_0</th>
-      <th>tgs00112_2018_1</th>
-      <th>tgs00112_2019_0</th>
-      <th>tgs00112_2019_1</th>
-      <th>geo_code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>DE24</td>
-      <td>DE</td>
-      <td>Oberfranken</td>
-      <td>2</td>
-      <td>DE24</td>
-      <td>DE24</td>
-      <td>POLYGON ((11.48157 50.43162, 11.48290 50.40161...</td>
-      <td>DE24</td>
-      <td>82.2</td>
-      <td>76.7</td>
-      <td>...</td>
-      <td>890.0</td>
-      <td>40555.0</td>
-      <td>876.0</td>
-      <td>40804.0</td>
-      <td>869.0</td>
-      <td>40049.0</td>
-      <td>863.0</td>
-      <td>41574.0</td>
-      <td>865.0</td>
-      <td>DE24</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NO03</td>
-      <td>NO</td>
-      <td>Sør-Østlandet</td>
-      <td>2</td>
-      <td>NO03</td>
-      <td>NO03</td>
-      <td>POLYGON ((10.60072 60.13161, 10.57604 60.11572...</td>
-      <td>NO03</td>
-      <td>82.3</td>
-      <td>77.7</td>
-      <td>...</td>
-      <td>464.0</td>
-      <td>143032.0</td>
-      <td>455.0</td>
-      <td>142724.0</td>
-      <td>421.0</td>
-      <td>151654.0</td>
-      <td>413.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NO03</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>HU11</td>
-      <td>HU</td>
-      <td>Budapest</td>
-      <td>2</td>
-      <td>HU11</td>
-      <td>HU11</td>
-      <td>POLYGON ((18.93274 47.57117, 19.02713 47.58717...</td>
-      <td>HU11</td>
-      <td>78.7</td>
-      <td>72.4</td>
-      <td>...</td>
-      <td>342.0</td>
-      <td>57210.0</td>
-      <td>359.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>56213.0</td>
-      <td>375.0</td>
-      <td>58711.0</td>
-      <td>379.0</td>
-      <td>HU11</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>HU12</td>
-      <td>HU</td>
-      <td>Pest</td>
-      <td>2</td>
-      <td>HU12</td>
-      <td>HU12</td>
-      <td>POLYGON ((18.96591 47.02896, 18.89943 47.07825...</td>
-      <td>HU12</td>
-      <td>77.9</td>
-      <td>69.8</td>
-      <td>...</td>
-      <td>229.0</td>
-      <td>16348.0</td>
-      <td>232.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>17816.0</td>
-      <td>248.0</td>
-      <td>16927.0</td>
-      <td>240.0</td>
-      <td>HU12</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>HU21</td>
-      <td>HU</td>
-      <td>Közép-Dunántúl</td>
-      <td>2</td>
-      <td>HU21</td>
-      <td>HU21</td>
-      <td>POLYGON ((18.68843 47.57707, 18.70448 47.52134...</td>
-      <td>HU21</td>
-      <td>77.8</td>
-      <td>69.4</td>
-      <td>...</td>
-      <td>610.0</td>
-      <td>63641.0</td>
-      <td>625.0</td>
-      <td>65846.0</td>
-      <td>651.0</td>
-      <td>70627.0</td>
-      <td>685.0</td>
-      <td>69919.0</td>
-      <td>692.0</td>
-      <td>HU21</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 129 columns</p>
-</div></div>
 </div>
 <p>…and dissolve it to reach a resolution which leads to a nice visualization.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">%%time</span>
-<span class="n">df_diss</span> <span class="o">=</span> <span class="n">df_merged</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;CNTR_CODE&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span></span>%%time
+df_diss = df_merged.dissolve(by=&#39;CNTR_CODE&#39;, aggfunc=&#39;mean&#39;)
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-CPU times: user 567 ms, sys: 4.7 ms, total: 572 ms
-Wall time: 575 ms
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_diss</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span></span>df_diss.head()
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>geometry</th>
-      <th>LEVL_CODE</th>
-      <th>tgs00101_2007_0</th>
-      <th>tgs00101_2007_1</th>
-      <th>tgs00101_2007_2</th>
-      <th>tgs00101_2008_0</th>
-      <th>tgs00101_2008_1</th>
-      <th>tgs00101_2008_2</th>
-      <th>tgs00101_2009_0</th>
-      <th>tgs00101_2009_1</th>
-      <th>...</th>
-      <th>tgs00112_2015_0</th>
-      <th>tgs00112_2015_1</th>
-      <th>tgs00112_2016_0</th>
-      <th>tgs00112_2016_1</th>
-      <th>tgs00112_2017_0</th>
-      <th>tgs00112_2017_1</th>
-      <th>tgs00112_2018_0</th>
-      <th>tgs00112_2018_1</th>
-      <th>tgs00112_2019_0</th>
-      <th>tgs00112_2019_1</th>
-    </tr>
-    <tr>
-      <th>CNTR_CODE</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>AT</th>
-      <td>POLYGON ((15.99624 46.83540, 15.98885 46.82563...</td>
-      <td>2</td>
-      <td>83.366667</td>
-      <td>77.611111</td>
-      <td>80.566667</td>
-      <td>83.622222</td>
-      <td>77.977778</td>
-      <td>80.866667</td>
-      <td>83.600000</td>
-      <td>77.844444</td>
-      <td>...</td>
-      <td>110385.000000</td>
-      <td>2257.222222</td>
-      <td>111271.333333</td>
-      <td>2291.000000</td>
-      <td>112577.666667</td>
-      <td>2320.555556</td>
-      <td>116181.888889</td>
-      <td>2388.222222</td>
-      <td>115356.444444</td>
-      <td>2439.000000</td>
-    </tr>
-    <tr>
-      <th>BE</th>
-      <td>POLYGON ((6.02490 50.18278, 5.97197 50.17189, ...</td>
-      <td>2</td>
-      <td>82.581818</td>
-      <td>76.909091</td>
-      <td>79.790909</td>
-      <td>82.536364</td>
-      <td>76.627273</td>
-      <td>79.600000</td>
-      <td>82.672727</td>
-      <td>77.190909</td>
-      <td>...</td>
-      <td>33499.272727</td>
-      <td>726.363636</td>
-      <td>33497.090909</td>
-      <td>746.363636</td>
-      <td>33982.000000</td>
-      <td>779.090909</td>
-      <td>35438.727273</td>
-      <td>837.363636</td>
-      <td>35962.272727</td>
-      <td>877.363636</td>
-    </tr>
-    <tr>
-      <th>BG</th>
-      <td>POLYGON ((26.56154 41.92627, 26.58121 41.90292...</td>
-      <td>2</td>
-      <td>76.466667</td>
-      <td>69.400000</td>
-      <td>72.833333</td>
-      <td>76.850000</td>
-      <td>69.683333</td>
-      <td>73.133333</td>
-      <td>77.183333</td>
-      <td>70.000000</td>
-      <td>...</td>
-      <td>53744.166667</td>
-      <td>533.666667</td>
-      <td>54710.666667</td>
-      <td>555.166667</td>
-      <td>58120.666667</td>
-      <td>557.666667</td>
-      <td>55932.833333</td>
-      <td>576.333333</td>
-      <td>56917.666667</td>
-      <td>610.666667</td>
-    </tr>
-    <tr>
-      <th>CH</th>
-      <td>POLYGON ((9.15938 46.16960, 9.12055 46.13610, ...</td>
-      <td>2</td>
-      <td>84.557143</td>
-      <td>79.614286</td>
-      <td>82.185714</td>
-      <td>84.785714</td>
-      <td>79.942857</td>
-      <td>82.471429</td>
-      <td>84.742857</td>
-      <td>80.014286</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>97329.571429</td>
-      <td>5902.714286</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>94951.857143</td>
-      <td>5579.571429</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>CY</th>
-      <td>POLYGON ((33.75237 34.97711, 33.70164 34.97605...</td>
-      <td>2</td>
-      <td>82.100000</td>
-      <td>77.600000</td>
-      <td>79.800000</td>
-      <td>82.900000</td>
-      <td>78.200000</td>
-      <td>80.600000</td>
-      <td>83.500000</td>
-      <td>78.500000</td>
-      <td>...</td>
-      <td>85414.000000</td>
-      <td>788.000000</td>
-      <td>84239.000000</td>
-      <td>785.000000</td>
-      <td>85965.000000</td>
-      <td>796.000000</td>
-      <td>87240.000000</td>
-      <td>802.000000</td>
-      <td>90188.000000</td>
-      <td>816.000000</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 122 columns</p>
-</div></div>
 </div>
 </div>
 <div class="section" id="Visualization">
 <h2>Visualization<a class="headerlink" href="#Visualization" title="Permalink to this headline">¶</a></h2>
 <p>We visualize the data using choropleth maps. By doing so, each geographical region is colored according to a statistic of interest.</p>
 <p>In the following, we will use a single entry from each downloaded dataset.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">time</span> <span class="o">=</span> <span class="mi">2016</span>
-<span class="n">hue_selection</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">meta_idx</span><span class="si">}</span><span class="s1">&#39;</span>
-                 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
-<span class="n">hue_selection</span>
+<span></span>time = 2016
+hue_selection = [
+    f&#39;{row.dataset}_{time}_{row.meta_idx}&#39;
+    for row in df_meta.groupby(&#39;dataset&#39;).apply(lambda x: x.sample(n=1)).itertuples()
+]
+hue_selection
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;tgs00010_2016_2&#39;,
- &#39;tgs00026_2016_0&#39;,
- &#39;tgs00036_2016_0&#39;,
- &#39;tgs00101_2016_1&#39;,
- &#39;tgs00112_2016_1&#39;]
-</pre></div></div>
 </div>
 <div class="section" id="Single-country">
 <h3>Single country<a class="headerlink" href="#Single-country" title="Permalink to this headline">¶</a></h3>
 <p>We can get a precise overview of individual regions within a single country.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hue_selection</span><span class="p">))))</span>  <span class="c1"># size of plot grid</span>
+<span></span>size = int(np.ceil(np.sqrt(len(hue_selection))))  # size of plot grid
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-<span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+fig, axes = plt.subplots(nrows=size, ncols=size, figsize=(20, 20))
+[ax.axis(&#39;off&#39;) for ax in axes.ravel()]
 
-<span class="k">for</span> <span class="n">hue</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">hue_selection</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()):</span>
-    <span class="n">sub</span> <span class="o">=</span> <span class="n">df_merged</span><span class="p">[(</span><span class="n">df_merged</span><span class="p">[</span><span class="s1">&#39;CNTR_CODE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DE&#39;</span><span class="p">)]</span>
+for hue, ax in zip(hue_selection, axes.ravel()):
+    sub = df_merged[(df_merged[&#39;CNTR_CODE&#39;] == &#39;DE&#39;)]
 
-    <span class="n">gplt</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">hue</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">get_meta</span><span class="p">(</span><span class="n">hue</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    gplt.choropleth(sub, hue=hue, legend=True, ax=ax)
+    ax.set_aspect(1.4)
+    ax.set_title(get_meta(hue), fontsize=10)
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_40_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_40_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Europe">
 <h3>Europe<a class="headerlink" href="#Europe" title="Permalink to this headline">¶</a></h3>
 <p>To get a more global picture, we can also plot the aggregated data per country.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">hue</span> <span class="ow">in</span> <span class="n">hue_selection</span><span class="p">:</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">gplt</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span>
-        <span class="n">df_diss</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">hue</span><span class="p">,</span>
-        <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#k=5,</span>
-        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
-        <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">75</span><span class="p">),</span>  <span class="c1"># (min_longitude, min_latitude, max_longitude, max_latitude)</span>
-    <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">get_meta</span><span class="p">(</span><span class="n">hue</span><span class="p">))</span>
+<span></span>for hue in hue_selection:
+    ax = gplt.choropleth(
+        df_diss,
+        hue=hue,
+        legend=True,  # k=5,
+        figsize=(16, 12),
+        extent=(
+            -25,
+            30,
+            45,
+            75,
+        ),  # (min_longitude, min_latitude, max_longitude, max_latitude)
+    )
+    ax.set_aspect(1.4)
+    ax.set_title(get_meta(hue))
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_0.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_0.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_1.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_1.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_2.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_2.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_3.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_3.png" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_Eurostat_Visualizations_42_4.png" src="../_images/mining_visualization_Eurostat_Visualizations_42_4.png" />
-</div>
-</div>
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"222e236cfe904a8988b88e7688e34029": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "12947945309c4218ba0a50cd4c0f5b53": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "a31f5d88284b4f278e13db6f2a587d72": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_222e236cfe904a8988b88e7688e34029", "max": 5.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_12947945309c4218ba0a50cd4c0f5b53", "value": 5.0}}, "80d8723931d24a57ab15b30174244ab2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d0e8581d8e5e4526bc6bb2e7dbac9100": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2b1ad94478384afb97d969d48bdf1ae1": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_80d8723931d24a57ab15b30174244ab2", "placeholder": "\u200b", "style": "IPY_MODEL_d0e8581d8e5e4526bc6bb2e7dbac9100", "value": " 5/5 [00:18&lt;00:00,  3.68s/it]"}}, "97b4b64f68b444cdb1ab8a2c33b8ee30": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b52f660cc9534ec9959c8b4f58a6e977": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_a31f5d88284b4f278e13db6f2a587d72", "IPY_MODEL_2b1ad94478384afb97d969d48bdf1ae1"], "layout": "IPY_MODEL_97b4b64f68b444cdb1ab8a2c33b8ee30"}}}, "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 
@@ -1688,37 +861,29 @@ Wall time: 575 ms
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="IMDB_ratings.html" class="btn btn-neutral float-right" title="Investigating TV Series ratings using IMDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../linux/SetupEncryptedArchlinux.html" class="btn btn-neutral float-left" title="Setting up Archlinux with Encrypted Disk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="IMDB_ratings.html" class="btn btn-neutral float-right" title="Investigating TV Series ratings using IMDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../linux/SetupEncryptedArchlinux.html" class="btn btn-neutral float-left" title="Setting up Archlinux with Encrypted Disk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, kpj
+        &#169; Copyright 2021, kpj.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
