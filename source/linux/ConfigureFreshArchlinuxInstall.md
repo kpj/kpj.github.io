@@ -27,7 +27,7 @@ $ netctl enable ether
 In order to complete the following steps, some additional programs might be needed. In order to install those and other cool ones, update the pacman database (`pacman -Syy`) and install the following applications:
 
 * `vim-minimal` - text editing and much more
-* `yaourt` - easy installation of AUR packages
+* `yay` - easy installation of AUR packages
 * `mplayer`/`mpv` - multimedia player
 * `htop` - resource usage stats
 * `wget` - network downloader
