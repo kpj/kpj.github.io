@@ -12,7 +12,7 @@ find "./source" -name "*.ipynb" -print0 |
         (
             cd "$(dirname "$line")"
             pwd
-            papermill "$(basename "$line")" "$(basename "/$line")"
+            papermill "$(basename "$line")" "$(basename "$line")"
             nbstripout --keep-count --keep-output --extra-keys "cell.metadata.papermill metadata.papermill" "$(basename "$line")"
         )
     done
