@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Rescuing a Broken Archlinux System" href="RescuingABrokenSystem.html" />
+    <link rel="next" title="Monitoring server resources using Munin" href="MonitoringWithMunin.html" />
     <link rel="prev" title="Building a Custom Linux Kernel" href="KernelBuilding.html" /> 
 </head>
 
@@ -101,28 +101,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#client">Client</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#monitoring-server-health">Monitoring server health</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#munin-master-setup">Munin-Master setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#making-the-results-available">Making the results available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-health-monitoring">Server health monitoring</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#munin-node-setup">Munin-Node setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#plugins">Plugins</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#common-plugins">Common plugins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#smart-plugin">SMART-plugin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lm-sensors-plugin">lm_sensors-plugin</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#general-tips">General tips</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#corrupted-database">Corrupted database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#certain-nodes-cannot-be-reached">Certain nodes cannot be reached.</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="MonitoringWithMunin.html">Monitoring server resources using Munin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
 </ul>
@@ -327,214 +309,10 @@ $ mount --bind /mnt/media/ /srv/nfs/media/
 </div>
 </div>
 </div>
-<div class="section" id="monitoring-server-health">
-<h2>Monitoring server health<a class="headerlink" href="#monitoring-server-health" title="Permalink to this headline">¶</a></h2>
-<p>We will monitor and display the server’s health status using <code class="docutils literal notranslate"><span class="pre">munin</span></code>.
-First, we’ll focus on its general setup and subsequently on various useful plugins.</p>
-<div class="section" id="munin-master-setup">
-<h3>Munin-Master setup<a class="headerlink" href="#munin-master-setup" title="Permalink to this headline">¶</a></h3>
-<p>The master will gather data from all nodes and render them using HTML.</p>
-<p>Install <code class="docutils literal notranslate"><span class="pre">munin</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S munin
-</pre></div>
-</div>
-<p>Then, instruct it to store HTML renders of the health-reports in <code class="docutils literal notranslate"><span class="pre">/srv/http/munin</span></code>. This will make them easily accessible using a webserver later on.
-First, prepare the directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /srv/http/munin
-$ chown munin:munin /srv/http/munin
-</pre></div>
-</div>
-<p>And then edit <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>htmldir /srv/http/munin
-</pre></div>
-</div>
-<p>In order to generate graphs every 5 minutes, we will create a systemd-service which is going to be called from a systemd-timer.</p>
-<p>The service (<code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/munin-cron.service</span></code>) itself will call <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> and looks as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
-<span class="nv">Description</span><span class="o">=</span>Survey monitored computers
-<span class="nv">After</span><span class="o">=</span>network.target
-
-<span class="o">[</span>Service<span class="o">]</span>
-<span class="nv">User</span><span class="o">=</span>munin
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/munin-cron
-</pre></div>
-</div>
-<p>The timer <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/munin-cron.timer</span></code> is then:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
-<span class="nv">Description</span><span class="o">=</span>Survey monitored computers every five minutes
-
-<span class="o">[</span>Timer<span class="o">]</span>
-<span class="nv">OnCalendar</span><span class="o">=</span>*-*-* *:00/5:00
-
-<span class="o">[</span>Install<span class="o">]</span>
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
-</pre></div>
-</div>
-<p>Before enabling them, we can try a manual test-run by running <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> as the munin user (remember that nothing will happen without enabling some plugins):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ su - munin --shell<span class="o">=</span>/bin/bash -c munin-cron
-</pre></div>
-</div>
-<p>If we are sure that everything works, we can finally enable the timer:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl daemon-reload
-$ systemctl <span class="nb">enable</span> --now munin-cron.timer
-</pre></div>
-</div>
-<p>And afterwards – of course – check the logs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ journalctl --unit munin-cron.service
-</pre></div>
-</div>
-<div class="section" id="making-the-results-available">
-<h4>Making the results available<a class="headerlink" href="#making-the-results-available" title="Permalink to this headline">¶</a></h4>
-<p>To make the results accessible using a web-browser, we use <code class="docutils literal notranslate"><span class="pre">lighttpd</span></code>.
-This will automatically serve <code class="docutils literal notranslate"><span class="pre">/srv/http/</span></code> on port 80 (make sure to checkout <code class="docutils literal notranslate"><span class="pre">/etc/lighttpd/lighttpd.conf</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S lighttpd
-$ systemctl start lighttpd
-</pre></div>
-</div>
-<p>The reports can then be accessed under <code class="docutils literal notranslate"><span class="pre">&lt;server</span> <span class="pre">ip&gt;/munin/</span></code>.</p>
-<p>In order to have interactive graphs, we will have to enable (fast) <code class="docutils literal notranslate"><span class="pre">CGI</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S fcgi
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ touch /var/log/munin/munin-cgi-graph.log
-$ chmod <span class="m">777</span> /var/log/munin/munin-cgi-graph.log
-$ chmod <span class="m">777</span> /var/lib/munin/cgi-tmp
-</pre></div>
-</div>
-<p>Test if the CGI-executable is able to run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ /usr/bin/perl -T /usr/share/munin/cgi/munin-cgi-graph
-</pre></div>
-</div>
-<p>Add the following to <code class="docutils literal notranslate"><span class="pre">/etc/lighttpd/lighttpd.conf</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server.modules +<span class="o">=</span> <span class="o">(</span><span class="s2">&quot;mod_fastcgi&quot;</span><span class="o">)</span>
-fastcgi.server +<span class="o">=</span> <span class="o">(</span><span class="s2">&quot;/munin-cgi/munin-cgi-graph&quot;</span> <span class="o">=</span>&gt;
-    <span class="o">((</span>
-        <span class="s2">&quot;socket&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;/var/run/lighttpd/munin-cgi-graph.sock&quot;</span>,
-        <span class="s2">&quot;bin-path&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;/usr/share/munin/cgi/munin-cgi-graph&quot;</span>,
-        <span class="s2">&quot;check-local&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;disable&quot;</span>
-    <span class="o">))</span>
-<span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="munin-node-setup">
-<h3>Munin-Node setup<a class="headerlink" href="#munin-node-setup" title="Permalink to this headline">¶</a></h3>
-<p>Each device for which health-summaries shall be reported needs to become a <code class="docutils literal notranslate"><span class="pre">munin-node</span></code> (this is also the case for the master).
-Luckily, this is rather trivial:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S munin-node
-</pre></div>
-</div>
-<p>On the node itself, we need to allow communication with the master (in <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin-node.conf</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host_name &lt;my name&gt;
-allow ^&lt;master ip&gt;$
-</pre></div>
-</div>
-<p>and start the node (don’t forget to add plugins though):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now munin-node
-</pre></div>
-</div>
-<p>On the master-server, we have to add a configuration entry per node to <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>group_name<span class="p">;</span>master-node<span class="o">]</span>
-    address <span class="m">127</span>.0.0.1
-
-<span class="o">[</span>group_name<span class="p">;</span>machine01<span class="o">]</span>
-    address &lt;node ip&gt;
-</pre></div>
-</div>
-</div>
-<div class="section" id="plugins">
-<h3>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h3>
-<p>Without plugins, <code class="docutils literal notranslate"><span class="pre">munin</span></code> won’t be reporting much.
-In the following, a few useful ones will be listed. More plugins can be found, e.g. by calling <code class="docutils literal notranslate"><span class="pre">munin-node-configure</span> <span class="pre">--suggest</span></code>.</p>
-<p>Each plugin can be installed by first copying them to <code class="docutils literal notranslate"><span class="pre">/usr/lib/munin/plugins/</span></code> and then linking with <code class="docutils literal notranslate"><span class="pre">/etc/munin/plugins/</span></code>.
-Note that they must be executable (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">a+x</span> <span class="pre">/usr/lib/munin/plugins/&lt;plugin</span> <span class="pre">name&gt;</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/&lt;plugin name&gt; /etc/munin/plugins/
-</pre></div>
-</div>
-<p>As a general rule, each individual plugin can be tested in isolation using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ munin-run &lt;<span class="nb">command</span> name&gt;
-</pre></div>
-</div>
-<p>For the CPU-plugin <code class="docutils literal notranslate"><span class="pre">&lt;command</span> <span class="pre">name&gt;</span></code> would be <code class="docutils literal notranslate"><span class="pre">cpu</span></code>.</p>
-<p>Remember, that a node needs to be restarted after changing its plugin configuration:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl restart munin-node
-</pre></div>
-</div>
-<div class="section" id="common-plugins">
-<h4>Common plugins<a class="headerlink" href="#common-plugins" title="Permalink to this headline">¶</a></h4>
-<p>The following are plugins providing generally useful statistics:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cpu</span></code>: CPU-speed</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code>: disk space usage</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">if_&lt;interface&gt;</span></code>: tx/rx rates on given interface</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">processes</span></code>: overview of process numbers</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code>: RAM usage</p></li>
-</ul>
-<p>My own custom plugins can be found <a class="reference external" href="https://github.com/kpj/munin-plugins">here</a>.</p>
-</div>
-<div class="section" id="smart-plugin">
-<h4>SMART-plugin<a class="headerlink" href="#smart-plugin" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">S.M.A.R.T.</span></code> provides a nice way of monitoring your disks (HDD, SSD, etc) health status.</p>
-<p>Its basic usage if fairly straight-forward:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S smartmontools
-$ smartctl -i /dev/sda  <span class="c1"># show device info</span>
-$ smartctl -t short /dev/sda  <span class="c1"># run a short test</span>
-$ smartctl -H /dev/sda  <span class="c1"># show test results</span>
-</pre></div>
-</div>
-<p>To interlink it with <code class="docutils literal notranslate"><span class="pre">munin</span></code>, first configure the plugin by writing the following to <code class="docutils literal notranslate"><span class="pre">/etc/munin/plugin-conf.d/munin-node</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>smart_*<span class="o">]</span>
-    user root
-    group disk
-</pre></div>
-</div>
-<p>and secondly enable it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/smart_ /etc/munin/plugins/smart_sda  <span class="c1"># for disk /dev/sda</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="lm-sensors-plugin">
-<h4>lm_sensors-plugin<a class="headerlink" href="#lm-sensors-plugin" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">lm_sensors</span></code> allow the tracking of temperatures, voltages and more.</p>
-<p>First, set them up as you normally would:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S lm_sensors
-$ sensors-detect  <span class="c1"># generate kernel-modules (always press enter)</span>
-$ sensors
-</pre></div>
-</div>
-<p>Temperatures can then be monitored by adding the respective plugin:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/sensors_ /etc/munin/plugins/sensors_temp
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="troubleshooting">
-<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="general-tips">
-<h4>General tips<a class="headerlink" href="#general-tips" title="Permalink to this headline">¶</a></h4>
-<p>A manual connection to a node is possible, and useful for debugging:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netcat &lt;node ip&gt; <span class="m">4949</span>
-</pre></div>
-</div>
-<p>One can then enter e.g. one of the following commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>: list enabled plugins</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">&lt;plugin</span> <span class="pre">name&gt;</span></code>: check output of given plugin</p></li>
-</ul>
-<p>Furthermore, <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> can be run with the <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option to show what is going on in more detail.</p>
-<p>More information can be found <a class="reference external" href="http://guide.munin-monitoring.org/en/latest/tutorial/troubleshooting.html">here</a>.</p>
-</div>
-<div class="section" id="corrupted-database">
-<h4>Corrupted database<a class="headerlink" href="#corrupted-database" title="Permalink to this headline">¶</a></h4>
-<p>The munin-databases can be found in <code class="docutils literal notranslate"><span class="pre">/var/lib/munin/&lt;group</span> <span class="pre">name&gt;</span></code>. Delete them to reset all data.</p>
-</div>
-<div class="section" id="certain-nodes-cannot-be-reached">
-<h4>Certain nodes cannot be reached.<a class="headerlink" href="#certain-nodes-cannot-be-reached" title="Permalink to this headline">¶</a></h4>
-<p>Check that their ip-address is set correctly in the master’s <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>.
-Furthermore make sure that their own configuration (<code class="docutils literal notranslate"><span class="pre">/etc/munin/munin-node.conf</span></code>) allows the master to connect (<code class="docutils literal notranslate"><span class="pre">allow</span> <span class="pre">&lt;master</span> <span class="pre">ip&gt;</span></code>).</p>
-</div>
-</div>
+<div class="section" id="server-health-monitoring">
+<h2>Server health monitoring<a class="headerlink" href="#server-health-monitoring" title="Permalink to this headline">¶</a></h2>
+<p>To keep you media server running for a long time, monitoring its health and resource usage is important.
+Check out how to achieve this using <a class="reference internal" href="MonitoringWithMunin.html"><span class="doc">Munin</span></a>.</p>
 </div>
 </div>
 
@@ -544,7 +322,7 @@ Furthermore make sure that their own configuration (<code class="docutils litera
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="RescuingABrokenSystem.html" class="btn btn-neutral float-right" title="Rescuing a Broken Archlinux System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="MonitoringWithMunin.html" class="btn btn-neutral float-right" title="Monitoring server resources using Munin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="KernelBuilding.html" class="btn btn-neutral float-left" title="Building a Custom Linux Kernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

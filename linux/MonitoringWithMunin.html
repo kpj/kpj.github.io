@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Monitoring server resources using Munin &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rescuing a Broken Archlinux System" href="RescuingABrokenSystem.html" />
+    <link rel="prev" title="Setting up a media server" href="MediaServerSetup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Monitoring server resources using Munin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#munin-master-setup">Munin-Master setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#making-the-results-available">Making the results available</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#munin-node-setup">Munin-Node setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-plugins">Common plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smart-plugin">SMART-plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lm-sensors-plugin">lm_sensors-plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-tips">General tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrupted-database">Corrupted database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#certain-nodes-cannot-be-reached">Certain nodes cannot be reached</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mining_visualization/MEP_Statistics.html">Analyzing the European Parliament</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistics &amp; Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/LinearRegressionCoefficients.html">Interpreting the coefficients of a linear regression</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/BenchmarkingCommonOperations.html">Benchmarking common operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">My OSS Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/bin2fasta.html">bin2fasta: Store any file as a fasta file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/clypper.html">clypper: Rapidly create supercuts from various video sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/cookiecutter-python.html">cookiecutter-python: An opinionated template for Python packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/vydia.html">Vydia: A modularized video player</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Monitoring server resources using Munin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/MonitoringWithMunin.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="monitoring-server-resources-using-munin">
+<h1>Monitoring server resources using Munin<a class="headerlink" href="#monitoring-server-resources-using-munin" title="Permalink to this headline">¶</a></h1>
+<p>We will monitor and display the server’s health status using <a class="reference external" href="http://munin-monitoring.org/">munin</a>.
+First, we’ll focus on its general setup and subsequently on various useful plugins.</p>
+<div class="section" id="munin-master-setup">
+<h2>Munin-Master setup<a class="headerlink" href="#munin-master-setup" title="Permalink to this headline">¶</a></h2>
+<p>The master will gather data from all nodes and render them using HTML.</p>
+<p>Install <code class="docutils literal notranslate"><span class="pre">munin</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S munin
+</pre></div>
+</div>
+<p>Then, instruct it to store HTML renders of the health-reports in <code class="docutils literal notranslate"><span class="pre">/srv/http/munin</span></code>. This will make them easily accessible using a webserver later on.
+First, prepare the directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /srv/http/munin
+$ chown munin:munin /srv/http/munin
+</pre></div>
+</div>
+<p>And then edit <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>htmldir /srv/http/munin
+</pre></div>
+</div>
+<p>In order to generate graphs every 5 minutes, we will create a systemd-service which is going to be called from a systemd-timer.</p>
+<p>The service (<code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/munin-cron.service</span></code>) itself will call <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> and looks as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Survey monitored computers
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">User</span><span class="o">=</span>munin
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/munin-cron
+</pre></div>
+</div>
+<p>The timer <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/munin-cron.timer</span></code> is then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Survey monitored computers every five minutes
+
+<span class="o">[</span>Timer<span class="o">]</span>
+<span class="nv">OnCalendar</span><span class="o">=</span>*-*-* *:00/5:00
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre></div>
+</div>
+<p>Before enabling them, we can try a manual test-run by running <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> as the munin user (remember that nothing will happen without enabling some plugins):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ su - munin --shell<span class="o">=</span>/bin/bash -c munin-cron
+</pre></div>
+</div>
+<p>If we are sure that everything works, we can finally enable the timer:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl daemon-reload
+$ systemctl <span class="nb">enable</span> --now munin-cron.timer
+</pre></div>
+</div>
+<p>And afterwards – of course – check the logs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ journalctl --unit munin-cron.service
+</pre></div>
+</div>
+<div class="section" id="making-the-results-available">
+<h3>Making the results available<a class="headerlink" href="#making-the-results-available" title="Permalink to this headline">¶</a></h3>
+<p>To make the results accessible using a web-browser, we use <code class="docutils literal notranslate"><span class="pre">lighttpd</span></code>.
+This will automatically serve <code class="docutils literal notranslate"><span class="pre">/srv/http/</span></code> on port 80 (make sure to checkout <code class="docutils literal notranslate"><span class="pre">/etc/lighttpd/lighttpd.conf</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S lighttpd
+$ systemctl start lighttpd
+</pre></div>
+</div>
+<p>The reports can then be accessed under <code class="docutils literal notranslate"><span class="pre">&lt;server</span> <span class="pre">ip&gt;/munin/</span></code>.</p>
+<p>In order to have interactive graphs, we will have to enable (fast) <code class="docutils literal notranslate"><span class="pre">CGI</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S fcgi
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ touch /var/log/munin/munin-cgi-graph.log
+$ chmod <span class="m">777</span> /var/log/munin/munin-cgi-graph.log
+$ chmod <span class="m">777</span> /var/lib/munin/cgi-tmp
+</pre></div>
+</div>
+<p>Test if the CGI-executable is able to run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ /usr/bin/perl -T /usr/share/munin/cgi/munin-cgi-graph
+</pre></div>
+</div>
+<p>Add the following to <code class="docutils literal notranslate"><span class="pre">/etc/lighttpd/lighttpd.conf</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server.modules +<span class="o">=</span> <span class="o">(</span><span class="s2">&quot;mod_fastcgi&quot;</span><span class="o">)</span>
+fastcgi.server +<span class="o">=</span> <span class="o">(</span><span class="s2">&quot;/munin-cgi/munin-cgi-graph&quot;</span> <span class="o">=</span>&gt;
+    <span class="o">((</span>
+        <span class="s2">&quot;socket&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;/var/run/lighttpd/munin-cgi-graph.sock&quot;</span>,
+        <span class="s2">&quot;bin-path&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;/usr/share/munin/cgi/munin-cgi-graph&quot;</span>,
+        <span class="s2">&quot;check-local&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;disable&quot;</span>
+    <span class="o">))</span>
+<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="munin-node-setup">
+<h2>Munin-Node setup<a class="headerlink" href="#munin-node-setup" title="Permalink to this headline">¶</a></h2>
+<p>Each device for which health-summaries shall be reported needs to become a <code class="docutils literal notranslate"><span class="pre">munin-node</span></code> (this is also the case for the master).
+Luckily, this is rather trivial:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S munin-node
+</pre></div>
+</div>
+<p>On the node itself, we need to allow communication with the master (in <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin-node.conf</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host_name &lt;my name&gt;
+allow ^&lt;master ip&gt;$
+</pre></div>
+</div>
+<p>and start the node (don’t forget to add plugins though):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now munin-node
+</pre></div>
+</div>
+<p>On the master-server, we have to add a configuration entry per node to <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>group_name<span class="p">;</span>master-node<span class="o">]</span>
+    address <span class="m">127</span>.0.0.1
+
+<span class="o">[</span>group_name<span class="p">;</span>machine01<span class="o">]</span>
+    address &lt;node ip&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="plugins">
+<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p>Without plugins, <code class="docutils literal notranslate"><span class="pre">munin</span></code> won’t be reporting much.
+In the following, a few useful ones will be listed. More plugins can be found, e.g. by calling <code class="docutils literal notranslate"><span class="pre">munin-node-configure</span> <span class="pre">--suggest</span></code>.</p>
+<p>Each plugin can be installed by first copying them to <code class="docutils literal notranslate"><span class="pre">/usr/lib/munin/plugins/</span></code> and then linking with <code class="docutils literal notranslate"><span class="pre">/etc/munin/plugins/</span></code>.
+Note that they must be executable (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">a+x</span> <span class="pre">/usr/lib/munin/plugins/&lt;plugin</span> <span class="pre">name&gt;</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/&lt;plugin name&gt; /etc/munin/plugins/
+</pre></div>
+</div>
+<p>As a general rule, each individual plugin can be tested in isolation using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ munin-run &lt;<span class="nb">command</span> name&gt;
+</pre></div>
+</div>
+<p>For the CPU-plugin <code class="docutils literal notranslate"><span class="pre">&lt;command</span> <span class="pre">name&gt;</span></code> would be <code class="docutils literal notranslate"><span class="pre">cpu</span></code>.</p>
+<p>Remember, that a node needs to be restarted after changing its plugin configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl restart munin-node
+</pre></div>
+</div>
+<div class="section" id="common-plugins">
+<h3>Common plugins<a class="headerlink" href="#common-plugins" title="Permalink to this headline">¶</a></h3>
+<p>The following are plugins providing generally useful statistics:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpu</span></code>: CPU-speed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code>: disk space usage</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if_&lt;interface&gt;</span></code>: tx/rx rates on given interface</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">processes</span></code>: overview of process numbers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code>: RAM usage</p></li>
+</ul>
+<p>My own custom plugins can be found <a class="reference external" href="https://github.com/kpj/munin-plugins">here</a>.</p>
+</div>
+<div class="section" id="smart-plugin">
+<h3>SMART-plugin<a class="headerlink" href="#smart-plugin" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">S.M.A.R.T.</span></code> provides a nice way of monitoring your disks (HDD, SSD, etc) health status.</p>
+<p>Its basic usage if fairly straight-forward:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S smartmontools
+$ smartctl -i /dev/sda  <span class="c1"># show device info</span>
+$ smartctl -t short /dev/sda  <span class="c1"># run a short test</span>
+$ smartctl -H /dev/sda  <span class="c1"># show test results</span>
+</pre></div>
+</div>
+<p>To interlink it with <code class="docutils literal notranslate"><span class="pre">munin</span></code>, first configure the plugin by writing the following to <code class="docutils literal notranslate"><span class="pre">/etc/munin/plugin-conf.d/munin-node</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>smart_*<span class="o">]</span>
+    user root
+    group disk
+</pre></div>
+</div>
+<p>and secondly enable it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/smart_ /etc/munin/plugins/smart_sda  <span class="c1"># for disk /dev/sda</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lm-sensors-plugin">
+<h3>lm_sensors-plugin<a class="headerlink" href="#lm-sensors-plugin" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">lm_sensors</span></code> allow the tracking of temperatures, voltages and more.</p>
+<p>First, set them up as you normally would:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S lm_sensors
+$ sensors-detect  <span class="c1"># generate kernel-modules (always press enter)</span>
+$ sensors
+</pre></div>
+</div>
+<p>Temperatures can then be monitored by adding the respective plugin:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /usr/lib/munin/plugins/sensors_ /etc/munin/plugins/sensors_temp
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-tips">
+<h3>General tips<a class="headerlink" href="#general-tips" title="Permalink to this headline">¶</a></h3>
+<p>A manual connection to a node is possible, and useful for debugging:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netcat &lt;node ip&gt; <span class="m">4949</span>
+</pre></div>
+</div>
+<p>One can then enter e.g. one of the following commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>: list enabled plugins</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">&lt;plugin</span> <span class="pre">name&gt;</span></code>: check output of given plugin</p></li>
+</ul>
+<p>Furthermore, <code class="docutils literal notranslate"><span class="pre">munin-cron</span></code> can be run with the <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option to show what is going on in more detail.</p>
+<p>More information can be found <a class="reference external" href="http://guide.munin-monitoring.org/en/latest/tutorial/troubleshooting.html">here</a>.</p>
+</div>
+<div class="section" id="corrupted-database">
+<h3>Corrupted database<a class="headerlink" href="#corrupted-database" title="Permalink to this headline">¶</a></h3>
+<p>The munin-databases can be found in <code class="docutils literal notranslate"><span class="pre">/var/lib/munin/&lt;group</span> <span class="pre">name&gt;</span></code>. Delete them to reset all data.</p>
+</div>
+<div class="section" id="certain-nodes-cannot-be-reached">
+<h3>Certain nodes cannot be reached<a class="headerlink" href="#certain-nodes-cannot-be-reached" title="Permalink to this headline">¶</a></h3>
+<p>Check that their ip-address is set correctly in the master’s <code class="docutils literal notranslate"><span class="pre">/etc/munin/munin.conf</span></code>.
+Furthermore make sure that their own configuration (<code class="docutils literal notranslate"><span class="pre">/etc/munin/munin-node.conf</span></code>) allows the master to connect (<code class="docutils literal notranslate"><span class="pre">allow</span> <span class="pre">&lt;master</span> <span class="pre">ip&gt;</span></code>).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="RescuingABrokenSystem.html" class="btn btn-neutral float-right" title="Rescuing a Broken Archlinux System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="MediaServerSetup.html" class="btn btn-neutral float-left" title="Setting up a media server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, kpj.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
