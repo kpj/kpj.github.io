@@ -29,6 +29,7 @@ More fun projects can be found on https://github.com/kpj/.
   mining_visualization/Eurostat_Visualizations
   mining_visualization/IMDB_ratings
   mining_visualization/MEP_Statistics
+  mining_visualization/SortingAnimations
 
 
 .. toctree::
