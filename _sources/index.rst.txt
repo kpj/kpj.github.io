@@ -38,6 +38,7 @@ More fun projects can be found on https://github.com/kpj/.
 
   stats_ml/Autoencoder
   stats_ml/LinearRegressionCoefficients
+  stats_ml/ProbabilityDistributionsOverview
 
 
 .. toctree::
