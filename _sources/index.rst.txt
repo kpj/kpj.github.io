@@ -62,5 +62,6 @@ More fun projects can be found on https://github.com/kpj/.
   my_projects/ipy_pdcache
   my_projects/jupyfmt
   my_projects/pdftty
+  my_projects/plyder
   my_projects/pyskim
   my_projects/vydia
