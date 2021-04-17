@@ -150,6 +150,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Adjusttext">Adjusttext</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Plotnine">Plotnine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Folium">Folium</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Ahlive">Ahlive</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#High-performance">High performance</a><ul>
@@ -619,7 +620,7 @@ $ pip install &lt;package&gt;
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Overwriting /tmp/tests.py
+Writing /tmp/tests.py
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -648,7 +649,7 @@ collected 4 items
 ../../../../../../../../tmp/tests.py::test_expression_evaluation[2*2-4] <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg"> [ 75%]</span>
 ../../../../../../../../tmp/tests.py::test_expression_evaluation[2**2-4] <span class="ansi-green-fg">PASSED</span><span class="ansi-green-fg"> [100%]</span>
 
-<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">4 passed</span><span class="ansi-green-fg"> in 0.04s</span><span class="ansi-green-fg"> ===============================</span>
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">4 passed</span><span class="ansi-green-fg"> in 0.03s</span><span class="ansi-green-fg"> ===============================</span>
 </pre></div></div>
 </div>
 </div>
@@ -695,7 +696,7 @@ collected 4 items
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Overwriting /tmp/script.py
+Writing /tmp/script.py
 </pre></div></div>
 </div>
 <div class="section" id="line_profiler">
@@ -717,7 +718,7 @@ Overwriting /tmp/script.py
 Wrote profile results to /tmp/script.py.lprof
 Timer unit: 1e-06 s
 
-Total time: 0.148111 s
+Total time: 0.119151 s
 File: /tmp/script.py
 Function: main at line 2
 
@@ -726,11 +727,11 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
      2                                           @profile
      3                                           def main():
      4                                               # takes a long time
-     5    100001      37580.0      0.4     25.4      for _ in range(100_000):
-     6    100000     106182.0      1.1     71.7          1337**42
+     5    100001      30243.0      0.3     25.4      for _ in range(100_000):
+     6    100000      85553.0      0.9     71.8          1337**42
      7
      8                                               # requires a lot of memory
-     9         1       4349.0   4349.0      2.9      arr = [1] * 1_000_000
+     9         1       3355.0   3355.0      2.8      arr = [1] * 1_000_000
 
 </pre></div></div>
 </div>
@@ -755,14 +756,14 @@ Filename: /tmp/script.py
 
 Line #    Mem usage    Increment  Occurences   Line Contents
 ============================================================
-     2   37.684 MiB   37.684 MiB           1   @profile
+     2   37.586 MiB   37.586 MiB           1   @profile
      3                                         def main():
      4                                             # takes a long time
-     5   37.684 MiB -222259.711 MiB      100001       for _ in range(100_000):
-     6   37.684 MiB -222254.953 MiB      100000           1337**42
+     5   37.598 MiB    0.000 MiB      100001       for _ in range(100_000):
+     6   37.598 MiB    0.012 MiB      100000           1337**42
      7
      8                                             # requires a lot of memory
-     9   37.438 MiB   -0.246 MiB           1       arr = [1] * 1_000_000
+     9   45.230 MiB    7.633 MiB           1       arr = [1] * 1_000_000
 
 
 </pre></div></div>
@@ -816,8 +817,8 @@ stack trace * h: help * q: quit</p>
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-28 23:17:11.204 | DEBUG    | __main__:&lt;module&gt;:1 - Helpful debug message
-2021-01-28 23:17:11.205 | ERROR    | __main__:&lt;module&gt;:2 - oh no
+2021-04-17 13:18:23.046 | DEBUG    | __main__:&lt;module&gt;:1 - Helpful debug message
+2021-04-17 13:18:23.047 | ERROR    | __main__:&lt;module&gt;:2 - oh no
 </pre></div></div>
 </div>
 </div>
@@ -861,16 +862,16 @@ stack trace * h: help * q: quit</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[ 0.73627467,  2.07304791,  1.60425106],
-       [-0.18979345,  1.6737833 ,  0.10110279],
-       [ 1.26125065,  0.05310833,  0.66193115],
-       [-1.98143753,  0.55989844,  0.37752932],
-       [ 0.79409975,  0.47152455, -0.1455592 ],
-       [ 0.76550564,  0.38608807,  0.67553302],
-       [-0.04006774,  0.86416024, -1.07370177],
-       [ 0.41378545, -2.0640186 ,  0.96974267],
-       [-0.70525183,  0.23132466, -1.41343703],
-       [-0.07360206,  0.53807524,  0.12715455]])
+array([[-0.83122584, -1.38163299, -1.52576443],
+       [ 0.5982737 , -0.85612216, -0.82186463],
+       [ 0.59198059, -0.32390736,  0.52771964],
+       [ 1.0510935 ,  0.44954205,  1.12202483],
+       [ 0.7531032 ,  0.75137727,  0.34958107],
+       [ 0.10703286, -0.89865488, -0.51036725],
+       [-0.7864523 , -1.09076808,  1.4295541 ],
+       [ 0.74887716,  0.40465062, -0.93089141],
+       [-0.7957269 ,  0.2428791 , -0.47080749],
+       [ 1.35390682,  0.41568071, -0.72479103]])
 </pre></div></div>
 </div>
 </div>
@@ -937,38 +938,38 @@ array([[ 0.73627467,  2.07304791,  1.60425106],
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.736275</td>
-      <td>2.073048</td>
-      <td>1.604251</td>
+      <td>-0.831226</td>
+      <td>-1.381633</td>
+      <td>-1.525764</td>
       <td>G2</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.189793</td>
-      <td>1.673783</td>
-      <td>0.101103</td>
+      <td>0.598274</td>
+      <td>-0.856122</td>
+      <td>-0.821865</td>
       <td>G2</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.261251</td>
-      <td>0.053108</td>
-      <td>0.661931</td>
-      <td>G2</td>
+      <td>0.591981</td>
+      <td>-0.323907</td>
+      <td>0.527720</td>
+      <td>G1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.981438</td>
-      <td>0.559898</td>
-      <td>0.377529</td>
+      <td>1.051093</td>
+      <td>0.449542</td>
+      <td>1.122025</td>
       <td>G1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.794100</td>
-      <td>0.471525</td>
-      <td>-0.145559</td>
-      <td>G1</td>
+      <td>0.753103</td>
+      <td>0.751377</td>
+      <td>0.349581</td>
+      <td>G2</td>
     </tr>
   </tbody>
 </table>
@@ -1025,7 +1026,7 @@ Average degree:   4.0000
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[(0, (1881.9, 1151.2)), (1, (2253.3, 885.14)), (2, (2127.7, 798.25))]
+[(0, (882.93, 1133.7)), (1, (792.74, 913.32)), (2, (1012.7, 903.19))]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1044,7 +1045,7 @@ Average degree:   4.0000
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[(0, 0.1), (1, 0.5), (2, 0.4)]
+[(0, 0.5), (1, 0.3), (2, 0.3333333333333333)]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1203,31 +1204,31 @@ Average degree:   4.0000
       <th>0</th>
       <td>G2</td>
       <td>A</td>
-      <td>0.736275</td>
+      <td>-0.831226</td>
     </tr>
     <tr>
       <th>1</th>
       <td>G2</td>
       <td>A</td>
-      <td>-0.189793</td>
+      <td>0.598274</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>G2</td>
+      <td>G1</td>
       <td>A</td>
-      <td>1.261251</td>
+      <td>0.591981</td>
     </tr>
     <tr>
       <th>3</th>
       <td>G1</td>
       <td>A</td>
-      <td>-1.981438</td>
+      <td>1.051093</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>G1</td>
+      <td>G2</td>
       <td>A</td>
-      <td>0.794100</td>
+      <td>0.753103</td>
     </tr>
   </tbody>
 </table>
@@ -1306,7 +1307,7 @@ Average degree:   4.0000
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction, P_val=6.916e-01 U_stat=1.190e+03
+B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction, P_val=7.224e-01 U_stat=1.300e+03
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1316,7 +1317,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 (&lt;AxesSubplot:xlabel=&#39;variable&#39;, ylabel=&#39;value&#39;&gt;,
- [&lt;statannot.StatResult.StatResult at 0x13c800640&gt;])
+ [&lt;statannot.StatResult.StatResult at 0x13a4ca7c0&gt;])
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1355,35 +1356,35 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x13c972ee0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c983040&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c991880&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c991be0&gt;],
-  &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x13c983760&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c983ac0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c991ee0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c99d280&gt;],
-  &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x13c97c5b0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c991520&gt;],
-  &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x13c983e20&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c99d4c0&gt;],
-  &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x13c9911c0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c99d820&gt;],
+[{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x13a64ba60&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a64bac0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a656f40&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6632e0&gt;],
+  &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x13a64be20&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6561c0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a663640&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6639a0&gt;],
+  &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x13a6455b0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a656be0&gt;],
+  &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x13a656520&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a663d00&gt;],
+  &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x13a656880&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a66d0a0&gt;],
   &#39;means&#39;: []},
- {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x13c99df70&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9a8310&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9b4790&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9b4af0&gt;],
-  &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x13c9a8670&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9a89d0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9b4e50&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9be1f0&gt;],
-  &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x13c99dc10&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9b4430&gt;],
-  &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x13c9a8d30&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9be550&gt;],
-  &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x13c9b40d0&gt;,
-   &lt;matplotlib.lines.Line2D at 0x13c9be8b0&gt;],
+ {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x13a66d790&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a66daf0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a679f70&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a684310&gt;],
+  &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x13a66de50&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6791f0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a684670&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6849d0&gt;],
+  &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x13a66d430&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a679c10&gt;],
+  &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x13a679550&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a684d30&gt;],
+  &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x13a6798b0&gt;,
+   &lt;matplotlib.lines.Line2D at 0x13a6900d0&gt;],
   &#39;means&#39;: []}]
 </pre></div></div>
 </div>
@@ -1438,7 +1439,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-106
+15
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1488,7 +1489,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;ggplot: (337384867)&gt;
+&lt;ggplot: (335075211)&gt;
 </pre></div></div>
 </div>
 </div>
@@ -1523,7 +1524,46 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
-<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_86dacc4c28bc4a67a99d0d9da4ca307c%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20500.0px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20500.0px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_86dacc4c28bc4a67a99d0d9da4ca307c%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_86dacc4c28bc4a67a99d0d9da4ca307c%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_86dacc4c28bc4a67a99d0d9da4ca307c%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B69.31488099694921%2C%2021.22227112309192%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%207%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_2a3a52cd7b9c44a7a580cdbc8355fcd8%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22Data%20by%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//openstreetmap.org%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%2C%20under%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eODbL%5Cu003c/a%5Cu003e.%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_86dacc4c28bc4a67a99d0d9da4ca307c%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div>
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=%3C%21DOCTYPE%20html%3E%0A%3Chead%3E%20%20%20%20%0A%20%20%20%20%3Cmeta%20http-equiv%3D%22content-type%22%20content%3D%22text/html%3B%20charset%3DUTF-8%22%20/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20L_NO_TOUCH%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20L_DISABLE_3D%20%3D%20false%3B%0A%20%20%20%20%20%20%20%20%3C/script%3E%0A%20%20%20%20%0A%20%20%20%20%3Cstyle%3Ehtml%2C%20body%20%7Bwidth%3A%20100%25%3Bheight%3A%20100%25%3Bmargin%3A%200%3Bpadding%3A%200%3B%7D%3C/style%3E%0A%20%20%20%20%3Cstyle%3E%23map%20%7Bposition%3Aabsolute%3Btop%3A0%3Bbottom%3A0%3Bright%3A0%3Bleft%3A0%3B%7D%3C/style%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//code.jquery.com/jquery-1.12.4.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js%22%3E%3C/script%3E%0A%20%20%20%20%3Cscript%20src%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js%22%3E%3C/script%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/npm/leaflet%401.6.0/dist/leaflet.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css%22/%3E%0A%20%20%20%20%3Clink%20rel%3D%22stylesheet%22%20href%3D%22https%3A//cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css%22/%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20initial-scale%3D1.0%2C%20maximum-scale%3D1.0%2C%20user-scalable%3Dno%22%20/%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23map_2ec3ad100a5f4d9087087b9492fd5661%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20500.0px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20500.0px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20left%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20top%3A%200.0%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%0A%3C/head%3E%0A%3Cbody%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20class%3D%22folium-map%22%20id%3D%22map_2ec3ad100a5f4d9087087b9492fd5661%22%20%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%0A%3C/body%3E%0A%3Cscript%3E%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20map_2ec3ad100a5f4d9087087b9492fd5661%20%3D%20L.map%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22map_2ec3ad100a5f4d9087087b9492fd5661%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20center%3A%20%5B69.9873468062093%2C%2025.357268429156537%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20crs%3A%20L.CRS.EPSG3857%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoom%3A%207%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20zoomControl%3A%20true%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20preferCanvas%3A%20false%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20var%20tile_layer_2c66858c77714a08b5a642f3a986a6b7%20%3D%20L.tileLayer%28%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22https%3A//%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%22attribution%22%3A%20%22Data%20by%20%5Cu0026copy%3B%20%5Cu003ca%20href%3D%5C%22http%3A//openstreetmap.org%5C%22%5Cu003eOpenStreetMap%5Cu003c/a%5Cu003e%2C%20under%20%5Cu003ca%20href%3D%5C%22http%3A//www.openstreetmap.org/copyright%5C%22%5Cu003eODbL%5Cu003c/a%5Cu003e.%22%2C%20%22detectRetina%22%3A%20false%2C%20%22maxNativeZoom%22%3A%2018%2C%20%22maxZoom%22%3A%2018%2C%20%22minZoom%22%3A%200%2C%20%22noWrap%22%3A%20false%2C%20%22opacity%22%3A%201%2C%20%22subdomains%22%3A%20%22abc%22%2C%20%22tms%22%3A%20false%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%29.addTo%28map_2ec3ad100a5f4d9087087b9492fd5661%29%3B%0A%20%20%20%20%20%20%20%20%0A%3C/script%3E onload="this.contentDocument.open();this.contentDocument.write(    decodeURIComponent(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div>
+</div>
+</div>
+<div class="section" id="Ahlive">
+<h4>Ahlive<a class="headerlink" href="#Ahlive" title="Permalink to this headline">¶</a></h4>
+<p>Creating animated visualizations becomes easy and fun with <a class="reference external" href="https://ahlive.readthedocs.io/en/latest/">ahlive</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ahlive</span> <span class="k">as</span> <span class="nn">ah</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">adf</span> <span class="o">=</span> <span class="n">ah</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}),</span> <span class="n">xs</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">ys</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">adf</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[########################################] | 100% Completed |  5.9s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<img src="data:image/gif;base64,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" /></div>
 </div>
 </div>
 </div>
@@ -1534,7 +1574,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 <h4>Dask<a class="headerlink" href="#Dask" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/dask/dask">Dask</a> provides a Panda’s like interface to high-performance dataframes which support out-of-memory processing, cluster distribution, and more. It is particularly useful when the dataframe does not fit in RAM anymore. Common operations operate on chunks of the dataframe and are only executed when explicitly requested.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1543,7 +1583,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1552,7 +1592,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1562,7 +1602,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1591,35 +1631,35 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.285151</td>
-      <td>0.245593</td>
+      <td>-1.521738</td>
+      <td>1.878972</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-1.902585</td>
-      <td>1.831842</td>
+      <td>0.544287</td>
+      <td>-1.091694</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.582446</td>
-      <td>-0.037622</td>
+      <td>-0.621435</td>
+      <td>0.073227</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-2.069846</td>
-      <td>0.358500</td>
+      <td>1.811112</td>
+      <td>1.151520</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-1.424906</td>
-      <td>-0.320222</td>
+      <td>-0.423793</td>
+      <td>0.508846</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1628,7 +1668,7 @@ B_G1 v.s. B_G2: Mann-Whitney-Wilcoxon test two-sided with Bonferroni correction,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1645,7 +1685,7 @@ Dask Name: add, 16 tasks
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1654,22 +1694,22 @@ Dask Name: add, 16 tasks
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0         0.530745
-1        -0.070743
-2        -0.620069
-3        -1.711347
-4        -1.745128
+0         0.357233
+1        -0.547407
+2        -0.548209
+3         2.962632
+4         0.085053
             ...
-999995    0.399192
-999996   -0.783770
-999997    1.407576
-999998    1.048654
-999999    0.476440
+999995    0.550578
+999996    0.415823
+999997   -1.329906
+999998   -1.224304
+999999   -1.822986
 Length: 1000000, dtype: float64
 </pre></div></div>
 </div>
@@ -1678,7 +1718,7 @@ Length: 1000000, dtype: float64
 <h4>Vaex<a class="headerlink" href="#Vaex" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/vaexio/vaex">Vaex</a> fills a similar niche as dask and makes working with out-of-core dataframe easy. It has a slightly more intuitive interface and offers many cool visualizations right out of the box.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1687,7 +1727,7 @@ Length: 1000000, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1697,7 +1737,7 @@ Length: 1000000, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1706,21 +1746,21 @@ Length: 1000000, dtype: float64
 <tr><th>#                            </th><th style="text-align: right;">         A</th><th style="text-align: right;">         B</th></tr>
 </thead>
 <tbody>
-<tr><td><i style='opacity: 0.6'>0</i></td><td style="text-align: right;"> 0.285151 </td><td style="text-align: right;"> 0.245593 </td></tr>
-<tr><td><i style='opacity: 0.6'>1</i></td><td style="text-align: right;">-1.90258  </td><td style="text-align: right;"> 1.83184  </td></tr>
-<tr><td><i style='opacity: 0.6'>2</i></td><td style="text-align: right;">-0.582446 </td><td style="text-align: right;">-0.0376225</td></tr>
-<tr><td><i style='opacity: 0.6'>3</i></td><td style="text-align: right;">-2.06985  </td><td style="text-align: right;"> 0.3585   </td></tr>
-<tr><td><i style='opacity: 0.6'>4</i></td><td style="text-align: right;">-1.42491  </td><td style="text-align: right;">-0.320222 </td></tr>
-<tr><td><i style='opacity: 0.6'>5</i></td><td style="text-align: right;">-1.94587  </td><td style="text-align: right;">-0.396723 </td></tr>
-<tr><td><i style='opacity: 0.6'>6</i></td><td style="text-align: right;">-2.09466  </td><td style="text-align: right;"> 1.19457  </td></tr>
-<tr><td><i style='opacity: 0.6'>7</i></td><td style="text-align: right;">-0.0123898</td><td style="text-align: right;"> 0.856249 </td></tr>
-<tr><td><i style='opacity: 0.6'>8</i></td><td style="text-align: right;">-0.126541 </td><td style="text-align: right;"> 0.617549 </td></tr>
-<tr><td><i style='opacity: 0.6'>9</i></td><td style="text-align: right;"> 1.09255  </td><td style="text-align: right;">-0.68878  </td></tr>
+<tr><td><i style='opacity: 0.6'>0</i></td><td style="text-align: right;">-1.52174  </td><td style="text-align: right;"> 1.87897  </td></tr>
+<tr><td><i style='opacity: 0.6'>1</i></td><td style="text-align: right;"> 0.544287 </td><td style="text-align: right;">-1.09169  </td></tr>
+<tr><td><i style='opacity: 0.6'>2</i></td><td style="text-align: right;">-0.621435 </td><td style="text-align: right;"> 0.0732265</td></tr>
+<tr><td><i style='opacity: 0.6'>3</i></td><td style="text-align: right;"> 1.81111  </td><td style="text-align: right;"> 1.15152  </td></tr>
+<tr><td><i style='opacity: 0.6'>4</i></td><td style="text-align: right;">-0.423793 </td><td style="text-align: right;"> 0.508846 </td></tr>
+<tr><td><i style='opacity: 0.6'>5</i></td><td style="text-align: right;">-1.07114  </td><td style="text-align: right;">-1.27907  </td></tr>
+<tr><td><i style='opacity: 0.6'>6</i></td><td style="text-align: right;"> 0.132347 </td><td style="text-align: right;">-0.509001 </td></tr>
+<tr><td><i style='opacity: 0.6'>7</i></td><td style="text-align: right;">-0.0971256</td><td style="text-align: right;"> 0.957971 </td></tr>
+<tr><td><i style='opacity: 0.6'>8</i></td><td style="text-align: right;">-1.12176  </td><td style="text-align: right;">-0.0574305</td></tr>
+<tr><td><i style='opacity: 0.6'>9</i></td><td style="text-align: right;">-0.484892 </td><td style="text-align: right;">-0.952426 </td></tr>
 </tbody>
 </table></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1729,7 +1769,7 @@ Length: 1000000, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1737,21 +1777,21 @@ Length: 1000000, dtype: float64
 Expression = (A + B)
 Length: 1,000,000 dtype: float64 (expression)
 ---------------------------------------------
-     0   0.530745
-     1  -0.070743
-     2  -0.620069
-     3   -1.71135
-     4   -1.74513
+     0   0.357233
+     1  -0.547407
+     2  -0.548209
+     3    2.96263
+     4  0.0850533
        ...
-999995   0.399192
-999996   -0.78377
-999997    1.40758
-999998    1.04865
-999999    0.47644
+999995   0.550578
+999996   0.415823
+999997   -1.32991
+999998    -1.2243
+999999   -1.82299
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1760,19 +1800,19 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.image.AxesImage at 0x145462490&gt;
+&lt;matplotlib.image.AxesImage at 0x146dfe100&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/misc_PythonAlmanac_79_1.png" src="../_images/misc_PythonAlmanac_79_1.png" />
+<img alt="../_images/misc_PythonAlmanac_82_1.png" src="../_images/misc_PythonAlmanac_82_1.png" />
 </div>
 </div>
 </div>
@@ -1780,7 +1820,7 @@ Length: 1,000,000 dtype: float64 (expression)
 <h4>Joblib<a class="headerlink" href="#Joblib" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/joblib/joblib">Joblib</a> makes executing functions in parallel very easy and removes boilerplate code.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1792,7 +1832,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1804,7 +1844,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1813,7 +1853,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1826,7 +1866,7 @@ Length: 1,000,000 dtype: float64 (expression)
 <h4>Swifter<a class="headerlink" href="#Swifter" title="Permalink to this headline">¶</a></h4>
 <p>Choosing the correct way of parallelizing your computations can be non-trivial. <a class="reference external" href="https://github.com/jmcarpenter2/swifter">Swifter</a> tries to automatically select the most suitable one.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1835,7 +1875,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1845,7 +1885,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1873,30 +1913,30 @@ Length: 1,000,000 dtype: float64 (expression)
   <tbody>
     <tr>
       <th>0</th>
-      <td>24</td>
+      <td>36</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>8</td>
+      <td>36</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>13</td>
+      <td>72</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>7</td>
+      <td>35</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>99</td>
+      <td>95</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1910,11 +1950,11 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-539 ms ± 10.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+515 ms ± 1.34 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1928,7 +1968,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-3.01 ms ± 124 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+2.6 ms ± 19.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div></div>
 </div>
 </div>
@@ -1939,7 +1979,7 @@ Length: 1,000,000 dtype: float64 (expression)
 <h4>PyRanges<a class="headerlink" href="#PyRanges" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/biocore-ntnu/pyranges">PyRanges</a> makes working with genomic ranges easy as pie.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1948,7 +1988,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1958,7 +1998,7 @@ Length: 1,000,000 dtype: float64 (expression)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1983,7 +2023,7 @@ For printing, the PyRanges was sorted on Chromosome and Strand.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1995,7 +2035,7 @@ For printing, the PyRanges was sorted on Chromosome and Strand.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2011,7 +2051,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2020,7 +2060,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2132,7 +2172,7 @@ For printing, the PyRanges was sorted on Chromosome.
 <h4>Obonet<a class="headerlink" href="#Obonet" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/dhimmel/obonet">Obonet</a> is a library for working with (OBO-formatted) ontologies.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2141,7 +2181,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2151,7 +2191,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2160,7 +2200,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2174,7 +2214,7 @@ For printing, the PyRanges was sorted on Chromosome.
   &#39;xref&#39;: [&#39;MESH:D006394&#39;,
    &#39;NCI:C3088&#39;,
    &#39;NCI:C9275&#39;,
-   &#39;SNOMEDCT_US_2020_03_01:39000009&#39;,
+   &#39;SNOMEDCT_US_2020_09_01:39000009&#39;,
    &#39;UMLS_CUI:C0018923&#39;,
    &#39;UMLS_CUI:C0854893&#39;],
   &#39;is_a&#39;: [&#39;DOID:175&#39;]})
@@ -2188,7 +2228,7 @@ For printing, the PyRanges was sorted on Chromosome.
 <h4>Statsmodels<a class="headerlink" href="#Statsmodels" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/statsmodels/statsmodels">Statsmodels</a> helps with statistical modelling.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2197,7 +2237,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2210,7 +2250,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2239,35 +2279,35 @@ For printing, the PyRanges was sorted on Chromosome.
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.541800</td>
-      <td>6.204340</td>
+      <td>1.044026</td>
+      <td>5.557234</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.562578</td>
-      <td>4.931351</td>
+      <td>1.688652</td>
+      <td>6.395248</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.635968</td>
-      <td>5.026759</td>
+      <td>0.736298</td>
+      <td>5.157187</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.491444</td>
-      <td>2.261123</td>
+      <td>0.156702</td>
+      <td>4.403713</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.188706</td>
-      <td>5.745317</td>
+      <td>-0.672744</td>
+      <td>3.325433</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2277,7 +2317,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2286,7 +2326,7 @@ For printing, the PyRanges was sorted on Chromosome.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2297,7 +2337,7 @@ dtype: float64
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2305,18 +2345,8 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/kimja/.pyenv/versions/3.8.6/lib/python3.8/site-packages/statsmodels/regression/linear_model.py:1804: RuntimeWarning: divide by zero encountered in double_scalars
-/Users/kimja/.pyenv/versions/3.8.6/lib/python3.8/site-packages/statsmodels/regression/linear_model.py:903: RuntimeWarning: divide by zero encountered in log
-/Users/kimja/.pyenv/versions/3.8.6/lib/python3.8/site-packages/statsmodels/stats/stattools.py:50: RuntimeWarning: invalid value encountered in double_scalars
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2325,10 +2355,10 @@ dtype: float64
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>
 </tr>
 <tr>
-  <th>Intercept</th> <td>    4.2000</td> <td>        0</td> <td>      inf</td> <td> 0.000</td> <td>    4.200</td> <td>    4.200</td>
+  <th>Intercept</th> <td>    4.2000</td> <td> 1.07e-16</td> <td> 3.92e+16</td> <td> 0.000</td> <td>    4.200</td> <td>    4.200</td>
 </tr>
 <tr>
-  <th>X</th>         <td>    1.3000</td> <td>        0</td> <td>      inf</td> <td> 0.000</td> <td>    1.300</td> <td>    1.300</td>
+  <th>X</th>         <td>    1.3000</td> <td> 9.69e-17</td> <td> 1.34e+16</td> <td> 0.000</td> <td>    1.300</td> <td>    1.300</td>
 </tr>
 </table></div>
 </div>
@@ -2337,7 +2367,7 @@ dtype: float64
 <h4>Pingouin<a class="headerlink" href="#Pingouin" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/raphaelvallat/pingouin">Pingouin</a> provides additional statistical methods.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2346,7 +2376,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2355,7 +2385,7 @@ dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2385,8 +2415,8 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.9964</td>
-      <td>0.996442</td>
+      <td>0.987726</td>
+      <td>0.488248</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -2394,7 +2424,7 @@ dtype: float64
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2402,8 +2432,19 @@ dtype: float64
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/kimja/.pyenv/versions/3.8.6/lib/python3.8/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package outdated is out of date. Your version is 0.2.0, the latest is 0.2.1.
+Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
+/Users/kimja/.pyenv/versions/3.8.6/lib/python3.8/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.3.9, the latest is 0.3.11.
+Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2433,8 +2474,8 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.960968</td>
-      <td>0.004717</td>
+      <td>0.954197</td>
+      <td>0.001585</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -2446,7 +2487,7 @@ dtype: float64
 <h4>Scitkit-learn<a class="headerlink" href="#Scitkit-learn" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://github.com/scikit-learn/scikit-learn">Scikit-learn</a> facilitates machine learning in Python.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2457,7 +2498,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2467,7 +2508,7 @@ dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2476,7 +2517,7 @@ dtype: float64
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2485,7 +2526,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2495,7 +2536,7 @@ dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2506,7 +2547,7 @@ dtype: float64
 <p>Scikit-learn offers various plugins which deal with common issues encountered while modeling.</p>
 <p><a class="reference external" href="https://github.com/scikit-learn-contrib/imbalanced-learn">Imbalanced-learn</a> provides various re-sampling techniques when the dataset has annoying class imbalances.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2517,7 +2558,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2526,7 +2567,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2536,7 +2577,7 @@ dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2556,7 +2597,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 <p><a class="reference external" href="https://github.com/scikit-learn-contrib/category_encoders">Category_encoders</a> helps with converting categorical variables to numerical ones.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2565,7 +2606,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2576,7 +2617,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2605,8 +2646,8 @@ resampled: [(0, 50), (1, 50)]
   <tbody>
     <tr>
       <th>0</th>
-      <td>B</td>
-      <td>B</td>
+      <td>A</td>
+      <td>A</td>
     </tr>
     <tr>
       <th>1</th>
@@ -2615,8 +2656,8 @@ resampled: [(0, 50), (1, 50)]
     </tr>
     <tr>
       <th>2</th>
-      <td>B</td>
-      <td>B</td>
+      <td>A</td>
+      <td>A</td>
     </tr>
     <tr>
       <th>3</th>
@@ -2625,15 +2666,15 @@ resampled: [(0, 50), (1, 50)]
     </tr>
     <tr>
       <th>4</th>
-      <td>A</td>
-      <td>A</td>
+      <td>B</td>
+      <td>B</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2642,7 +2683,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2672,63 +2713,63 @@ resampled: [(0, 50), (1, 50)]
   <tbody>
     <tr>
       <th>0</th>
-      <td>B</td>
+      <td>A</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>B</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>B</td>
+      <td>A</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>A</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>A</td>
+      <td>B</td>
       <td>0</td>
       <td>1</td>
     </tr>
     <tr>
       <th>5</th>
       <td>B</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>B</td>
+      <td>A</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>7</th>
       <td>B</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>8</th>
       <td>B</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>9</th>
       <td>A</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -2736,7 +2777,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 <p><a class="reference external" href="https://github.com/DistrictDataLabs/yellowbrick">Yellowbrick</a> makes a multitude of visual diagnostic tools readily accessible.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2745,7 +2786,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2754,7 +2795,7 @@ resampled: [(0, 50), (1, 50)]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2763,7 +2804,7 @@ SVC(C=1, kernel=&#39;linear&#39;)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2777,11 +2818,11 @@ SVC(C=1, kernel=&#39;linear&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/misc_PythonAlmanac_128_0.png" src="../_images/misc_PythonAlmanac_128_0.png" />
+<img alt="../_images/misc_PythonAlmanac_131_0.png" src="../_images/misc_PythonAlmanac_131_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2798,7 +2839,7 @@ SVC(C=1, kernel=&#39;linear&#39;)
 <h3>Pybind11<a class="headerlink" href="#Pybind11" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/pybind/pybind11">Pybind11</a> makes writing bindings between Python and C++ enjoyable. In combination with <a class="reference external" href="https://github.com/tbenthompson/cppimport">cppimport</a> some might even call it fun. It is possible to implement <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/advanced/cast/custom.html">custom typecasters</a> to support bindings for arbitrary objects.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2838,7 +2879,7 @@ Overwriting cpp_source.cpp
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2847,7 +2888,7 @@ Overwriting cpp_source.cpp
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2856,7 +2897,7 @@ Overwriting cpp_source.cpp
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2865,7 +2906,7 @@ Overwriting cpp_source.cpp
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2904,6 +2945,7 @@ Overwriting cpp_source.cpp
 <li><p><a class="reference external" href="https://github.com/willmcgugan/rich">https://github.com/willmcgugan/rich</a></p></li>
 <li><p><a class="reference external" href="https://github.com/joerick/pyinstrument">https://github.com/joerick/pyinstrument</a></p></li>
 <li><p><a class="reference external" href="https://github.com/nalepae/pandarallel/">https://github.com/nalepae/pandarallel/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pydata/pandas-datareader">https://github.com/pydata/pandas-datareader</a></p></li>
 <li><p><a class="reference external" href="https://github.com/machow/siuba">https://github.com/machow/siuba</a></p></li>
 </ul>
 </div>

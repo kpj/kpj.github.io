@@ -2400,18 +2400,7 @@
     "tags": []
    },
    "source": [
-    "#### Do clustering\n",
-    "\n",
-    "Possible metrics:\n",
-    "hamming\n",
-    "jaccard\n",
-    "dice\n",
-    "russellrao\n",
-    "kulsinski\n",
-    "rogerstanimoto\n",
-    "sokalmichener\n",
-    "sokalsneath\n",
-    "yule"
+    "#### Apply Multiple Correspondence Analysis (MCA)"
    ]
   },
   {
