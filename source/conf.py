@@ -33,7 +33,8 @@ release = '0.0.1'
 extensions = [
   'sphinx.ext.mathjax',
   'nbsphinx',
-  'recommonmark'
+  'recommonmark',
+  'sphinxcontrib.bibtex'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,3 +66,8 @@ nbsphinx_timeout = -1
 
 # execute notebooks while building
 nbsphinx_execute = 'never'
+
+
+# -- Options for bibtext -----------------------------------------------------
+
+bibtex_bibfiles = ['publications.bib']

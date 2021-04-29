@@ -52,7 +52,7 @@ More fun projects can be found on https://github.com/kpj/.
 
 
 .. toctree::
-  :caption: My OSS Projects
+  :caption: OSS Projects
   :maxdepth: 1
 
   my_projects/bin2fasta
@@ -65,3 +65,10 @@ More fun projects can be found on https://github.com/kpj/.
   my_projects/plyder
   my_projects/pyskim
   my_projects/vydia
+
+
+.. toctree::
+  :caption: Scientific Publications
+  :maxdepth: 1
+
+  publications/overview

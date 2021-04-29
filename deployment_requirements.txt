@@ -2,6 +2,7 @@ sphinx
 nbsphinx
 recommonmark
 sphinx_rtd_theme
+sphinxcontrib-bibtex
 
 jupyfmt
 
