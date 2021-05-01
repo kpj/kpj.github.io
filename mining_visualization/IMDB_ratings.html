@@ -521,6 +521,12 @@ div.rendered_html tbody tr:hover {
     <span class="s1">&#39;Breaking Bad&#39;</span><span class="p">,</span>
     <span class="s1">&#39;The Witcher&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Dark&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;The Expanse&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Buffy the Vampire Slayer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Tribes of Europa&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Death Note&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Rick and Morty&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;Doctor Who&#39;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -539,15 +545,21 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;tv series&#39;</span>
-<span class="n">series_list</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">x</span>
-    <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">query_list</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ia</span><span class="o">.</span><span class="n">search_movie</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">kind</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">query</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;imdbIndex&#39;</span><span class="p">)</span>
-<span class="p">]</span>
+<span></span><span class="k">def</span> <span class="nf">match_series</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">query</span><span class="p">,</span> <span class="n">year</span> <span class="o">=</span> <span class="n">query</span>
 
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">series_list</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">match</span> <span class="o">&amp;=</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">query</span>  <span class="c1"># must match query</span>
+    <span class="n">match</span> <span class="o">&amp;=</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">kind</span>  <span class="c1"># must be TV series</span>
+    <span class="n">match</span> <span class="o">&amp;=</span> <span class="n">entry</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>  <span class="c1"># exclude weird entries without year</span>
+
+    <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">year</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">&amp;=</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span>
+
+    <span class="k">return</span> <span class="n">match</span>
 </pre></div>
 </div>
 </div>
@@ -556,12 +568,35 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;tv series&#39;</span>
+<span class="n">series_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">x</span>
+    <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">query_list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ia</span><span class="o">.</span><span class="n">search_movie</span><span class="p">(</span><span class="n">query</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">match_series</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">series_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b791d450da694b9fb08ec2e5e2a29275", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">series_list</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -575,11 +610,17 @@ div.rendered_html tbody tr:hover {
  &lt;Movie id:2085059[http] title:_&#34;Black Mirror&#34; (2011)_&gt;,
  &lt;Movie id:0903747[http] title:_&#34;Breaking Bad&#34; (2008)_&gt;,
  &lt;Movie id:5180504[http] title:_&#34;The Witcher&#34; (2019)_&gt;,
- &lt;Movie id:5753856[http] title:_&#34;Dark&#34; (2017)_&gt;]
+ &lt;Movie id:5753856[http] title:_&#34;Dark&#34; (2017)_&gt;,
+ &lt;Movie id:3230854[http] title:_&#34;The Expanse&#34; (2015)_&gt;,
+ &lt;Movie id:0118276[http] title:_&#34;Buffy the Vampire Slayer&#34; (1997)_&gt;,
+ &lt;Movie id:9184982[http] title:_&#34;Tribes of Europa&#34; (2021)_&gt;,
+ &lt;Movie id:0877057[http] title:_&#34;Death Note&#34; (2006)_&gt;,
+ &lt;Movie id:2861424[http] title:_&#34;Rick and Morty&#34; (2013)_&gt;,
+ &lt;Movie id:0436992[http] title:_&#34;Doctor Who&#34; (2005)_&gt;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -611,6 +652,9 @@ div.rendered_html tbody tr:hover {
 
 <span class="c1"># fix for latest seaborn version (otherwise all cetegory levels are plotted for all series)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># only display ten seasons to not break color palette</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;season_nr&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;season_nr&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -618,7 +662,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "67632952ce4e40fc9dee4a6c9d69920b", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9775c64528c8443a8638294d699daa03", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -635,103 +679,13 @@ Black Mirror
 Breaking Bad
 The Witcher
 Dark
+The Expanse
+Buffy the Vampire Slayer
+Tribes of Europa
+Death Note
+Rick and Morty
+Doctor Who
 </pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>series</th>
-      <th>season_nr</th>
-      <th>episode_nr</th>
-      <th>episode</th>
-      <th>rating</th>
-      <th>date</th>
-      <th>idx</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>572</th>
-      <td>Black Mirror</td>
-      <td>1</td>
-      <td>1</td>
-      <td>The National Anthem</td>
-      <td>7.701235</td>
-      <td>2011-12-04</td>
-      <td>1:1</td>
-    </tr>
-    <tr>
-      <th>573</th>
-      <td>Black Mirror</td>
-      <td>1</td>
-      <td>2</td>
-      <td>Fifteen Million Merits</td>
-      <td>8.101235</td>
-      <td>2016-10-21</td>
-      <td>1:2</td>
-    </tr>
-    <tr>
-      <th>574</th>
-      <td>Black Mirror</td>
-      <td>1</td>
-      <td>3</td>
-      <td>The Entire History of You</td>
-      <td>8.601235</td>
-      <td>2016-10-21</td>
-      <td>1:3</td>
-    </tr>
-    <tr>
-      <th>575</th>
-      <td>Black Mirror</td>
-      <td>2</td>
-      <td>1</td>
-      <td>Be Right Back</td>
-      <td>8.001235</td>
-      <td>2016-10-21</td>
-      <td>2:1</td>
-    </tr>
-    <tr>
-      <th>576</th>
-      <td>Black Mirror</td>
-      <td>2</td>
-      <td>2</td>
-      <td>White Bear</td>
-      <td>8.001235</td>
-      <td>2016-10-21</td>
-      <td>2:2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 </div>
 <div class="section" id="Visualize-results">
