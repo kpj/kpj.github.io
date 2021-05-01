@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "constant-preview",
+   "id": "victorian-photography",
    "metadata": {
     "tags": []
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "stock-portuguese",
+   "id": "based-theme",
    "metadata": {
     "tags": []
    },
@@ -33,7 +33,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "breathing-panama",
+   "id": "fabulous-nerve",
    "metadata": {
     "tags": []
    },
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "virgin-occasion",
+   "id": "medium-wildlife",
    "metadata": {
     "tags": []
    },
@@ -55,7 +55,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "abandoned-condition",
+   "id": "driving-cloud",
    "metadata": {
     "tags": []
    },
@@ -84,7 +84,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "located-idaho",
+   "id": "artificial-syracuse",
    "metadata": {
     "tags": []
    },
@@ -96,7 +96,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "wrong-parking",
+   "id": "federal-california",
    "metadata": {
     "tags": []
    },
@@ -122,7 +122,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "caroline-narrative",
+   "id": "impossible-chamber",
    "metadata": {
     "tags": []
    },
@@ -130,7 +130,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "b791d450da694b9fb08ec2e5e2a29275",
+       "model_id": "3a7577052938474bbb40a5d6c49a4cd0",
        "version_major": 2,
        "version_minor": 0
       },
@@ -157,7 +157,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "imperial-market",
+   "id": "pressing-sleeve",
    "metadata": {
     "tags": []
    },
@@ -195,7 +195,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "underlying-tattoo",
+   "id": "different-ecuador",
    "metadata": {
     "tags": []
    },
@@ -203,7 +203,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "9775c64528c8443a8638294d699daa03",
+       "model_id": "2e2e0a4c286b4811ab4d8c2b0d431eb3",
        "version_major": 2,
        "version_minor": 0
       },
@@ -362,8 +362,126 @@
    ]
   },
   {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "previous-yugoslavia",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>series</th>\n",
+       "      <th>season_nr</th>\n",
+       "      <th>episode_nr</th>\n",
+       "      <th>episode</th>\n",
+       "      <th>rating</th>\n",
+       "      <th>date</th>\n",
+       "      <th>idx</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>572</th>\n",
+       "      <td>Black Mirror</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>The National Anthem</td>\n",
+       "      <td>7.701235</td>\n",
+       "      <td>2011-12-04</td>\n",
+       "      <td>1:1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>573</th>\n",
+       "      <td>Black Mirror</td>\n",
+       "      <td>1</td>\n",
+       "      <td>2</td>\n",
+       "      <td>Fifteen Million Merits</td>\n",
+       "      <td>8.101235</td>\n",
+       "      <td>2011-12-11</td>\n",
+       "      <td>1:2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>574</th>\n",
+       "      <td>Black Mirror</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>The Entire History of You</td>\n",
+       "      <td>8.601235</td>\n",
+       "      <td>2011-12-18</td>\n",
+       "      <td>1:3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>575</th>\n",
+       "      <td>Black Mirror</td>\n",
+       "      <td>2</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Be Right Back</td>\n",
+       "      <td>8.001235</td>\n",
+       "      <td>2013-02-11</td>\n",
+       "      <td>2:1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>576</th>\n",
+       "      <td>Black Mirror</td>\n",
+       "      <td>2</td>\n",
+       "      <td>2</td>\n",
+       "      <td>White Bear</td>\n",
+       "      <td>8.001235</td>\n",
+       "      <td>2013-02-18</td>\n",
+       "      <td>2:2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "           series  season_nr  episode_nr                    episode    rating  \\\n",
+       "572  Black Mirror          1           1        The National Anthem  7.701235   \n",
+       "573  Black Mirror          1           2     Fifteen Million Merits  8.101235   \n",
+       "574  Black Mirror          1           3  The Entire History of You  8.601235   \n",
+       "575  Black Mirror          2           1              Be Right Back  8.001235   \n",
+       "576  Black Mirror          2           2                 White Bear  8.001235   \n",
+       "\n",
+       "          date  idx  \n",
+       "572 2011-12-04  1:1  \n",
+       "573 2011-12-11  1:2  \n",
+       "574 2011-12-18  1:3  \n",
+       "575 2013-02-11  2:1  \n",
+       "576 2013-02-18  2:2  "
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
    "cell_type": "markdown",
-   "id": "decimal-valve",
+   "id": "developing-content",
    "metadata": {
     "tags": []
    },
@@ -373,8 +491,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
-   "id": "mobile-singapore",
+   "execution_count": 10,
+   "id": "dynamic-resort",
    "metadata": {
     "tags": []
    },
@@ -396,8 +514,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
-   "id": "fixed-greece",
+   "execution_count": 11,
+   "id": "coordinate-microphone",
    "metadata": {
     "tags": []
    },
