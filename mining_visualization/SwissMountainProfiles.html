@@ -1,0 +1,1645 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Visualizing Height Profiles of Swiss Mountains &mdash; kpj&#39;s blog 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Playing with Variational Autoencoders" href="../stats_ml/Autoencoder.html" />
+    <link rel="prev" title="Visualizing Sorting Algorithms" href="SortingAnimations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kpj's blog
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/Eduroam.html">Connecting to Eduroam Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/EncryptPartitions.html">Encrypting Partitions using LUKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/KernelBuilding.html">Building a Custom Linux Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/MediaServerSetup.html">Setting up a media server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/MonitoringWithMunin.html">Monitoring server resources using Munin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/RescuingABrokenSystem.html">Rescuing a Broken Archlinux System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/SetupEncryptedArchlinux.html">Setting up Archlinux with Encrypted Disk</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Data Mining &amp; Visualization</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Eurostat_Visualizations.html">Visualizing Eurostat data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IMDB_ratings.html">Investigating TV Series ratings using IMDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MEP_Statistics.html">Analyzing the European Parliament</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SortingAnimations.html">Visualizing Sorting Algorithms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Visualizing Height Profiles of Swiss Mountains</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Finding-interesting-mountains">Finding interesting mountains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Retrieve-set-of-“all”-mountains">Retrieve set of “all” mountains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Basic-statistics">Basic statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Subset-to-interesting-mountains">Subset to interesting mountains</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Mountain-Map">Mountain Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Retrieve-topological-height-profiles">Retrieve topological height profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Helper-functions">Helper functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Download-data">Download data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Read-data">Read data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Transform-data">Transform data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Visualize-height-profiles">Visualize height profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#2D-view">2D view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#3D-view">3D view</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Create-vertex-and-face-list">Create vertex and face list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Visualize-single-mountain-mesh">Visualize single mountain mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Simplify-mesh">Simplify mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Visualize-multiple-mountains-at-once">Visualize multiple mountains at once</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Statistics &amp; Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/Autoencoder.html">Playing with Variational Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/LinearRegressionCoefficients.html">Interpreting the coefficients of a linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stats_ml/ProbabilityDistributionsOverview.html">The Daring Landscape of Probability Distribution Functions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/BenchmarkingCommonOperations.html">Benchmarking common operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/InterceptingHTTPTraffic.html">Intercepting HTTP(S) Traffic of Android Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/PythonAlmanac.html">The Python Almanac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ThreadingVSMultiprocessing.html">Comparing threading and multiprocessing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OSS Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/bin2fasta.html">bin2fasta: Store any file as a fasta file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/clypper.html">clypper: Rapidly create supercuts from various video sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/cookiecutter-python.html">cookiecutter-python: An opinionated template for Python packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/plyder.html">plyder: Download Manager with Web-Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/vydia.html">Vydia: A modularized video player</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scientific Publications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/overview.html">Overview</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kpj's blog</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Visualizing Height Profiles of Swiss Mountains</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/mining_visualization/SwissMountainProfiles.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Visualizing-Height-Profiles-of-Swiss-Mountains">
+<h1>Visualizing Height Profiles of Swiss Mountains<a class="headerlink" href="#Visualizing-Height-Profiles-of-Swiss-Mountains" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="kn">import</span> <span class="nn">meshplot</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">plotnine</span> <span class="k">as</span> <span class="nn">p9</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="k">as</span> <span class="nn">PathEffects</span>
+
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.merge</span> <span class="kn">import</span> <span class="n">merge</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">cx</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Transformer</span>
+
+<span class="kn">import</span> <span class="nn">pymeshlab</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Delaunay</span>
+
+<span class="kn">import</span> <span class="nn">sh</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Finding-interesting-mountains">
+<h2>Finding interesting mountains<a class="headerlink" href="#Finding-interesting-mountains" title="Permalink to this headline">¶</a></h2>
+<p>We can find relevant mountains with metadata and their geographical coordinates by looking at the various lists which <a class="reference external" href="https://en.wikipedia.org/wiki/Category:Lists_of_mountains_of_Switzerland">Wikipedia</a> provides.</p>
+<div class="section" id="Retrieve-set-of-“all”-mountains">
+<h3>Retrieve set of “all” mountains<a class="headerlink" href="#Retrieve-set-of-“all”-mountains" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df_mountains</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span>
+    <span class="s2">&quot;https://en.wikipedia.org/wiki/List_of_prominent_mountains_of_Switzerland&quot;</span>
+<span class="p">)[</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># it requires some extra engineering to get their latitude and longitude in a useable format</span>
+<span class="k">def</span> <span class="nf">extract_coords</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">lat_raw</span><span class="p">,</span> <span class="n">lng_raw</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">lng_raw</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="p">)</span>  <span class="c1"># invisible character &#39;\ufeff&#39; in front of lat</span>
+
+
+<span class="n">df_mountains</span> <span class="o">=</span> <span class="n">df_mountains</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">coords</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;Coordinates&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; / &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">extract_coords</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df_mountains</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Mountain&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Height(m)[2]&quot;</span><span class="p">:</span> <span class="s2">&quot;height_m&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Prom.(m)[2]&quot;</span><span class="p">:</span> <span class="s2">&quot;prominence_m&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">df_mountains</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="n">df_mountains</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+        <span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="n">df_mountains</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_mountains</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Heightrank</th>
+      <th>Prom.rank</th>
+      <th>name</th>
+      <th>height_m</th>
+      <th>prominence_m</th>
+      <th>Coordinates</th>
+      <th>Range</th>
+      <th>Canton(s)</th>
+      <th>First[5]ascent</th>
+      <th>coords</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>3</td>
+      <td>Monte Rosa (Dufourspitze)</td>
+      <td>4634</td>
+      <td>2165</td>
+      <td>.mw-parser-output .geo-default,.mw-parser-outp...</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1855.0</td>
+      <td>(45.93694, 7.86694)</td>
+      <td>POINT (7.86694 45.93694)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>29</td>
+      <td>Dom</td>
+      <td>4545</td>
+      <td>1046</td>
+      <td>46°05′38″N 07°51′32″E﻿ / ﻿46.09389°N 7.85889°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1858.0</td>
+      <td>(46.09389, 7.85889)</td>
+      <td>POINT (7.85889 46.09389)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>302</td>
+      <td>Lyskamm</td>
+      <td>4533</td>
+      <td>381</td>
+      <td>45°55′20″N 07°50′08″E﻿ / ﻿45.92222°N 7.83556°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1861.0</td>
+      <td>(45.92222, 7.83556)</td>
+      <td>POINT (7.83556 45.92222)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>18</td>
+      <td>Weisshorn</td>
+      <td>4506</td>
+      <td>1235</td>
+      <td>46°06′05″N 07°42′57″E﻿ / ﻿46.10139°N 7.71583°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1861.0</td>
+      <td>(46.10139, 7.71583)</td>
+      <td>POINT (7.71583 46.10139)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>30</td>
+      <td>Matterhorn</td>
+      <td>4478</td>
+      <td>1042</td>
+      <td>45°58′35″N 07°39′31″E﻿ / ﻿45.97639°N 7.65861°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1865.0</td>
+      <td>(45.97639, 7.65861)</td>
+      <td>POINT (7.65861 45.97639)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Basic-statistics">
+<h3>Basic statistics<a class="headerlink" href="#Basic-statistics" title="Permalink to this headline">¶</a></h3>
+<p>We can observe that most mountains (which we retrieved from Wikipedia) have a height of around <span class="math notranslate nohighlight">\(3000m\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">(</span>
+    <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">df_mountains</span><span class="p">,</span> <span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;height_m&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Mountain height [m] distribution&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">theme_minimal</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_SwissMountainProfiles_7_0.png" src="../_images/mining_visualization_SwissMountainProfiles_7_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;ggplot: (349572081)&gt;
+</pre></div></div>
+</div>
+<p>Furthermore, most considered mountains have a prominence (height of mountain relative to lowest contour line encircling it but containing no higher summit) of below <span class="math notranslate nohighlight">\(500m\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">(</span>
+    <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">df_mountains</span><span class="p">,</span> <span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;prominence_m&quot;</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">&quot;Mountain prominence [m] distribution&quot;</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">theme_minimal</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_SwissMountainProfiles_9_0.png" src="../_images/mining_visualization_SwissMountainProfiles_9_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;ggplot: (280496490)&gt;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Subset-to-interesting-mountains">
+<h3>Subset to interesting mountains<a class="headerlink" href="#Subset-to-interesting-mountains" title="Permalink to this headline">¶</a></h3>
+<p>To make the visualization feasible, we’ll restrict ourselves to a subset of subjectively interesting mountains. We consider a mountain to be interesting if it is high, isolated and far away from the border (such that we can obtain the complete height profile of its surrounding region).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># load shape of Switzerland</span>
+<span class="n">df_switzerland</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;switzerland.geojson&quot;</span><span class="p">)</span>
+<span class="n">df_switzerland</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CH</td>
+      <td>POLYGON ((8.57415 47.80745, 8.57642 47.80116, ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">df_switzerland</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3310</span><span class="p">)</span><span class="o">.</span><span class="n">boundary</span>
+<span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;distance_swiss_border&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mountains</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3310</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">tmp</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df_mountains</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;distance_swiss_border&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Heightrank</th>
+      <th>Prom.rank</th>
+      <th>name</th>
+      <th>height_m</th>
+      <th>prominence_m</th>
+      <th>Coordinates</th>
+      <th>Range</th>
+      <th>Canton(s)</th>
+      <th>First[5]ascent</th>
+      <th>coords</th>
+      <th>geometry</th>
+      <th>distance_swiss_border</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>60</th>
+      <td>61</td>
+      <td>355</td>
+      <td>Aouille Tseuque</td>
+      <td>3554</td>
+      <td>345</td>
+      <td>45°55′49″N 07°26′35″E﻿ / ﻿45.93028°N 7.44306°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>NaN</td>
+      <td>(45.93028, 7.44306)</td>
+      <td>POINT (7.44306 45.93028)</td>
+      <td>6.607005</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>35</td>
+      <td>178</td>
+      <td>Bouquetins</td>
+      <td>3838</td>
+      <td>490</td>
+      <td>45°58′56″N 07°32′43″E﻿ / ﻿45.98222°N 7.54528°E</td>
+      <td>Pennine Alps</td>
+      <td>Valais</td>
+      <td>1871.0</td>
+      <td>(45.98222, 7.54528)</td>
+      <td>POINT (7.54528 45.98222)</td>
+      <td>7.309605</td>
+    </tr>
+    <tr>
+      <th>205</th>
+      <td>206</td>
+      <td>384</td>
+      <td>Gamspleisspitze</td>
+      <td>3015</td>
+      <td>328</td>
+      <td>46°55′54″N 10°14′31″E﻿ / ﻿46.93167°N 10.24194°E</td>
+      <td>Silvretta Alps</td>
+      <td>Graubünden</td>
+      <td>1853.0</td>
+      <td>(46.93167, 10.24194)</td>
+      <td>POINT (10.24194 46.93167)</td>
+      <td>10.232307</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>138</td>
+      <td>435</td>
+      <td>Dreiländerspitze</td>
+      <td>3197</td>
+      <td>306</td>
+      <td>46°51′03″N 10°08′41″E﻿ / ﻿46.85083°N 10.14472°E</td>
+      <td>Silvretta Alps</td>
+      <td>Graubünden</td>
+      <td>1853.0</td>
+      <td>(46.85083, 10.14472)</td>
+      <td>POINT (10.14472 46.85083)</td>
+      <td>12.469264</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>58</td>
+      <td>365</td>
+      <td>Piz Glüschaint</td>
+      <td>3594</td>
+      <td>341</td>
+      <td>46°21′45″N 09°50′24″E﻿ / ﻿46.36250°N 9.84000°E</td>
+      <td>Bernina Range</td>
+      <td>Graubünden</td>
+      <td>1863.0</td>
+      <td>(46.3625, 9.84)</td>
+      <td>POINT (9.84000 46.36250)</td>
+      <td>13.609412</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># only retain mountains well within Switzerland to avoid cutoff height profiles at border</span>
+<span class="n">df_mountains</span> <span class="o">=</span> <span class="n">df_mountains</span><span class="p">[</span><span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;distance_swiss_border&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_mountains</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># only retain high mountains</span>
+<span class="n">df_mountains</span> <span class="o">=</span> <span class="n">df_mountains</span><span class="p">[</span><span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;height_m&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_mountains</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># only retain isolated mountains to emphasize the height profile</span>
+<span class="n">df_mountains</span> <span class="o">=</span> <span class="n">df_mountains</span><span class="p">[</span><span class="n">df_mountains</span><span class="p">[</span><span class="s2">&quot;prominence_m&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_mountains</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(265, 12)
+(99, 12)
+(11, 12)
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Mountain-Map">
+<h2>Mountain Map<a class="headerlink" href="#Mountain-Map" title="Permalink to this headline">¶</a></h2>
+<p>We draw a quick map of Switzerland and highlight the selected mountains to get a better feeling for their distribution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">df_switzerland</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">df_mountains</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">df_switzerland</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_string</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TerrainBackground</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_mountains</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">row</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">),</span>
+        <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">PathEffects</span><span class="o">.</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)],</span>
+    <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># cx.add_basemap resets aspect ratio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(5.729968359502834, 10.720279079405891, 45.719604942612904, 47.9094409181006)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_SwissMountainProfiles_15_1.png" src="../_images/mining_visualization_SwissMountainProfiles_15_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Retrieve-topological-height-profiles">
+<h2>Retrieve topological height profiles<a class="headerlink" href="#Retrieve-topological-height-profiles" title="Permalink to this headline">¶</a></h2>
+<p>Once we have identified all mountains we are interested in, we can retrieve the height profiles of them and their surroundings from the <a class="reference external" href="https://www.swisstopo.admin.ch/en/geodata/height/alti3d.html">swissALTI3D</a> data resource.</p>
+<div class="section" id="Helper-functions">
+<h3>Helper functions<a class="headerlink" href="#Helper-functions" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">download_geotiff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dest_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;resources&quot;</span><span class="p">),</span> <span class="n">year</span><span class="o">=</span><span class="mi">2020</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to download a GeoTIFF at a given spatial index.&quot;&quot;&quot;</span>
+    <span class="n">dest_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;swissalti3d_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">_2_2056_5728.tif&quot;</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">dest_dir</span> <span class="o">/</span> <span class="n">fname</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://data.geo.admin.ch/ch.swisstopo.swissalti3d/swissalti3d_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sh</span><span class="o">.</span><span class="n">wget</span><span class="p">(</span><span class="s2">&quot;-P&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dest_dir</span><span class="p">),</span> <span class="n">url</span><span class="p">,</span> <span class="n">_fg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">sh</span><span class="o">.</span><span class="n">ErrorReturnCode_8</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No topolgical data found for coordinates </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+            <span class="n">next_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="c1">#             print(f&quot;Warning: {url} does not exist, trying again with previous year ({year} -&gt; {next_year})&quot;)</span>
+            <span class="k">return</span> <span class="n">download_geotiff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dest_dir</span><span class="o">=</span><span class="n">dest_dir</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">next_year</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">target</span>
+
+
+<span class="k">def</span> <span class="nf">get_grid</span><span class="p">(</span><span class="n">latlong_coords</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function of generate spatial index grid from latitude/longitude coordinates.&quot;&quot;&quot;</span>
+    <span class="c1"># infer the grid&#39;s spatial coordinates</span>
+    <span class="n">dst_crs</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">2056</span><span class="p">)</span>
+    <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="s2">&quot;epsg:4326&quot;</span><span class="p">,</span> <span class="n">dst_crs</span><span class="p">)</span>
+
+    <span class="n">spatial_coords</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="o">*</span><span class="n">latlong_coords</span><span class="p">)</span>
+    <span class="n">swisstopo_coords</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">sc</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">spatial_coords</span><span class="p">)</span>
+
+    <span class="c1"># generate grid ranges</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">swisstopo_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">swisstopo_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">swisstopo_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">swisstopo_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">size</span><span class="p">)</span>
+
+    <span class="c1"># return grid as list of tuples</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Download-data">
+<h3>Download data<a class="headerlink" href="#Download-data" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fname_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+    <span class="n">df_mountains</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">df_mountains</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Retrieve GeoTIFFs&quot;</span>
+<span class="p">):</span>
+    <span class="n">mnt</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">grid_coord_list</span> <span class="o">=</span> <span class="n">get_grid</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">fname_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">grid_coord_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">coords</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">download_geotiff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fname</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fname_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5d3f069c0b2f49cf85f1e6ef02380d68", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ae36e0a2ec6b484fbd4f2560754f40d3", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2ba1839168ac465ea35b0235bc01d0cb", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "495c2d0856a74a68835a84e87fbbdefb", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ca2ed49762cf4b97829cb564cbe287dd", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5208dd8568d2445294f8b8fb7a3488d4", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8435653a07624391b496c1ab39b6d979", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "689b929790944ce5953774a2da0d3ac3", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "619ff6913cca4c82837dd12c025b8174", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "66da17b90b8742d7bc00c36dfce1b492", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb4d54cf25a245fbb921f6e4574a8ff3", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d8446c9441dd4232a75d2577209ae854", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</div>
+<div class="section" id="Read-data">
+<h3>Read data<a class="headerlink" href="#Read-data" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">merge_geotiffs</span><span class="p">(</span><span class="n">fname_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read multiple GeoTIFFs and merge them into single matrix.&quot;&quot;&quot;</span>
+    <span class="n">dataset_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fname_list</span><span class="p">]</span>
+    <span class="n">mosaic</span><span class="p">,</span> <span class="n">out_trans</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">dataset_list</span><span class="p">)</span>
+    <span class="n">mosaic</span><span class="p">[</span><span class="n">mosaic</span> <span class="o">==</span> <span class="o">-</span><span class="mi">9999</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># clean broken values</span>
+
+    <span class="n">crs_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span><span class="o">.</span><span class="n">crs</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">dataset_list</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">crs_list</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">mosaic</span><span class="p">,</span> <span class="n">out_trans</span><span class="p">,</span> <span class="n">crs_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">profile_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">mnt</span><span class="p">,</span> <span class="n">fname_list</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">fname_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Merge GeoTIFFs&quot;</span><span class="p">):</span>
+    <span class="n">profile_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">merge_geotiffs</span><span class="p">(</span><span class="n">fname_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a424dbb4ba60433d8af635aeb6a815f5", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</div>
+<div class="section" id="Transform-data">
+<h3>Transform data<a class="headerlink" href="#Transform-data" title="Permalink to this headline">¶</a></h3>
+<p>We will now center each matrix on its point of highest elevation and make a circular cut out.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_circle_indices</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get coordinates of all points falling outside of circle.&quot;&quot;&quot;</span>
+    <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">argmax</span><span class="p">(),</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">xs</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">ys</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">xs</span><span class="p">[</span><span class="n">rs</span> <span class="o">&gt;</span> <span class="n">radius</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">rs</span> <span class="o">&gt;</span> <span class="n">radius</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">focus_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create circular cut out of given matrix.&quot;&quot;&quot;</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># set values outside circle to NaN</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">get_circle_indices</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+    <span class="n">matrix</span><span class="p">[</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># remove rows/columns which are all NaN now</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax_list</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figaspect</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">profile_dict</span><span class="p">[</span><span class="s2">&quot;Finsteraarhorn&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">show</span><span class="p">(</span><span class="n">focus_matrix</span><span class="p">(</span><span class="n">profile_dict</span><span class="p">[</span><span class="s2">&quot;Finsteraarhorn&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;AxesSubplot:&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_SwissMountainProfiles_26_1.png" src="../_images/mining_visualization_SwissMountainProfiles_26_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">mnt</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">profile_dict</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">focus_matrix</span><span class="p">(</span><span class="n">profile_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="n">profile_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">profile_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">profile_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "21b8620f752643aaa41439376d6ad366", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</div>
+</div>
+<div class="section" id="Visualize-height-profiles">
+<h2>Visualize height profiles<a class="headerlink" href="#Visualize-height-profiles" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="2D-view">
+<h3>2D view<a class="headerlink" href="#2D-view" title="Permalink to this headline">¶</a></h3>
+<p>We start out with a simple 2D plot of the height profiles and mark the peak height in each center.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">subplot_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">profile_dict</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_arr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="n">subplot_size</span><span class="p">,</span>
+    <span class="n">ncols</span><span class="o">=</span><span class="n">subplot_size</span><span class="p">,</span>
+    <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">subplot_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">subplot_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">ax_arr</span><span class="o">.</span><span class="n">flat</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">mnt</span><span class="p">,</span> <span class="n">profile</span><span class="p">),</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">profile_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">ax_arr</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">mnt</span><span class="p">)</span>
+
+    <span class="n">max_height</span> <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">max_height</span><span class="p">)</span><span class="si">}</span><span class="s2">m&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">PathEffects</span><span class="o">.</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)],</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_SwissMountainProfiles_30_0.png" src="../_images/mining_visualization_SwissMountainProfiles_30_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="3D-view">
+<h3>3D view<a class="headerlink" href="#3D-view" title="Permalink to this headline">¶</a></h3>
+<p>A more interactive and appealing visualization can be achieved by creating 3D meshes from the height data.</p>
+<div class="section" id="Create-vertex-and-face-list">
+<h4>Create vertex and face list<a class="headerlink" href="#Create-vertex-and-face-list" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">create_mesh</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate vertex, face and color list for given value matrix.&quot;&quot;&quot;</span>
+    <span class="c1"># generate vertex list</span>
+    <span class="n">vertex_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]):</span>
+            <span class="n">vertex_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]))</span>
+    <span class="n">vertex_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vertex_list</span><span class="p">)</span>
+
+    <span class="c1"># generate color list</span>
+    <span class="n">color_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># generate face list</span>
+    <span class="n">dela</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">vertex_list</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">face_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tri</span> <span class="ow">in</span> <span class="n">dela</span><span class="o">.</span><span class="n">simplices</span><span class="p">:</span>
+        <span class="n">face_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tri</span><span class="p">)</span>
+    <span class="n">face_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">face_list</span><span class="p">)</span>
+
+    <span class="c1"># finalize</span>
+    <span class="k">return</span> <span class="n">vertex_list</span><span class="p">,</span> <span class="n">face_list</span><span class="p">,</span> <span class="n">color_list</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mesh_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">mnt</span><span class="p">,</span> <span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">profile_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Generate meshes&quot;</span><span class="p">):</span>
+    <span class="n">mesh_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_mesh</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c6ebcf60e6f14f4dbdab336065592c61", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</div>
+<div class="section" id="Visualize-single-mountain-mesh">
+<h4>Visualize single mountain mesh<a class="headerlink" href="#Visualize-single-mountain-mesh" title="Permalink to this headline">¶</a></h4>
+<p>We can then take a closer look at a single mountain.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">vertex_list</span><span class="p">,</span> <span class="n">face_list</span><span class="p">,</span> <span class="n">color_list</span> <span class="o">=</span> <span class="n">mesh_dict</span><span class="p">[</span><span class="s2">&quot;Finsteraarhorn&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vertex_list</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">face_list</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">color_list</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "55cbfd2a66714feeb5698126d8e3b5c7", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;meshplot.Viewer.Viewer at 0x14d7d6340&gt;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Simplify-mesh">
+<h4>Simplify mesh<a class="headerlink" href="#Simplify-mesh" title="Permalink to this headline">¶</a></h4>
+<p>To be able to render multiple meshes simultaneously in an efficient manner, we simplify their structure (i.e. remove vertices and faces while retaining approximate visual accuracy).</p>
+<p>We start by putting all (selected) mountains into a single coordinate system.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mountain_selection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Piz Kesch/Piz d&#39;Es-Cha&quot;</span><span class="p">,</span> <span class="s2">&quot;Tödi (Piz Russein)&quot;</span><span class="p">,</span> <span class="s2">&quot;Finsteraarhorn&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">translation_matrix_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">next_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">mnt</span><span class="p">,</span> <span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">profile_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">mnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mountain_selection</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="n">cur_vertices</span> <span class="o">=</span> <span class="n">mesh_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">offset_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">cur_vertices</span><span class="p">)</span>
+
+    <span class="n">offset_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_offset</span>
+    <span class="n">next_offset</span> <span class="o">+=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">translation_matrix_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">offset_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0cb418e2cfad49678e92285fd8ef26f9", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">all_vertices</span><span class="p">,</span> <span class="n">all_faces</span><span class="p">,</span> <span class="n">all_colors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">mnt</span><span class="p">,</span> <span class="p">(</span><span class="n">vertex_list</span><span class="p">,</span> <span class="n">face_list</span><span class="p">,</span> <span class="n">color_list</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">mesh_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">mnt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mountain_selection</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="n">translation_matrix</span> <span class="o">=</span> <span class="n">translation_matrix_dict</span><span class="p">[</span><span class="n">mnt</span><span class="p">]</span>
+    <span class="n">translation_matrix</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">vertex_list</span><span class="p">[</span>
+        <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>  <span class="c1"># make all mountains start at same height</span>
+
+    <span class="n">all_faces</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">face_list</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_vertices</span><span class="p">))</span>
+    <span class="n">all_vertices</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">vertex_list</span> <span class="o">+</span> <span class="n">translation_matrix</span><span class="p">)</span>
+    <span class="n">all_colors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">color_list</span><span class="p">)</span>
+
+<span class="n">all_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">all_vertices</span><span class="p">)</span>
+<span class="n">all_faces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">all_faces</span><span class="p">)</span>
+<span class="n">all_colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">all_colors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb4d3b0c956a4911ab0ec9d88ac52a72", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Next, we use MeshLab to simplify our meshes. For use in other programs, we also save the (simplified) meshes to an OBJ file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%time</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">pymeshlab</span><span class="o">.</span><span class="n">MeshSet</span><span class="p">()</span>
+
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">pymeshlab</span><span class="o">.</span><span class="n">Mesh</span><span class="p">(</span><span class="n">all_vertices</span><span class="p">,</span> <span class="n">all_faces</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;surface&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;vertices/faces&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">vertex_number</span><span class="p">(),</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">face_number</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">apply_filter</span><span class="p">(</span>
+    <span class="s2">&quot;simplification_quadric_edge_collapse_decimation&quot;</span><span class="p">,</span>
+    <span class="n">targetperc</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">preserveboundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">preservenormal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">preservetopology</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">planarquadric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;vertices/faces&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">vertex_number</span><span class="p">(),</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">face_number</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">ms</span><span class="o">.</span><span class="n">save_current_mesh</span><span class="p">(</span><span class="s2">&quot;mountain_meshes.obj&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+vertices/faces 6031719 12060852
+vertices/faces 604335 1206084
+CPU times: user 5min 54s, sys: 23 s, total: 6min 17s
+Wall time: 6min 18s
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">all_vertices_simple</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">vertex_matrix</span><span class="p">()</span>
+<span class="n">all_faces_simple</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">face_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Visualize-multiple-mountains-at-once">
+<h4>Visualize multiple mountains at once<a class="headerlink" href="#Visualize-multiple-mountains-at-once" title="Permalink to this headline">¶</a></h4>
+<p>Finally, we can explore all our favorite mountains in an interactive, three dimensional landscape.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">vertex_matrix</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">face_matrix</span><span class="p">(),</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">current_mesh</span><span class="p">()</span><span class="o">.</span><span class="n">vertex_matrix</span><span class="p">()[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">shading</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d2334fc815664f72bf26cd7c1f3a8015", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;meshplot.Viewer.Viewer at 0x14d900b80&gt;
+</pre></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../stats_ml/Autoencoder.html" class="btn btn-neutral float-right" title="Playing with Variational Autoencoders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="SortingAnimations.html" class="btn btn-neutral float-left" title="Visualizing Sorting Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, kpj.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
