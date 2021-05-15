@@ -69,7 +69,8 @@ More fun projects can be found on https://github.com/kpj/.
 
 
 .. toctree::
-  :caption: Scientific Publications
+  :caption: Scientific Work
   :maxdepth: 1
 
-  publications/overview
+  science/presentations
+  science/publications

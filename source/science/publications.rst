@@ -1,5 +1,5 @@
-Overview
-========
+Publications
+============
 
 .. bibliography::
   :list: bullet
