@@ -5,7 +5,10 @@ A blog on Linux, Data Science, and more
 This blog is filled with text and code about various slightly related topics.
 Correctness and completeness are not guaranteed.
 
-More fun projects can be found on https://github.com/kpj/.
+You can reach me via email (kim.philipp.jablonski [at] gmail.com), on Twitter_ and on GitHub_.
+
+.. _Twitter: https://twitter.com/kpj_py
+.. _GitHub: https://github.com/kpj/
 
 
 .. toctree::
