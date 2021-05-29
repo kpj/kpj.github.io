@@ -2799,6 +2799,7 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
 <span></span><span class="c1"># create figure</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">bpl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span>
     <span class="n">tools</span><span class="o">=</span><span class="s1">&#39;hover,pan,reset,wheel_zoom,box_zoom&#39;</span><span class="p">,</span>
+    <span class="n">active_scroll</span><span class="o">=</span><span class="s1">&#39;wheel_zoom&#39;</span><span class="p">,</span>
     <span class="n">tooltips</span><span class="o">=</span><span class="p">[(</span><span class="n">col</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">hover_data</span><span class="p">],</span>
     <span class="n">background_fill_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
 <span class="p">)</span>
