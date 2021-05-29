@@ -118,10 +118,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Voting-patterns">Voting patterns</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Zoomed-out-voting-data-overview">Zoomed-out voting data overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Who-is-the-most-active-MEP?">Who is the most active MEP?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Cluster-MEPs-by-votes">Cluster MEPs by votes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Prepare-data">Prepare data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Select-subset-of-data">Select subset of data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Clustered-data-overview">Clustered data overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Project-MEPs-based-on-vote-patterns">Project MEPs based on vote patterns</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Apply-Multiple-Correspondence-Analysis-(MCA)">Apply Multiple Correspondence Analysis (MCA)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Static-visualization">Static visualization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Interactive-visualization">Interactive visualization</a></li>
@@ -515,13 +515,16 @@ div.rendered_html tbody tr:hover {
 
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Patch</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="k">as</span> <span class="nn">PathEffects</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">FuncFormatter</span><span class="p">,</span> <span class="n">FixedLocator</span>
 
 <span class="kn">import</span> <span class="nn">bokeh.models</span> <span class="k">as</span> <span class="nn">bmo</span>
 <span class="kn">import</span> <span class="nn">bokeh.plotting</span> <span class="k">as</span> <span class="nn">bpl</span>
 <span class="kn">from</span> <span class="nn">bokeh.palettes</span> <span class="kn">import</span> <span class="n">d3</span>
 
 <span class="kn">import</span> <span class="nn">prince</span>
+<span class="kn">import</span> <span class="nn">palettable</span>
 
 <span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
@@ -853,6 +856,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="section" id="Download-data">
 <h2>Download data<a class="headerlink" href="#Download-data" title="Permalink to this headline">¶</a></h2>
+<p>All data is readily available on <a class="reference external" href="https://parltrack.org/">Parltrack</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -871,6 +875,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="section" id="Transform-JSON-to-dataframes">
 <h2>Transform JSON to dataframes<a class="headerlink" href="#Transform-JSON-to-dataframes" title="Permalink to this headline">¶</a></h2>
+<p>To easily work with the data, we transform it from JSON to pandas dataframes.</p>
 <div class="section" id="MEPs">
 <h3>MEPs<a class="headerlink" href="#MEPs" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
@@ -910,7 +915,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9f222ef92c2843c1968a1e83376b8fff", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "17a1a142b189440bb429c1d37321a504", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -1063,7 +1068,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6e6142df1f4d4cf1a6ea8ddbbc8b6142", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a1aa04c4e34b434ebda8bf97f2931ae4", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -1358,8 +1363,10 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="section" id="Exploration">
 <h2>Exploration<a class="headerlink" href="#Exploration" title="Permalink to this headline">¶</a></h2>
+<p>We can then look at a few simple statistics.</p>
 <div class="section" id="MEP-party-distribution">
 <h3>MEP party distribution<a class="headerlink" href="#MEP-party-distribution" title="Permalink to this headline">¶</a></h3>
+<p>How many members (MEPs) does each party of the European parliament have?</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -1413,6 +1420,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="section" id="MEP-age-distribution">
 <h3>MEP age distribution<a class="headerlink" href="#MEP-age-distribution" title="Permalink to this headline">¶</a></h3>
+<p>And how old are these members?</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -1446,7 +1454,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.FacetGrid at 0x157fb5fa0&gt;
+&lt;seaborn.axisgrid.FacetGrid at 0x1635ff130&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1460,6 +1468,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="section" id="Voting-patterns">
 <h2>Voting patterns<a class="headerlink" href="#Voting-patterns" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now take a look at how these MEPs vote.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
@@ -1665,472 +1674,11 @@ var element = document.currentScript.previousSibling.previousSibling;
 <p>5 rows × 2329 columns</p>
 </div></div>
 </div>
-<div class="section" id="Zoomed-out-voting-data-overview">
-<h3>Zoomed-out voting data overview<a class="headerlink" href="#Zoomed-out-voting-data-overview" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hm_sub</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_votematrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-        <span class="n">df_votes</span><span class="p">[</span><span class="n">df_votes</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;20200721&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span>
-    <span class="p">]</span>
-    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span>
-    <span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_meps</span><span class="p">[[</span><span class="s1">&#39;group&#39;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">reorder_levels</span><span class="p">([</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;UserID&#39;</span><span class="p">])</span>
-    <span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hm_sub</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>116365</th>
-      <th>116366</th>
-      <th>116368</th>
-      <th>116369</th>
-      <th>116370</th>
-      <th>116371</th>
-      <th>116326</th>
-      <th>116327</th>
-      <th>116328</th>
-      <th>116329</th>
-      <th>...</th>
-      <th>116355</th>
-      <th>116356</th>
-      <th>116357</th>
-      <th>116396</th>
-      <th>116358</th>
-      <th>116359</th>
-      <th>116398</th>
-      <th>116399</th>
-      <th>116360</th>
-      <th>116401</th>
-    </tr>
-    <tr>
-      <th>group</th>
-      <th>UserID</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="5" valign="top">ECR</th>
-      <th>4465</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-1</td>
-    </tr>
-    <tr>
-      <th>4746</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-1</td>
-    </tr>
-    <tr>
-      <th>23712</th>
-      <td>1</td>
-      <td>-1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>23788</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>28297</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 62 columns</p>
-</div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hm_sub_grpd</span> <span class="o">=</span> <span class="n">hm_sub</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">hm_sub_grpd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>116365</th>
-      <th>116366</th>
-      <th>116368</th>
-      <th>116369</th>
-      <th>116370</th>
-      <th>116371</th>
-      <th>116326</th>
-      <th>116327</th>
-      <th>116328</th>
-      <th>116329</th>
-      <th>...</th>
-      <th>116355</th>
-      <th>116356</th>
-      <th>116357</th>
-      <th>116396</th>
-      <th>116358</th>
-      <th>116359</th>
-      <th>116398</th>
-      <th>116399</th>
-      <th>116360</th>
-      <th>116401</th>
-    </tr>
-    <tr>
-      <th>group</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>ECR</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>GUE/NGL</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>ID</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>NA</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>PPE</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 62 columns</p>
-</div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">hm_sub_grpd</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x15826a160&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/mining_visualization_MEP_Statistics_26_1.png" src="../_images/mining_visualization_MEP_Statistics_26_1.png" />
-</div>
-</div>
-</div>
 <div class="section" id="Who-is-the-most-active-MEP?">
 <h3>Who is the most active MEP?<a class="headerlink" href="#Who-is-the-most-active-MEP?" title="Permalink to this headline">¶</a></h3>
 <p>Here we equate “active” with “has voted most often”. This is most likely quite misleading.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2139,7 +1687,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2150,7 +1698,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2197,7 +1745,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1963-09-13</td>
       <td>True</td>
       <td>RE</td>
-      <td>57.595680</td>
+      <td>57.711345</td>
     </tr>
     <tr>
       <th>1913</th>
@@ -2206,7 +1754,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1954-01-19</td>
       <td>True</td>
       <td>S&amp;D</td>
-      <td>67.244064</td>
+      <td>67.359729</td>
     </tr>
     <tr>
       <th>2323</th>
@@ -2215,7 +1763,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1957-02-19</td>
       <td>True</td>
       <td>PPE</td>
-      <td>64.158443</td>
+      <td>64.274108</td>
     </tr>
     <tr>
       <th>4246</th>
@@ -2224,7 +1772,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1957-12-24</td>
       <td>True</td>
       <td>PPE</td>
-      <td>63.315168</td>
+      <td>63.430833</td>
     </tr>
     <tr>
       <th>28219</th>
@@ -2233,7 +1781,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1976-04-04</td>
       <td>True</td>
       <td>PPE</td>
-      <td>45.036900</td>
+      <td>45.152566</td>
     </tr>
     <tr>
       <th>2341</th>
@@ -2242,7 +1790,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1960-04-22</td>
       <td>True</td>
       <td>PPE</td>
-      <td>60.987947</td>
+      <td>61.103612</td>
     </tr>
     <tr>
       <th>28224</th>
@@ -2251,7 +1799,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1963-05-15</td>
       <td>True</td>
       <td>PPE</td>
-      <td>57.926967</td>
+      <td>58.042632</td>
     </tr>
     <tr>
       <th>28298</th>
@@ -2260,7 +1808,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1974-10-07</td>
       <td>True</td>
       <td>S&amp;D</td>
-      <td>46.529060</td>
+      <td>46.644725</td>
     </tr>
     <tr>
       <th>23821</th>
@@ -2269,7 +1817,7 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1961-09-07</td>
       <td>True</td>
       <td>PPE</td>
-      <td>59.610779</td>
+      <td>59.726445</td>
     </tr>
     <tr>
       <th>28223</th>
@@ -2278,29 +1826,41 @@ var element = document.currentScript.previousSibling.previousSibling;
       <td>1973-04-09</td>
       <td>True</td>
       <td>PPE</td>
-      <td>48.023957</td>
+      <td>48.139622</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 </div>
-<div class="section" id="Cluster-MEPs-by-votes">
-<h3>Cluster MEPs by votes<a class="headerlink" href="#Cluster-MEPs-by-votes" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="Prepare-data">
-<h4>Prepare data<a class="headerlink" href="#Prepare-data" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="Select-subset-of-data">
+<h3>Select subset of data<a class="headerlink" href="#Select-subset-of-data" title="Permalink to this headline">¶</a></h3>
+<p>For the subsequent vote clustering, we restrict ourselves to recent votes of active MEPs starting with 2020 (and remove MEPs with no votes at all).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_subset</span> <span class="o">=</span> <span class="n">df_votematrix</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span></span><span class="n">df_subset</span> <span class="o">=</span> <span class="n">df_votematrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">df_votematrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df_votes</span><span class="p">[</span><span class="n">df_votes</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+<span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">df_subset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(1808, 703)
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2321,7 +1881,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>mepid</th>
+      <th>UserID</th>
       <th>96750</th>
       <th>4746</th>
       <th>23788</th>
@@ -2371,135 +1931,215 @@ var element = document.currentScript.previousSibling.previousSibling;
   </thead>
   <tbody>
     <tr>
-      <th>115197</th>
+      <th>111241</th>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
+      <td>NaN</td>
       <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>111141</th>
       <td>+</td>
-      <td>-</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
       <td>+</td>
       <td>+</td>
       <td>NaN</td>
+      <td>NaN</td>
+      <td>+</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>115198</th>
+      <th>111142</th>
       <td>+</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>-</td>
-      <td>+</td>
-      <td>...</td>
-      <td>+</td>
-      <td>-</td>
-      <td>+</td>
-      <td>-</td>
-      <td>+</td>
-      <td>+</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
       <td>+</td>
       <td>+</td>
       <td>NaN</td>
-    </tr>
-    <tr>
-      <th>115055</th>
-      <td>+</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>+</td>
-      <td>-</td>
-      <td>+</td>
-      <td>...</td>
-      <td>+</td>
-      <td>+</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+</td>
-      <td>-</td>
-      <td>-</td>
       <td>+</td>
       <td>+</td>
       <td>NaN</td>
-    </tr>
-    <tr>
-      <th>115200</th>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
       <td>...</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+</td>
-      <td>+</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>115201</th>
+      <th>111143</th>
       <td>+</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>+</td>
+      <td>+</td>
+      <td>NaN</td>
+      <td>+</td>
+      <td>+</td>
+      <td>NaN</td>
       <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>111781</th>
+      <td>-</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>+</td>
       <td>-</td>
       <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td>NaN</td>
       <td>-</td>
       <td>+</td>
-      <td>-</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 705 columns</p>
+<p>5 rows × 703 columns</p>
 </div></div>
 </div>
 </div>
+<div class="section" id="Clustered-data-overview">
+<h3>Clustered data overview<a class="headerlink" href="#Clustered-data-overview" title="Permalink to this headline">¶</a></h3>
+<p>Here, we cluster both MEPs and votes as well as highlight each MEP column with their respective party association.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># process data to work with clustermap</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">df_subset</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span>  <span class="c1"># .iloc[:10, :10]</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;MEP&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Vote&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># infer party colors</span>
+<span class="n">party_colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">party</span><span class="p">:</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab10&#39;</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">party</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_meps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="p">}</span>
+<span class="n">party_cmap</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span>
+        <span class="s1">&#39;group&#39;</span>
+    <span class="p">]</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">party_colors</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Party&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># main plot</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">tmp</span><span class="p">,</span>
+    <span class="n">col_colors</span><span class="o">=</span><span class="n">party_cmap</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">palettable</span><span class="o">.</span><span class="n">tableau</span><span class="o">.</span><span class="n">TrafficLight_9</span><span class="o">.</span><span class="n">hex_colors</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># plot improvements</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelright</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="nd">@FuncFormatter</span>
+<span class="k">def</span> <span class="nf">formatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;abstain&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39; yes&#39;</span><span class="p">}[</span><span class="n">x</span><span class="p">]</span>
+
+
+<span class="n">g</span><span class="o">.</span><span class="n">cax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">FixedLocator</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">cax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+<span class="c1"># party color legend</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">handles</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">party_colors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Party&#39;</span><span class="p">,</span>
+    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># TODO: improve overall colorbar/legend placement</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x155e363a0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/mining_visualization_MEP_Statistics_28_1.png" src="../_images/mining_visualization_MEP_Statistics_28_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Project-MEPs-based-on-vote-patterns">
+<h3>Project MEPs based on vote patterns<a class="headerlink" href="#Project-MEPs-based-on-vote-patterns" title="Permalink to this headline">¶</a></h3>
+<p>We will now visualize the landscape of MEPs in two dimensions based on the voting patterns using Multiple Correspondence Analysis.</p>
 <div class="section" id="Apply-Multiple-Correspondence-Analysis-(MCA)">
 <h4>Apply Multiple Correspondence Analysis (MCA)<a class="headerlink" href="#Apply-Multiple-Correspondence-Analysis-(MCA)" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2520,11 +2160,11 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(705, 3)
+(703, 3)
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2560,32 +2200,32 @@ var element = document.currentScript.previousSibling.previousSibling;
   <tbody>
     <tr>
       <th>96750</th>
-      <td>-0.378434</td>
-      <td>0.620655</td>
+      <td>-0.371809</td>
+      <td>0.631197</td>
       <td>Verts/ALE</td>
     </tr>
     <tr>
       <th>4746</th>
-      <td>0.741391</td>
-      <td>-0.488453</td>
+      <td>0.593274</td>
+      <td>-0.471376</td>
       <td>ECR</td>
     </tr>
     <tr>
       <th>23788</th>
-      <td>0.504421</td>
-      <td>-0.913227</td>
+      <td>0.398250</td>
+      <td>-0.753624</td>
       <td>ECR</td>
     </tr>
     <tr>
       <th>96810</th>
-      <td>0.743789</td>
-      <td>-0.495060</td>
+      <td>0.604044</td>
+      <td>-0.488594</td>
       <td>ECR</td>
     </tr>
     <tr>
       <th>96808</th>
-      <td>-0.281795</td>
-      <td>-0.354040</td>
+      <td>-0.231881</td>
+      <td>-0.476251</td>
       <td>PPE</td>
     </tr>
   </tbody>
@@ -2596,11 +2236,12 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="section" id="Static-visualization">
 <h4>Static visualization<a class="headerlink" href="#Static-visualization" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">party_ideology</span> <span class="o">=</span> <span class="p">{</span>
+<span></span><span class="c1"># obtained from the information box on each party&#39;s Wikipedia entry</span>
+<span class="n">party_ideology</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;Verts/ALE&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ECR&#39;</span><span class="p">:</span> <span class="s1">&#39;conservative&#39;</span><span class="p">,</span>
     <span class="s1">&#39;PPE&#39;</span><span class="p">:</span> <span class="s1">&#39;liberal</span><span class="se">\n</span><span class="s1">conservative&#39;</span><span class="p">,</span>
@@ -2613,7 +2254,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2634,32 +2275,33 @@ var element = document.currentScript.previousSibling.previousSibling;
         <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">PathEffects</span><span class="o">.</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)],</span>
     <span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;MEP Clustering based on Voting Patterns&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Party&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;MCA of MEP Voting Patterns&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
+Text(0.5, 1.0, &#39;MCA of MEP Voting Patterns&#39;)
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/mining_visualization_MEP_Statistics_37_1.png" src="../_images/mining_visualization_MEP_Statistics_37_1.png" />
+<img alt="../_images/mining_visualization_MEP_Statistics_34_1.png" src="../_images/mining_visualization_MEP_Statistics_34_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Interactive-visualization">
 <h4>Interactive visualization<a class="headerlink" href="#Interactive-visualization" title="Permalink to this headline">¶</a></h4>
+<p>You can zoom and pan the visualization. Hovering over each point (corresponding to a MEP) will display relevant information.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2682,7 +2324,7 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2726,8 +2368,8 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
   <tbody>
     <tr>
       <th>96750</th>
-      <td>-0.378434</td>
-      <td>0.620655</td>
+      <td>-0.371809</td>
+      <td>0.631197</td>
       <td>Verts/ALE</td>
       <td>François Alfonsi</td>
       <td>1953-09-14</td>
@@ -2736,8 +2378,8 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
     </tr>
     <tr>
       <th>4746</th>
-      <td>0.741391</td>
-      <td>-0.488453</td>
+      <td>0.593274</td>
+      <td>-0.471376</td>
       <td>ECR</td>
       <td>Sergio Berlato</td>
       <td>1959-07-27</td>
@@ -2746,8 +2388,8 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
     </tr>
     <tr>
       <th>23788</th>
-      <td>0.504421</td>
-      <td>-0.913227</td>
+      <td>0.398250</td>
+      <td>-0.753624</td>
       <td>ECR</td>
       <td>Adam Bielan</td>
       <td>1974-09-12</td>
@@ -2756,8 +2398,8 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
     </tr>
     <tr>
       <th>96810</th>
-      <td>0.743789</td>
-      <td>-0.495060</td>
+      <td>0.604044</td>
+      <td>-0.488594</td>
       <td>ECR</td>
       <td>Carlo Fidanza</td>
       <td>1976-09-21</td>
@@ -2766,8 +2408,8 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
     </tr>
     <tr>
       <th>96808</th>
-      <td>-0.281795</td>
-      <td>-0.354040</td>
+      <td>-0.231881</td>
+      <td>-0.476251</td>
       <td>PPE</td>
       <td>Pablo Arias Echeverría</td>
       <td>1970-06-30</td>
@@ -2779,7 +2421,7 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2792,7 +2434,7 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2824,7 +2466,7 @@ Text(0.5, 1.0, &#39;MEP Clustering based on Voting Patterns&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<div class="bk-root" id="beea88ba-2d3e-4781-930a-8065440c9e13" data-root-id="1003"></div></div>
+<div class="bk-root" id="b4244b0c-d299-4ae4-8240-6125ec3245cc" data-root-id="1003"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -2836,8 +2478,8 @@ var element = document.currentScript.previousSibling.previousSibling;
 (function(root) {
   function embed_document(root) {
 
-  var docs_json = {"e5b98f34-d0e1-4f4d-9197-c03a00d18a6c":{"roots":{"references":[{"attributes":{"background_fill_color":"black","below":[{"id":"1012"}],"center":[{"id":"1015"},{"id":"1019"},{"id":"1047"}],"left":[{"id":"1016"}],"renderers":[{"id":"1036"}],"title":{"id":"1039"},"toolbar":{"id":"1026"},"x_range":{"id":"1004"},"x_scale":{"id":"1008"},"y_range":{"id":"1006"},"y_scale":{"id":"1010"}},"id":"1003","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1017","type":"BasicTicker"},{"attributes":{},"id":"1046","type":"UnionRenderers"},{"attributes":{"overlay":{"id":"1025"}},"id":"1024","type":"BoxZoomTool"},{"attributes":{"axis":{"id":"1012"},"ticker":null,"visible":false},"id":"1015","type":"Grid"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"group","transform":{"id":"1002"}},"line_alpha":{"value":0.1},"line_color":{"field":"group","transform":{"id":"1002"}},"size":{"units":"screen","value":5},"x":{"field":"MCA0"},"y":{"field":"MCA1"}},"id":"1035","type":"Scatter"},{"attributes":{},"id":"1021","type":"PanTool"},{"attributes":{},"id":"1022","type":"ResetTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"},{"id":"1024"}]},"id":"1026","type":"Toolbar"},{"attributes":{"data_source":{"id":"1032"},"glyph":{"id":"1034"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1035"},"selection_glyph":null,"view":{"id":"1037"}},"id":"1036","type":"GlyphRenderer"},{"attributes":{"callback":null,"tooltips":[["name","@name"],["birthday","@birthday"],["active","@active"],["group","@group"],["age","@age"]]},"id":"1020","type":"HoverTool"},{"attributes":{},"id":"1010","type":"LinearScale"},{"attributes":{"fill_color":{"field":"group","transform":{"id":"1002"}},"line_color":{"field":"group","transform":{"id":"1002"}},"size":{"units":"screen","value":5},"x":{"field":"MCA0"},"y":{"field":"MCA1"}},"id":"1034","type":"Scatter"},{"attributes":{"items":[{"id":"1048"}]},"id":"1047","type":"Legend"},{"attributes":{"text":""},"id":"1039","type":"Title"},{"attributes":{"formatter":{"id":"1041"},"ticker":{"id":"1013"},"visible":false},"id":"1012","type":"LinearAxis"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{"source":{"id":"1032"}},"id":"1037","type":"CDSView"},{"attributes":{},"id":"1013","type":"BasicTicker"},{"attributes":{},"id":"1004","type":"DataRange1d"},{"attributes":{},"id":"1041","type":"BasicTickFormatter"},{"attributes":{"label":{"field":"group"},"renderers":[{"id":"1036"}]},"id":"1048","type":"LegendItem"},{"attributes":{},"id":"1006","type":"DataRange1d"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1025","type":"BoxAnnotation"},{"attributes":{"formatter":{"id":"1043"},"ticker":{"id":"1017"},"visible":false},"id":"1016","type":"LinearAxis"},{"attributes":{"data":{"MCA0":{"__ndarray__":"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","dtype":"float64","order":"little","shape":[705]},"MCA1":{"__ndarray__":"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","dtype":"float64","order":"little","shape":[705]},"active":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],"age":[67,61,46,44,50,65,60,76,65,84,64,56,61,57,50,61,46,66,62,52,53,64,51,40,68,64,58,46,58,56,41,59,37,47,58,63,57,58,54,54,75,54,59,55,73,63,48,41,52,47,45,54,58,54,51,58,64,67,71,36,50,64,65,59,68,53,39,62,61,56,56,72,68,55,54,64,63,68,41,44,45,46,35,55,41,60,58,53,57,41,68,62,48,46,48,54,60,40,52,43,72,68,45,64,60,68,80,41,42,65,42,47,57,59,45,69,48,44,49,72,51,59,35,45,69,50,64,58,56,67,53,61,60,61,39,70,66,48,49,57,51,58,32,68,52,41,60,54,53,37,73,61,42,48,45,46,34,59,52,53,42,66,55,35,35,58,63,44,67,48,62,76,51,58,46,37,51,50,39,54,46,47,45,39,48,42,42,63,66,65,36,54,57,57,55,74,71,57,55,47,56,45,39,68,49,59,57,35,46,64,56,68,57,54,58,68,71,73,66,68,48,59,61,51,68,60,66,61,66,65,42,60,42,54,62,55,58,55,39,58,55,48,33,61,58,58,62,43,64,53,61,53,61,45,54,35,46,47,35,61,58,54,50,45,42,60,49,58,62,53,42,63,45,42,37,61,43,57,67,43,51,57,44,49,51,52,52,59,43,49,57,48,32,71,69,39,44,67,60,52,35,36,68,47,49,56,54,31,54,45,50,48,25,52,55,65,69,54,50,55,51,40,69,35,45,38,44,55,38,51,55,28,45,50,45,60,54,64,65,34,33,46,35,58,40,40,69,34,49,43,53,36,53,64,62,37,28,51,45,48,45,51,60,41,50,38,34,32,58,38,35,56,63,70,51,52,67,55,73,53,46,32,58,31,53,38,67,68,36,44,65,37,44,57,49,32,34,51,52,56,34,57,44,39,50,54,54,58,56,70,48,51,46,45,36,60,35,32,58,51,32,48,44,44,54,65,52,52,58,46,57,43,46,46,41,45,48,56,28,48,56,45,52,36,70,44,43,50,31,54,59,61,64,35,54,65,48,72,41,44,56,27,50,42,48,36,62,35,46,47,63,32,67,63,65,58,45,40,41,50,53,55,61,57,36,31,38,34,40,51,51,61,64,54,30,58,44,61,64,49,64,35,48,45,42,41,42,56,43,47,68,55,53,56,76,40,51,29,45,47,62,31,45,62,33,67,44,58,52,53,66,67,40,50,47,43,74,44,47,65,50,46,37,29,44,36,59,66,43,65,59,38,53,58,73,34,33,45,44,29,23,37,55,46,71,45,57,49,47,45,67,32,65,62,47,51,31,46,66,56,73,51,32,51,53,52,54,59,49,43,60,60,53,38,45,52,46,48,37,48,36,35,36,46,58,36,42,30,34,60,54,49,38,45,70,39,50,59,41,58,41,49,42,63,39,47,43,55,53,39,46,33,33,63,65,46,54,36,44,42,31,38,40,38,43,38,51,58,59,58,55,33,65,58,52,63,38,53,58,41,57,59,50,56,47,44,55,50,60,67,64,54,40,35,27,50,48,52,66,58,50,-1,40,53,28,49,45,49,63,53,48,54,56,48,64,47,34,34,-1,54,38,40,56,48,-1],"birthday":["1953-09-14","1959-07-27","1974-09-12","1976-09-21","1970-06-30","1956-03-14","1960-06-22","1944-08-13","1955-08-24","1936-09-29","1956-10-01","1965-03-12","1959-08-01","1963-12-01","1970-11-28","1959-10-20","1974-08-22","1955-04-09","1958-11-07","1968-07-17","1967-06-24","1957-01-06","1970-03-25","1980-06-01","1953-02-17","1956-06-08","1963-02-18","1975-02-19","1963-04-07","1964-12-20","1979-04-29","1961-06-29","1984-02-02","1973-06-24","1962-10-28","1957-12-24","1963-05-15","1962-08-15","1966-11-25","1966-09-14","1945-08-07","1966-05-05","1961-09-07","1965-11-02","1948-04-08","1958-02-02","1972-05-02","1979-07-31","1968-12-03","1973-05-16","1975-07-12","1966-12-17","1963-03-21","1966-06-01","1969-11-17","1963-03-20","1957-02-19","1954-04-13","1949-12-24","1984-07-05","1971-01-12","1956-09-19","1955-11-14","1962-04-07","1952-09-21","1967-04-23","1981-09-20","1958-06-20","1959-07-24","1965-03-03","1964-10-24","1948-09-12","1952-09-03","1966-03-13","1967-01-09","1956-10-14","1957-09-07","1952-07-31","1980-03-26","1976-10-26","1976-04-12","1974-10-06","1985-12-05","1965-10-15","1979-07-12","1961-03-26","1963-03-14","1968-01-21","1963-07-02","1979-11-02","1953-01-26","1958-09-03","1973-04-09","1975-02-28","1972-05-19","1966-10-15","1960-09-15","1981-01-20","1969-03-30","1977-12-22","1948-09-19","1952-12-22","1975-07-01","1956-11-30","1960-11-04","1952-08-11","1940-07-03","1980-02-21","1979-03-04","1955-12-01","1979-04-08","1973-10-01","1964-03-14","1961-06-22","1975-11-24","1952-02-06","1973-03-31","1976-07-26","1971-05-09","1949-03-22","1969-09-14","1961-04-29","1986-01-01","1976-04-04","1951-06-13","1971-02-11","1956-05-30","1962-05-25","1964-08-21","1954-01-19","1967-08-04","1959-04-19","1960-04-22","1959-05-28","1982-04-08","1950-05-08","1955-04-14","1972-06-04","1971-10-27","1964-01-14","1969-11-18","1962-12-07","1988-07-07","1953-02-27","1969-03-04","1979-09-16","1961-02-05","1966-10-28","1967-05-26","1984-01-14","1947-08-19","1959-05-24","1978-11-20","1972-06-03","1976-02-20","1974-04-20","1986-07-11","1961-09-30","1968-05-25","1968-02-18","1978-10-26","1955-03-21","1966-03-18","1985-11-11","1985-08-17","1963-03-11","1957-09-27","1976-05-19","1953-08-04","1972-12-02","1958-05-11","1945-01-06","1969-09-30","1963-01-25","1974-09-25","1983-09-11","1969-05-22","1971-02-04","1982-01-27","1966-09-06","1974-06-27","1973-10-12","1975-12-04","1981-11-22","1972-05-22","1978-05-06","1979-01-18","1958-01-07","1954-11-05","1956-02-26","1984-04-29","1966-12-17","1963-09-13","1963-11-06","1965-05-15","1946-09-18","1950-03-26","1963-08-17","1965-05-20","1973-07-12","1965-01-15","1975-06-28","1982-02-21","1952-04-26","1971-05-26","1961-06-10","1963-05-16","1986-01-26","1974-10-07","1956-09-14","1965-02-11","1953-04-11","1963-10-28","1966-08-22","1963-02-02","1953-04-11","1950-03-17","1948-02-28","1955-03-08","1953-02-09","1972-07-14","1961-08-31","1959-04-24","1970-04-01","1952-06-04","1961-03-27","1954-06-21","1959-06-13","1954-11-07","1955-11-14","1978-10-29","1960-07-02","1979-01-08","1966-05-13","1958-11-08","1965-09-11","1962-07-02","1965-10-21","1981-05-10","1962-08-03","1966-01-24","1973-03-11","1987-05-09","1959-06-01","1962-06-11","1962-05-27","1958-05-10","1978-03-27","1957-01-12","1967-12-13","1959-05-14","1967-07-27","1960-01-29","1975-07-12","1966-07-22","1985-09-18","1975-04-18","1973-05-10","1985-09-16","1960-04-14","1963-02-02","1966-07-27","1970-09-06","1975-04-30","1978-08-11","1960-10-03","1972-01-22","1962-06-13","1958-10-11","1967-07-26","1979-03-21","1957-05-23","1975-12-05","1979-02-07","1983-11-20","1960-03-03","1977-05-02","1964-01-03","1953-08-01","1977-12-21","1970-01-11","1963-08-31","1976-10-08","1971-05-18","1969-08-28","1968-08-15","1968-11-16","1962-04-12","1978-03-01","1971-11-29","1963-12-24","1973-04-10","1989-01-31","1949-09-20","1952-02-13","1981-09-18","1976-05-18","1953-05-25","1961-03-05","1968-07-29","1986-02-20","1984-07-03","1953-01-14","1973-06-28","1971-12-30","1964-06-09","1967-03-27","1989-12-22","1966-05-08","1976-01-20","1970-11-12","1973-04-08","1995-09-13","1968-11-19","1965-11-01","1956-02-10","1951-11-04","1967-03-14","1970-11-16","1965-05-01","1970-01-23","1980-06-02","1952-01-09","1985-10-11","1975-12-18","1982-09-05","1976-05-22","1966-01-22","1983-04-11","1969-09-15","1965-05-01","1992-05-18","1976-04-13","1970-10-08","1975-05-27","1961-01-04","1967-04-07","1956-07-26","1955-07-15","1986-11-06","1988-03-08","1974-09-17","1986-03-30","1962-10-12","1980-05-27","1980-12-29","1951-07-06","1986-06-15","1971-07-04","1977-04-29","1967-09-01","1985-03-16","1968-02-04","1956-11-26","1959-03-12","1983-08-11","1992-11-03","1970-04-17","1975-06-16","1973-04-09","1975-09-02","1969-12-12","1960-11-16","1979-06-26","1970-08-31","1982-12-12","1987-03-19","1989-03-23","1962-11-29","1982-10-05","1985-04-18","1964-11-22","1958-01-08","1950-09-13","1969-07-27","1969-01-16","1954-02-11","1965-05-05","1948-02-03","1968-04-17","1974-11-30","1988-06-29","1963-04-03","1989-12-27","1968-04-11","1982-06-30","1953-09-06","1952-09-24","1984-07-01","1977-03-08","1955-11-11","1984-03-10","1976-06-05","1963-06-10","1972-02-02","1988-04-27","1987-04-06","1969-08-25","1969-03-18","1964-04-29","1986-04-30","1963-09-22","1976-11-28","1982-02-12","1970-12-27","1967-01-22","1966-09-06","1962-07-01","1964-05-22","1950-08-07","1972-08-15","1969-08-21","1974-08-16","1976-01-30","1984-10-14","1960-09-29","1985-06-29","1988-12-25","1963-01-27","1969-09-13","1988-12-23","1972-12-31","1977-02-08","1977-03-03","1967-04-10","1956-02-27","1968-07-01","1968-09-20","1963-04-09","1974-10-06","1964-01-16","1977-07-20","1974-09-11","1975-03-08","1979-10-15","1976-02-12","1972-07-20","1964-04-21","1993-01-14","1972-08-20","1965-04-09","1976-03-08","1968-05-17","1984-09-12","1951-01-28","1976-07-20","1977-06-08","1970-09-04","1989-07-25","1967-04-13","1961-11-26","1960-04-12","1956-12-26","1986-04-06","1966-10-17","1955-07-04","1973-02-28","1949-03-20","1980-01-14","1977-01-27","1964-10-24","1993-10-15","1970-10-08","1979-03-30","1972-11-17","1984-06-15","1958-10-02","1985-05-11","1974-12-17","1973-12-11","1958-01-26","1989-02-26","1953-11-18","1958-02-08","1956-01-29","1962-09-06","1975-09-30","1980-07-14","1979-10-19","1970-09-23","1968-01-20","1966-02-11","1959-12-07","1963-05-08","1984-08-31","1990-02-27","1982-09-10","1986-11-27","1980-06-29","1970-02-26","1969-09-15","1959-07-18","1956-12-03","1967-01-02","1990-08-03","1962-11-02","1977-01-28","1959-11-19","1956-12-08","1971-12-21","1956-06-25","1985-07-09","1972-09-07","1975-12-01","1979-04-17","1979-10-10","1978-12-29","1964-10-19","1977-12-22","1973-10-12","1952-08-23","1966-02-08","1967-10-30","1964-06-01","1944-10-20","1980-10-29","1970-03-10","1991-04-22","1975-07-27","1973-05-14","1958-06-04","1990-01-09","1975-12-20","1958-08-08","1987-10-20","1954-02-03","1976-08-01","1962-06-02","1968-12-02","1967-10-19","1954-05-19","1953-12-14","1980-10-15","1971-04-03","1973-11-08","1977-08-21","1946-07-03","1976-07-08","1973-09-18","1955-10-16","1970-09-11","1975-03-20","1984-04-03","1992-04-14","1976-07-30","1985-02-07","1962-03-08","1955-03-12","1978-02-21","1955-10-30","1961-08-30","1982-05-15","1967-05-09","1962-05-18","1947-10-06","1986-06-18","1988-02-19","1976-02-05","1977-02-18","1991-07-26","1998-02-23","1983-10-24","1965-09-02","1975-04-14","1949-05-20","1976-03-23","1964-02-02","1971-05-27","1973-04-20","1976-01-21","1953-09-24","1989-02-11","1955-06-22","1958-06-05","1973-11-20","1970-01-19","1989-12-26","1975-02-21","1955-02-27","1964-07-08","1947-11-16","1970-03-09","1988-11-22","1969-10-05","1967-08-19","1968-11-10","1966-08-02","1961-12-23","1972-03-22","1978-03-03","1961-02-01","1960-05-15","1968-02-12","1982-12-25","1975-05-25","1969-04-16","1974-06-08","1972-06-05","1983-05-13","1972-11-10","1985-03-26","1986-03-11","1984-06-15","1975-03-19","1963-02-23","1984-05-10","1978-10-09","1990-08-28","1986-08-06","1960-08-13","1966-05-08","1971-12-21","1982-09-20","1976-01-29","1950-06-30","1982-01-03","1970-09-27","1961-09-28","1979-08-06","1963-04-15","1979-04-30","1972-02-08","1978-12-04","1958-04-09","1982-02-16","1974-04-16","1978-02-16","1965-11-01","1967-08-17","1981-06-27","1975-03-11","1987-05-27","1987-06-25","1957-06-12","1956-03-06","1975-01-14","1967-03-06","1984-12-21","1976-06-08","1978-10-27","1989-10-16","1982-12-13","1980-07-17","1983-02-28","1977-11-03","1982-04-18","1970-03-23","1962-10-29","1961-08-17","1963-02-15","1965-09-08","1987-06-11","1955-11-09","1963-03-17","1969-01-23","1957-05-05","1982-11-12","1968-03-12","1962-08-27","1979-06-14","1963-05-09","1961-12-29","1971-03-14","1964-05-27","1974-03-28","1976-05-07","1965-07-06","1971-04-06","1960-06-06","1953-06-21","1957-01-21","1967-03-28","1980-08-21","1986-04-12","1993-06-27","1970-12-03","1973-02-28","1968-12-09","1954-07-25","1963-03-12","1971-03-07","undef","1981-01-16","1967-05-16","1992-09-29","1972-02-08","1975-09-19","1971-10-27","1957-09-13","1968-03-25","1972-12-02","1967-04-17","1964-11-28","1972-07-22","1957-03-19","1974-03-24","1986-12-18","1987-03-30","undef","1967-04-17","1982-05-05","1981-01-01","1964-07-30","1973-03-13","undef"],"group":["Verts/ALE","ECR","ECR","ECR","PPE","PPE","S&D","PPE","ECR","PPE","RE","S&D","PPE","RE","PPE","RE","RE","PPE","ECR","PPE","S&D","S&D","PPE","RE","PPE","S&D","PPE","PPE","PPE","RE","PPE","ID","Verts/ALE","S&D","S&D","PPE","PPE","S&D","PPE","RE","RE","S&D","PPE","PPE","PPE","S&D","RE","PPE","PPE","Verts/ALE","GUE/NGL","RE","S&D","S&D","Verts/ALE","ECR","PPE","PPE","ECR","RE","PPE","ECR","S&D","ID","PPE","S&D","PPE","ECR","RE","ECR","PPE","S&D","PPE","PPE","S&D","S&D","RE","PPE","GUE/NGL","Verts/ALE","PPE","PPE","S&D","ID","PPE","Verts/ALE","Verts/ALE","GUE/NGL","ECR","PPE","Verts/ALE","PPE","PPE","S&D","S&D","RE","PPE","GUE/NGL","NA","PPE","ECR","PPE","PPE","GUE/NGL","S&D","PPE","PPE","PPE","Verts/ALE","GUE/NGL","S&D","PPE","PPE","S&D","PPE","RE","ECR","RE","S&D","S&D","Verts/ALE","PPE","S&D","PPE","PPE","PPE","S&D","PPE","PPE","S&D","S&D","PPE","PPE","S&D","PPE","Verts/ALE","Verts/ALE","PPE","PPE","ECR","S&D","RE","PPE","GUE/NGL","PPE","S&D","ID","Verts/ALE","Verts/ALE","NA","RE","PPE","GUE/NGL","ID","GUE/NGL","RE","ID","PPE","PPE","PPE","S&D","GUE/NGL","PPE","S&D","S&D","S&D","PPE","S&D","PPE","PPE","PPE","Verts/ALE","GUE/NGL","ECR","PPE","NA","NA","NA","Verts/ALE","RE","PPE","ID","S&D","Verts/ALE","GUE/NGL","RE","PPE","S&D","S&D","ECR","PPE","S&D","RE","PPE","NA","RE","ID","PPE","PPE","S&D","PPE","ID","PPE","PPE","PPE","S&D","RE","PPE","S&D","PPE","RE","RE","PPE","S&D","ECR","ECR","S&D","S&D","PPE","Verts/ALE","PPE","S&D","PPE","PPE","PPE","RE","GUE/NGL","PPE","S&D","Verts/ALE","NA","S&D","S&D","ECR","ID","PPE","PPE","PPE","S&D","S&D","S&D","PPE","Verts/ALE","PPE","S&D","S&D","ECR","NA","ECR","PPE","RE","Verts/ALE","S&D","S&D","ID","NA","NA","GUE/NGL","RE","S&D","PPE","PPE","PPE","RE","PPE","RE","GUE/NGL","PPE","ID","PPE","ECR","ID","S&D","S&D","NA","S&D","PPE","S&D","ID","ID","PPE","PPE","Verts/ALE","PPE","ECR","S&D","PPE","PPE","PPE","S&D","ID","PPE","S&D","ECR","PPE","RE","RE","PPE","S&D","ID","Verts/ALE","ID","S&D","RE","PPE","GUE/NGL","PPE","GUE/NGL","S&D","RE","ID","S&D","ID","S&D","GUE/NGL","S&D","PPE","ID","RE","ID","RE","ID","S&D","PPE","S&D","PPE","PPE","ID","PPE","PPE","S&D","PPE","S&D","RE","PPE","S&D","Verts/ALE","PPE","ID","Verts/ALE","Verts/ALE","PPE","GUE/NGL","ID","ID","GUE/NGL","ECR","RE","RE","Verts/ALE","S&D","Verts/ALE","ECR","ID","RE","ID","S&D","NA","ECR","S&D","ID","RE","Verts/ALE","ID","ID","Verts/ALE","ID","S&D","RE","GUE/NGL","S&D","RE","RE","S&D","RE","S&D","S&D","PPE","ID","ID","Verts/ALE","RE","Verts/ALE","S&D","GUE/NGL","S&D","ID","ID","RE","Verts/ALE","ID","GUE/NGL","Verts/ALE","Verts/ALE","S&D","PPE","RE","ID","ID","PPE","PPE","S&D","ECR","RE","PPE","PPE","RE","ID","ECR","PPE","RE","PPE","PPE","PPE","Verts/ALE","S&D","S&D","NA","RE","S&D","RE","ID","S&D","S&D","RE","ID","Verts/ALE","NA","GUE/NGL","GUE/NGL","ECR","RE","NA","RE","S&D","S&D","S&D","ID","Verts/ALE","ID","RE","RE","S&D","Verts/ALE","RE","GUE/NGL","NA","Verts/ALE","RE","ID","PPE","ID","PPE","RE","S&D","S&D","PPE","Verts/ALE","RE","RE","Verts/ALE","S&D","S&D","ID","RE","S&D","Verts/ALE","ECR","PPE","ID","PPE","RE","ECR","ECR","ID","S&D","PPE","ECR","RE","RE","RE","ECR","GUE/NGL","ECR","RE","ID","S&D","PPE","Verts/ALE","GUE/NGL","NA","NA","PPE","ECR","RE","GUE/NGL","ID","ECR","PPE","Verts/ALE","ID","PPE","NA","Verts/ALE","S&D","Verts/ALE","ID","S&D","ID","PPE","S&D","ID","ID","RE","PPE","S&D","PPE","ID","S&D","S&D","PPE","S&D","S&D","ID","Verts/ALE","S&D","S&D","S&D","RE","ECR","PPE","PPE","RE","ECR","S&D","PPE","S&D","GUE/NGL","PPE","PPE","PPE","ECR","Verts/ALE","Verts/ALE","Verts/ALE","NA","Verts/ALE","PPE","RE","S&D","ID","ID","Verts/ALE","PPE","RE","Verts/ALE","S&D","GUE/NGL","GUE/NGL","PPE","Verts/ALE","NA","GUE/NGL","ID","S&D","RE","S&D","PPE","PPE","ECR","NA","RE","ECR","ID","GUE/NGL","ID","PPE","Verts/ALE","ID","ID","S&D","GUE/NGL","S&D","ECR","NA","Verts/ALE","ECR","ID","ECR","S&D","ECR","S&D","S&D","ID","Verts/ALE","S&D","PPE","PPE","RE","PPE","RE","Verts/ALE","RE","S&D","PPE","RE","PPE","NA","PPE","ECR","S&D","RE","PPE","S&D","ECR","RE","ECR","Verts/ALE","RE","ECR","ID","S&D","ECR","ECR","PPE","S&D","PPE","ECR","RE","PPE","PPE","Verts/ALE","ID","RE","PPE","RE","S&D","NA","S&D","ID","Verts/ALE","RE","GUE/NGL","GUE/NGL","PPE","S&D","Verts/ALE","S&D","ECR","ID","ECR","PPE","GUE/NGL","PPE","PPE","ECR","ECR","PPE","Verts/ALE","PPE","PPE","PPE","Verts/ALE","S&D","RE","RE","ECR","ID","PPE","ID","PPE","S&D","RE","S&D","ECR","S&D","S&D","PPE","PPE","S&D","NA","NA","PPE","RE","Verts/ALE","RE","ECR","PPE","Verts/ALE","RE","PPE","ID","S&D","S&D","NA","S&D","ID","RE","ECR","PPE","RE","RE","NA","GUE/NGL","Verts/ALE"],"mepid":[96750,4746,23788,96810,96808,4560,38595,1992,125106,4391,124696,28347,28294,4344,124586,22858,96711,96867,97133,96830,33997,124822,185341,190519,125030,4267,4289,38398,96761,96709,188945,190518,183338,124799,124837,4246,28224,124747,96791,124872,114268,124852,23821,125104,96779,96891,130100,124809,189525,190464,190517,191693,192634,96837,96730,23712,2323,96776,96796,58789,124806,28389,1909,125025,28288,125020,124802,28615,96698,96697,96756,23768,28617,124701,124836,1854,125128,28390,131507,185974,190774,28141,185619,192635,190713,96752,96648,125023,124877,124713,96739,96809,28223,124705,124735,124700,112611,23699,124835,124808,28297,96934,96829,96852,125021,33982,28269,124704,96868,120478,37229,24594,39725,96833,125706,840,96801,124709,96911,96844,124934,96936,124867,28219,23781,96747,96864,96933,125027,1913,37312,40599,2341,124739,124734,28619,125214,124726,125067,124884,5729,124862,107212,130833,96787,124991,189065,193273,193292,124856,125005,125068,96706,97198,96820,129073,124780,124929,124828,96903,125109,28586,96978,125042,88882,29579,36392,124970,2187,23816,5565,28161,30482,28372,24922,124833,124844,124777,124972,124821,124895,38511,124722,96734,124992,124989,118859,125043,124861,96713,95074,124936,28266,72779,124834,96885,124765,28226,1927,124814,1917,183793,193419,96668,124850,96812,124766,98341,28298,125065,125038,97058,124710,124692,124996,124891,28340,124781,28400,96743,28229,112744,96772,28399,125063,96922,96646,28115,124785,2054,125237,124784,125046,124887,124973,125064,96780,96811,124846,96880,96998,125670,103381,124988,96952,124691,119431,124831,28353,97968,4253,96740,96932,96991,125001,124812,125093,24505,124866,113892,125004,96826,28150,124708,124712,124693,124985,124715,124738,96899,124873,124770,96842,125110,124779,96681,124714,125045,124771,124760,125012,26837,96725,124807,4465,23868,28122,96771,38420,112748,197826,197490,197403,198096,197836,197848,197400,197746,197783,197475,197448,197691,197587,197664,197492,197701,197695,197533,197651,197781,197789,197495,131580,197433,197684,197808,197671,197610,197779,132191,197437,197680,197496,197534,197658,197679,197408,197478,197778,197410,197396,197648,197498,197551,197771,197435,197512,197637,197564,197449,197439,197636,197521,197788,101039,187917,197467,197668,197577,197431,197446,197470,197501,182995,197576,128483,197440,197434,197829,197617,35016,126644,197574,197797,197796,86793,197786,197641,197505,197529,197782,197463,197558,197507,197631,197657,197761,197536,197683,197616,197503,197588,197654,197394,197731,38542,197608,197556,197504,197531,197472,197468,197453,197471,197579,197473,197595,197822,197614,197510,99945,198329,197766,197430,197535,197649,197589,197480,197607,197720,197419,197414,197513,197455,106936,197391,101585,197795,197555,197702,197632,197582,197717,197742,197554,197628,183916,197794,197416,197819,197436,197661,197804,197443,197694,197728,197718,197799,197549,94649,197557,197452,197618,197645,197543,88715,198063,197457,197444,198176,197514,197596,197646,135511,197682,197800,197412,197459,197526,197770,197398,122978,197846,197594,197624,197392,197837,197516,197517,197627,197840,197447,197518,197767,197626,197491,197839,197469,197585,197401,197818,197519,197415,197520,197528,197570,197523,197406,197546,197743,197438,197740,197525,197530,197445,197699,197481,197532,197843,197395,197482,197692,197737,197460,197697,197461,197597,197698,197686,197393,197635,197483,197611,197494,197777,197721,197458,197493,197719,197592,197835,197735,197653,197623,197462,197638,197634,197441,197522,197538,197841,197662,197567,130256,197497,197824,197540,197805,197711,197427,197647,197541,197464,197465,197802,197734,197889,197542,197432,197838,197687,99283,197466,197420,197563,197539,197845,197527,197754,197738,197573,197619,197828,197629,197590,197663,197732,197404,197765,197820,197764,197868,197544,197790,197681,197488,197413,197832,197787,197615,197801,197785,197584,197776,197792,197506,197709,197690,197773,127096,197545,197722,197650,197578,197500,197670,197656,197422,197869,197425,197508,197423,197418,197677,197548,103746,197426,197935,197390,197849,197791,197784,197417,197550,197825,58766,197399,197772,134605,197553,197806,197756,197655,197831,197667,197591,197402,197559,197547,197672,27714,97236,197580,197593,197894,197665,198183,197763,197810,185771,197870,197502,197827,197571,98582,197844,197451,197678,197537,197798,197552,197863,197817,197429,197405,197566,123562,197515,197675,197769,197652,197421,197511,197842,197581,197499,197572,197586,197606,197489,197621,34578,118949,5392,198490,199941,199996,202036,202112,202073,202352,202351,204368,204332,204335,204416,204414,204333,204420,204419,204336,204421,112747,204418,204443,204413,204334,204331,204346,204449,204400,197780,204733,205452,206158],"name":["Fran\u00e7ois Alfonsi","Sergio Berlato","Adam Bielan","Carlo Fidanza","Pablo Arias Echeverr\u00eda","Antonius Manders","Rovana Plumb","Jos\u00e9 Manuel Garc\u00eda-Margallo Y Marfil","Johan Van Overtveldt","Silvio Berlusconi","Andrus Ansip","Javier Moreno S\u00e1nchez","Ljudmila Novak","Mar\u00eda Soraya Rodr\u00edguez Ramos","Bal\u00e1zs Hidv\u00e9ghi","Fabienne Keller","Pascal Canfin","Maria Da Gra\u00e7a Carvalho","Derk Jan Eppink","Enik\u0151 Gy\u0151ri","Corina Cre\u021bu","Dietmar K\u00f6ster","\u017deljana Zovko","Caroline Nagtegaal","Annie Schreijer-Pierik","Udo Bullmann","Angelika Niebler","Esther De Lange","Axel Voss","Morten L\u00f8kkegaard","Dennis Radtke","J\u00f6rg Meuthen","Jakop G. Dalunde","Alessandra Moretti","Joachim Schuster","Othmar Karas","Markus Pieper","Pedro Silva Pereira","El\u017cbieta Katarzyna \u0141ukacijewska","Morten Petersen","Nils Torvalds","Sergei Stanishev","J\u00f3zsef Sz\u00e1jer","Romana Tomc","Danuta Maria H\u00fcbner","Paolo De Castro","Hilde Vautmans","Sven Schulze","Asim Ademov","Thomas Waitz","Martin Schirdewan","Elsi Katainen","Giuseppe Ferrandino","Petra Kammerevert","Sven Giegold","Jan Zahradil","Rainer Wieland","R\u00f3\u017ca Thun Und Hohenstein","Ryszard Antoni Legutko","Jan Huitema","David Mcallister","Zbigniew Ku\u017amiuk","Bernd Lange","Marcel De Graaff","Jan Olbrycht","Paul Tang","Siegfried Mure\u015fan","Roberts Z\u012ble","Viktor Uspaskich","Valdemar Toma\u0161evski","Sabine Verheyen","Bogus\u0142aw Liberadzki","Inese Vaidere","Lud\u011bk Niedermayer","Maria Noichl","Constanze Krehl","Iskra Mihaylova","Pilar Del Castillo Vera","Miguel Urb\u00e1n Crespo","Jordi Sol\u00e9","Geoffroy Didier","L\u00edvia J\u00e1r\u00f3ka","Tiemo W\u00f6lken","Danilo Oscar Lancini","Lukas Mandl","Martin H\u00e4usling","Philippe Lamberts","Anja Hazekamp","Jadwiga Wi\u015bniewska","Tom\u00e1\u0161 Zdechovsk\u00fd","Reinhard B\u00fctikofer","Peter Van Dalen","Andreas Schwab","Istv\u00e1n Ujhelyi","Miapetra Kumpula-Natri","Yana Toom","Petri Sarvamaa","Kate\u0159ina Kone\u010dn\u00e1","Rosa D'Amato","Norbert Lins","Jacek Saryusz-Wolski","Sandra Kalniete","\u00c1d\u00e1m K\u00f3sa","Cornelia Ernst","Agnes Jongerius","Marian-Jean Marinescu","Jerzy Buzek","Stanislav Pol\u010d\u00e1k","Karima Delli","Martina Michels","Kati Piri","Anne Sander","Iuliu Winkler","Jens Geier","Ji\u0159\u00ed Posp\u00ed\u0161il","Charles Goerens","Tomasz Piotr Por\u0119ba","Martina Dlabajov\u00e1","Tanja Fajon","Norbert Neuser","Monika Vana","Gabriel Mato","Brando Benifei","Daniel Caspary","Janusz Lewandowski","Arnaud Danjean","David Maria Sassoli","Milan Zver","Esteban Gonz\u00e1lez Pons","Evelyne Gebhardt","Christel Schaldemose","Sirpa Pietik\u00e4inen","Michael Gahler","Carlos Zorrinho","Cl\u00e1udia Monteiro De Aguiar","Tatjana \u017ddanoka","Bronis Rop\u0117","Henna Virkkunen","Theodoros Zagorakis","Kosma Z\u0142otowski","Kathleen Van Brempt","Ulrike M\u00fcller","Andrey Novakov","Stelios Kouloglou","Herbert Dorfmann","Jytte Guteland","France Jamet","Romeo Franz","Tilly Metz","Ignazio Corrao","Javier Nart","Manolis Kefalogiannis","Jo\u00e3o Ferreira","Mara Bizzotto","Marisa Matias","Urmas Paet","Marco Zanni","Ivan \u0160tefanec","Fulvio Martusciello","Paulo Rangel","Eva Kaili","Dimitrios Papadimoulis","Nuno Melo","Javi L\u00f3pez","Victor Negrescu","Marc Tarabella","Aldo Patriciello","Miriam Dalli","Antonio Tajani","Andr\u00e1s Gy\u00fcrk","Brice Hortefeux","Margrete Auken","Younous Omarjee","Ryszard Czarnecki","Pascal Arimont","Laura Ferrara","Piernicola Pedicini","Tiziana Beghin","Ernest Urtasun","Nicola Danti","Krzysztof Hetman","Georg Mayer","Csaba Moln\u00e1r","Ska Keller","Malin Bj\u00f6rk","Fredrick Federley","Roberta Metsola","Inma Rodr\u00edguez-Pi\u00f1ero","Caterina Chinnici","Ev\u017een To\u0161enovsk\u00fd","Jeroen Lenaers","Maria Arena","Sophia In 'T Veld","Nadine Morano","Martin Sonneborn","Dominique Riquet","Jo\u00eblle M\u00e9lin","Christian Ehler","Peter Liese","Simona Bonaf\u00e8","Markus Ferber","Angelo Ciocca","Christophe Hansen","Se\u00e1n Kelly","Emil Radev","Juan Fernando L\u00f3pez Aguilar","Petras Au\u0161trevi\u010dius","Eva Maydell","Iratxe Garc\u00eda P\u00e9rez","Elissavet Vozemberg-Vrionidi","Maite Pagazaurtund\u00faa","Guy Verhofstadt","Michaela \u0160ojdrov\u00e1","Demetris Papadakis","Peter Lundgren","Zdzis\u0142aw Krasnod\u0119bski","Patrizia Toia","Alfred Sant","Francisco Jos\u00e9 Mill\u00e1n Mon","Mich\u00e8le Rivasi","Manfred Weber","Tonino Picula","Peter Jahr","Antonio L\u00f3pez-Ist\u00fariz White","Georgios Kyrtsos","Izaskun Bilbao Barandica","Helmut Scholz","Mairead Mcguinness","Maria Grapini","Heidi Hautala","Marco Zullo","Dan Nica","Jon\u00e1s Fern\u00e1ndez","Karol Karski","Gerolf Annemans","Maria Spyraki","Monika Hohlmeier","Rosa Estar\u00e0s Ferragut","Pina Picierno","Andrea Cozzolino","Evelyn Regner","Massimiliano Salini","Terry Reintke","Deirdre Clune","Sylvie Guillaume","Costas Mavrides","Ru\u017ea Toma\u0161i\u0107","Isabella Adinolfi","Anna Fotyga","Andrey Kovatchev","Fr\u00e9d\u00e9rique Ries","Yannick Jadot","Birgit Sippel","Eider Gardiazabal Rubial","Harald Vilimsky","Fabio Massimo Castaldo","Kostas Papadakis","Emmanuel Maurel","Ilhan Kyuchyuk","Eric Andrieu","Franc Bogovi\u010d","Tam\u00e1s Deutsch","Kinga G\u00e1l","Dita Charanzov\u00e1","Andrea Bocskor","Pascal Durand","Luke Ming Flanagan","Gy\u00f6rgy H\u00f6lv\u00e9nyi","Gilles Lebreton","Jos\u00e9 Manuel Fernandes","Angel Dzhambazki","Jean-Fran\u00e7ois Jalkh","Ismail Ertug","Nikos Androulakis","Eleonora Evi","Vilija Blinkevi\u010di\u016bt\u0117","Andor Deli","Clara Aguilera","Dominique Bilde","Nicolas Bay","Daniel Buda","Lefteris Christoforou","Bas Eickhout","Jens Gieseke","Raffaele Fitto","Monika Be\u0148ov\u00e1","David Casa","Jaros\u0142aw Kalinowski","Cristian-Silviu Bu\u015foi","Biljana Borzan","Matteo Adinolfi","Magdalena Adamowicz","Alex Agius Saliba","Mazaly Aguilar","Alexander Alexandrov Yordanov","Atidzhe Alieva-Veli","Abir Al-Sahlani","\u00c1lvaro Amaro","Andris Ameriks","Christine Anderson","Rasmus Andresen","Mathilde Androu\u00ebt","Attila Ara-Kov\u00e1cs","Clotilde Armand","Bartosz Ar\u0142ukowicz","Konstantinos Arvanitis","Anna-Michelle Asimakopoulou","Manon Aubry","Carmen Avram","Malik Azmani","Simona Baldassarre","Marek Pawe\u0142 Balt","Jordan Bardella","Katarina Barley","Pernando Barrena Arza","Pietro Bartolo","Traian B\u0103sescu","Alessandra Basso","Jos\u00e9 Ram\u00f3n Bauz\u00e1 D\u00edaz","Gunnar Beck","Nicola Beer","Aurelia Beigneux","Marek Belka","Fran\u00e7ois-Xavier Bellamy","Adrian-Drago\u015f Benea","Isabel Benjumea Benjumea","Hildegard Bentele","Lars Patrick Berg","Tom Berendsen","Stefan Berger","Erik Bergkvist","Alexander Bernhuber","Robert Biedro\u0144","St\u00e9phane Bijoux","Vladim\u00edr Bil\u010d\u00edk","Gabriele Bischoff","Beno\u00eet Biteau","Vasile Blaga","Hynek Bla\u0161ko","Michael Bloss","Damian Boeselager","Ioan-Rare\u015f Bogdan","Manuel Bompard","Anna Bonfrisco","Paolo Borchia","Marc Botenga","Geert Bourgeois","Vlad-Marius Boto\u015f","Gilles Boyer","Patrick Breyer","Milan Brglez","Saskia Bricmont","Joachim Stanis\u0142aw Brudzi\u0144ski","Annika Bruna","Sylvie Brunet","Markus Buchheit","Delara Burkhardt","Martin Buschmann","Jorge Buxad\u00e9 Villalba","Carlo Calenda","Marco Campomenosi","Jordi Ca\u00f1as","Damien Car\u00eame","Andrea Caroppo","Massimo Casanova","Anna Cavazzini","Susanna Ceccardi","Sara Cerdas","Catherine Chabaud","Leila Chaibi","Mohammed Chahim","Olivier Chastel","Asger Christensen","W\u0142odzimierz Cimoszewicz","Dacian Ciolo\u015f","Tudor Ciuhodaru","Miroslav \u010c\u00ed\u017e","Nathalie Colin-Oesterl\u00e9","Gilbert Collard","Rosanna Conte","David Cormand","Katalin Cseh","Ciar\u00e1n Cuffe","Josianne Cutajar","Clare Daly","Johan Danielsson","Gianantonio Da Re","Ivan David","J\u00e9r\u00e9my Decerle","Gwendoline Delbos-Corfield","Filip De Man","\u00d6zlem Demirel","Anna Deparnay-Grunenberg","Petra De Sutter","Kl\u00e1ra Dobrev","Christian Doleschal","Anna J\u00falia Don\u00e1th","Francesca Donato","Marco Dreosto","Jaros\u0142aw Duda","Lena D\u00fcpont","Estrella Dur\u00e1 Ferrandis","Lucia \u010euri\u0161 Nicholsonov\u00e1","Engin Eroglu","Agn\u00e8s Evren","Gheorghe Falc\u0103","Laurence Farreng","Nicolaus Fest","Pietro Fiocchi","Frances Fitzgerald","Valter Flego","Loucas Fourlas","Tomasz Frankowski","Cindy Franssen","Daniel Freund","Hel\u00e9ne Fritzon","Niels Fuglsang","Mario Furore","S\u00f8ren Gade","Lina G\u00e1lvez Mu\u00f1oz","Claudia Gamon","Gianna Gancia","Ib\u00e1n Garc\u00eda Del Blanco","Isabel Garc\u00eda Mu\u00f1oz","Luis Garicano","Jean-Paul Garraud","Alexandra Geese","Chiara Gemma","Giorgos Georgiou","Alexis Georgoulis","Helmut Geuking","Cristian Ghinea","Dino Giarrusso","Andreas Gl\u00fcck","Rapha\u00ebl Glucksmann","M\u00f3nica Silvana Gonz\u00e1lez","Nicol\u00e1s Gonz\u00e1lez Casares","Valentino Grant","Mark\u00e9ta Gregorov\u00e1","Catherine Griset","Christophe Grudler","Klemen Gro\u0161elj","Elisabetta Gualmini","Francisco Guerreiro","Bernard Guetta","Jos\u00e9 Gusm\u00e3o","M\u00e1rton Gy\u00f6ngy\u00f6si","Henrike Hahn","Svenja Hahn","Roman Haider","Andrzej Halicki","Teuvo Hakkarainen","Mircea-Gheorghe Hava","Val\u00e9rie Hayer","Hannes Heide","Eero Hein\u00e4luoma","Niclas Herbst","Pierrette Herzberger-Fofana","Martin Hlav\u00e1\u010dek","Martin Hojs\u00edk","P\u00e4r Holmgren","Alicia Homs Ginel","Ivo Hristov","Laura Huhtasaari","Ivars Ijabs","Evin Incir","Stasys Jakeli\u016bnas","Patryk Jaki","Adam Jarubas","Virginie Joron","Rasa Juknevi\u010dien\u0117","Irena Joveva","Krzysztof Jurgiel","Eugen Jurzyca","Herve Juvin","Marina Kaljurand","Radan Kanev","Assita Kanko","Pierre Karleskind","Karin Karlsbro","Billy Kelleher","Beata Kempa","Niyazi Kizily\u00fcrek","Izabela-Helena Kloc","Ond\u0159ej Knotek","Peter Kofod","\u0141ukasz Kohut","Arba Kokalari","Marcel Kolaja","Petros Kokkalis","Mislav Kolaku\u0161i\u0107","Athanasios Konstantinou","Ewa Kopacz","Joanna Kopci\u0144ska","Moritz K\u00f6rner","Elena Kountoura","Maximilian Krah","El\u017cbieta Kruk","Andrius Kubilius","Alice Kuhnke","Joachim Kuhs","Stelios Kympouropoulos","Ioannis Lagos","Sergey Lagodinsky","Aurore Lalucq","Katrin Langensiepen","H\u00e9l\u00e8ne Laporte","Pierre Larrouturou","Julie Lechanteux","David Lega","Maria-Manuel Leit\u00e3o-Marques","Sylvia Limmer","Elena Lizzi","Nathalie Loiseau","Leopoldo L\u00f3pez Gil","C\u00e9sar Luena","Beno\u00eet Lutgen","Jaak Madison","Cristina Maestre Mart\u00edn De Almagro","Pierfrancesco Majorino","Au\u0161ra Maldeikien\u0117","Adriana Maldonado L\u00f3pez","Claudiu Manda","Thierry Mariani","Erik Marquardt","Margarida Marques","Pedro Marques","Predrag Fred Mati\u0107","Radka Maxov\u00e1","Beata Mazurek","Liudas Ma\u017eylis","Vangelis Meimarakis","Karen Melchior","Dace Melb\u0101rde","Sven Mikser","Giuseppe Milazzo","Leszek Miller","Silvia Modig","Dolors Montserrat","Marlene Mortler","Dan-\u0218tefan Motreanu","And\u017celika Anna Mo\u017cd\u017canowska","Hannah Neumann","Niklas Nienass","Ville Niinist\u00f6","Lefteris Nikolaou-Alavanos","Grace O'Sullivan","Janina Ochojska","Jan-Christoph Oetjen","Juozas Olekas","Philippe Olivier","Alessandro Panza","Jutta Paulus","Kris Peeters","Mauri Pekkarinen","Mikul\u00e1\u0161 Peksa","Tsvetelina Penkova","Anne-Sophie Pelletier","Sandra Pereira","L\u00eddia Pereira","Kira Marie Peter-Hansen","Sabrina Pignedoli","Manu Pineda","Maxette Pirbakas","Giuliano Pisapia","Drago\u0219 P\u00eeslaru","Manuel Pizarro","Jessica Polfj\u00e4rd","Peter Poll\u00e1k","Nicola Procaccini","Miroslav Rada\u010dovsk\u00fd","Samira Rafaela","El\u017cbieta Rafalska","Luisa Regimenti","Sira Rego","Guido Reil","Karlo Ressler","Diana Riba I Giner","Antonio Maria Rinaldi","J\u00e9r\u00f4me Rivi\u00e8re","Franco Roberti","Eugenia Rodr\u00edguez Palop","S\u00e1ndor R\u00f3nai","Rob Rooken","Daniela Rondinelli","Caroline Roose","Robert Roos","Andr\u00e9 Roug\u00e9","Bert-Jan Ruissen","Dom\u00e8nec Ruiz Devesa","Bogdan Rzo\u0144ca","Nacho S\u00e1nchez Amor","Isabel Santos","Silvia Sardone","Mounir Satouri","Andreas Schieder","Simone Schmiedtbauer","Christine Schneider","Liesje Schreinemacher","Ralf Seekatz","St\u00e9phane S\u00e9journ\u00e9","Nico Semsrott","Monica Semedo","G\u00fcnther Sidl","Rados\u0142aw Sikorski","Michal \u0160ime\u010dka","Sven Simon","Ivan Vilibor Sin\u010di\u0107","Sara Skyttedal","Andrey Slabakov","Massimiliano Smeriglio","Susana Sol\u00eds P\u00e9rez","Tomislav Sokol","Sylwia Spurek","Raffaele Stancanelli","Nicolae \u015etef\u0103nu\u021b\u0103","Jessica Stegrud","Tineke Strik","Ramona Strugariu","Beata Szyd\u0142o","Annalisa Tardino","Vera Tax","Cristian Terhe\u015f","Hermann Tertsch","Barbara Thaler","Irene Tinagli","Tomas Tob\u00e9","Grzegorz Tobiszowski","Ir\u00e8ne Tolleret","Eugen Tomac","Edina T\u00f3th","Marie Toussaint","Isabella Tovaglieri","V\u00e9ronique Trillet-Lenoir","L\u00e1szl\u00f3 Tr\u00f3cs\u00e1nyi","Drago\u015f Tudorache","Mihai Tudose","Milan Uhr\u00edk","Nils U\u0161akovs","Tom Vandendriessche","Kim Van Sparrentak","Marie-Pierre Vedrenne","Idoia Villanueva Ruiz","Nikolaj Villumsen","Lor\u00e1nt Vincze","Petar Vitanov","Viola Von Cramon-Taubadel","Bettina Vollath","Alexandr Vondra","Lucia Vuolo","Veronika Vrecionov\u00e1","Maria Walsh","Mick Wallace","Marion Walsmann","J\u00f6rgen Warborn","Witold Jan Waszczykowski","Charlie Weimers","Pernille Weiss","Sarah Wiener","Michal Wiezik","Angelika Winzig","Isabel Wiseler-Lima","Salima Yenbou","Elena Yoncheva","St\u00e9phanie Yon-Courtin","Chrysoula Zacharopoulou","Anna Zalewska","Stefania Zambelli","Javier Zarzalejos","Bernhard Zimniok","Juan Ignacio Zoido \u00c1lvarez","Robert Haj\u0161el","Ond\u0159ej Kova\u0159\u00edk","Lara Wolters","Emmanouil Fragkos","Marianne Vind","Isabel Carvalhais","Sun\u010dana Glavak","Gheorghe-Vlad Nistor","Marc Angel","Antoni Com\u00edn I Oliveres","Carles Puigdemont I Casamaj\u00f3","Christian Sagartz","Barry Andrews","Alviina Alamets\u00e4","Ilana Cicurel","Margarita De La Pisa Carri\u00f3n","Salvatore De Meo","Claude Gruffat","Sandro Gozi","Miriam Lexmann","Jean-Lin Lacapelle","Romana Jerkovi\u0107","Nora Mebarek","Clara Ponsat\u00ed Obiols","Marcos Ros Sempere","Vincenzo Sofo","Linea S\u00f8gaard-Lidell","Dominik Tarczy\u0144ski","Riho Terras","Adri\u00e1n V\u00e1zquez L\u00e1zara","Bart Groothuis","Dorien Rookmaker","Chris Macmanus","Manuela Ripa"]},"selected":{"id":"1045"},"selection_policy":{"id":"1046"}},"id":"1032","type":"ColumnDataSource"},{"attributes":{},"id":"1045","type":"Selection"},{"attributes":{},"id":"1043","type":"BasicTickFormatter"},{"attributes":{"axis":{"id":"1016"},"dimension":1,"ticker":null,"visible":false},"id":"1019","type":"Grid"},{"attributes":{"factors":["Verts/ALE","ECR","PPE","S&D","RE","ID","GUE/NGL","NA"],"palette":["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f"]},"id":"1002","type":"CategoricalColorMapper"},{"attributes":{},"id":"1023","type":"WheelZoomTool"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
-  var render_items = [{"docid":"e5b98f34-d0e1-4f4d-9197-c03a00d18a6c","root_ids":["1003"],"roots":{"1003":"beea88ba-2d3e-4781-930a-8065440c9e13"}}];
+  var docs_json = {"75fa2651-e4e4-4933-a9fb-c317f86f5160":{"roots":{"references":[{"attributes":{"background_fill_color":"black","below":[{"id":"1012"}],"center":[{"id":"1015"},{"id":"1019"},{"id":"1047"}],"left":[{"id":"1016"}],"renderers":[{"id":"1036"}],"title":{"id":"1038"},"toolbar":{"id":"1026"},"x_range":{"id":"1004"},"x_scale":{"id":"1008"},"y_range":{"id":"1006"},"y_scale":{"id":"1010"}},"id":"1003","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1044","type":"UnionRenderers"},{"attributes":{"fill_color":{"field":"group","transform":{"id":"1002"}},"line_color":{"field":"group","transform":{"id":"1002"}},"size":{"units":"screen","value":5},"x":{"field":"MCA0"},"y":{"field":"MCA1"}},"id":"1034","type":"Scatter"},{"attributes":{"source":{"id":"1032"}},"id":"1037","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"group","transform":{"id":"1002"}},"line_alpha":{"value":0.1},"line_color":{"field":"group","transform":{"id":"1002"}},"size":{"units":"screen","value":5},"x":{"field":"MCA0"},"y":{"field":"MCA1"}},"id":"1035","type":"Scatter"},{"attributes":{"text":""},"id":"1038","type":"Title"},{"attributes":{"data_source":{"id":"1032"},"glyph":{"id":"1034"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1035"},"selection_glyph":null,"view":{"id":"1037"}},"id":"1036","type":"GlyphRenderer"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1025","type":"BoxAnnotation"},{"attributes":{},"id":"1040","type":"BasicTickFormatter"},{"attributes":{"axis":{"id":"1016"},"dimension":1,"ticker":null,"visible":false},"id":"1019","type":"Grid"},{"attributes":{"formatter":{"id":"1042"},"ticker":{"id":"1013"},"visible":false},"id":"1012","type":"LinearAxis"},{"attributes":{},"id":"1021","type":"PanTool"},{"attributes":{},"id":"1022","type":"ResetTool"},{"attributes":{"overlay":{"id":"1025"}},"id":"1024","type":"BoxZoomTool"},{"attributes":{"items":[{"id":"1048"}]},"id":"1047","type":"Legend"},{"attributes":{},"id":"1013","type":"BasicTicker"},{"attributes":{},"id":"1010","type":"LinearScale"},{"attributes":{},"id":"1017","type":"BasicTicker"},{"attributes":{},"id":"1045","type":"Selection"},{"attributes":{"factors":["Verts/ALE","ECR","PPE","S&D","RE","ID","GUE/NGL","NA"],"palette":["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f"]},"id":"1002","type":"CategoricalColorMapper"},{"attributes":{"label":{"field":"group"},"renderers":[{"id":"1036"}]},"id":"1048","type":"LegendItem"},{"attributes":{},"id":"1042","type":"BasicTickFormatter"},{"attributes":{},"id":"1006","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":{"id":"1023"},"active_tap":"auto","tools":[{"id":"1020"},{"id":"1021"},{"id":"1022"},{"id":"1023"},{"id":"1024"}]},"id":"1026","type":"Toolbar"},{"attributes":{"formatter":{"id":"1040"},"ticker":{"id":"1017"},"visible":false},"id":"1016","type":"LinearAxis"},{"attributes":{},"id":"1008","type":"LinearScale"},{"attributes":{"callback":null,"tooltips":[["name","@name"],["birthday","@birthday"],["active","@active"],["group","@group"],["age","@age"]]},"id":"1020","type":"HoverTool"},{"attributes":{"data":{"MCA0":{"__ndarray__":"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","dtype":"float64","order":"little","shape":[703]},"MCA1":{"__ndarray__":"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","dtype":"float64","order":"little","shape":[703]},"active":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],"age":[67,61,46,44,50,65,60,76,65,84,64,56,61,57,50,61,46,66,62,52,53,64,51,40,68,64,58,46,58,56,42,59,37,47,58,63,58,58,54,54,75,55,59,55,73,63,49,41,52,48,45,54,58,54,51,58,64,67,71,36,50,64,65,59,68,54,39,62,61,56,56,72,68,55,54,64,63,68,41,45,46,35,55,41,60,58,53,57,41,68,62,48,46,49,54,60,40,52,43,72,68,45,64,60,68,80,41,42,65,42,47,57,59,45,69,48,44,50,72,51,60,35,45,69,50,59,56,67,53,62,61,62,39,71,66,48,49,57,51,58,32,68,52,41,60,54,54,37,73,62,42,48,45,47,34,59,53,53,42,66,55,35,35,58,63,45,67,48,63,76,51,58,46,37,52,50,39,54,46,47,45,39,49,43,42,63,66,65,37,54,57,57,56,74,71,57,56,47,56,45,39,69,50,59,58,35,46,64,56,68,57,54,58,68,71,73,66,68,48,59,62,51,68,60,66,61,66,65,42,60,42,55,62,55,58,55,40,58,55,48,34,61,58,59,63,43,64,53,62,53,61,45,54,35,46,48,35,61,58,54,50,46,42,60,49,58,62,53,42,64,45,42,37,61,44,57,67,43,51,57,44,50,51,52,52,59,43,49,57,48,32,71,69,39,45,68,60,52,35,36,68,47,49,56,54,31,55,45,50,48,25,52,55,65,69,54,50,56,51,40,69,35,45,38,45,55,38,51,56,29,45,50,46,60,54,64,65,34,33,46,35,58,41,40,69,34,49,44,53,36,53,64,62,37,28,51,45,48,45,51,60,41,50,38,34,32,58,38,36,56,63,70,51,52,67,56,73,53,46,32,58,31,53,38,67,68,36,44,65,37,44,57,49,33,34,51,52,57,35,57,44,39,50,54,54,58,57,70,48,51,46,45,36,60,35,32,58,51,32,48,44,44,54,65,52,52,58,46,57,43,46,46,41,45,48,57,28,48,56,45,53,36,70,44,43,50,31,54,59,61,64,35,54,65,48,72,41,44,56,27,50,42,48,36,62,36,46,47,63,32,67,63,65,58,45,40,41,50,53,55,61,58,36,31,38,34,40,51,51,61,64,54,30,58,44,61,64,49,64,35,48,45,42,41,42,56,43,47,68,55,53,56,76,40,51,30,45,48,62,31,45,62,33,67,44,58,52,53,67,67,40,50,47,43,74,44,47,65,50,46,37,29,44,36,59,66,43,65,59,39,54,59,73,34,33,45,44,29,23,37,55,46,72,45,57,50,48,45,67,32,65,62,47,51,31,46,66,56,73,51,32,51,53,52,54,59,49,43,60,61,53,38,46,52,46,48,38,48,36,35,36,46,58,37,42,30,34,60,55,49,38,45,70,39,50,59,41,58,42,49,42,63,39,47,43,55,53,39,46,34,33,63,65,46,54,36,44,42,31,38,40,38,43,39,51,58,59,58,55,33,65,58,52,64,38,53,58,41,58,59,50,57,47,45,55,50,60,67,64,54,40,35,27,50,48,52,66,58,50,-1,40,54,28,49,45,49,63,53,48,54,56,48,64,47,34,34,-1,54,39,40,56,48,-1],"birthday":["1953-09-14","1959-07-27","1974-09-12","1976-09-21","1970-06-30","1956-03-14","1960-06-22","1944-08-13","1955-08-24","1936-09-29","1956-10-01","1965-03-12","1959-08-01","1963-12-01","1970-11-28","1959-10-20","1974-08-22","1955-04-09","1958-11-07","1968-07-17","1967-06-24","1957-01-06","1970-03-25","1980-06-01","1953-02-17","1956-06-08","1963-02-18","1975-02-19","1963-04-07","1964-12-20","1979-04-29","1961-06-29","1984-02-02","1973-06-24","1962-10-28","1957-12-24","1963-05-15","1962-08-15","1966-11-25","1966-09-14","1945-08-07","1966-05-05","1961-09-07","1965-11-02","1948-04-08","1958-02-02","1972-05-02","1979-07-31","1968-12-03","1973-05-16","1975-07-12","1966-12-17","1963-03-21","1966-06-01","1969-11-17","1963-03-20","1957-02-19","1954-04-13","1949-12-24","1984-07-05","1971-01-12","1956-09-19","1955-11-14","1962-04-07","1952-09-21","1967-04-23","1981-09-20","1958-06-20","1959-07-24","1965-03-03","1964-10-24","1948-09-12","1952-09-03","1966-03-13","1967-01-09","1956-10-14","1957-09-07","1952-07-31","1980-03-26","1976-04-12","1974-10-06","1985-12-05","1965-10-15","1979-07-12","1961-03-26","1963-03-14","1968-01-21","1963-07-02","1979-11-02","1953-01-26","1958-09-03","1973-04-09","1975-02-28","1972-05-19","1966-10-15","1960-09-15","1981-01-20","1969-03-30","1977-12-22","1948-09-19","1952-12-22","1975-07-01","1956-11-30","1960-11-04","1952-08-11","1940-07-03","1980-02-21","1979-03-04","1955-12-01","1979-04-08","1973-10-01","1964-03-14","1961-06-22","1975-11-24","1952-02-06","1973-03-31","1976-07-26","1971-05-09","1949-03-22","1969-09-14","1961-04-29","1986-01-01","1976-04-04","1951-06-13","1971-02-11","1962-05-25","1964-08-21","1954-01-19","1967-08-04","1959-04-19","1960-04-22","1959-05-28","1982-04-08","1950-05-08","1955-04-14","1972-06-04","1971-10-27","1964-01-14","1969-11-18","1962-12-07","1988-07-07","1953-02-27","1969-03-04","1979-09-16","1961-02-05","1966-10-28","1967-05-26","1984-01-14","1947-08-19","1959-05-24","1978-11-20","1972-06-03","1976-02-20","1974-04-20","1986-07-11","1961-09-30","1968-05-25","1968-02-18","1978-10-26","1955-03-21","1966-03-18","1985-11-11","1985-08-17","1963-03-11","1957-09-27","1976-05-19","1953-08-04","1972-12-02","1958-05-11","1945-01-06","1969-09-30","1963-01-25","1974-09-25","1983-09-11","1969-05-22","1971-02-04","1982-01-27","1966-09-06","1974-06-27","1973-10-12","1975-12-04","1981-11-22","1972-05-22","1978-05-06","1979-01-18","1958-01-07","1954-11-05","1956-02-26","1984-04-29","1966-12-17","1963-09-13","1963-11-06","1965-05-15","1946-09-18","1950-03-26","1963-08-17","1965-05-20","1973-07-12","1965-01-15","1975-06-28","1982-02-21","1952-04-26","1971-05-26","1961-06-10","1963-05-16","1986-01-26","1974-10-07","1956-09-14","1965-02-11","1953-04-11","1963-10-28","1966-08-22","1963-02-02","1953-04-11","1950-03-17","1948-02-28","1955-03-08","1953-02-09","1972-07-14","1961-08-31","1959-04-24","1970-04-01","1952-06-04","1961-03-27","1954-06-21","1959-06-13","1954-11-07","1955-11-14","1978-10-29","1960-07-02","1979-01-08","1966-05-13","1958-11-08","1965-09-11","1962-07-02","1965-10-21","1981-05-10","1962-08-03","1966-01-24","1973-03-11","1987-05-09","1959-06-01","1962-06-11","1962-05-27","1958-05-10","1978-03-27","1957-01-12","1967-12-13","1959-05-14","1967-07-27","1960-01-29","1975-07-12","1966-07-22","1985-09-18","1975-04-18","1973-05-10","1985-09-16","1960-04-14","1963-02-02","1966-07-27","1970-09-06","1975-04-30","1978-08-11","1960-10-03","1972-01-22","1962-06-13","1958-10-11","1967-07-26","1979-03-21","1957-05-23","1975-12-05","1979-02-07","1983-11-20","1960-03-03","1977-05-02","1964-01-03","1953-08-01","1977-12-21","1970-01-11","1963-08-31","1976-10-08","1971-05-18","1969-08-28","1968-08-15","1968-11-16","1962-04-12","1978-03-01","1971-11-29","1963-12-24","1973-04-10","1989-01-31","1949-09-20","1952-02-13","1981-09-18","1976-05-18","1953-05-25","1961-03-05","1968-07-29","1986-02-20","1984-07-03","1953-01-14","1973-06-28","1971-12-30","1964-06-09","1967-03-27","1989-12-22","1966-05-08","1976-01-20","1970-11-12","1973-04-08","1995-09-13","1968-11-19","1965-11-01","1956-02-10","1951-11-04","1967-03-14","1970-11-16","1965-05-01","1970-01-23","1980-06-02","1952-01-09","1985-10-11","1975-12-18","1982-09-05","1976-05-22","1966-01-22","1983-04-11","1969-09-15","1965-05-01","1992-05-18","1976-04-13","1970-10-08","1975-05-27","1961-01-04","1967-04-07","1956-07-26","1955-07-15","1986-11-06","1988-03-08","1974-09-17","1986-03-30","1962-10-12","1980-05-27","1980-12-29","1951-07-06","1986-06-15","1971-07-04","1977-04-29","1967-09-01","1985-03-16","1968-02-04","1956-11-26","1959-03-12","1983-08-11","1992-11-03","1970-04-17","1975-06-16","1973-04-09","1975-09-02","1969-12-12","1960-11-16","1979-06-26","1970-08-31","1982-12-12","1987-03-19","1989-03-23","1962-11-29","1982-10-05","1985-04-18","1964-11-22","1958-01-08","1950-09-13","1969-07-27","1969-01-16","1954-02-11","1965-05-05","1948-02-03","1968-04-17","1974-11-30","1988-06-29","1963-04-03","1989-12-27","1968-04-11","1982-06-30","1953-09-06","1952-09-24","1984-07-01","1977-03-08","1955-11-11","1984-03-10","1976-06-05","1963-06-10","1972-02-02","1988-04-27","1987-04-06","1969-08-25","1969-03-18","1964-04-29","1986-04-30","1963-09-22","1976-11-28","1982-02-12","1970-12-27","1967-01-22","1966-09-06","1962-07-01","1964-05-22","1950-08-07","1972-08-15","1969-08-21","1974-08-16","1976-01-30","1984-10-14","1960-09-29","1985-06-29","1988-12-25","1963-01-27","1969-09-13","1988-12-23","1972-12-31","1977-02-08","1977-03-03","1967-04-10","1956-02-27","1968-07-01","1968-09-20","1963-04-09","1974-10-06","1964-01-16","1977-07-20","1974-09-11","1975-03-08","1979-10-15","1976-02-12","1972-07-20","1964-04-21","1993-01-14","1972-08-20","1965-04-09","1976-03-08","1968-05-17","1984-09-12","1951-01-28","1976-07-20","1977-06-08","1970-09-04","1989-07-25","1967-04-13","1961-11-26","1960-04-12","1956-12-26","1986-04-06","1966-10-17","1955-07-04","1973-02-28","1949-03-20","1980-01-14","1977-01-27","1964-10-24","1993-10-15","1970-10-08","1979-03-30","1972-11-17","1984-06-15","1958-10-02","1985-05-11","1974-12-17","1973-12-11","1958-01-26","1989-02-26","1953-11-18","1958-02-08","1956-01-29","1962-09-06","1975-09-30","1980-07-14","1979-10-19","1970-09-23","1968-01-20","1966-02-11","1959-12-07","1963-05-08","1984-08-31","1990-02-27","1982-09-10","1986-11-27","1980-06-29","1970-02-26","1969-09-15","1959-07-18","1956-12-03","1967-01-02","1990-08-03","1962-11-02","1977-01-28","1959-11-19","1956-12-08","1971-12-21","1956-06-25","1985-07-09","1972-09-07","1975-12-01","1979-04-17","1979-10-10","1978-12-29","1964-10-19","1977-12-22","1973-10-12","1952-08-23","1966-02-08","1967-10-30","1964-06-01","1944-10-20","1980-10-29","1970-03-10","1991-04-22","1975-07-27","1973-05-14","1958-06-04","1990-01-09","1975-12-20","1958-08-08","1987-10-20","1954-02-03","1976-08-01","1962-06-02","1968-12-02","1967-10-19","1954-05-19","1953-12-14","1980-10-15","1971-04-03","1973-11-08","1977-08-21","1946-07-03","1976-07-08","1973-09-18","1955-10-16","1970-09-11","1975-03-20","1984-04-03","1992-04-14","1976-07-30","1985-02-07","1962-03-08","1955-03-12","1978-02-21","1955-10-30","1961-08-30","1982-05-15","1967-05-09","1962-05-18","1947-10-06","1986-06-18","1988-02-19","1976-02-05","1977-02-18","1991-07-26","1998-02-23","1983-10-24","1965-09-02","1975-04-14","1949-05-20","1976-03-23","1964-02-02","1971-05-27","1973-04-20","1976-01-21","1953-09-24","1989-02-11","1955-06-22","1958-06-05","1973-11-20","1970-01-19","1989-12-26","1975-02-21","1955-02-27","1964-07-08","1947-11-16","1970-03-09","1988-11-22","1969-10-05","1967-08-19","1968-11-10","1966-08-02","1961-12-23","1972-03-22","1978-03-03","1961-02-01","1960-05-15","1968-02-12","1982-12-25","1975-05-25","1969-04-16","1974-06-08","1972-06-05","1983-05-13","1972-11-10","1985-03-26","1986-03-11","1984-06-15","1975-03-19","1963-02-23","1984-05-10","1978-10-09","1990-08-28","1986-08-06","1960-08-13","1966-05-08","1971-12-21","1982-09-20","1976-01-29","1950-06-30","1982-01-03","1970-09-27","1961-09-28","1979-08-06","1963-04-15","1979-04-30","1972-02-08","1978-12-04","1958-04-09","1982-02-16","1974-04-16","1978-02-16","1965-11-01","1967-08-17","1981-06-27","1975-03-11","1987-05-27","1987-06-25","1957-06-12","1956-03-06","1975-01-14","1967-03-06","1984-12-21","1976-06-08","1978-10-27","1989-10-16","1982-12-13","1980-07-17","1983-02-28","1977-11-03","1982-04-18","1970-03-23","1962-10-29","1961-08-17","1963-02-15","1965-09-08","1987-06-11","1955-11-09","1963-03-17","1969-01-23","1957-05-05","1982-11-12","1968-03-12","1962-08-27","1979-06-14","1963-05-09","1961-12-29","1971-03-14","1964-05-27","1974-03-28","1976-05-07","1965-07-06","1971-04-06","1960-06-06","1953-06-21","1957-01-21","1967-03-28","1980-08-21","1986-04-12","1993-06-27","1970-12-03","1973-02-28","1968-12-09","1954-07-25","1963-03-12","1971-03-07","undef","1981-01-16","1967-05-16","1992-09-29","1972-02-08","1975-09-19","1971-10-27","1957-09-13","1968-03-25","1972-12-02","1967-04-17","1964-11-28","1972-07-22","1957-03-19","1974-03-24","1986-12-18","1987-03-30","undef","1967-04-17","1982-05-05","1981-01-01","1964-07-30","1973-03-13","undef"],"group":["Verts/ALE","ECR","ECR","ECR","PPE","PPE","S&D","PPE","ECR","PPE","RE","S&D","PPE","RE","PPE","RE","RE","PPE","ECR","PPE","S&D","S&D","PPE","RE","PPE","S&D","PPE","PPE","PPE","RE","PPE","ID","Verts/ALE","S&D","S&D","PPE","PPE","S&D","PPE","RE","RE","S&D","PPE","PPE","PPE","S&D","RE","PPE","PPE","Verts/ALE","GUE/NGL","RE","S&D","S&D","Verts/ALE","ECR","PPE","PPE","ECR","RE","PPE","ECR","S&D","ID","PPE","S&D","PPE","ECR","RE","ECR","PPE","S&D","PPE","PPE","S&D","S&D","RE","PPE","GUE/NGL","PPE","PPE","S&D","ID","PPE","Verts/ALE","Verts/ALE","GUE/NGL","ECR","PPE","Verts/ALE","PPE","PPE","S&D","S&D","RE","PPE","GUE/NGL","NA","PPE","ECR","PPE","PPE","GUE/NGL","S&D","PPE","PPE","PPE","Verts/ALE","GUE/NGL","S&D","PPE","PPE","S&D","PPE","RE","ECR","RE","S&D","S&D","Verts/ALE","PPE","S&D","PPE","PPE","PPE","PPE","PPE","S&D","S&D","PPE","PPE","S&D","PPE","Verts/ALE","Verts/ALE","PPE","PPE","ECR","S&D","RE","PPE","GUE/NGL","PPE","S&D","ID","Verts/ALE","Verts/ALE","NA","RE","PPE","GUE/NGL","ID","GUE/NGL","RE","ID","PPE","PPE","PPE","S&D","GUE/NGL","PPE","S&D","S&D","S&D","PPE","S&D","PPE","PPE","PPE","Verts/ALE","GUE/NGL","ECR","PPE","NA","NA","NA","Verts/ALE","RE","PPE","ID","S&D","Verts/ALE","GUE/NGL","RE","PPE","S&D","S&D","ECR","PPE","S&D","RE","PPE","NA","RE","ID","PPE","PPE","S&D","PPE","ID","PPE","PPE","PPE","S&D","RE","PPE","S&D","PPE","RE","RE","PPE","S&D","ECR","ECR","S&D","S&D","PPE","Verts/ALE","PPE","S&D","PPE","PPE","PPE","RE","GUE/NGL","PPE","S&D","Verts/ALE","NA","S&D","S&D","ECR","ID","PPE","PPE","PPE","S&D","S&D","S&D","PPE","Verts/ALE","PPE","S&D","S&D","ECR","NA","ECR","PPE","RE","Verts/ALE","S&D","S&D","ID","NA","NA","GUE/NGL","RE","S&D","PPE","PPE","PPE","RE","PPE","RE","GUE/NGL","PPE","ID","PPE","ECR","ID","S&D","S&D","NA","S&D","PPE","S&D","ID","ID","PPE","PPE","Verts/ALE","PPE","ECR","S&D","PPE","PPE","PPE","S&D","ID","PPE","S&D","ECR","PPE","RE","RE","PPE","S&D","ID","Verts/ALE","ID","S&D","RE","PPE","GUE/NGL","PPE","GUE/NGL","S&D","RE","ID","S&D","ID","S&D","GUE/NGL","S&D","PPE","ID","RE","ID","RE","ID","S&D","PPE","S&D","PPE","PPE","ID","PPE","PPE","S&D","PPE","S&D","RE","PPE","S&D","Verts/ALE","PPE","ID","Verts/ALE","Verts/ALE","PPE","GUE/NGL","ID","ID","GUE/NGL","ECR","RE","RE","Verts/ALE","S&D","Verts/ALE","ECR","ID","RE","ID","S&D","NA","ECR","S&D","ID","RE","Verts/ALE","ID","ID","Verts/ALE","ID","S&D","RE","GUE/NGL","S&D","RE","RE","S&D","RE","S&D","S&D","PPE","ID","ID","Verts/ALE","RE","Verts/ALE","S&D","GUE/NGL","S&D","ID","ID","RE","Verts/ALE","ID","GUE/NGL","Verts/ALE","Verts/ALE","S&D","PPE","RE","ID","ID","PPE","PPE","S&D","ECR","RE","PPE","PPE","RE","ID","ECR","PPE","RE","PPE","PPE","PPE","Verts/ALE","S&D","S&D","NA","RE","S&D","RE","ID","S&D","S&D","RE","ID","Verts/ALE","NA","GUE/NGL","GUE/NGL","ECR","RE","NA","RE","S&D","S&D","S&D","ID","Verts/ALE","ID","RE","RE","S&D","Verts/ALE","RE","GUE/NGL","NA","Verts/ALE","RE","ID","PPE","ID","PPE","RE","S&D","S&D","PPE","Verts/ALE","RE","RE","Verts/ALE","S&D","S&D","ID","RE","S&D","Verts/ALE","ECR","PPE","ID","PPE","RE","ECR","ECR","ID","S&D","PPE","ECR","RE","RE","RE","ECR","GUE/NGL","ECR","RE","ID","S&D","PPE","Verts/ALE","GUE/NGL","NA","NA","PPE","ECR","RE","GUE/NGL","ID","ECR","PPE","Verts/ALE","ID","PPE","NA","Verts/ALE","S&D","Verts/ALE","ID","S&D","ID","PPE","S&D","ID","ID","RE","PPE","S&D","PPE","ID","S&D","S&D","PPE","S&D","S&D","ID","Verts/ALE","S&D","S&D","S&D","RE","ECR","PPE","PPE","RE","ECR","S&D","PPE","S&D","GUE/NGL","PPE","PPE","PPE","ECR","Verts/ALE","Verts/ALE","Verts/ALE","NA","Verts/ALE","PPE","RE","S&D","ID","ID","Verts/ALE","PPE","RE","Verts/ALE","S&D","GUE/NGL","GUE/NGL","PPE","Verts/ALE","NA","GUE/NGL","ID","S&D","RE","S&D","PPE","PPE","ECR","NA","RE","ECR","ID","GUE/NGL","ID","PPE","Verts/ALE","ID","ID","S&D","GUE/NGL","S&D","ECR","NA","Verts/ALE","ECR","ID","ECR","S&D","ECR","S&D","S&D","ID","Verts/ALE","S&D","PPE","PPE","RE","PPE","RE","Verts/ALE","RE","S&D","PPE","RE","PPE","NA","PPE","ECR","S&D","RE","PPE","S&D","ECR","RE","ECR","Verts/ALE","RE","ECR","ID","S&D","ECR","ECR","PPE","S&D","PPE","ECR","RE","PPE","PPE","Verts/ALE","ID","RE","PPE","RE","S&D","NA","S&D","ID","Verts/ALE","RE","GUE/NGL","GUE/NGL","PPE","S&D","Verts/ALE","S&D","ECR","ID","ECR","PPE","GUE/NGL","PPE","PPE","ECR","ECR","PPE","Verts/ALE","PPE","PPE","PPE","Verts/ALE","S&D","RE","RE","ECR","ID","PPE","ID","PPE","S&D","RE","S&D","ECR","S&D","S&D","PPE","PPE","S&D","NA","NA","PPE","RE","Verts/ALE","RE","ECR","PPE","Verts/ALE","RE","PPE","ID","S&D","S&D","NA","S&D","ID","RE","ECR","PPE","RE","RE","NA","GUE/NGL","Verts/ALE"],"mepid":[96750,4746,23788,96810,96808,4560,38595,1992,125106,4391,124696,28347,28294,4344,124586,22858,96711,96867,97133,96830,33997,124822,185341,190519,125030,4267,4289,38398,96761,96709,188945,190518,183338,124799,124837,4246,28224,124747,96791,124872,114268,124852,23821,125104,96779,96891,130100,124809,189525,190464,190517,191693,192634,96837,96730,23712,2323,96776,96796,58789,124806,28389,1909,125025,28288,125020,124802,28615,96698,96697,96756,23768,28617,124701,124836,1854,125128,28390,131507,190774,28141,185619,192635,190713,96752,96648,125023,124877,124713,96739,96809,28223,124705,124735,124700,112611,23699,124835,124808,28297,96934,96829,96852,125021,33982,28269,124704,96868,120478,37229,24594,39725,96833,125706,840,96801,124709,96911,96844,124934,96936,124867,28219,23781,96747,96933,125027,1913,37312,40599,2341,124739,124734,28619,125214,124726,125067,124884,5729,124862,107212,130833,96787,124991,189065,193273,193292,124856,125005,125068,96706,97198,96820,129073,124780,124929,124828,96903,125109,28586,96978,125042,88882,29579,36392,124970,2187,23816,5565,28161,30482,28372,24922,124833,124844,124777,124972,124821,124895,38511,124722,96734,124992,124989,118859,125043,124861,96713,95074,124936,28266,72779,124834,96885,124765,28226,1927,124814,1917,183793,193419,96668,124850,96812,124766,98341,28298,125065,125038,97058,124710,124692,124996,124891,28340,124781,28400,96743,28229,112744,96772,28399,125063,96922,96646,28115,124785,2054,125237,124784,125046,124887,124973,125064,96780,96811,124846,96880,96998,125670,103381,124988,96952,124691,119431,124831,28353,97968,4253,96740,96932,96991,125001,124812,125093,24505,124866,113892,125004,96826,28150,124708,124712,124693,124985,124715,124738,96899,124873,124770,96842,125110,124779,96681,124714,125045,124771,124760,125012,26837,96725,124807,4465,23868,28122,96771,38420,112748,197826,197490,197403,198096,197836,197848,197400,197746,197783,197475,197448,197691,197587,197664,197492,197701,197695,197533,197651,197781,197789,197495,131580,197433,197684,197808,197671,197610,197779,132191,197437,197680,197496,197534,197658,197679,197408,197478,197778,197410,197396,197648,197498,197551,197771,197435,197512,197637,197564,197449,197439,197636,197521,197788,101039,187917,197467,197668,197577,197431,197446,197470,197501,182995,197576,128483,197440,197434,197829,197617,35016,126644,197574,197797,197796,86793,197786,197641,197505,197529,197782,197463,197558,197507,197631,197657,197761,197536,197683,197616,197503,197588,197654,197394,197731,38542,197608,197556,197504,197531,197472,197468,197453,197471,197579,197473,197595,197822,197614,197510,99945,198329,197766,197430,197535,197649,197589,197480,197607,197720,197419,197414,197513,197455,106936,197391,101585,197795,197555,197702,197632,197582,197717,197742,197554,197628,183916,197794,197416,197819,197436,197661,197804,197443,197694,197728,197718,197799,197549,94649,197557,197452,197618,197645,197543,88715,198063,197457,197444,198176,197514,197596,197646,135511,197682,197800,197412,197459,197526,197770,197398,122978,197846,197594,197624,197392,197837,197516,197517,197627,197840,197447,197518,197767,197626,197491,197839,197469,197585,197401,197818,197519,197415,197520,197528,197570,197523,197406,197546,197743,197438,197740,197525,197530,197445,197699,197481,197532,197843,197395,197482,197692,197737,197460,197697,197461,197597,197698,197686,197393,197635,197483,197611,197494,197777,197721,197458,197493,197719,197592,197835,197735,197653,197623,197462,197638,197634,197441,197522,197538,197841,197662,197567,130256,197497,197824,197540,197805,197711,197427,197647,197541,197464,197465,197802,197734,197889,197542,197432,197838,197687,99283,197466,197420,197563,197539,197845,197527,197754,197738,197573,197619,197828,197629,197590,197663,197732,197404,197765,197820,197764,197868,197544,197790,197681,197488,197413,197832,197787,197615,197801,197785,197584,197776,197792,197506,197709,197690,197773,127096,197545,197722,197650,197578,197500,197670,197656,197422,197869,197425,197508,197423,197418,197677,197548,103746,197426,197935,197390,197849,197791,197784,197417,197550,197825,58766,197399,197772,134605,197553,197806,197756,197655,197831,197667,197591,197402,197559,197547,197672,27714,97236,197580,197593,197894,197665,198183,197763,197810,185771,197870,197502,197827,197571,98582,197844,197451,197678,197537,197798,197552,197863,197817,197429,197405,197566,123562,197515,197675,197769,197652,197421,197511,197842,197581,197499,197572,197586,197606,197489,197621,34578,118949,5392,198490,199941,199996,202036,202112,202073,202352,202351,204368,204332,204335,204416,204414,204333,204420,204419,204336,204421,112747,204418,204443,204413,204334,204331,204346,204449,204400,197780,204733,205452,206158],"name":["Fran\u00e7ois Alfonsi","Sergio Berlato","Adam Bielan","Carlo Fidanza","Pablo Arias Echeverr\u00eda","Antonius Manders","Rovana Plumb","Jos\u00e9 Manuel Garc\u00eda-Margallo Y Marfil","Johan Van Overtveldt","Silvio Berlusconi","Andrus Ansip","Javier Moreno S\u00e1nchez","Ljudmila Novak","Mar\u00eda Soraya Rodr\u00edguez Ramos","Bal\u00e1zs Hidv\u00e9ghi","Fabienne Keller","Pascal Canfin","Maria Da Gra\u00e7a Carvalho","Derk Jan Eppink","Enik\u0151 Gy\u0151ri","Corina Cre\u021bu","Dietmar K\u00f6ster","\u017deljana Zovko","Caroline Nagtegaal","Annie Schreijer-Pierik","Udo Bullmann","Angelika Niebler","Esther De Lange","Axel Voss","Morten L\u00f8kkegaard","Dennis Radtke","J\u00f6rg Meuthen","Jakop G. Dalunde","Alessandra Moretti","Joachim Schuster","Othmar Karas","Markus Pieper","Pedro Silva Pereira","El\u017cbieta Katarzyna \u0141ukacijewska","Morten Petersen","Nils Torvalds","Sergei Stanishev","J\u00f3zsef Sz\u00e1jer","Romana Tomc","Danuta Maria H\u00fcbner","Paolo De Castro","Hilde Vautmans","Sven Schulze","Asim Ademov","Thomas Waitz","Martin Schirdewan","Elsi Katainen","Giuseppe Ferrandino","Petra Kammerevert","Sven Giegold","Jan Zahradil","Rainer Wieland","R\u00f3\u017ca Thun Und Hohenstein","Ryszard Antoni Legutko","Jan Huitema","David Mcallister","Zbigniew Ku\u017amiuk","Bernd Lange","Marcel De Graaff","Jan Olbrycht","Paul Tang","Siegfried Mure\u015fan","Roberts Z\u012ble","Viktor Uspaskich","Valdemar Toma\u0161evski","Sabine Verheyen","Bogus\u0142aw Liberadzki","Inese Vaidere","Lud\u011bk Niedermayer","Maria Noichl","Constanze Krehl","Iskra Mihaylova","Pilar Del Castillo Vera","Miguel Urb\u00e1n Crespo","Geoffroy Didier","L\u00edvia J\u00e1r\u00f3ka","Tiemo W\u00f6lken","Danilo Oscar Lancini","Lukas Mandl","Martin H\u00e4usling","Philippe Lamberts","Anja Hazekamp","Jadwiga Wi\u015bniewska","Tom\u00e1\u0161 Zdechovsk\u00fd","Reinhard B\u00fctikofer","Peter Van Dalen","Andreas Schwab","Istv\u00e1n Ujhelyi","Miapetra Kumpula-Natri","Yana Toom","Petri Sarvamaa","Kate\u0159ina Kone\u010dn\u00e1","Rosa D'Amato","Norbert Lins","Jacek Saryusz-Wolski","Sandra Kalniete","\u00c1d\u00e1m K\u00f3sa","Cornelia Ernst","Agnes Jongerius","Marian-Jean Marinescu","Jerzy Buzek","Stanislav Pol\u010d\u00e1k","Karima Delli","Martina Michels","Kati Piri","Anne Sander","Iuliu Winkler","Jens Geier","Ji\u0159\u00ed Posp\u00ed\u0161il","Charles Goerens","Tomasz Piotr Por\u0119ba","Martina Dlabajov\u00e1","Tanja Fajon","Norbert Neuser","Monika Vana","Gabriel Mato","Brando Benifei","Daniel Caspary","Janusz Lewandowski","Arnaud Danjean","Milan Zver","Esteban Gonz\u00e1lez Pons","Evelyne Gebhardt","Christel Schaldemose","Sirpa Pietik\u00e4inen","Michael Gahler","Carlos Zorrinho","Cl\u00e1udia Monteiro De Aguiar","Tatjana \u017ddanoka","Bronis Rop\u0117","Henna Virkkunen","Theodoros Zagorakis","Kosma Z\u0142otowski","Kathleen Van Brempt","Ulrike M\u00fcller","Andrey Novakov","Stelios Kouloglou","Herbert Dorfmann","Jytte Guteland","France Jamet","Romeo Franz","Tilly Metz","Ignazio Corrao","Javier Nart","Manolis Kefalogiannis","Jo\u00e3o Ferreira","Mara Bizzotto","Marisa Matias","Urmas Paet","Marco Zanni","Ivan \u0160tefanec","Fulvio Martusciello","Paulo Rangel","Eva Kaili","Dimitrios Papadimoulis","Nuno Melo","Javi L\u00f3pez","Victor Negrescu","Marc Tarabella","Aldo Patriciello","Miriam Dalli","Antonio Tajani","Andr\u00e1s Gy\u00fcrk","Brice Hortefeux","Margrete Auken","Younous Omarjee","Ryszard Czarnecki","Pascal Arimont","Laura Ferrara","Piernicola Pedicini","Tiziana Beghin","Ernest Urtasun","Nicola Danti","Krzysztof Hetman","Georg Mayer","Csaba Moln\u00e1r","Ska Keller","Malin Bj\u00f6rk","Fredrick Federley","Roberta Metsola","Inma Rodr\u00edguez-Pi\u00f1ero","Caterina Chinnici","Ev\u017een To\u0161enovsk\u00fd","Jeroen Lenaers","Maria Arena","Sophia In 'T Veld","Nadine Morano","Martin Sonneborn","Dominique Riquet","Jo\u00eblle M\u00e9lin","Christian Ehler","Peter Liese","Simona Bonaf\u00e8","Markus Ferber","Angelo Ciocca","Christophe Hansen","Se\u00e1n Kelly","Emil Radev","Juan Fernando L\u00f3pez Aguilar","Petras Au\u0161trevi\u010dius","Eva Maydell","Iratxe Garc\u00eda P\u00e9rez","Elissavet Vozemberg-Vrionidi","Maite Pagazaurtund\u00faa","Guy Verhofstadt","Michaela \u0160ojdrov\u00e1","Demetris Papadakis","Peter Lundgren","Zdzis\u0142aw Krasnod\u0119bski","Patrizia Toia","Alfred Sant","Francisco Jos\u00e9 Mill\u00e1n Mon","Mich\u00e8le Rivasi","Manfred Weber","Tonino Picula","Peter Jahr","Antonio L\u00f3pez-Ist\u00fariz White","Georgios Kyrtsos","Izaskun Bilbao Barandica","Helmut Scholz","Mairead Mcguinness","Maria Grapini","Heidi Hautala","Marco Zullo","Dan Nica","Jon\u00e1s Fern\u00e1ndez","Karol Karski","Gerolf Annemans","Maria Spyraki","Monika Hohlmeier","Rosa Estar\u00e0s Ferragut","Pina Picierno","Andrea Cozzolino","Evelyn Regner","Massimiliano Salini","Terry Reintke","Deirdre Clune","Sylvie Guillaume","Costas Mavrides","Ru\u017ea Toma\u0161i\u0107","Isabella Adinolfi","Anna Fotyga","Andrey Kovatchev","Fr\u00e9d\u00e9rique Ries","Yannick Jadot","Birgit Sippel","Eider Gardiazabal Rubial","Harald Vilimsky","Fabio Massimo Castaldo","Kostas Papadakis","Emmanuel Maurel","Ilhan Kyuchyuk","Eric Andrieu","Franc Bogovi\u010d","Tam\u00e1s Deutsch","Kinga G\u00e1l","Dita Charanzov\u00e1","Andrea Bocskor","Pascal Durand","Luke Ming Flanagan","Gy\u00f6rgy H\u00f6lv\u00e9nyi","Gilles Lebreton","Jos\u00e9 Manuel Fernandes","Angel Dzhambazki","Jean-Fran\u00e7ois Jalkh","Ismail Ertug","Nikos Androulakis","Eleonora Evi","Vilija Blinkevi\u010di\u016bt\u0117","Andor Deli","Clara Aguilera","Dominique Bilde","Nicolas Bay","Daniel Buda","Lefteris Christoforou","Bas Eickhout","Jens Gieseke","Raffaele Fitto","Monika Be\u0148ov\u00e1","David Casa","Jaros\u0142aw Kalinowski","Cristian-Silviu Bu\u015foi","Biljana Borzan","Matteo Adinolfi","Magdalena Adamowicz","Alex Agius Saliba","Mazaly Aguilar","Alexander Alexandrov Yordanov","Atidzhe Alieva-Veli","Abir Al-Sahlani","\u00c1lvaro Amaro","Andris Ameriks","Christine Anderson","Rasmus Andresen","Mathilde Androu\u00ebt","Attila Ara-Kov\u00e1cs","Clotilde Armand","Bartosz Ar\u0142ukowicz","Konstantinos Arvanitis","Anna-Michelle Asimakopoulou","Manon Aubry","Carmen Avram","Malik Azmani","Simona Baldassarre","Marek Pawe\u0142 Balt","Jordan Bardella","Katarina Barley","Pernando Barrena Arza","Pietro Bartolo","Traian B\u0103sescu","Alessandra Basso","Jos\u00e9 Ram\u00f3n Bauz\u00e1 D\u00edaz","Gunnar Beck","Nicola Beer","Aurelia Beigneux","Marek Belka","Fran\u00e7ois-Xavier Bellamy","Adrian-Drago\u015f Benea","Isabel Benjumea Benjumea","Hildegard Bentele","Lars Patrick Berg","Tom Berendsen","Stefan Berger","Erik Bergkvist","Alexander Bernhuber","Robert Biedro\u0144","St\u00e9phane Bijoux","Vladim\u00edr Bil\u010d\u00edk","Gabriele Bischoff","Beno\u00eet Biteau","Vasile Blaga","Hynek Bla\u0161ko","Michael Bloss","Damian Boeselager","Ioan-Rare\u015f Bogdan","Manuel Bompard","Anna Bonfrisco","Paolo Borchia","Marc Botenga","Geert Bourgeois","Vlad-Marius Boto\u015f","Gilles Boyer","Patrick Breyer","Milan Brglez","Saskia Bricmont","Joachim Stanis\u0142aw Brudzi\u0144ski","Annika Bruna","Sylvie Brunet","Markus Buchheit","Delara Burkhardt","Martin Buschmann","Jorge Buxad\u00e9 Villalba","Carlo Calenda","Marco Campomenosi","Jordi Ca\u00f1as","Damien Car\u00eame","Andrea Caroppo","Massimo Casanova","Anna Cavazzini","Susanna Ceccardi","Sara Cerdas","Catherine Chabaud","Leila Chaibi","Mohammed Chahim","Olivier Chastel","Asger Christensen","W\u0142odzimierz Cimoszewicz","Dacian Ciolo\u015f","Tudor Ciuhodaru","Miroslav \u010c\u00ed\u017e","Nathalie Colin-Oesterl\u00e9","Gilbert Collard","Rosanna Conte","David Cormand","Katalin Cseh","Ciar\u00e1n Cuffe","Josianne Cutajar","Clare Daly","Johan Danielsson","Gianantonio Da Re","Ivan David","J\u00e9r\u00e9my Decerle","Gwendoline Delbos-Corfield","Filip De Man","\u00d6zlem Demirel","Anna Deparnay-Grunenberg","Petra De Sutter","Kl\u00e1ra Dobrev","Christian Doleschal","Anna J\u00falia Don\u00e1th","Francesca Donato","Marco Dreosto","Jaros\u0142aw Duda","Lena D\u00fcpont","Estrella Dur\u00e1 Ferrandis","Lucia \u010euri\u0161 Nicholsonov\u00e1","Engin Eroglu","Agn\u00e8s Evren","Gheorghe Falc\u0103","Laurence Farreng","Nicolaus Fest","Pietro Fiocchi","Frances Fitzgerald","Valter Flego","Loucas Fourlas","Tomasz Frankowski","Cindy Franssen","Daniel Freund","Hel\u00e9ne Fritzon","Niels Fuglsang","Mario Furore","S\u00f8ren Gade","Lina G\u00e1lvez Mu\u00f1oz","Claudia Gamon","Gianna Gancia","Ib\u00e1n Garc\u00eda Del Blanco","Isabel Garc\u00eda Mu\u00f1oz","Luis Garicano","Jean-Paul Garraud","Alexandra Geese","Chiara Gemma","Giorgos Georgiou","Alexis Georgoulis","Helmut Geuking","Cristian Ghinea","Dino Giarrusso","Andreas Gl\u00fcck","Rapha\u00ebl Glucksmann","M\u00f3nica Silvana Gonz\u00e1lez","Nicol\u00e1s Gonz\u00e1lez Casares","Valentino Grant","Mark\u00e9ta Gregorov\u00e1","Catherine Griset","Christophe Grudler","Klemen Gro\u0161elj","Elisabetta Gualmini","Francisco Guerreiro","Bernard Guetta","Jos\u00e9 Gusm\u00e3o","M\u00e1rton Gy\u00f6ngy\u00f6si","Henrike Hahn","Svenja Hahn","Roman Haider","Andrzej Halicki","Teuvo Hakkarainen","Mircea-Gheorghe Hava","Val\u00e9rie Hayer","Hannes Heide","Eero Hein\u00e4luoma","Niclas Herbst","Pierrette Herzberger-Fofana","Martin Hlav\u00e1\u010dek","Martin Hojs\u00edk","P\u00e4r Holmgren","Alicia Homs Ginel","Ivo Hristov","Laura Huhtasaari","Ivars Ijabs","Evin Incir","Stasys Jakeli\u016bnas","Patryk Jaki","Adam Jarubas","Virginie Joron","Rasa Juknevi\u010dien\u0117","Irena Joveva","Krzysztof Jurgiel","Eugen Jurzyca","Herve Juvin","Marina Kaljurand","Radan Kanev","Assita Kanko","Pierre Karleskind","Karin Karlsbro","Billy Kelleher","Beata Kempa","Niyazi Kizily\u00fcrek","Izabela-Helena Kloc","Ond\u0159ej Knotek","Peter Kofod","\u0141ukasz Kohut","Arba Kokalari","Marcel Kolaja","Petros Kokkalis","Mislav Kolaku\u0161i\u0107","Athanasios Konstantinou","Ewa Kopacz","Joanna Kopci\u0144ska","Moritz K\u00f6rner","Elena Kountoura","Maximilian Krah","El\u017cbieta Kruk","Andrius Kubilius","Alice Kuhnke","Joachim Kuhs","Stelios Kympouropoulos","Ioannis Lagos","Sergey Lagodinsky","Aurore Lalucq","Katrin Langensiepen","H\u00e9l\u00e8ne Laporte","Pierre Larrouturou","Julie Lechanteux","David Lega","Maria-Manuel Leit\u00e3o-Marques","Sylvia Limmer","Elena Lizzi","Nathalie Loiseau","Leopoldo L\u00f3pez Gil","C\u00e9sar Luena","Beno\u00eet Lutgen","Jaak Madison","Cristina Maestre Mart\u00edn De Almagro","Pierfrancesco Majorino","Au\u0161ra Maldeikien\u0117","Adriana Maldonado L\u00f3pez","Claudiu Manda","Thierry Mariani","Erik Marquardt","Margarida Marques","Pedro Marques","Predrag Fred Mati\u0107","Radka Maxov\u00e1","Beata Mazurek","Liudas Ma\u017eylis","Vangelis Meimarakis","Karen Melchior","Dace Melb\u0101rde","Sven Mikser","Giuseppe Milazzo","Leszek Miller","Silvia Modig","Dolors Montserrat","Marlene Mortler","Dan-\u0218tefan Motreanu","And\u017celika Anna Mo\u017cd\u017canowska","Hannah Neumann","Niklas Nienass","Ville Niinist\u00f6","Lefteris Nikolaou-Alavanos","Grace O'Sullivan","Janina Ochojska","Jan-Christoph Oetjen","Juozas Olekas","Philippe Olivier","Alessandro Panza","Jutta Paulus","Kris Peeters","Mauri Pekkarinen","Mikul\u00e1\u0161 Peksa","Tsvetelina Penkova","Anne-Sophie Pelletier","Sandra Pereira","L\u00eddia Pereira","Kira Marie Peter-Hansen","Sabrina Pignedoli","Manu Pineda","Maxette Pirbakas","Giuliano Pisapia","Drago\u0219 P\u00eeslaru","Manuel Pizarro","Jessica Polfj\u00e4rd","Peter Poll\u00e1k","Nicola Procaccini","Miroslav Rada\u010dovsk\u00fd","Samira Rafaela","El\u017cbieta Rafalska","Luisa Regimenti","Sira Rego","Guido Reil","Karlo Ressler","Diana Riba I Giner","Antonio Maria Rinaldi","J\u00e9r\u00f4me Rivi\u00e8re","Franco Roberti","Eugenia Rodr\u00edguez Palop","S\u00e1ndor R\u00f3nai","Rob Rooken","Daniela Rondinelli","Caroline Roose","Robert Roos","Andr\u00e9 Roug\u00e9","Bert-Jan Ruissen","Dom\u00e8nec Ruiz Devesa","Bogdan Rzo\u0144ca","Nacho S\u00e1nchez Amor","Isabel Santos","Silvia Sardone","Mounir Satouri","Andreas Schieder","Simone Schmiedtbauer","Christine Schneider","Liesje Schreinemacher","Ralf Seekatz","St\u00e9phane S\u00e9journ\u00e9","Nico Semsrott","Monica Semedo","G\u00fcnther Sidl","Rados\u0142aw Sikorski","Michal \u0160ime\u010dka","Sven Simon","Ivan Vilibor Sin\u010di\u0107","Sara Skyttedal","Andrey Slabakov","Massimiliano Smeriglio","Susana Sol\u00eds P\u00e9rez","Tomislav Sokol","Sylwia Spurek","Raffaele Stancanelli","Nicolae \u015etef\u0103nu\u021b\u0103","Jessica Stegrud","Tineke Strik","Ramona Strugariu","Beata Szyd\u0142o","Annalisa Tardino","Vera Tax","Cristian Terhe\u015f","Hermann Tertsch","Barbara Thaler","Irene Tinagli","Tomas Tob\u00e9","Grzegorz Tobiszowski","Ir\u00e8ne Tolleret","Eugen Tomac","Edina T\u00f3th","Marie Toussaint","Isabella Tovaglieri","V\u00e9ronique Trillet-Lenoir","L\u00e1szl\u00f3 Tr\u00f3cs\u00e1nyi","Drago\u015f Tudorache","Mihai Tudose","Milan Uhr\u00edk","Nils U\u0161akovs","Tom Vandendriessche","Kim Van Sparrentak","Marie-Pierre Vedrenne","Idoia Villanueva Ruiz","Nikolaj Villumsen","Lor\u00e1nt Vincze","Petar Vitanov","Viola Von Cramon-Taubadel","Bettina Vollath","Alexandr Vondra","Lucia Vuolo","Veronika Vrecionov\u00e1","Maria Walsh","Mick Wallace","Marion Walsmann","J\u00f6rgen Warborn","Witold Jan Waszczykowski","Charlie Weimers","Pernille Weiss","Sarah Wiener","Michal Wiezik","Angelika Winzig","Isabel Wiseler-Lima","Salima Yenbou","Elena Yoncheva","St\u00e9phanie Yon-Courtin","Chrysoula Zacharopoulou","Anna Zalewska","Stefania Zambelli","Javier Zarzalejos","Bernhard Zimniok","Juan Ignacio Zoido \u00c1lvarez","Robert Haj\u0161el","Ond\u0159ej Kova\u0159\u00edk","Lara Wolters","Emmanouil Fragkos","Marianne Vind","Isabel Carvalhais","Sun\u010dana Glavak","Gheorghe-Vlad Nistor","Marc Angel","Antoni Com\u00edn I Oliveres","Carles Puigdemont I Casamaj\u00f3","Christian Sagartz","Barry Andrews","Alviina Alamets\u00e4","Ilana Cicurel","Margarita De La Pisa Carri\u00f3n","Salvatore De Meo","Claude Gruffat","Sandro Gozi","Miriam Lexmann","Jean-Lin Lacapelle","Romana Jerkovi\u0107","Nora Mebarek","Clara Ponsat\u00ed Obiols","Marcos Ros Sempere","Vincenzo Sofo","Linea S\u00f8gaard-Lidell","Dominik Tarczy\u0144ski","Riho Terras","Adri\u00e1n V\u00e1zquez L\u00e1zara","Bart Groothuis","Dorien Rookmaker","Chris Macmanus","Manuela Ripa"]},"selected":{"id":"1045"},"selection_policy":{"id":"1044"}},"id":"1032","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1012"},"ticker":null,"visible":false},"id":"1015","type":"Grid"},{"attributes":{},"id":"1023","type":"WheelZoomTool"},{"attributes":{},"id":"1004","type":"DataRange1d"}],"root_ids":["1003"]},"title":"Bokeh Application","version":"2.2.3"}};
+  var render_items = [{"docid":"75fa2651-e4e4-4933-a9fb-c317f86f5160","root_ids":["1003"],"roots":{"1003":"b4244b0c-d299-4ae4-8240-6125ec3245cc"}}];
   root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
 
   }
