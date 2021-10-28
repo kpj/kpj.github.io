@@ -1,36 +1,16 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Playing with Variational Autoencoders &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
@@ -38,39 +18,20 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Interpreting the coefficients of a linear regression" href="LinearRegressionCoefficients.html" />
     <link rel="prev" title="Visualizing Height Profiles of Swiss Mountains" href="../mining_visualization/SwissMountainProfiles.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> kpj's blog
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Linux</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
@@ -167,71 +117,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../science/publications.html">Publications</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kpj's blog</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Playing with Variational Autoencoders</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/stats_ml/Autoencoder.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -502,8 +411,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Playing-with-Variational-Autoencoders">
-<h1>Playing with Variational Autoencoders<a class="headerlink" href="#Playing-with-Variational-Autoencoders" title="Permalink to this headline">¶</a></h1>
+<section id="Playing-with-Variational-Autoencoders">
+<h1>Playing with Variational Autoencoders<a class="headerlink" href="#Playing-with-Variational-Autoencoders" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -537,8 +446,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Glossary">
-<h2>Glossary<a class="headerlink" href="#Glossary" title="Permalink to this headline">¶</a></h2>
+<section id="Glossary">
+<h2>Glossary<a class="headerlink" href="#Glossary" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>epoch: one cycle through training data (made up of many steps)</p></li>
 <li><p>step: one gradient update per batch of data</p></li>
@@ -558,11 +467,11 @@ div.rendered_html tbody tr:hover {
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="Introduction">
-<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Basic-operations">
-<h3>Basic operations<a class="headerlink" href="#Basic-operations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline"></a></h2>
+<section id="Basic-operations">
+<h3>Basic operations<a class="headerlink" href="#Basic-operations" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -608,12 +517,12 @@ array([[19., 22.],
        [43., 50.]], dtype=float32)&gt;
 </pre></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="Variational-Autoencoder">
-<h2>Variational Autoencoder<a class="headerlink" href="#Variational-Autoencoder" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Theory">
-<h3>Theory<a class="headerlink" href="#Theory" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="Variational-Autoencoder">
+<h2>Variational Autoencoder<a class="headerlink" href="#Variational-Autoencoder" title="Permalink to this headline"></a></h2>
+<section id="Theory">
+<h3>Theory<a class="headerlink" href="#Theory" title="Permalink to this headline"></a></h3>
 <p>Given data <span class="math notranslate nohighlight">\(X\)</span>, latent variable <span class="math notranslate nohighlight">\(z\)</span>, probability distribution of data <span class="math notranslate nohighlight">\(P(X)\)</span>, p.d. of latent variable <span class="math notranslate nohighlight">\(P(z)\)</span>, p.d. of generated data given latent variable <span class="math notranslate nohighlight">\(P(X|z)\)</span></p>
 <p>Goal is to model data, i.e. find <span class="math notranslate nohighlight">\(P(X) = \int P(X|z) P(z)\)</span></p>
 <p>Idea of VAE:</p>
@@ -631,9 +540,9 @@ array([[19., 22.],
 <p>Objective function:</p>
 <div class="math notranslate nohighlight">
 \[\log P(X)-D_{K L}[Q(z | X) \| P(z | X)]=E[\log P(X | z)]-D_{K L}[Q(z | X) \| P(z)]\]</div>
-</div>
-<div class="section" id="Design-model">
-<h3>Design model<a class="headerlink" href="#Design-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Design-model">
+<h3>Design model<a class="headerlink" href="#Design-model" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -791,11 +700,11 @@ array([[19., 22.],
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Run-model">
-<h3>Run model<a class="headerlink" href="#Run-model" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="Parameters">
-<h4>Parameters<a class="headerlink" href="#Parameters" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="Run-model">
+<h3>Run model<a class="headerlink" href="#Run-model" title="Permalink to this headline"></a></h3>
+<section id="Parameters">
+<h4>Parameters<a class="headerlink" href="#Parameters" title="Permalink to this headline"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -819,9 +728,9 @@ array([[19., 22.],
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Load-data">
-<h4>Load data<a class="headerlink" href="#Load-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="Load-data">
+<h4>Load data<a class="headerlink" href="#Load-data" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -857,9 +766,9 @@ array([[19., 22.],
 &lt;BatchDataset shapes: (None, 28, 28, 1), types: tf.float32&gt;
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Train-model">
-<h4>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="Train-model">
+<h4>Train model<a class="headerlink" href="#Train-model" title="Permalink to this headline"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -931,12 +840,12 @@ WARNING:tensorflow:Inconsistent references when loading the checkpoint into this
 Two checkpoint references resolved to different objects (&lt;tensorflow.python.keras.layers.convolutional.Conv2DTranspose object at 0x16314a4c0&gt; and &lt;tensorflow.python.keras.layers.convolutional.Conv2DTranspose object at 0x16314aa00&gt;).
 </pre></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="Analysis">
-<h3>Analysis<a class="headerlink" href="#Analysis" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="Loss-development">
-<h4>Loss development<a class="headerlink" href="#Loss-development" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="Analysis">
+<h3>Analysis<a class="headerlink" href="#Analysis" title="Permalink to this headline"></a></h3>
+<section id="Loss-development">
+<h4>Loss development<a class="headerlink" href="#Loss-development" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -963,9 +872,9 @@ Two checkpoint references resolved to different objects (&lt;tensorflow.python.k
 <img alt="../_images/stats_ml_Autoencoder_26_1.png" src="../_images/stats_ml_Autoencoder_26_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Generate-new-samples">
-<h4>Generate new samples<a class="headerlink" href="#Generate-new-samples" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="Generate-new-samples">
+<h4>Generate new samples<a class="headerlink" href="#Generate-new-samples" title="Permalink to this headline"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
@@ -1005,9 +914,9 @@ Two checkpoint references resolved to different objects (&lt;tensorflow.python.k
 <img alt="../_images/stats_ml_Autoencoder_29_0.png" src="../_images/stats_ml_Autoencoder_29_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Check-specific-examples">
-<h4>Check specific examples<a class="headerlink" href="#Check-specific-examples" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="Check-specific-examples">
+<h4>Check specific examples<a class="headerlink" href="#Check-specific-examples" title="Permalink to this headline"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
@@ -1067,9 +976,9 @@ Two checkpoint references resolved to different objects (&lt;tensorflow.python.k
 <img alt="../_images/stats_ml_Autoencoder_33_0.png" src="../_images/stats_ml_Autoencoder_33_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="PCA">
-<h4>PCA<a class="headerlink" href="#PCA" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="PCA">
+<h4>PCA<a class="headerlink" href="#PCA" title="Permalink to this headline"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
@@ -1165,57 +1074,40 @@ Two checkpoint references resolved to different objects (&lt;tensorflow.python.k
 <img alt="../_images/stats_ml_Autoencoder_39_1.png" src="../_images/stats_ml_Autoencoder_39_1.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="LinearRegressionCoefficients.html" class="btn btn-neutral float-right" title="Interpreting the coefficients of a linear regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../mining_visualization/SwissMountainProfiles.html" class="btn btn-neutral float-left" title="Visualizing Height Profiles of Swiss Mountains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="LinearRegressionCoefficients.html" class="btn btn-neutral float-right" title="Interpreting the coefficients of a linear regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, kpj.
-
-    </p>
+    <p>&#169; Copyright 2021, kpj.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

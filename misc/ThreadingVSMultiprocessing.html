@@ -1,36 +1,16 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Comparing threading and multiprocessing &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
@@ -38,39 +18,20 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="bin2fasta: Store any file as a fasta file" href="../my_projects/bin2fasta.html" />
     <link rel="prev" title="The Python Almanac" href="PythonAlmanac.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> kpj's blog
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Linux</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
@@ -148,71 +98,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../science/publications.html">Publications</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kpj's blog</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Comparing threading and multiprocessing</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/misc/ThreadingVSMultiprocessing.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -483,8 +392,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Comparing-threading-and-multiprocessing">
-<h1>Comparing threading and multiprocessing<a class="headerlink" href="#Comparing-threading-and-multiprocessing" title="Permalink to this headline">¶</a></h1>
+<section id="Comparing-threading-and-multiprocessing">
+<h1>Comparing threading and multiprocessing<a class="headerlink" href="#Comparing-threading-and-multiprocessing" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -512,14 +421,14 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Introduction">
-<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h2>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline"></a></h2>
 <p>There are various choices when trying to run code in parallel.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">threading</span></code> module will run all threads on the same CPU core which requires less overhead and allows for more efficient sharing of memory. However, it is not truly parallel and executes the threads when others are idling.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module runs the processes on multiple CPU cores and can thus execute code at the same time.</p>
-</div>
-<div class="section" id="Preparations">
-<h2>Preparations<a class="headerlink" href="#Preparations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Preparations">
+<h2>Preparations<a class="headerlink" href="#Preparations" title="Permalink to this headline"></a></h2>
 <p>To investigate the differences between threading and multiprocessing, we will simulate work for each data point and measure when it was executed.</p>
 <p>Due to some <a class="reference external" href="https://bugs.python.org/issue25053">design choices</a>, we have to import the worker function from a separate module for the <code class="docutils literal notranslate"><span class="pre">ProcessPool</span></code> to work.</p>
 <div class="nbinput docutils container">
@@ -572,9 +481,9 @@ Overwriting worker.py
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Computations">
-<h2>Computations<a class="headerlink" href="#Computations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Computations">
+<h2>Computations<a class="headerlink" href="#Computations" title="Permalink to this headline"></a></h2>
 <p>We run the <code class="docutils literal notranslate"><span class="pre">worker</span></code> function on the dataset for each executor in both the process and thread pool.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -701,9 +610,9 @@ Wall time: 1.4 s
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="Investigation">
-<h2>Investigation<a class="headerlink" href="#Investigation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Investigation">
+<h2>Investigation<a class="headerlink" href="#Investigation" title="Permalink to this headline"></a></h2>
 <p>There are two main observations:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> execution takes less total runtime than <code class="docutils literal notranslate"><span class="pre">threading</span></code></p></li>
@@ -738,55 +647,38 @@ Wall time: 1.4 s
 </div>
 <p>The decision whether to use threading or multiprocessing depends on the use case.</p>
 <p>As a general rule of thumb, one should use threading if the problem is IO bound and multiprocessing if it is CPU bound.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../my_projects/bin2fasta.html" class="btn btn-neutral float-right" title="bin2fasta: Store any file as a fasta file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="PythonAlmanac.html" class="btn btn-neutral float-left" title="The Python Almanac" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../my_projects/bin2fasta.html" class="btn btn-neutral float-right" title="bin2fasta: Store any file as a fasta file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, kpj.
-
-    </p>
+    <p>&#169; Copyright 2021, kpj.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

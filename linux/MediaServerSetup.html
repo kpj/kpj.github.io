@@ -1,74 +1,35 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Setting up a media server &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Monitoring server resources using Munin" href="MonitoringWithMunin.html" />
     <link rel="prev" title="Building a Custom Linux Kernel" href="KernelBuilding.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> kpj's blog
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,18 +37,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Linux</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
@@ -150,71 +100,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../science/publications.html">Publications</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kpj's blog</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Setting up a media server</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/linux/MediaServerSetup.md.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS overrides for sphinx_rtd_theme */
@@ -239,15 +148,15 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="setting-up-a-media-server">
-<h1>Setting up a media server<a class="headerlink" href="#setting-up-a-media-server" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<section id="setting-up-a-media-server">
+<h1>Setting up a media server<a class="headerlink" href="#setting-up-a-media-server" title="Permalink to this headline"></a></h1>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline"></a></h2>
 <p>In this tutorial, we assume that a hard-drive containing various types of media is mounted on some server.
 Its content will then be made accessible via <code class="docutils literal notranslate"><span class="pre">NFS</span></code>, streamed to e.g. your TV using <code class="docutils literal notranslate"><span class="pre">DLNA</span></code>, while being continuously monitored with <code class="docutils literal notranslate"><span class="pre">munin</span></code>.</p>
-</div>
-<div class="section" id="setting-up-dlna">
-<h2>Setting up DLNA<a class="headerlink" href="#setting-up-dlna" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="setting-up-dlna">
+<h2>Setting up DLNA<a class="headerlink" href="#setting-up-dlna" title="Permalink to this headline"></a></h2>
 <p>DLNA is short for ‘Digital Living Network Alliance’ and allows media access from various types of rendering devices, most notably Smart TVs.</p>
 <p>Its setup is fairly easy.
 Firstly, install a DLNA server on the device hosting the media data:</p>
@@ -266,9 +175,9 @@ friendly_name=kpj&#39;s friendly DLNA server
 <p>It will now appear as a DLNA source on your respective rendering device.</p>
 <p>Due to “some” reason, DLNA does sometimes not synchronize new files (even after restarts).
 In order to fix this, simply delete <code class="docutils literal notranslate"><span class="pre">/var/cache/minidlna/files.db</span></code> and restart again.</p>
-</div>
-<div class="section" id="setting-up-nfs">
-<h2>Setting up NFS<a class="headerlink" href="#setting-up-nfs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="setting-up-nfs">
+<h2>Setting up NFS<a class="headerlink" href="#setting-up-nfs" title="Permalink to this headline"></a></h2>
 <p>NFS (Network File System) will allow you add new data to the media storage via a network connection.
 Install the needed applications:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S nfs-utils
@@ -278,8 +187,8 @@ Install the needed applications:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now systemd-timesyncd
 </pre></div>
 </div>
-<div class="section" id="server">
-<h3>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h3>
+<section id="server">
+<h3>Server<a class="headerlink" href="#server" title="Permalink to this headline"></a></h3>
 <p>The server is the device which has a physical (direct) connection to the hard-drive, which is assumed to be mounted in <code class="docutils literal notranslate"><span class="pre">/mnt/media/</span></code>.</p>
 <p>It is good practice to store all tentative NFS shares in a joint root (here: <code class="docutils literal notranslate"><span class="pre">/srv/nfs/</span></code>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /srv/nfs/media
@@ -306,9 +215,9 @@ $ mount --bind /mnt/media/ /srv/nfs/media/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ exportfs -v
 </pre></div>
 </div>
-</div>
-<div class="section" id="client">
-<h3>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="client">
+<h3>Client<a class="headerlink" href="#client" title="Permalink to this headline"></a></h3>
 <p>Assuming that the server is reachable using its ip, setting up the client is fairly straight-forward.</p>
 <p>First, make sure that the exports are available:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ showmount -e &lt;server ip&gt;
@@ -318,61 +227,44 @@ $ mount --bind /mnt/media/ /srv/nfs/media/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mount -t nfs &lt;server ip&gt;:/srv/nfs/media /mnt/HD/media/
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="server-health-monitoring">
-<h2>Server health monitoring<a class="headerlink" href="#server-health-monitoring" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="server-health-monitoring">
+<h2>Server health monitoring<a class="headerlink" href="#server-health-monitoring" title="Permalink to this headline"></a></h2>
 <p>To keep you media server running for a long time, monitoring its health and resource usage is important.
 Check out how to achieve this using <a class="reference internal" href="MonitoringWithMunin.html"><span class="doc">Munin</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="MonitoringWithMunin.html" class="btn btn-neutral float-right" title="Monitoring server resources using Munin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="KernelBuilding.html" class="btn btn-neutral float-left" title="Building a Custom Linux Kernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MonitoringWithMunin.html" class="btn btn-neutral float-right" title="Monitoring server resources using Munin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, kpj.
-
-    </p>
+    <p>&#169; Copyright 2021, kpj.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

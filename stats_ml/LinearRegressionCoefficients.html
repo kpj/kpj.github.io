@@ -1,36 +1,16 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Interpreting the coefficients of a linear regression &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
@@ -38,39 +18,20 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The Daring Landscape of Probability Distribution Functions" href="ProbabilityDistributionsOverview.html" />
     <link rel="prev" title="Playing with Variational Autoencoders" href="Autoencoder.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> kpj's blog
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Linux</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/ConfigureFreshArchlinuxInstall.html">Configuring a fresh Archlinux Install</a></li>
@@ -151,71 +101,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../science/publications.html">Publications</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kpj's blog</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Interpreting the coefficients of a linear regression</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/stats_ml/LinearRegressionCoefficients.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -486,8 +395,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Interpreting-the-coefficients-of-a-linear-regression">
-<h1>Interpreting the coefficients of a linear regression<a class="headerlink" href="#Interpreting-the-coefficients-of-a-linear-regression" title="Permalink to this headline">¶</a></h1>
+<section id="Interpreting-the-coefficients-of-a-linear-regression">
+<h1>Interpreting the coefficients of a linear regression<a class="headerlink" href="#Interpreting-the-coefficients-of-a-linear-regression" title="Permalink to this headline"></a></h1>
 <p>A regression coefficient describes how much the response variable changes for a unit change of a covariate while all other covariates remain constant.</p>
 <p>In this notebook, we will deepen this intuition with a hands-on example.</p>
 <div class="nbinput nblast docutils container">
@@ -514,8 +423,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Generate-data">
-<h2>Generate data<a class="headerlink" href="#Generate-data" title="Permalink to this headline">¶</a></h2>
+<section id="Generate-data">
+<h2>Generate data<a class="headerlink" href="#Generate-data" title="Permalink to this headline"></a></h2>
 <p>We generate synthetic data using a form of structural equation modeling. This way, we can check whether we are able to recover the coefficients.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -624,9 +533,9 @@ div.rendered_html tbody tr:hover {
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="Fit-model">
-<h2>Fit model<a class="headerlink" href="#Fit-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Fit-model">
+<h2>Fit model<a class="headerlink" href="#Fit-model" title="Permalink to this headline"></a></h2>
 <p>The model:</p>
 <div class="math notranslate nohighlight">
 \[Y \sim \beta_0 + \beta_1 \cdot group + \beta_2 \cdot X + \beta_3 \cdot X \cdot group\]</div>
@@ -640,11 +549,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Investigate-result">
-<h2>Investigate result<a class="headerlink" href="#Investigate-result" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Retrieve-coefficients">
-<h3>Retrieve coefficients<a class="headerlink" href="#Retrieve-coefficients" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Investigate-result">
+<h2>Investigate result<a class="headerlink" href="#Investigate-result" title="Permalink to this headline"></a></h2>
+<section id="Retrieve-coefficients">
+<h3>Retrieve coefficients<a class="headerlink" href="#Retrieve-coefficients" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -701,9 +610,9 @@ X:group[T.$G_2$]    -2.278550
 dtype: float64
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Understand-their-meaning">
-<h3>Understand their meaning<a class="headerlink" href="#Understand-their-meaning" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Understand-their-meaning">
+<h3>Understand their meaning<a class="headerlink" href="#Understand-their-meaning" title="Permalink to this headline"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -862,56 +771,39 @@ dtype: float64
 <img alt="../_images/stats_ml_LinearRegressionCoefficients_17_1.png" src="../_images/stats_ml_LinearRegressionCoefficients_17_1.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="ProbabilityDistributionsOverview.html" class="btn btn-neutral float-right" title="The Daring Landscape of Probability Distribution Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Autoencoder.html" class="btn btn-neutral float-left" title="Playing with Variational Autoencoders" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ProbabilityDistributionsOverview.html" class="btn btn-neutral float-right" title="The Daring Landscape of Probability Distribution Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, kpj.
-
-    </p>
+    <p>&#169; Copyright 2021, kpj.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
