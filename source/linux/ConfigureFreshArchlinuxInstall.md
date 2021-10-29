@@ -9,10 +9,11 @@ This entry will provide you with the first few steps needed to get a fresh Arch 
 
 In order to install all missing programs on-the-fly, a working internet connection is important.
 
-We first make sure that the `systemd-networkd` service automatically starts when booting:
+We first make sure that the `systemd-networkd` and `systemd-resolved` services automatically start when booting:
 
 ```bash
 $ systemctl enable --now systemd-networkd.service
+$ systemctl enable --now systemd-resolved.service
 ```
 
 We then configure it to establish a wired connection by editing `/etc/systemd/network/20-wired.network`:
