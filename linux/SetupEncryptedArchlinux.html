@@ -246,8 +246,8 @@ $ mount -t ext4 /dev/sda1 /mnt/boot
 </pre></div>
 </div>
 <p>The archlinux system can now be installed and prepared</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacstrap /mnt base
-$ genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacstrap /mnt base linux linux-firmware
+$ genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
 $ arch-chroot /mnt
 </pre></div>
 </div>
@@ -257,7 +257,7 @@ $ arch-chroot /mnt
 <p>The only thing to notice here is that <code class="docutils literal notranslate"><span class="pre">encrypt</span></code> has to be added to the HOOKS array in <code class="docutils literal notranslate"><span class="pre">/etc/mkinitcpio.conf</span></code> before <code class="docutils literal notranslate"><span class="pre">filesystems</span></code>.
 You might also want to add <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> (before <code class="docutils literal notranslate"><span class="pre">encrypt</span></code>) as this will allow you to use USB keyboards in early userspace.</p>
 <p>The RAM disk can then be created as follows</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkinitcpio -p linux
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkinitcpio -P
 </pre></div>
 </div>
 </section>
