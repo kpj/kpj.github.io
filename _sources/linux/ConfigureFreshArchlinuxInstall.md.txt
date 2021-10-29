@@ -154,7 +154,7 @@ Type=simple
 Afterwards, e.g. `i3` can then be easily installed and set to automatically start on boot
 
 ```bash
-$ pacman -S i3
+$ pacman -S i3 dmenu rxvt-unicode noto-fonts
 $ vim ~/.xinitrc # add "exec i3" at bottom
 ```
 
