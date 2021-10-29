@@ -287,15 +287,15 @@ $ passwd kpj
 <section id="setting-up-the-gui">
 <h2>Setting up the GUI<a class="headerlink" href="#setting-up-the-gui" title="Permalink to this headline"></a></h2>
 <p>In order to have a fancy window manager, we have to install X and a driver first (the exact packages required depend on your particular GPU setup)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S xorg-server xorg-server-utils xorg-xinit
-$ pacman -S xf86-video-vesa <span class="c1"># xf86-video-intel, lib32-intel-dri    // maybe all in mesa now?</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S xorg xorg-xinit
+$  cp /etc/X11/xinit/xinitrc ~/.xinitrc
 </pre></div>
 </div>
 <p>To then automatically start X on login, add</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span> -z <span class="nv">$DISPLAY</span> <span class="o">&amp;&amp;</span> <span class="nv">$XDG_VTNR</span> -eq <span class="m">1</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">exec</span> startx
 </pre></div>
 </div>
-<p>to the bottom of your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>.</p>
+<p>to the bottom of your <code class="docutils literal notranslate"><span class="pre">~/.zprofile</span></code>.</p>
 <p>In order to automatically login after booting, simply create the file <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/getty&#64;tty1.service.d/autologin.conf</span></code> (assuming you’re using systemd) and paste the following content</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
 <span class="nv">ExecStart</span><span class="o">=</span>
@@ -305,7 +305,6 @@ $ pacman -S xf86-video-vesa <span class="c1"># xf86-video-intel, lib32-intel-dri
 </div>
 <p>Afterwards, e.g. <code class="docutils literal notranslate"><span class="pre">i3</span></code> can then be easily installed and set to automatically start on boot</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S i3
-$ cp /etc/skel/.xinitrc ~
 $ vim ~/.xinitrc <span class="c1"># add &quot;exec i3&quot; at bottom</span>
 </pre></div>
 </div>
