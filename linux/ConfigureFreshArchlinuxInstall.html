@@ -170,8 +170,9 @@
 <section id="setting-up-a-network-connection">
 <h2>Setting up a Network Connection<a class="headerlink" href="#setting-up-a-network-connection" title="Permalink to this headline"></a></h2>
 <p>In order to install all missing programs on-the-fly, a working internet connection is important.</p>
-<p>We first make sure that the <code class="docutils literal notranslate"><span class="pre">systemd-networkd</span></code> service automatically starts when booting:</p>
+<p>We first make sure that the <code class="docutils literal notranslate"><span class="pre">systemd-networkd</span></code> and <code class="docutils literal notranslate"><span class="pre">systemd-resolved</span></code> services automatically start when booting:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now systemd-networkd.service
+$ systemctl <span class="nb">enable</span> --now systemd-resolved.service
 </pre></div>
 </div>
 <p>We then configure it to establish a wired connection by editing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/network/20-wired.network</span></code>:</p>
