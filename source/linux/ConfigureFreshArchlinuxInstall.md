@@ -131,7 +131,7 @@ In order to have a fancy window manager, we have to install X and a driver first
 
 ```bash
 $ pacman -S xorg xorg-xinit
-$  cp /etc/X11/xinit/xinitrc ~/.xinitrc
+$ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 ```
 
 To then automatically start X on login, add
