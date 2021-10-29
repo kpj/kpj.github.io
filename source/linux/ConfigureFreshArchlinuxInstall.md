@@ -110,9 +110,16 @@ $ su
 $ passwd
 ```
 
+### Setup Zsh
+```bash
+$ pacman -S zsh zsh-completions 
+```
+
+You can now create a new user with Zsh as their default shell (see next section).
+
 ### Add a Default User
 ```bash
-$ useradd -m -g users -G wheel -s /bin/bash kpj
+$ useradd --create-home -g users --groups wheel --shell /usr/bin/zsh kpj
 $ passwd kpj
 [..]
 ```
