@@ -311,14 +311,11 @@ $ vim ~/.xinitrc <span class="c1"># add &quot;exec i3&quot; at bottom</span>
 </section>
 <section id="enabling-sound">
 <h2>Enabling Sound<a class="headerlink" href="#enabling-sound" title="Permalink to this headline"></a></h2>
-<p>Start setting up <code class="docutils literal notranslate"><span class="pre">pulseaudio</span></code> by installing it</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S pulseaudio
+<p>This can now automagically all be done by installing the following packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S pipewire pipewire-alsa pipewire-pulse helvum
 </pre></div>
 </div>
-<p>It should now automatically start on boot. Otherwise add this to your <code class="docutils literal notranslate"><span class="pre">.xinitrc</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pulseaudio -D <span class="p">&amp;</span>
-</pre></div>
-</div>
+<p>And subsequently restarting your computer.</p>
 </section>
 <section id="clock-synchronization">
 <h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline"></a></h2>
