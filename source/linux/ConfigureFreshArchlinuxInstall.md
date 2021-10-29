@@ -130,8 +130,8 @@ $ passwd kpj
 In order to have a fancy window manager, we have to install X and a driver first (the exact packages required depend on your particular GPU setup)
 
 ```bash
-$ pacman -S xorg-server xorg-server-utils xorg-xinit
-$ pacman -S xf86-video-vesa # xf86-video-intel, lib32-intel-dri    // maybe all in mesa now?
+$ pacman -S xorg xorg-xinit
+$  cp /etc/X11/xinit/xinitrc ~/.xinitrc
 ```
 
 To then automatically start X on login, add
@@ -140,7 +140,7 @@ To then automatically start X on login, add
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 ```
 
-to the bottom of your `~/.bash_profile`.
+to the bottom of your `~/.zprofile`.
 
 In order to automatically login after booting, simply create the file `/etc/systemd/system/getty@tty1.service.d/autologin.conf` (assuming you're using systemd) and paste the following content
 
@@ -155,7 +155,6 @@ Afterwards, e.g. `i3` can then be easily installed and set to automatically star
 
 ```bash
 $ pacman -S i3
-$ cp /etc/skel/.xinitrc ~
 $ vim ~/.xinitrc # add "exec i3" at bottom
 ```
 
