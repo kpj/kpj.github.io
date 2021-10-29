@@ -147,7 +147,7 @@ In order to automatically login after booting, simply create the file `/etc/syst
 ```bash
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin <username> --noclear %I 38400 linux
+ExecStart=-/usr/bin/agetty --autologin username --noclear %I $TERM
 Type=simple
 ```
 
