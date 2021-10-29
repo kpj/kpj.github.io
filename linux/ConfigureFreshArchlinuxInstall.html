@@ -170,12 +170,20 @@
 <section id="setting-up-a-network-connection">
 <h2>Setting up a Network Connection<a class="headerlink" href="#setting-up-a-network-connection" title="Permalink to this headline"></a></h2>
 <p>In order to install all missing programs on-the-fly, a working internet connection is important.</p>
-<p>Assuming that you are connected via ethernet, you can copy <code class="docutils literal notranslate"><span class="pre">/etc/netctl/examples/ethernet-dhcp</span></code> to <code class="docutils literal notranslate"><span class="pre">/etc/netctl/ether</span></code> and execute</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netctl start ether
+<p>We first make sure that the <code class="docutils literal notranslate"><span class="pre">systemd-networkd</span></code> service automatically starts when booting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now systemd-networkd.service
 </pre></div>
 </div>
-<p>If you want this connection to start on every boot, execute</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netctl <span class="nb">enable</span> ether
+<p>We then configure it to establish a wired connection by editing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/network/20-wired.network</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Match<span class="o">]</span>
+<span class="nv">Name</span><span class="o">=</span>&lt;network interface&gt;
+
+<span class="o">[</span>Network<span class="o">]</span>
+<span class="nv">DHCP</span><span class="o">=</span>yes
+</pre></div>
+</div>
+<p>Finally, we restart the service to make it aware of our recent changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl restart systemd-networkd.service
 </pre></div>
 </div>
 </section>

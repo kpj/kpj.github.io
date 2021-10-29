@@ -9,16 +9,26 @@ This entry will provide you with the first few steps needed to get a fresh Arch 
 
 In order to install all missing programs on-the-fly, a working internet connection is important.
 
-Assuming that you are connected via ethernet, you can copy `/etc/netctl/examples/ethernet-dhcp` to `/etc/netctl/ether` and execute
+We first make sure that the `systemd-networkd` service automatically starts when booting:
 
 ```bash
-$ netctl start ether
+$ systemctl enable --now systemd-networkd.service
 ```
 
-If you want this connection to start on every boot, execute
+We then configure it to establish a wired connection by editing `/etc/systemd/network/20-wired.network`:
 
 ```bash
-$ netctl enable ether
+[Match]
+Name=<network interface>
+
+[Network]
+DHCP=yes
+```
+
+Finally, we restart the service to make it aware of our recent changes:
+
+```bash
+systemctl restart systemd-networkd.service
 ```
 
 
