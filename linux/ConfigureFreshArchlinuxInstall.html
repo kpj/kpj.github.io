@@ -51,6 +51,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#handle-keyboard-layout-console">Handle keyboard layout (console)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#handle-keyboard-layout-xorg">Handle keyboard layout (Xorg)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-root-password">Set root Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-zsh">Setup Zsh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-a-default-user">Add a Default User</a></li>
 </ul>
 </li>
@@ -267,9 +268,16 @@ $ passwd
 </pre></div>
 </div>
 </section>
+<section id="setup-zsh">
+<h3>Setup Zsh<a class="headerlink" href="#setup-zsh" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S zsh zsh-completions 
+</pre></div>
+</div>
+<p>You can now create a new user with Zsh as their default shell (see next section).</p>
+</section>
 <section id="add-a-default-user">
 <h3>Add a Default User<a class="headerlink" href="#add-a-default-user" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ useradd -m -g users -G wheel -s /bin/bash kpj
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ useradd --create-home -g users --groups wheel --shell /usr/bin/zsh kpj
 $ passwd kpj
 <span class="o">[</span>..<span class="o">]</span>
 </pre></div>
