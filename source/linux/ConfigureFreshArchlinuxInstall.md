@@ -158,11 +158,6 @@ $ pacman -S i3 dmenu rxvt-unicode noto-fonts
 $ vim ~/.xinitrc # add "exec i3" at bottom
 ```
 
-`i3` needs the following packages to work correctly
-
-* `dmenu`
-* `rxvt-unicode`
-
 
 ## Enabling Sound
 
