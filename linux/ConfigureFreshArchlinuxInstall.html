@@ -299,7 +299,7 @@ $ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 <p>In order to automatically login after booting, simply create the file <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/getty&#64;tty1.service.d/autologin.conf</span></code> (assuming you’re using systemd) and paste the following content</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
 <span class="nv">ExecStart</span><span class="o">=</span>
-<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/agetty --autologin &lt;username&gt; --noclear %I <span class="m">38400</span> linux
+<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/agetty --autologin username --noclear %I <span class="nv">$TERM</span>
 <span class="nv">Type</span><span class="o">=</span>simple
 </pre></div>
 </div>
