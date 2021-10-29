@@ -161,17 +161,13 @@ $ vim ~/.xinitrc # add "exec i3" at bottom
 
 ## Enabling Sound
 
-Start setting up `pulseaudio` by installing it
+This can now automagically all be done by installing the following packages:
 
 ```bash
-$ pacman -S pulseaudio
+$ pacman -S pipewire pipewire-alsa pipewire-pulse helvum
 ```
 
-It should now automatically start on boot. Otherwise add this to your `.xinitrc`
-
-```bash
-pulseaudio -D &
-```
+And subsequently restarting your computer.
 
 
 ## Clock Synchronization
