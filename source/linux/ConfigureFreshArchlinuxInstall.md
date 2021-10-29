@@ -164,21 +164,6 @@ $ vim ~/.xinitrc # add "exec i3" at bottom
 * `rxvt-unicode`
 
 
-Logitech Marble mouse config
-Section "InputClass"
-    Identifier      "Marble Mouse"
-    MatchProduct    "Logitech USB Trackball"
-    Driver          "evdev"
-
-    Option          "ButtonMapping"             "1 2 3 4 5 6 7 2 2"
-
-    Option          "Emulate3Buttons"           "false"
-
-    Option          "EmulateWheel"	            "true"
-    Option          "EmulateWheelButton"        "8"
-EndSection
-
-
 ## Enabling Sound
 
 Start setting up `pulseaudio` by installing it
