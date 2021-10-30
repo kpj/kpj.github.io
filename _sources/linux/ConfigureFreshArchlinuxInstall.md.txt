@@ -16,7 +16,13 @@ $ systemctl enable --now systemd-networkd.service
 $ systemctl enable --now systemd-resolved.service
 ```
 
-We then configure it to establish a wired connection by editing `/etc/systemd/network/20-wired.network`:
+If you use programs which rely on `/etc/resolv.conf`, you need to do the following:
+
+```bash
+$ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+```
+
+Next, we establish a wired connection by editing `/etc/systemd/network/20-wired.network`:
 
 ```bash
 [Match]

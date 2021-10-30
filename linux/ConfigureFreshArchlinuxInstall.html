@@ -176,7 +176,11 @@
 $ systemctl <span class="nb">enable</span> --now systemd-resolved.service
 </pre></div>
 </div>
-<p>We then configure it to establish a wired connection by editing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/network/20-wired.network</span></code>:</p>
+<p>If you use programs which rely on <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code>, you need to do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+</pre></div>
+</div>
+<p>Next, we establish a wired connection by editing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/network/20-wired.network</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Match<span class="o">]</span>
 <span class="nv">Name</span><span class="o">=</span>&lt;network interface&gt;
 
