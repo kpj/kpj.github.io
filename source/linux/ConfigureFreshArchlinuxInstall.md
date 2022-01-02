@@ -9,16 +9,33 @@ This entry will provide you with the first few steps needed to get a fresh Arch 
 
 In order to install all missing programs on-the-fly, a working internet connection is important.
 
-Assuming that you are connected via ethernet, you can copy `/etc/netctl/examples/ethernet-dhcp` to `/etc/netctl/ether` and execute
+We first make sure that the `systemd-networkd` and `systemd-resolved` services automatically start when booting:
 
 ```bash
-$ netctl start ether
+$ systemctl enable --now systemd-networkd.service
+$ systemctl enable --now systemd-resolved.service
 ```
 
-If you want this connection to start on every boot, execute
+If you use programs which rely on `/etc/resolv.conf`, you need to do the following:
 
 ```bash
-$ netctl enable ether
+$ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+```
+
+Next, we establish a wired connection by editing `/etc/systemd/network/20-wired.network`:
+
+```bash
+[Match]
+Name=<network interface>
+
+[Network]
+DHCP=yes
+```
+
+Finally, we restart the service to make it aware of our recent changes:
+
+```bash
+systemctl restart systemd-networkd.service
 ```
 
 
@@ -27,7 +44,7 @@ $ netctl enable ether
 In order to complete the following steps, some additional programs might be needed. In order to install those and other cool ones, update the pacman database (`pacman -Syy`) and install the following applications:
 
 * `vim-minimal` - text editing and much more
-* `yay` - easy installation of AUR packages
+* `paru` - easy installation of AUR packages
 * `mplayer`/`mpv` - multimedia player
 * `htop` - resource usage stats
 * `wget` - network downloader
@@ -99,9 +116,16 @@ $ su
 $ passwd
 ```
 
+### Setup Zsh
+```bash
+$ pacman -S zsh zsh-completions 
+```
+
+You can now create a new user with Zsh as their default shell (see next section).
+
 ### Add a Default User
 ```bash
-$ useradd -m -g users -G wheel -s /bin/bash kpj
+$ useradd --create-home -g users --groups wheel --shell /usr/bin/zsh kpj
 $ passwd kpj
 [..]
 ```
@@ -112,8 +136,8 @@ $ passwd kpj
 In order to have a fancy window manager, we have to install X and a driver first (the exact packages required depend on your particular GPU setup)
 
 ```bash
-$ pacman -S xorg-server xorg-server-utils xorg-xinit
-$ pacman -S xf86-video-vesa # xf86-video-intel, lib32-intel-dri    // maybe all in mesa now?
+$ pacman -S xorg xorg-xinit
+$ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 ```
 
 To then automatically start X on login, add
@@ -122,59 +146,34 @@ To then automatically start X on login, add
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 ```
 
-to the bottom of your `~/.bash_profile`.
+to the bottom of your `~/.zprofile`.
 
 In order to automatically login after booting, simply create the file `/etc/systemd/system/getty@tty1.service.d/autologin.conf` (assuming you're using systemd) and paste the following content
 
 ```bash
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin <username> --noclear %I 38400 linux
+ExecStart=-/usr/bin/agetty --autologin username --noclear %I $TERM
 Type=simple
 ```
 
 Afterwards, e.g. `i3` can then be easily installed and set to automatically start on boot
 
 ```bash
-$ pacman -S i3
-$ cp /etc/skel/.xinitrc ~
+$ pacman -S i3 dmenu rxvt-unicode noto-fonts
 $ vim ~/.xinitrc # add "exec i3" at bottom
 ```
-
-`i3` needs the following packages to work correctly
-
-* `dmenu`
-* `rxvt-unicode`
-
-
-Logitech Marble mouse config
-Section "InputClass"
-    Identifier      "Marble Mouse"
-    MatchProduct    "Logitech USB Trackball"
-    Driver          "evdev"
-
-    Option          "ButtonMapping"             "1 2 3 4 5 6 7 2 2"
-
-    Option          "Emulate3Buttons"           "false"
-
-    Option          "EmulateWheel"	            "true"
-    Option          "EmulateWheelButton"        "8"
-EndSection
 
 
 ## Enabling Sound
 
-Start setting up `pulseaudio` by installing it
+This can now automagically all be done by installing the following packages:
 
 ```bash
-$ pacman -S pulseaudio
+$ pacman -S pipewire pipewire-alsa pipewire-pulse helvum
 ```
 
-It should now automatically start on boot. Otherwise add this to your `.xinitrc`
-
-```bash
-pulseaudio -D &
-```
+And subsequently restarting your computer.
 
 
 ## Clock Synchronization

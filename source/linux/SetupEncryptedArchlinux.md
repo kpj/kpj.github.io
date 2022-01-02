@@ -112,8 +112,8 @@ $ mount -t ext4 /dev/sda1 /mnt/boot
 The archlinux system can now be installed and prepared
 
 ```bash
-$ pacstrap /mnt base
-$ genfstab -p /mnt >> /mnt/etc/fstab
+$ pacstrap /mnt base linux linux-firmware
+$ genfstab -U /mnt >> /mnt/etc/fstab
 $ arch-chroot /mnt
 ```
 
@@ -126,7 +126,7 @@ You might also want to add `keyboard` (before `encrypt`) as this will allow you 
 The RAM disk can then be created as follows
 
 ```bash
-$ mkinitcpio -p linux
+$ mkinitcpio -P
 ```
 
 
