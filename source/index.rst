@@ -66,6 +66,7 @@ You can reach me via email (kim.philipp.jablonski [at] gmail.com), on Twitter_ a
   my_projects/gitviz
   my_projects/ipy_pdcache
   my_projects/jupyfmt
+  my_projects/metagenompy
   my_projects/pdftty
   my_projects/plyder
   my_projects/pyskim
