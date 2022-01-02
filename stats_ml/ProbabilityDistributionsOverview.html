@@ -86,6 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/metagenompy.html">metagenompy: The NCBI taxonomy as a NetworkX graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/plyder.html">plyder: Download Manager with Web-Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
@@ -331,7 +332,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -399,8 +400,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -421,8 +421,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">DISTRIBUTION_BLACKLIST</span> <span class="o">=</span> <span class="p">[</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DISTRIBUTION_BLACKLIST</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;probability distribution&#39;</span><span class="p">,</span>
     <span class="s1">&#39;continuous probability distribution&#39;</span><span class="p">,</span>
     <span class="s1">&#39;discrete probability distribution&#39;</span><span class="p">,</span>
@@ -439,8 +438,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">wiki</span> <span class="o">=</span> <span class="n">wikipediaapi</span><span class="o">.</span><span class="n">Wikipedia</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="n">extract_format</span><span class="o">=</span><span class="n">wikipediaapi</span><span class="o">.</span><span class="n">ExtractFormat</span><span class="o">.</span><span class="n">HTML</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wiki</span> <span class="o">=</span> <span class="n">wikipediaapi</span><span class="o">.</span><span class="n">Wikipedia</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="n">extract_format</span><span class="o">=</span><span class="n">wikipediaapi</span><span class="o">.</span><span class="n">ExtractFormat</span><span class="o">.</span><span class="n">HTML</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -448,8 +446,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_related_distributions</span><span class="p">(</span><span class="n">distribution_name</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_related_distributions</span><span class="p">(</span><span class="n">distribution_name</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;=== </span><span class="si">{</span><span class="n">distribution_name</span><span class="si">}</span><span class="s1"> ===&#39;</span><span class="p">)</span>
 
@@ -496,8 +493,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># at a later point we might be interested in obtaining detailed information about each distribution</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># at a later point we might be interested in obtaining detailed information about each distribution</span>
 <span class="c1"># unfortunately, many math notation blocks are images and not text...</span>
 
 <span class="c1"># table_list = pd.read_html(wiki.page(&#39;Bernoulli distribution&#39;).fullurl, match=&#39;Parameters&#39;)</span>
@@ -512,8 +508,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># obtain list of all distributions</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># obtain list of all distributions</span>
 <span class="n">page</span> <span class="o">=</span> <span class="n">wiki</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s1">&#39;List of probability distributions&#39;</span><span class="p">)</span>
 <span class="n">all_distribution_links</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">links</span>
 
@@ -538,8 +533,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># briefly check data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># briefly check data</span>
 <span class="n">distribution_linkages</span><span class="p">[</span><span class="s1">&#39;beta distribution&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -569,8 +563,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target_list</span> <span class="ow">in</span> <span class="n">distribution_linkages</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -600,8 +593,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_degree</span> <span class="o">=</span> <span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_degree</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">nx_graph</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;degree&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">),</span>
@@ -697,8 +689,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_degree</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;degree&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_degree</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;degree&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Node degree&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -725,8 +716,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># distributions which are mentioned by many others</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributions which are mentioned by many others</span>
 <span class="n">df_degree</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;in_degree&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -804,8 +794,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># distributions which mention many others</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributions which mention many others</span>
 <span class="n">df_degree</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;out_degree&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -887,8 +876,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">plot_network</span><span class="p">(</span><span class="n">node_selection</span><span class="p">,</span> <span class="o">**</span><span class="n">graph_attr</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_network</span><span class="p">(</span><span class="n">node_selection</span><span class="p">,</span> <span class="o">**</span><span class="n">graph_attr</span><span class="p">):</span>
     <span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">(</span>
         <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;dot&#39;</span><span class="p">,</span> <span class="n">graph_attr</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="mi">9</span> <span class="o">/</span> <span class="mi">16</span><span class="p">),</span> <span class="o">**</span><span class="n">graph_attr</span><span class="p">)</span>
     <span class="p">)</span>
@@ -917,8 +905,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">plot_network</span><span class="p">(</span><span class="n">node_selection</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -935,8 +922,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">plot_network</span><span class="p">(</span><span class="n">node_selection</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -953,8 +939,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_selection</span> <span class="o">=</span> <span class="n">df_degree</span><span class="p">[</span><span class="s1">&#39;node&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="n">graph</span> <span class="o">=</span> <span class="n">plot_network</span><span class="p">(</span><span class="n">node_selection</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;15&#39;</span><span class="p">)</span>
 <span class="n">graph</span>
@@ -972,8 +957,7 @@ Average out degree:   1.9742
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># save the whole network for posterity</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save the whole network for posterity</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;distribution_landscape&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cleanup</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>

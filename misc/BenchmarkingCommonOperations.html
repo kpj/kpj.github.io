@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/metagenompy.html">metagenompy: The NCBI taxonomy as a NetworkX graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/plyder.html">plyder: Download Manager with Web-Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
@@ -338,7 +339,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -407,8 +408,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">import</span> <span class="nn">dataclasses</span>
@@ -429,8 +429,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -438,8 +437,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">BenchmarkResult</span><span class="p">:</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">execution_time</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># [s]</span>
@@ -534,8 +532,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s1">&#39;import time&#39;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span> <span class="o">=</span> <span class="s1">&#39;import time&#39;</span>
 
 <span class="n">snippets</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s1">&#39;short sleep&#39;</span><span class="p">,</span> <span class="s1">&#39;time.sleep(</span><span class="si">{parameter}</span><span class="s1">)&#39;</span><span class="p">),</span>
@@ -548,8 +545,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span> <span class="o">=</span> <span class="n">Benchmaker</span><span class="p">(</span>
     <span class="n">setup</span><span class="p">,</span> <span class="n">snippets</span><span class="p">,</span> <span class="n">parameter_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">parameter_name</span><span class="o">=</span><span class="s1">&#39;Sleep time [s]&#39;</span>
 <span class="p">)</span>
 
@@ -595,8 +591,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -617,8 +612,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    import pandas as pd</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
@@ -670,8 +664,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -709,8 +702,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -728,8 +720,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    import numpy as np</span>
 <span class="s2">    import pandas as pd</span>
 <span class="s2">    import swifter</span>
@@ -786,8 +777,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -831,8 +821,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -850,8 +839,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    import numpy as np</span>
 <span class="s2">    import pandas as pd</span>
 
@@ -881,8 +869,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">repeat_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exec_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -908,8 +895,7 @@ long sleep                6.00353            3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bench</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

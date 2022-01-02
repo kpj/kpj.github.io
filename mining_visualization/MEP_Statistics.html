@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/gitviz.html">GitViz: Visualize the evolution of a git repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/ipy_pdcache.html">ipy_pdcache: Automatically cache results of intensive computations in IPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/jupyfmt.html">jupyfmt: The uncompromising Jupyter notebook formatter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_projects/metagenompy.html">metagenompy: The NCBI taxonomy as a NetworkX graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pdftty.html">pdftty: A PDF viewer for the terminal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/plyder.html">plyder: Download Manager with Web-Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../my_projects/pyskim.html">pyskim: Quick summary statistics for dataframes</a></li>
@@ -351,7 +352,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -417,8 +418,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -444,8 +444,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 <span class="n">bpl</span><span class="o">.</span><span class="n">output_notebook</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -771,8 +770,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># %%bash</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%bash</span>
 
 <span class="c1"># wget --no-clobber https://parltrack.org/dumps/ep_votes.json.lz</span>
 <span class="c1"># lzip -d ep_votes.json.lz</span>
@@ -792,8 +790,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;ep_meps.json&#39;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;ep_meps.json&#39;</span>
 
 <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
@@ -831,8 +828,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_meps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_meps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 <span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;birthday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;birthday&#39;</span><span class="p">])</span>
 
 <span class="n">df_meps</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;UserID&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -928,8 +924,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;ep_votes.json&#39;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;ep_votes.json&#39;</span>
 
 <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">tmp_matrix</span> <span class="o">=</span> <span class="p">{}</span>
@@ -984,8 +979,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_votematrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">tmp_matrix</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_votematrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">tmp_matrix</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 
 <span class="n">df_votematrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;voteid&#39;</span>
 <span class="n">df_votematrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;mepid&#39;</span>
@@ -1197,8 +1191,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_votes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_votes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 <span class="n">df_votes</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_votes</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
 
 <span class="n">df_votes</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;voteid&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1281,8 +1274,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1299,8 +1291,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">group_counts</span> <span class="o">=</span> <span class="n">df_meps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">],</span> <span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_counts</span> <span class="o">=</span> <span class="n">df_meps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">],</span> <span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">group_counts</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">group_counts</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
@@ -1335,8 +1326,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;birthday&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;birthday&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1344,8 +1334,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]],</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span>
     <span class="n">col</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span>
@@ -1383,8 +1372,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_votematrix</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_votematrix</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1591,8 +1579,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_hasvoted</span> <span class="o">=</span> <span class="o">~</span><span class="n">df_votematrix</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_hasvoted</span> <span class="o">=</span> <span class="o">~</span><span class="n">df_votematrix</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1600,8 +1587,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_hasvoted</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;vote_count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_hasvoted</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;vote_count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">df_meps</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -1750,8 +1736,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_subset</span> <span class="o">=</span> <span class="n">df_votematrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_subset</span> <span class="o">=</span> <span class="n">df_votematrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
     <span class="n">df_votematrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">df_votes</span><span class="p">[</span><span class="n">df_votes</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
     <span class="n">df_meps</span><span class="p">[</span><span class="n">df_meps</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
 <span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1973,8 +1958,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># process data to work with clustermap</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># process data to work with clustermap</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">df_subset</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span>  <span class="c1"># .iloc[:10, :10]</span>
 <span class="n">tmp</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;MEP&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Vote&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2052,8 +2036,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mca</span> <span class="o">=</span> <span class="n">prince</span><span class="o">.</span><span class="n">MCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mca</span> <span class="o">=</span> <span class="n">prince</span><span class="o">.</span><span class="n">MCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">df_mca</span> <span class="o">=</span> <span class="n">mca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_subset</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
 <span class="n">df_mca</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;MCA0&#39;</span><span class="p">,</span> <span class="s1">&#39;MCA1&#39;</span><span class="p">)</span>
@@ -2149,8 +2132,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># obtained from the information box on each party&#39;s Wikipedia entry</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># obtained from the information box on each party&#39;s Wikipedia entry</span>
 <span class="n">party_ideology</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;Verts/ALE&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ECR&#39;</span><span class="p">:</span> <span class="s1">&#39;conservative&#39;</span><span class="p">,</span>
@@ -2167,8 +2149,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_mca</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;MCA0&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;MCA1&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
@@ -2214,8 +2195,7 @@ Text(0.5, 1.0, &#39;MCA of MEP Voting Patterns&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># generate data for each tooltip</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate data for each tooltip</span>
 <span class="n">hover_data</span> <span class="o">=</span> <span class="n">df_meps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_mca</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 
 <span class="n">hover_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hover_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
@@ -2334,8 +2314,7 @@ Text(0.5, 1.0, &#39;MCA of MEP Voting Patterns&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># set up point colors</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up point colors</span>
 <span class="n">palette</span> <span class="o">=</span> <span class="n">d3</span><span class="p">[</span><span class="s1">&#39;Category10&#39;</span><span class="p">][</span><span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()]</span>
 <span class="n">color_map</span> <span class="o">=</span> <span class="n">bmo</span><span class="o">.</span><span class="n">CategoricalColorMapper</span><span class="p">(</span>
     <span class="n">factors</span><span class="o">=</span><span class="n">df_data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span>
@@ -2347,8 +2326,7 @@ Text(0.5, 1.0, &#39;MCA of MEP Voting Patterns&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># create figure</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create figure</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">bpl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span>
     <span class="n">tools</span><span class="o">=</span><span class="s1">&#39;hover,pan,reset,wheel_zoom,box_zoom&#39;</span><span class="p">,</span>
     <span class="n">active_scroll</span><span class="o">=</span><span class="s1">&#39;wheel_zoom&#39;</span><span class="p">,</span>
