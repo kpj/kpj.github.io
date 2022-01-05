@@ -29,6 +29,7 @@ You can reach me via email (kim.philipp.jablonski [at] gmail.com), on Twitter_ a
   :caption: Data Mining & Visualization
   :maxdepth: 1
 
+  mining_visualization/ArtOfLife
   mining_visualization/Eurostat_Visualizations
   mining_visualization/IMDB_ratings
   mining_visualization/MEP_Statistics
