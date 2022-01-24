@@ -71,6 +71,7 @@ You can reach me via email (kim.philipp.jablonski [at] gmail.com), on Twitter_ a
   my_projects/pdftty
   my_projects/plyder
   my_projects/pyskim
+  my_projects/rwrap
   my_projects/vydia
 
 
