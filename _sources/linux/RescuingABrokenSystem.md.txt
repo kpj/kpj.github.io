@@ -65,10 +65,10 @@ $ mount /dev/sda2 /mnt
 
 We can then [chroot](https://wiki.archlinux.org/index.php/Chroot#Using_arch-chroot) into the system:
 ```bash
-$ arch-root /mnt
+$ arch-chroot /mnt
 ```
 
-`arch-root` will take care of various steps needed to make the chrooted environment feel like a proper one (e.g. mount `/proc`).
+`arch-chroot` will take care of various steps needed to make the chrooted environment feel like a proper one (e.g. mount `/proc`).
 Note: if your `/boot` folder lives on a separate partition you need to mount it in manually (after mounting `/dev/sda2`):
 ```bash
 $ mount /dev/sda1 /mnt/boot

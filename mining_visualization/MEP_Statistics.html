@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Analyzing the European Parliament &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -30,11 +34,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kpj's blog
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -133,8 +141,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Analyzing the European Parliament</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Analyzing the European Parliament</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/mining_visualization/MEP_Statistics.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,278 +152,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
-
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
-
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /*background: #f5f5f5;*/
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt .copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-div.rendered_html th {
-  font-weight: bold;
-}
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="Analyzing-the-European-Parliament">
-<h1>Analyzing the European Parliament<a class="headerlink" href="#Analyzing-the-European-Parliament" title="Permalink to this headline"></a></h1>
+  <section id="Analyzing-the-European-Parliament">
+<h1>Analyzing the European Parliament<a class="headerlink" href="#Analyzing-the-European-Parliament" title="Link to this heading"></a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -766,7 +504,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </script></div>
 </div>
 <section id="Download-data">
-<h2>Download data<a class="headerlink" href="#Download-data" title="Permalink to this headline"></a></h2>
+<h2>Download data<a class="headerlink" href="#Download-data" title="Link to this heading"></a></h2>
 <p>All data is readily available on <a class="reference external" href="https://parltrack.org/">Parltrack</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -784,10 +522,10 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Transform-JSON-to-dataframes">
-<h2>Transform JSON to dataframes<a class="headerlink" href="#Transform-JSON-to-dataframes" title="Permalink to this headline"></a></h2>
+<h2>Transform JSON to dataframes<a class="headerlink" href="#Transform-JSON-to-dataframes" title="Link to this heading"></a></h2>
 <p>To easily work with the data, we transform it from JSON to pandas dataframes.</p>
 <section id="MEPs">
-<h3>MEPs<a class="headerlink" href="#MEPs" title="Permalink to this headline"></a></h3>
+<h3>MEPs<a class="headerlink" href="#MEPs" title="Link to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -921,7 +659,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Votes">
-<h3>Votes<a class="headerlink" href="#Votes" title="Permalink to this headline"></a></h3>
+<h3>Votes<a class="headerlink" href="#Votes" title="Link to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -1267,10 +1005,10 @@ var element = document.currentScript.previousSibling.previousSibling;
 </section>
 </section>
 <section id="Exploration">
-<h2>Exploration<a class="headerlink" href="#Exploration" title="Permalink to this headline"></a></h2>
+<h2>Exploration<a class="headerlink" href="#Exploration" title="Link to this heading"></a></h2>
 <p>We can then look at a few simple statistics.</p>
 <section id="MEP-party-distribution">
-<h3>MEP party distribution<a class="headerlink" href="#MEP-party-distribution" title="Permalink to this headline"></a></h3>
+<h3>MEP party distribution<a class="headerlink" href="#MEP-party-distribution" title="Link to this heading"></a></h3>
 <p>How many members (MEPs) does each party of the European parliament have?</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -1322,7 +1060,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="MEP-age-distribution">
-<h3>MEP age distribution<a class="headerlink" href="#MEP-age-distribution" title="Permalink to this headline"></a></h3>
+<h3>MEP age distribution<a class="headerlink" href="#MEP-age-distribution" title="Link to this heading"></a></h3>
 <p>And how old are these members?</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -1368,7 +1106,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </section>
 </section>
 <section id="Voting-patterns">
-<h2>Voting patterns<a class="headerlink" href="#Voting-patterns" title="Permalink to this headline"></a></h2>
+<h2>Voting patterns<a class="headerlink" href="#Voting-patterns" title="Link to this heading"></a></h2>
 <p>Let’s now take a look at how these MEPs vote.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -1575,7 +1313,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div></div>
 </div>
 <section id="Who-is-the-most-active-MEP?">
-<h3>Who is the most active MEP?<a class="headerlink" href="#Who-is-the-most-active-MEP?" title="Permalink to this headline"></a></h3>
+<h3>Who is the most active MEP?<a class="headerlink" href="#Who-is-the-most-active-MEP?" title="Link to this heading"></a></h3>
 <p>Here we equate “active” with “has voted most often”. This is most likely quite misleading.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
@@ -1732,7 +1470,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Select-subset-of-data">
-<h3>Select subset of data<a class="headerlink" href="#Select-subset-of-data" title="Permalink to this headline"></a></h3>
+<h3>Select subset of data<a class="headerlink" href="#Select-subset-of-data" title="Link to this heading"></a></h3>
 <p>For the subsequent vote clustering, we restrict ourselves to recent votes of active MEPs starting with 2020 (and remove MEPs with no votes at all).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -1954,7 +1692,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Clustered-data-overview">
-<h3>Clustered data overview<a class="headerlink" href="#Clustered-data-overview" title="Permalink to this headline"></a></h3>
+<h3>Clustered data overview<a class="headerlink" href="#Clustered-data-overview" title="Link to this heading"></a></h3>
 <p>Here, we cluster both MEPs and votes as well as highlight each MEP column with their respective party association.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
@@ -2030,10 +1768,10 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Project-MEPs-based-on-vote-patterns">
-<h3>Project MEPs based on vote patterns<a class="headerlink" href="#Project-MEPs-based-on-vote-patterns" title="Permalink to this headline"></a></h3>
+<h3>Project MEPs based on vote patterns<a class="headerlink" href="#Project-MEPs-based-on-vote-patterns" title="Link to this heading"></a></h3>
 <p>We will now visualize the landscape of MEPs in two dimensions based on the voting patterns using Multiple Correspondence Analysis.</p>
 <section id="Apply-Multiple-Correspondence-Analysis-(MCA)">
-<h4>Apply Multiple Correspondence Analysis (MCA)<a class="headerlink" href="#Apply-Multiple-Correspondence-Analysis-(MCA)" title="Permalink to this headline"></a></h4>
+<h4>Apply Multiple Correspondence Analysis (MCA)<a class="headerlink" href="#Apply-Multiple-Correspondence-Analysis-(MCA)" title="Link to this heading"></a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
@@ -2129,7 +1867,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </section>
 <section id="Static-visualization">
-<h4>Static visualization<a class="headerlink" href="#Static-visualization" title="Permalink to this headline"></a></h4>
+<h4>Static visualization<a class="headerlink" href="#Static-visualization" title="Link to this heading"></a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
@@ -2191,7 +1929,7 @@ Text(0.5, 1.0, &#39;MCA of MEP Voting Patterns&#39;)
 </div>
 </section>
 <section id="Interactive-visualization">
-<h4>Interactive visualization<a class="headerlink" href="#Interactive-visualization" title="Permalink to this headline"></a></h4>
+<h4>Interactive visualization<a class="headerlink" href="#Interactive-visualization" title="Link to this heading"></a></h4>
 <p>You can zoom and pan the visualization. Hovering over each point (corresponding to a MEP) will display relevant information.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>jupyfmt: The uncompromising Jupyter notebook formatter &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kpj's blog
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -106,8 +113,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>jupyfmt: The uncompromising Jupyter notebook formatter</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">jupyfmt: The uncompromising Jupyter notebook formatter</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/my_projects/jupyfmt.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,55 +124,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="jupyfmt-the-uncompromising-jupyter-notebook-formatter">
-<h1>jupyfmt: The uncompromising Jupyter notebook formatter<a class="headerlink" href="#jupyfmt-the-uncompromising-jupyter-notebook-formatter" title="Permalink to this headline"></a></h1>
+  <section id="jupyfmt-the-uncompromising-jupyter-notebook-formatter">
+<h1>jupyfmt: The uncompromising Jupyter notebook formatter<a class="headerlink" href="#jupyfmt-the-uncompromising-jupyter-notebook-formatter" title="Link to this heading"></a></h1>
 <p>Jupyter notebooks are both a blessing and a curse, depending on what you want to do and who you ask.
 On the one hand, they are undoubtedly making sharing data analysis results, providing code examples, and quickly exploring new datasets quite comfortable. On the other hand, maintaining proper coding standards or following the DRY principle are exercise of will and determination.</p>
 <p>The ability to automatically assert that certain common coding standards (such as consistent code formatting, or cells being executed in the right order) are met is very useful. Not only while developing on your own machine, but also when quality controlling all new commits as part of your CI/CD workflow.</p>
 <p><a class="reference external" href="https://github.com/kpj/jupyfmt">jupyfmt</a> makes this possible by either formatting the code cells of your notebook in-place or alternatively simply checking whether changes would be needed.</p>
 <p>For example, the check of a dummy notebook could look like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ jupyfmt --check --compact-diff Notebook.ipynb
---- Notebook.ipynb - Cell <span class="m">1</span>
-+++ Notebook.ipynb - Cell <span class="m">1</span>
-@@ -1,2 +1,2 @@
--def foo <span class="o">(</span>*args<span class="o">)</span>:
-+def foo<span class="o">(</span>*args<span class="o">)</span>:
-     <span class="k">return</span> sum<span class="o">(</span>args<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>jupyfmt<span class="w"> </span>--check<span class="w"> </span>--compact-diff<span class="w"> </span>Notebook.ipynb
+---<span class="w"> </span>Notebook.ipynb<span class="w"> </span>-<span class="w"> </span>Cell<span class="w"> </span><span class="m">1</span>
++++<span class="w"> </span>Notebook.ipynb<span class="w"> </span>-<span class="w"> </span>Cell<span class="w"> </span><span class="m">1</span>
+@@<span class="w"> </span>-1,2<span class="w"> </span>+1,2<span class="w"> </span>@@
+-def<span class="w"> </span>foo<span class="w"> </span><span class="o">(</span>*args<span class="o">)</span>:
++def<span class="w"> </span>foo<span class="o">(</span>*args<span class="o">)</span>:
+<span class="w">     </span><span class="k">return</span><span class="w"> </span>sum<span class="o">(</span>args<span class="o">)</span>
 
---- Notebook.ipynb - Cell <span class="m">2</span>
-+++ Notebook.ipynb - Cell <span class="m">2</span>
-@@ -1 +1 @@
--foo<span class="o">(</span><span class="m">1</span>, <span class="m">2</span>,3<span class="o">)</span>
-+foo<span class="o">(</span><span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span><span class="o">)</span>
+---<span class="w"> </span>Notebook.ipynb<span class="w"> </span>-<span class="w"> </span>Cell<span class="w"> </span><span class="m">2</span>
++++<span class="w"> </span>Notebook.ipynb<span class="w"> </span>-<span class="w"> </span>Cell<span class="w"> </span><span class="m">2</span>
+@@<span class="w"> </span>-1<span class="w"> </span>+1<span class="w"> </span>@@
+-foo<span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,3<span class="o">)</span>
++foo<span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span><span class="o">)</span>
 
-<span class="m">2</span> cell<span class="o">(</span>s<span class="o">)</span> would be changed 😬
-<span class="m">1</span> cell<span class="o">(</span>s<span class="o">)</span> would be left unchanged 🎉
+<span class="m">2</span><span class="w"> </span>cell<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>changed<span class="w"> </span>😬
+<span class="m">1</span><span class="w"> </span>cell<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>left<span class="w"> </span>unchanged<span class="w"> </span>🎉
 
-<span class="m">1</span> file<span class="o">(</span>s<span class="o">)</span> would be changed 😬
+<span class="m">1</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>changed<span class="w"> </span>😬
 </pre></div>
 </div>
 <p>By providing directories instead of notebook paths, this can be directly integrated, e.g., with GitHub Actions to automatically assert that all notebook related commits are of high-quality (at least syntactically).</p>

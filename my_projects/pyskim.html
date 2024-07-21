@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyskim: Quick summary statistics for dataframes &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kpj's blog
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -106,8 +113,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>pyskim: Quick summary statistics for dataframes</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">pyskim: Quick summary statistics for dataframes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/my_projects/pyskim.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,61 +124,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="pyskim-quick-summary-statistics-for-dataframes">
-<h1>pyskim: Quick summary statistics for dataframes<a class="headerlink" href="#pyskim-quick-summary-statistics-for-dataframes" title="Permalink to this headline"></a></h1>
+  <section id="pyskim-quick-summary-statistics-for-dataframes">
+<h1>pyskim: Quick summary statistics for dataframes<a class="headerlink" href="#pyskim-quick-summary-statistics-for-dataframes" title="Link to this heading"></a></h1>
 <p>When starting out with a new data analysis project, familiarizing yourself with your data set is, of course, crucial (besides obtaining domain specific knowledge, etc).</p>
 <p>This typically involves a set of somewhat repetitive steps such as value counts, histograms, scatterplots and so on.</p>
 <p><a class="reference external" href="https://github.com/kpj/pyskim">pyskim</a> helps you achieve that goal as quickly and comfortably as possible.</p>
 <p>Simply locate your CSV (or whichever delimiter is your favorite one) file and call <code class="docutils literal notranslate"><span class="pre">pyskim</span></code> from the commandline:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyskim iris.csv
-── Data Summary ────────────────────────────────────────────────────────────────────────────────────
-<span class="nb">type</span>                 value
------------------  -------
-Number of rows         <span class="m">150</span>
-Number of columns        <span class="m">5</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pyskim<span class="w"> </span>iris.csv
+──<span class="w"> </span>Data<span class="w"> </span>Summary<span class="w"> </span>────────────────────────────────────────────────────────────────────────────────────
+<span class="nb">type</span><span class="w">                 </span>value
+-----------------<span class="w">  </span>-------
+Number<span class="w"> </span>of<span class="w"> </span>rows<span class="w">         </span><span class="m">150</span>
+Number<span class="w"> </span>of<span class="w"> </span>columns<span class="w">        </span><span class="m">5</span>
 ──────────────────────────────────────────────────
-Column <span class="nb">type</span> frequency:
-           Count
--------  -------
-float64        <span class="m">4</span>
-string         <span class="m">1</span>
+Column<span class="w"> </span><span class="nb">type</span><span class="w"> </span>frequency:
+<span class="w">           </span>Count
+-------<span class="w">  </span>-------
+float64<span class="w">        </span><span class="m">4</span>
+string<span class="w">         </span><span class="m">1</span>
 
-── Variable type: number ───────────────────────────────────────────────────────────────────────────
-    name            na_count    mean     sd    p0    p25    p50    p75    p100  hist
---  ------------  ----------  ------  -----  ----  -----  -----  -----  ------  ----------
- <span class="m">0</span>  sepal_length           <span class="m">0</span>    <span class="m">5</span>.84  <span class="m">0</span>.828   <span class="m">4</span>.3    <span class="m">5</span>.1   <span class="m">5</span>.8     <span class="m">6</span>.4     <span class="m">7</span>.9  ▂▆▃▇▄▇▅▁▁▁
- <span class="m">1</span>  sepal_width            <span class="m">0</span>    <span class="m">3</span>.06  <span class="m">0</span>.436   <span class="m">2</span>      <span class="m">2</span>.8   <span class="m">3</span>       <span class="m">3</span>.3     <span class="m">4</span>.4  ▁▁▄▅▇▆▂▂▁▁
- <span class="m">2</span>  petal_length           <span class="m">0</span>    <span class="m">3</span>.76  <span class="m">1</span>.77    <span class="m">1</span>      <span class="m">1</span>.6   <span class="m">4</span>.35    <span class="m">5</span>.1     <span class="m">6</span>.9  ▇▃▁▁▂▅▆▄▃▁
- <span class="m">3</span>  petal_width            <span class="m">0</span>    <span class="m">1</span>.2   <span class="m">0</span>.762   <span class="m">0</span>.1    <span class="m">0</span>.3   <span class="m">1</span>.3     <span class="m">1</span>.8     <span class="m">2</span>.5  ▇▂▁▂▂▆▁▄▂▃
+──<span class="w"> </span>Variable<span class="w"> </span>type:<span class="w"> </span>number<span class="w"> </span>───────────────────────────────────────────────────────────────────────────
+<span class="w">    </span>name<span class="w">            </span>na_count<span class="w">    </span>mean<span class="w">     </span>sd<span class="w">    </span>p0<span class="w">    </span>p25<span class="w">    </span>p50<span class="w">    </span>p75<span class="w">    </span>p100<span class="w">  </span>hist
+--<span class="w">  </span>------------<span class="w">  </span>----------<span class="w">  </span>------<span class="w">  </span>-----<span class="w">  </span>----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>------<span class="w">  </span>----------
+<span class="w"> </span><span class="m">0</span><span class="w">  </span>sepal_length<span class="w">           </span><span class="m">0</span><span class="w">    </span><span class="m">5</span>.84<span class="w">  </span><span class="m">0</span>.828<span class="w">   </span><span class="m">4</span>.3<span class="w">    </span><span class="m">5</span>.1<span class="w">   </span><span class="m">5</span>.8<span class="w">     </span><span class="m">6</span>.4<span class="w">     </span><span class="m">7</span>.9<span class="w">  </span>▂▆▃▇▄▇▅▁▁▁
+<span class="w"> </span><span class="m">1</span><span class="w">  </span>sepal_width<span class="w">            </span><span class="m">0</span><span class="w">    </span><span class="m">3</span>.06<span class="w">  </span><span class="m">0</span>.436<span class="w">   </span><span class="m">2</span><span class="w">      </span><span class="m">2</span>.8<span class="w">   </span><span class="m">3</span><span class="w">       </span><span class="m">3</span>.3<span class="w">     </span><span class="m">4</span>.4<span class="w">  </span>▁▁▄▅▇▆▂▂▁▁
+<span class="w"> </span><span class="m">2</span><span class="w">  </span>petal_length<span class="w">           </span><span class="m">0</span><span class="w">    </span><span class="m">3</span>.76<span class="w">  </span><span class="m">1</span>.77<span class="w">    </span><span class="m">1</span><span class="w">      </span><span class="m">1</span>.6<span class="w">   </span><span class="m">4</span>.35<span class="w">    </span><span class="m">5</span>.1<span class="w">     </span><span class="m">6</span>.9<span class="w">  </span>▇▃▁▁▂▅▆▄▃▁
+<span class="w"> </span><span class="m">3</span><span class="w">  </span>petal_width<span class="w">            </span><span class="m">0</span><span class="w">    </span><span class="m">1</span>.2<span class="w">   </span><span class="m">0</span>.762<span class="w">   </span><span class="m">0</span>.1<span class="w">    </span><span class="m">0</span>.3<span class="w">   </span><span class="m">1</span>.3<span class="w">     </span><span class="m">1</span>.8<span class="w">     </span><span class="m">2</span>.5<span class="w">  </span>▇▂▁▂▂▆▁▄▂▃
 
-── Variable type: string ───────────────────────────────────────────────────────────────────────────
-    name               na_count    n_unique  top_counts
---  ---------------  ----------  ----------  -----------------------------------------
- <span class="m">0</span>          species           <span class="m">0</span>           <span class="m">3</span>  versicolor: <span class="m">50</span>, setosa: <span class="m">50</span>, virginica: <span class="m">50</span>
+──<span class="w"> </span>Variable<span class="w"> </span>type:<span class="w"> </span>string<span class="w"> </span>───────────────────────────────────────────────────────────────────────────
+<span class="w">    </span>name<span class="w">               </span>na_count<span class="w">    </span>n_unique<span class="w">  </span>top_counts
+--<span class="w">  </span>---------------<span class="w">  </span>----------<span class="w">  </span>----------<span class="w">  </span>-----------------------------------------
+<span class="w"> </span><span class="m">0</span><span class="w">          </span>species<span class="w">           </span><span class="m">0</span><span class="w">           </span><span class="m">3</span><span class="w">  </span>versicolor:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span>setosa:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span>virginica:<span class="w"> </span><span class="m">50</span>
 </pre></div>
 </div>
 <p>It will tell you the most relevant dataframe properties at a glance, and additionally provide statistics for each column.

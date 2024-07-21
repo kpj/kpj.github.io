@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connecting to Eduroam Network &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kpj's blog
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -110,8 +117,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Connecting to Eduroam Network</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Connecting to Eduroam Network</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/linux/Eduroam.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,34 +128,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="connecting-to-eduroam-network">
-<h1>Connecting to Eduroam Network<a class="headerlink" href="#connecting-to-eduroam-network" title="Permalink to this headline"></a></h1>
+  <section id="connecting-to-eduroam-network">
+<h1>Connecting to Eduroam Network<a class="headerlink" href="#connecting-to-eduroam-network" title="Link to this heading"></a></h1>
 <section id="just-one-simple-step">
-<h2>Just one simple Step<a class="headerlink" href="#just-one-simple-step" title="Permalink to this headline"></a></h2>
+<h2>Just one simple Step<a class="headerlink" href="#just-one-simple-step" title="Link to this heading"></a></h2>
 <p>Assuming that you are using <code class="docutils literal notranslate"><span class="pre">netctl</span></code>, eduroam networks can be easily accessed by placing the following profile in <code class="docutils literal notranslate"><span class="pre">/etc/netctl/</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">Connection</span><span class="o">=</span><span class="s1">&#39;wireless&#39;</span>
 <span class="nv">Interface</span><span class="o">=</span><span class="s1">&#39;&lt;wlan interface&gt;&#39;</span>
@@ -157,31 +140,31 @@
 <span class="nv">IP</span><span class="o">=</span><span class="s1">&#39;dhcp&#39;</span>
 <span class="nv">TimeoutWPA</span><span class="o">=</span><span class="m">30</span>
 <span class="nv">WPAConfigSection</span><span class="o">=(</span>
-  <span class="s1">&#39;ssid=&quot;eduroam&quot;&#39;</span>
-  <span class="s1">&#39;key_mgmt=WPA-EAP&#39;</span>
-  <span class="s1">&#39;eap=PEAP&#39;</span>
-  <span class="s1">&#39;proto=RSN&#39;</span>
-  <span class="s1">&#39;phase2=&quot;auth=MSCHAPV2&quot;&#39;</span>
-  <span class="s1">&#39;anonymous_identity=&quot;&lt;anonymous mail address&gt;&quot;&#39;</span>
-  <span class="s1">&#39;identity=&quot;&lt;identity mail address&gt;&quot;&#39;</span>
-  <span class="s1">&#39;ca_cert=&quot;&lt;path to *.pem&gt;&quot;&#39;</span>
-  <span class="s1">&#39;password=hash:&lt;password hash&gt;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;ssid=&quot;eduroam&quot;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;key_mgmt=WPA-EAP&#39;</span>
+<span class="w">  </span><span class="s1">&#39;eap=PEAP&#39;</span>
+<span class="w">  </span><span class="s1">&#39;proto=RSN&#39;</span>
+<span class="w">  </span><span class="s1">&#39;phase2=&quot;auth=MSCHAPV2&quot;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;anonymous_identity=&quot;&lt;anonymous mail address&gt;&quot;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;identity=&quot;&lt;identity mail address&gt;&quot;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;ca_cert=&quot;&lt;path to *.pem&gt;&quot;&#39;</span>
+<span class="w">  </span><span class="s1">&#39;password=hash:&lt;password hash&gt;&#39;</span>
 <span class="o">)</span>
 </pre></div>
 </div>
 <p>The profile can then be used by calling</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ netctl start eduroam
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>netctl<span class="w"> </span>start<span class="w"> </span>eduroam
 </pre></div>
 </div>
 </section>
 <section id="obtaining-the-password-hash">
-<h2>Obtaining the Password Hash<a class="headerlink" href="#obtaining-the-password-hash" title="Permalink to this headline"></a></h2>
+<h2>Obtaining the Password Hash<a class="headerlink" href="#obtaining-the-password-hash" title="Link to this heading"></a></h2>
 <p>The hash used to specify the password can be generated using the <code class="docutils literal notranslate"><span class="pre">MD4</span></code> algorithm:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> -n <span class="s1">&#39;&lt;password&gt;&#39;</span> <span class="p">|</span> iconv -t utf16le <span class="p">|</span> openssl md4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;&lt;password&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>iconv<span class="w"> </span>-t<span class="w"> </span>utf16le<span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>md4
 </pre></div>
 </div>
 <p>If you don’t like typing your password into the shell, you might also use</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">read</span> -sp<span class="s2">&quot;Password: &quot;</span> passwd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">read</span><span class="w"> </span>-sp<span class="s2">&quot;Password: &quot;</span><span class="w"> </span>passwd
 </pre></div>
 </div>
 <p>and pass <code class="docutils literal notranslate"><span class="pre">$passwd</span></code> to the echo function. Note that the <code class="docutils literal notranslate"><span class="pre">-s</span></code> parameter is not POSIX-compliant and depends on bash.</p>

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuring a fresh Archlinux Install &mdash; kpj&#39;s blog 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> kpj's blog
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kpj's blog
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -130,8 +137,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Configuring a fresh Archlinux Install</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuring a fresh Archlinux Install</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/linux/ConfigureFreshArchlinuxInstall.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -141,63 +148,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="configuring-a-fresh-archlinux-install">
-<h1>Configuring a fresh Archlinux Install<a class="headerlink" href="#configuring-a-fresh-archlinux-install" title="Permalink to this headline"></a></h1>
+  <section id="configuring-a-fresh-archlinux-install">
+<h1>Configuring a fresh Archlinux Install<a class="headerlink" href="#configuring-a-fresh-archlinux-install" title="Link to this heading"></a></h1>
 <section id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline"></a></h2>
+<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading"></a></h2>
 <p>This entry will provide you with the first few steps needed to get a fresh Arch install running and happy.</p>
 </section>
 <section id="setting-up-a-network-connection">
-<h2>Setting up a Network Connection<a class="headerlink" href="#setting-up-a-network-connection" title="Permalink to this headline"></a></h2>
+<h2>Setting up a Network Connection<a class="headerlink" href="#setting-up-a-network-connection" title="Link to this heading"></a></h2>
 <p>In order to install all missing programs on-the-fly, a working internet connection is important.</p>
 <p>We first make sure that the <code class="docutils literal notranslate"><span class="pre">systemd-networkd</span></code> and <code class="docutils literal notranslate"><span class="pre">systemd-resolved</span></code> services automatically start when booting:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> --now systemd-networkd.service
-$ systemctl <span class="nb">enable</span> --now systemd-resolved.service
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>systemd-networkd.service
+$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>systemd-resolved.service
 </pre></div>
 </div>
 <p>If you use programs which rely on <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code>, you need to do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/run/systemd/resolve/stub-resolv.conf<span class="w"> </span>/etc/resolv.conf
 </pre></div>
 </div>
 <p>Next, we establish a wired connection by editing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/network/20-wired.network</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Match<span class="o">]</span>
-<span class="nv">Name</span><span class="o">=</span>&lt;network interface&gt;
+<span class="nv">Name</span><span class="o">=</span>&lt;network<span class="w"> </span>interface&gt;
 
 <span class="o">[</span>Network<span class="o">]</span>
 <span class="nv">DHCP</span><span class="o">=</span>yes
 </pre></div>
 </div>
 <p>Finally, we restart the service to make it aware of our recent changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl restart systemd-networkd.service
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-networkd.service
 </pre></div>
 </div>
 </section>
 <section id="essential-programs">
-<h2>“Essential” Programs<a class="headerlink" href="#essential-programs" title="Permalink to this headline"></a></h2>
+<h2>“Essential” Programs<a class="headerlink" href="#essential-programs" title="Link to this heading"></a></h2>
 <p>In order to complete the following steps, some additional programs might be needed. In order to install those and other cool ones, update the pacman database (<code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-Syy</span></code>) and install the following applications:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">vim-minimal</span></code> - text editing and much more</p></li>
@@ -225,136 +208,136 @@ $ systemctl <span class="nb">enable</span> --now systemd-resolved.service
 </ul>
 </section>
 <section id="initial-configuration">
-<h2>Initial Configuration<a class="headerlink" href="#initial-configuration" title="Permalink to this headline"></a></h2>
+<h2>Initial Configuration<a class="headerlink" href="#initial-configuration" title="Link to this heading"></a></h2>
 <p>This section will list a few common first steps after installing the basic system</p>
 <section id="set-a-hostname">
-<h3>Set a Hostname<a class="headerlink" href="#set-a-hostname" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hostnamectl set-hostname &lt;hostname&gt;
+<h3>Set a Hostname<a class="headerlink" href="#set-a-hostname" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>&lt;hostname&gt;
 </pre></div>
 </div>
 </section>
 <section id="set-your-timezone">
-<h3>Set your Timezone<a class="headerlink" href="#set-your-timezone" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ timedatectl set-timezone Europe/Berlin
+<h3>Set your Timezone<a class="headerlink" href="#set-your-timezone" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>Europe/Berlin
 </pre></div>
 </div>
 </section>
 <section id="set-locale">
-<h3>Set locale<a class="headerlink" href="#set-locale" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim /etc/locale.gen <span class="c1"># uncomment: &quot;en_US.UTF-8 UTF-8&quot;</span>
-$ locale-gen
-$ locale -a <span class="c1"># list available types</span>
+<h3>Set locale<a class="headerlink" href="#set-locale" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vim<span class="w"> </span>/etc/locale.gen<span class="w"> </span><span class="c1"># uncomment: &quot;en_US.UTF-8 UTF-8&quot;</span>
+$<span class="w"> </span>locale-gen
+$<span class="w"> </span>locale<span class="w"> </span>-a<span class="w"> </span><span class="c1"># list available types</span>
 
-$ vim .config/locale.conf <span class="c1"># export entries from `locale` as env vars</span>
+$<span class="w"> </span>vim<span class="w"> </span>.config/locale.conf<span class="w"> </span><span class="c1"># export entries from `locale` as env vars</span>
 or
-$ localectl set-locale <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+$<span class="w"> </span>localectl<span class="w"> </span>set-locale<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
 </pre></div>
 </div>
 </section>
 <section id="handle-keyboard-layout-console">
-<h3>Handle keyboard layout (console)<a class="headerlink" href="#handle-keyboard-layout-console" title="Permalink to this headline"></a></h3>
+<h3>Handle keyboard layout (console)<a class="headerlink" href="#handle-keyboard-layout-console" title="Link to this heading"></a></h3>
 <p>Adjust your keyboard layout according to your needs.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ localectl status <span class="c1"># show current configuration</span>
-$ localectl list-keymaps <span class="c1"># list available layouts</span>
-$ loadkeys de-latin1 <span class="c1"># temporarily load layout</span>
-$ vim /etc/vconsole.conf <span class="c1"># add &quot;KEYMAP=de-latin1&quot; for permanent layout</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>localectl<span class="w"> </span>status<span class="w"> </span><span class="c1"># show current configuration</span>
+$<span class="w"> </span>localectl<span class="w"> </span>list-keymaps<span class="w"> </span><span class="c1"># list available layouts</span>
+$<span class="w"> </span>loadkeys<span class="w"> </span>de-latin1<span class="w"> </span><span class="c1"># temporarily load layout</span>
+$<span class="w"> </span>vim<span class="w"> </span>/etc/vconsole.conf<span class="w"> </span><span class="c1"># add &quot;KEYMAP=de-latin1&quot; for permanent layout</span>
 </pre></div>
 </div>
 </section>
 <section id="handle-keyboard-layout-xorg">
-<h3>Handle keyboard layout (Xorg)<a class="headerlink" href="#handle-keyboard-layout-xorg" title="Permalink to this headline"></a></h3>
+<h3>Handle keyboard layout (Xorg)<a class="headerlink" href="#handle-keyboard-layout-xorg" title="Link to this heading"></a></h3>
 <p>It might be necessary to adjust X to the layout of your specific keyboard. For german ones, something like the following could be used.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim ~/.xinitrc <span class="c1"># add &quot;setxkbmap de nodeadkeys &amp;&quot; at bottom</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vim<span class="w"> </span>~/.xinitrc<span class="w"> </span><span class="c1"># add &quot;setxkbmap de nodeadkeys &amp;&quot; at bottom</span>
 </pre></div>
 </div>
 </section>
 <section id="set-root-password">
-<h3>Set root Password<a class="headerlink" href="#set-root-password" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ su
-$ passwd
+<h3>Set root Password<a class="headerlink" href="#set-root-password" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>su
+$<span class="w"> </span>passwd
 </pre></div>
 </div>
 </section>
 <section id="setup-zsh">
-<h3>Setup Zsh<a class="headerlink" href="#setup-zsh" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S zsh zsh-completions 
+<h3>Setup Zsh<a class="headerlink" href="#setup-zsh" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>zsh<span class="w"> </span>zsh-completions<span class="w"> </span>
 </pre></div>
 </div>
 <p>You can now create a new user with Zsh as their default shell (see next section).</p>
 </section>
 <section id="add-a-default-user">
-<h3>Add a Default User<a class="headerlink" href="#add-a-default-user" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ useradd --create-home -g users --groups wheel --shell /usr/bin/zsh kpj
-$ passwd kpj
+<h3>Add a Default User<a class="headerlink" href="#add-a-default-user" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>useradd<span class="w"> </span>--create-home<span class="w"> </span>-g<span class="w"> </span>users<span class="w"> </span>--groups<span class="w"> </span>wheel<span class="w"> </span>--shell<span class="w"> </span>/usr/bin/zsh<span class="w"> </span>kpj
+$<span class="w"> </span>passwd<span class="w"> </span>kpj
 <span class="o">[</span>..<span class="o">]</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="setting-up-the-gui">
-<h2>Setting up the GUI<a class="headerlink" href="#setting-up-the-gui" title="Permalink to this headline"></a></h2>
+<h2>Setting up the GUI<a class="headerlink" href="#setting-up-the-gui" title="Link to this heading"></a></h2>
 <p>In order to have a fancy window manager, we have to install X and a driver first (the exact packages required depend on your particular GPU setup)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S xorg xorg-xinit
-$ cp /etc/X11/xinit/xinitrc ~/.xinitrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>xorg<span class="w"> </span>xorg-xinit
+$<span class="w"> </span>cp<span class="w"> </span>/etc/X11/xinit/xinitrc<span class="w"> </span>~/.xinitrc
 </pre></div>
 </div>
 <p>To then automatically start X on login, add</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span> -z <span class="nv">$DISPLAY</span> <span class="o">&amp;&amp;</span> <span class="nv">$XDG_VTNR</span> -eq <span class="m">1</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">exec</span> startx
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="nv">$DISPLAY</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">$XDG_VTNR</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exec</span><span class="w"> </span>startx
 </pre></div>
 </div>
 <p>to the bottom of your <code class="docutils literal notranslate"><span class="pre">~/.zprofile</span></code>.</p>
 <p>In order to automatically login after booting, simply create the file <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/getty&#64;tty1.service.d/autologin.conf</span></code> (assuming you’re using systemd) and paste the following content</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
 <span class="nv">ExecStart</span><span class="o">=</span>
-<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/agetty --autologin username --noclear %I <span class="nv">$TERM</span>
+<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/agetty<span class="w"> </span>--autologin<span class="w"> </span>username<span class="w"> </span>--noclear<span class="w"> </span>%I<span class="w"> </span><span class="nv">$TERM</span>
 <span class="nv">Type</span><span class="o">=</span>simple
 </pre></div>
 </div>
 <p>Afterwards, e.g. <code class="docutils literal notranslate"><span class="pre">i3</span></code> can then be easily installed and set to automatically start on boot</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S i3 dmenu rxvt-unicode noto-fonts
-$ vim ~/.xinitrc <span class="c1"># add &quot;exec i3&quot; at bottom</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>i3<span class="w"> </span>dmenu<span class="w"> </span>rxvt-unicode<span class="w"> </span>noto-fonts
+$<span class="w"> </span>vim<span class="w"> </span>~/.xinitrc<span class="w"> </span><span class="c1"># add &quot;exec i3&quot; at bottom</span>
 </pre></div>
 </div>
 </section>
 <section id="enabling-sound">
-<h2>Enabling Sound<a class="headerlink" href="#enabling-sound" title="Permalink to this headline"></a></h2>
+<h2>Enabling Sound<a class="headerlink" href="#enabling-sound" title="Link to this heading"></a></h2>
 <p>This can now automagically all be done by installing the following packages:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S pipewire pipewire-alsa pipewire-pulse helvum
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>pipewire<span class="w"> </span>pipewire-alsa<span class="w"> </span>pipewire-pulse<span class="w"> </span>helvum
 </pre></div>
 </div>
 <p>And subsequently restarting your computer.</p>
 </section>
 <section id="clock-synchronization">
-<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline"></a></h2>
+<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Link to this heading"></a></h2>
 <p>We haven’t used <code class="docutils literal notranslate"><span class="pre">systemd</span></code> so far, so let’s do it (Ba Dum Tss!)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ systemctl <span class="nb">enable</span> systemd-networkd
-$ systemctl <span class="nb">enable</span> systemd-timesyncd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>systemd-networkd
+$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>systemd-timesyncd
 </pre></div>
 </div>
 </section>
 <section id="using-ssh">
-<h2>Using SSH<a class="headerlink" href="#using-ssh" title="Permalink to this headline"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S openssh
-$ ssh-keygen
-$ systemctl <span class="nb">enable</span> sshd.service
+<h2>Using SSH<a class="headerlink" href="#using-ssh" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>openssh
+$<span class="w"> </span>ssh-keygen
+$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>sshd.service
 </pre></div>
 </div>
 </section>
 <section id="handle-sudo">
-<h2>Handle sudo<a class="headerlink" href="#handle-sudo" title="Permalink to this headline"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S sudo
-$ <span class="nv">EDITOR</span><span class="o">=</span>vim visudo <span class="c1"># -&gt; %sudo   ALL=(ALL) ALL</span>
-$ groupadd sudo
-$ usermod -a -G sudo &lt;user&gt;
+<h2>Handle sudo<a class="headerlink" href="#handle-sudo" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>sudo
+$<span class="w"> </span><span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo<span class="w"> </span><span class="c1"># -&gt; %sudo   ALL=(ALL) ALL</span>
+$<span class="w"> </span>groupadd<span class="w"> </span>sudo
+$<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>sudo<span class="w"> </span>&lt;user&gt;
 </pre></div>
 </div>
 </section>
 <section id="init-vim">
-<h2>Init vim<a class="headerlink" href="#init-vim" title="Permalink to this headline"></a></h2>
+<h2>Init vim<a class="headerlink" href="#init-vim" title="Link to this heading"></a></h2>
 <p>Install <a class="reference external" href="https://github.com/gmarik/Vundle.vim">this</a> plugin manager and look <a class="reference external" href="https://github.com/kpj/dotfiles/blob/master/vimrc">here</a> for an exemplary configuration file.</p>
 </section>
 <section id="useful-bashrc-edits">
-<h2>Useful <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> edits<a class="headerlink" href="#useful-bashrc-edits" title="Permalink to this headline"></a></h2>
+<h2>Useful <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> edits<a class="headerlink" href="#useful-bashrc-edits" title="Link to this heading"></a></h2>
 <p>Colorful prompt for normal user:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\e[1;32m\][\u@\h \W]$\[\e[0m\] &#39;</span>
 </pre></div>
@@ -365,15 +348,15 @@ $ usermod -a -G sudo &lt;user&gt;
 </div>
 </section>
 <section id="weechat-usage">
-<h2>Weechat usage<a class="headerlink" href="#weechat-usage" title="Permalink to this headline"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacman -S weechat
-$ weechat
--&gt; /server add freenode chat.freenode.net
--&gt; /set irc.server.freenode.autoconnect on
--&gt; /set irc.server.freenode.autojoin <span class="s2">&quot;#channel1,#channel2&quot;</span>
--&gt; /set irc.server.freenode.nicks <span class="s2">&quot;kpj&quot;</span>
--&gt; /set irc.server.freenode.command <span class="s2">&quot;/msg nickserv identify &lt;password&gt;&quot;</span>
--&gt; /save
+<h2>Weechat usage<a class="headerlink" href="#weechat-usage" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>weechat
+$<span class="w"> </span>weechat
+-&gt;<span class="w"> </span>/server<span class="w"> </span>add<span class="w"> </span>freenode<span class="w"> </span>chat.freenode.net
+-&gt;<span class="w"> </span>/set<span class="w"> </span>irc.server.freenode.autoconnect<span class="w"> </span>on
+-&gt;<span class="w"> </span>/set<span class="w"> </span>irc.server.freenode.autojoin<span class="w"> </span><span class="s2">&quot;#channel1,#channel2&quot;</span>
+-&gt;<span class="w"> </span>/set<span class="w"> </span>irc.server.freenode.nicks<span class="w"> </span><span class="s2">&quot;kpj&quot;</span>
+-&gt;<span class="w"> </span>/set<span class="w"> </span>irc.server.freenode.command<span class="w"> </span><span class="s2">&quot;/msg nickserv identify &lt;password&gt;&quot;</span>
+-&gt;<span class="w"> </span>/save
 </pre></div>
 </div>
 </section>
